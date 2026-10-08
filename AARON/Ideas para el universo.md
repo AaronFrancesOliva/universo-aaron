@@ -24,7 +24,7 @@ Propuestas de Jarvis que Aaron ha dejado para más adelante ("por si me apetece"
 
 ## Más ideas (2026-10-08, sin elegir todavía)
 - [ ] **Buscador Ctrl+K**: escribir un nombre y volar hasta ese planeta, nota o elemento.
-- [x] ~~**Portales a webs**~~: hecho el 2026-10-08.
+- Portales a webs: se hicieron y se quitaron el 2026-10-08. No volver a proponerlos.
 - [ ] **Minimapa / radar** en una esquina, con las galaxias, la estación, los cometas y hacia dónde mira la cámara.
 - [ ] **Sonido ambiental** (con botón de silencio): zumbido de nave, ping de la baliza, clics.
 - [x] ~~Centro de alertas~~: hecho el 2026-10-08.
