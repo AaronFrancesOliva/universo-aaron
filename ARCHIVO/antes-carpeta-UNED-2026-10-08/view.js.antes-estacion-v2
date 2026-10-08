@@ -2738,136 +2738,72 @@ const modGalaxia = (parent) => {
     const E = posEstacion(t), [cx, cy, , cf] = proy(E, E, 8), esc = S * cf;
     estacion.sx = cx; estacion.sy = cy; estacion.sr = Math.max(10, 4.5 * esc);
     if (esc < 0.6) return;
-    const col = ESTADO_COPIA[estacion.estado] || "#7fa9b8";
-    const W3 = (q) => enEst(E, q); // punto local → mundo
-    const LUZ = normal([0.55, 0.6, 0.35]); // luz del «sol» que da volumen al metal
-    const metal = (n, k = 1) => { // color del acero según cuánto mira la cara a la luz
-      const b = 0.28 + 0.72 * Math.max(0, n[0] * LUZ[0] + n[1] * LUZ[1] + n[2] * LUZ[2]);
-      return `rgb(${Math.round(150 * b * k + 18)}, ${Math.round(172 * b * k + 22)}, ${Math.round(196 * b * k + 32)})`;
-    };
-    const nW = (n) => normal(rotar(n, 0.22, 0.16)); // normal local → mundo (misma inclinación que la estación)
-    // ---- recoger primitivas y pintarlas de atrás a delante ----
-    const prims = [];
-    const cara = (pl, n, relleno, borde, emisiva) => { // pl: puntos locales
-      const pw = pl.map(W3), z = pw.reduce((s, q) => s + camZ(q)[2], 0) / pw.length;
-      prims.push({ tipo: "cara", p: pw.map((q) => proy(q, E, 8)), z, relleno: relleno || metal(nW(n)), borde, emisiva });
-    };
-    const linea = (a, b, color, ancho, alfa) => { const A = W3(a), B = W3(b); prims.push({ tipo: "linea", p: [proy(A, E, 8), proy(B, E, 8)], z: (camZ(A)[2] + camZ(B)[2]) / 2, color, ancho, alfa }); };
-    // anillo como tubo: cara exterior (con ventanas) y cara superior, en módulos alternos
-    const anillo = (R, y, giro, radios, segs, hT) => {
-      const r0 = R - 0.32, r1 = R + 0.26;
-      for (let k = 0; k < segs; k++) {
-        const u0 = giro + (k / segs) * Math.PI * 2, u1 = giro + ((k + 0.92) / segs) * Math.PI * 2, um = (u0 + u1) / 2;
-        const c0 = Math.cos(u0), s0 = Math.sin(u0), c1 = Math.cos(u1), s1 = Math.sin(u1), oscuro = k % 4 === 0 ? 0.75 : 1;
-        cara([[c0 * r1, y - hT, s0 * r1], [c1 * r1, y - hT, s1 * r1], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [Math.cos(um), 0, Math.sin(um)], null, "rgba(20,30,45,.35)");
-        cara([[c0 * r0, y + hT, s0 * r0], [c1 * r0, y + hT, s1 * r0], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [0, 1, 0], metal(nW([0, 1, 0]), oscuro), "rgba(20,30,45,.3)");
-        cara([[c0 * r0, y - hT, s0 * r0], [c1 * r0, y - hT, s1 * r0], [c1 * r0, y + hT, s1 * r0], [c0 * r0, y + hT, s0 * r0]], [-Math.cos(um), 0, -Math.sin(um)], null, "rgba(20,30,45,.35)");
-        if (k % 2 === 0) { // franja de ventanas encendidas (color del estado de la copia)
-          const rv = r1 + 0.01, hv = hT * 0.35;
-          cara([[Math.cos(u0 + 0.02) * rv, y - hv, Math.sin(u0 + 0.02) * rv], [Math.cos(u1 - 0.02) * rv, y - hv, Math.sin(u1 - 0.02) * rv],
-            [Math.cos(u1 - 0.02) * rv, y + hv, Math.sin(u1 - 0.02) * rv], [Math.cos(u0 + 0.02) * rv, y + hv, Math.sin(u0 + 0.02) * rv]],
-          [Math.cos(um), 0, Math.sin(um)], estacion.estado === "local" ? "#e8f4ff" : col, null, true);
-        }
-      }
-      for (let k = 0; k < radios; k++) { // radios hasta el eje
-        const u = giro + (k / radios) * Math.PI * 2 + 0.1;
-        linea([Math.cos(u) * 0.45, y, Math.sin(u) * 0.45], [Math.cos(u) * r0, y, Math.sin(u) * r0], "#b9cde0", Math.max(1, 0.07 * esc), 0.85);
-      }
-    };
-    // prisma (mástil y módulos): caja de sección cuadrada de y0 a y1
-    const caja = (a, y0, y1, giro = 0) => {
-      const v = [[a, a], [-a, a], [-a, -a], [a, -a]].map(([x, z]) => [x * Math.cos(giro) - z * Math.sin(giro), x * Math.sin(giro) + z * Math.cos(giro)]);
-      for (let i = 0; i < 4; i++) {
-        const [x0, z0] = v[i], [x1, z1] = v[(i + 1) % 4], nx = (x0 + x1) / 2, nz = (z0 + z1) / 2, l = Math.hypot(nx, nz) || 1;
-        cara([[x0, y0, z0], [x1, y0, z1], [x1, y1, z1], [x0, y1, z0]], [nx / l, 0, nz / l], null, "rgba(15,25,40,.4)");
-      }
-      cara(v.map(([x, z]) => [x, y1, z]), [0, 1, 0], null, "rgba(15,25,40,.4)");
-      cara(v.map(([x, z]) => [x, y0, z]), [0, -1, 0], null, "rgba(15,25,40,.4)");
-    };
-    caja(0.16, -6.8, 7.4, 0.3);                       // mástil
-    caja(0.42, -0.75, 0.15, 0.3 + t * 0.05);           // módulo del anillo grande
-    caja(0.32, 1.35, 2.05, 0.3 - t * 0.08);            // módulo del anillo pequeño
-    caja(0.26, 3.6, 4.3, 0.3); caja(0.3, -3.2, -2.4, 0.3); // módulos de servicio
-    // paneles (aletas largas), con un canto brillante como en la referencia
-    const panel = (x0, x1, y0, y1, z) => {
-      cara([[x0, y0, z], [x1, y0, z], [x1, y1, z], [x0, y1, z]], [0, 0, 1], null, "rgba(200,225,255,.55)");
-      linea([x1, y0, z], [x1, y1, z], "#ffffff", Math.max(1, 0.06 * esc), 0.8);
-      for (let k = 1; k < 7; k++) { const y = y0 + (y1 - y0) * (k / 7); linea([x0, y, z], [x1, y, z], "#7fb2ff", 1, 0.25); }
-    };
-    panel(0.18, 1.05, 2.6, 7.1, 0.12); panel(-0.95, -0.18, 3.2, 6.3, -0.12); panel(-0.18, 0.88, -1.5, -6.3, 0.14);
-    anillo(4.2, -0.3, t * 0.05, 4, 40, 0.34);
-    anillo(2.3, 1.7, -t * 0.08, 6, 24, 0.22);
-    // pintar de atrás a delante
-    prims.sort((a, b) => a.z - b.z);
-    for (const pr of prims) {
-      if (pr.tipo === "linea") {
-        ctx.globalAlpha = pr.alfa; ctx.strokeStyle = pr.color; ctx.lineWidth = pr.ancho;
-        ctx.beginPath(); ctx.moveTo(pr.p[0][0], pr.p[0][1]); ctx.lineTo(pr.p[1][0], pr.p[1][1]); ctx.stroke();
-        continue;
-      }
-      ctx.beginPath(); ctx.moveTo(pr.p[0][0], pr.p[0][1]);
-      for (const q of pr.p.slice(1)) ctx.lineTo(q[0], q[1]);
-      ctx.closePath();
-      if (pr.emisiva) { // ventanas: brillan (y parpadean si hay algo pendiente)
-        const parp = estacion.estado === "pendiente" ? 0.6 + 0.4 * Math.sin(t * 2) : estacion.estado === "atrasada" || estacion.estado === "error" ? 0.35 + 0.65 * Math.abs(Math.sin(t * 3)) : 1;
-        ctx.globalAlpha = 0.95 * parp; ctx.fillStyle = pr.relleno; ctx.shadowColor = pr.relleno; ctx.shadowBlur = 8; ctx.fill(); ctx.shadowBlur = 0;
-      } else {
-        ctx.globalAlpha = 0.96; ctx.fillStyle = pr.relleno; ctx.fill();
-        if (pr.borde) { ctx.strokeStyle = pr.borde; ctx.lineWidth = 0.6; ctx.stroke(); }
-      }
-    }
-    ctx.globalAlpha = 1;
-    // luces de navegación: roja y verde en los extremos del anillo grande, blanca abajo
-    ctx.globalCompositeOperation = "lighter";
-    const giroG = t * 0.05, parpNav = (Math.sin(t * 2.6) > 0.3) ? 1 : 0.15;
-    for (const [u, c] of [[giroG, "#ff4d6a"], [giroG + Math.PI, "#4dffb5"]]) {
-      const q = proy(W3([Math.cos(u) * 4.5, -0.3, Math.sin(u) * 4.5]), E, 8);
-      halo(q[0], q[1], Math.max(3, 0.45 * esc), c, parpNav);
-    }
-    const ab = proy(W3([0, -6.9, 0]), E, 8);
-    halo(ab[0], ab[1], Math.max(3, 0.4 * esc), "#ffffff", 1 - parpNav * 0.8);
-    // ---- baliza: núcleo grande, haz vertical y pulsos de radar con el color del estado ----
-    const cb = estacion.estado === "local" ? "#ff4d6a" : col;
-    const bal = proy(W3([0, 7.7, 0]), E, 8), cima = proy(W3([0, 13, 0]), E, 8), lat = 0.5 + 0.5 * Math.sin(t * 3);
-    const gh = ctx.createLinearGradient(bal[0], bal[1], cima[0], cima[1]);
-    gh.addColorStop(0, cb + "cc"); gh.addColorStop(1, cb + "00");
-    ctx.strokeStyle = gh; ctx.lineWidth = Math.max(2, 0.25 * esc); ctx.globalAlpha = 0.6 + 0.4 * lat;
-    ctx.beginPath(); ctx.moveTo(bal[0], bal[1]); ctx.lineTo(cima[0], cima[1]); ctx.stroke();
-    for (let k = 0; k < 3; k++) { // pulsos de radar que se expanden
-      const ph = (t * 0.6 + k / 3) % 1;
-      ctx.strokeStyle = cb; ctx.lineWidth = 1.5; ctx.globalAlpha = (1 - ph) * 0.8;
-      ctx.beginPath(); ctx.arc(bal[0], bal[1], Math.max(6, 0.8 * esc) + ph * Math.max(30, 4 * esc), 0, Math.PI * 2); ctx.stroke();
-    }
-    halo(bal[0], bal[1], Math.max(8, 1.4 * esc) * (0.8 + 0.4 * lat), cb, 1);
-    ctx.fillStyle = "#ffffff"; ctx.globalAlpha = 1;
-    ctx.beginPath(); ctx.arc(bal[0], bal[1], Math.max(2, 0.22 * esc), 0, Math.PI * 2); ctx.fill();
-    // lanzadera que patrulla la estación (solo si la copia está al día)
-    if (estacion.estado === "ok") {
-      const u = t * 0.35, sh = proy(W3([Math.cos(u) * 6.2, 0.6 + Math.sin(u * 2) * 0.8, Math.sin(u) * 6.2]), E, 8);
-      halo(sh[0], sh[1], Math.max(3, 0.4 * esc), "#ffffff", 0.95);
-    }
-    ctx.globalCompositeOperation = "source-over";
-    // ---- placa de estado junto a la estación (siempre visible) ----
-    const CORTO = { ok: "COPIA AL DÍA ✓", pendiente: "CAMBIOS SIN COPIAR", local: "SOLO EN ESTE PC", atrasada: "COPIA ATRASADA", error: "ERROR AL SUBIR", desconocido: "LEYENDO…" };
-    const txt = CORTO[estacion.estado] || "…", px = bal[0] + Math.max(14, 1.6 * esc), py = bal[1] - Math.max(10, 1.2 * esc);
-    ctx.font = "bold 10px Orbitron, 'Share Tech Mono', monospace";
-    const anchoT = ctx.measureText(txt).width + 26;
-    ctx.globalAlpha = 0.85; ctx.fillStyle = "rgba(6, 14, 24, .85)"; ctx.strokeStyle = cb; ctx.lineWidth = 1.2;
-    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(px, py - 9, anchoT, 18, 5) : ctx.rect(px, py - 9, anchoT, 18); ctx.fill(); ctx.stroke();
-    ctx.globalAlpha = 1; ctx.fillStyle = cb; ctx.beginPath(); ctx.arc(px + 9, py, 3.5 * (0.8 + 0.3 * lat), 0, Math.PI * 2); ctx.fill();
-    ctx.textAlign = "left"; ctx.fillStyle = "#e8f4ff"; ctx.fillText(txt, px + 17, py + 3.5); ctx.textAlign = "center";
+    const col = ESTADO_COPIA[estacion.estado] || "#7fa9b8", acero = "#cfe3f2", azul = "#7fb2ff";
+    const P = (q) => proy(enEst(E, q), E, 8);
+    const w = (k) => Math.max(0.6, k * esc);
     // haz de datos hacia la galaxia GITHUB: continuo si está sincronizada, cortado si no
     const gGH = galN.find((g) => g.id === "GITHUB");
     if (gGH) {
-      const A = W3([0, 7.4, 0]), B = gGH.C, pts = Array.from({ length: 41 }, (_, i) => A.map((v, j) => v + (B[j] - v) * (i / 40)));
+      const A = enEst(E, [0, 7.4, 0]), B = gGH.C, pts = Array.from({ length: 41 }, (_, i) => A.map((v, j) => v + (B[j] - v) * (i / 40)));
       const ok = estacion.estado === "ok" || estacion.estado === "pendiente";
       ctx.setLineDash(ok ? [2, 6] : [10, 14]); ctx.lineDashOffset = ok ? -t * 25 : 0;
       trazo(pts, ok ? col : "#ff4d6a", ok ? 1.2 : 0.8, 0.06, ok ? 0.35 : 0.15, ok ? 8 : 0, null, A, 60);
       ctx.setLineDash([]); ctx.lineDashOffset = 0;
     }
+    ctx.globalCompositeOperation = "lighter";
+    halo(cx, cy, 6 * esc, azul, 0.25);
+    ctx.globalCompositeOperation = "source-over";
+    // paneles (aletas largas arriba y abajo del mástil)
+    const panel = (x0, x1, y0, y1, z) => {
+      const c = [[x0, y0, z], [x1, y0, z], [x1, y1, z], [x0, y1, z]].map(P);
+      const g = ctx.createLinearGradient(c[0][0], c[0][1], c[2][0], c[2][1]);
+      g.addColorStop(0, "#9cc4ff55"); g.addColorStop(0.5, "#e8f4ff88"); g.addColorStop(1, "#5f8cff33");
+      ctx.globalAlpha = 0.9; ctx.fillStyle = g; ctx.beginPath(); ctx.moveTo(c[0][0], c[0][1]);
+      for (const q of c.slice(1)) ctx.lineTo(q[0], q[1]);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = acero; ctx.lineWidth = w(0.03); ctx.globalAlpha = 0.7; ctx.stroke();
+      ctx.globalAlpha = 0.25; ctx.beginPath(); // líneas de los paneles
+      for (let k = 1; k < 6; k++) { const y = y0 + (y1 - y0) * (k / 6), a = P([x0, y, z]), b = P([x1, y, z]); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); }
+      ctx.stroke(); ctx.globalAlpha = 1;
+    };
+    panel(0.15, 1.05, 2.6, 7.2, 0.1); panel(-0.95, -0.2, 3.2, 6.4, -0.1); panel(-0.2, 0.85, -1.6, -6.4, 0.15);
+    // mástil
+    trazo([[0, -6.8, 0], [0, 7.6, 0]].map((q) => enEst(E, q)), acero, w(0.12), 0.8, 0.95, 6, null, E, 8);
+    trazo([[0.18, -5, 0], [0.18, 6, 0]].map((q) => enEst(E, q)), azul, w(0.04), 0.5, 0.7, 0, null, E, 8);
+    // anillos: el grande (habitado, con radios) y el pequeño encima, girando en sentidos opuestos, con ventanas encendidas
+    const anillo = (R, y, giro, radios, ventanas) => {
+      for (const [r, a] of [[R * 0.94, 0.75], [R * 1.04, 0.95]]) {
+        const pts = Array.from({ length: 97 }, (_, i) => { const u = (i / 96) * Math.PI * 2; return enEst(E, [Math.cos(u) * r, y, Math.sin(u) * r]); });
+        trazo(pts, acero, w(R > 3 ? 0.09 : 0.06), 0.35 * a, 0.9 * a, 6, null, E, R);
+      }
+      for (let k = 0; k < radios; k++) { // radios hasta el eje
+        const u = giro + (k / radios) * Math.PI * 2;
+        trazo([enEst(E, [Math.cos(u) * 0.35, y, Math.sin(u) * 0.35]), enEst(E, [Math.cos(u) * R * 0.94, y, Math.sin(u) * R * 0.94])], acero, w(0.04), 0.3, 0.7, 0, null, E, R);
+      }
+      for (let k = 0; k < ventanas; k++) { // módulos con ventanas: el color del estado de la copia
+        const u = giro + (k / ventanas) * Math.PI * 2, q = P([Math.cos(u) * R, y, Math.sin(u) * R]);
+        const parp = estacion.estado === "pendiente" ? 0.55 + 0.45 * Math.sin(t * 2 + k) : estacion.estado === "atrasada" || estacion.estado === "error" ? 0.4 + 0.6 * Math.abs(Math.sin(t * 3)) : 0.9;
+        ctx.globalAlpha = (0.3 + 0.7 * q[2]) * parp; ctx.fillStyle = estacion.estado === "local" ? "#e8f4ff" : col;
+        const z = Math.max(1, 0.12 * esc); ctx.fillRect(q[0] - z / 2, q[1] - z / 2, z, z);
+      }
+      ctx.globalAlpha = 1;
+      halo(...P([0, y, 0]).slice(0, 2), Math.max(3, 0.6 * esc), "#e8f4ff", 0.5); // núcleo del anillo
+    };
+    anillo(4.2, -0.3, t * 0.05, 4, 64);
+    anillo(2.3, 1.7, -t * 0.08, 6, 28);
+    // baliza en lo alto del mástil: late con el color del estado (roja si la copia solo está en local)
+    const bal = P([0, 7.7, 0]), cb = estacion.estado === "local" ? "#ff4d6a" : col, lat = 0.5 + 0.5 * Math.sin(t * 3.5);
+    ctx.globalCompositeOperation = "lighter";
+    halo(bal[0], bal[1], Math.max(4, 0.9 * esc) * (0.7 + 0.5 * lat), cb, 0.5 + 0.5 * lat);
+    // lanzadera que patrulla la estación (vuela solo si la copia está al día)
+    if (estacion.estado === "ok") {
+      const u = t * 0.35, sh = P([Math.cos(u) * 6.2, 0.6 + Math.sin(u * 2) * 0.8, Math.sin(u) * 6.2]);
+      halo(sh[0], sh[1], Math.max(2.5, 0.35 * esc), "#ffffff", 0.9);
+    }
+    ctx.globalCompositeOperation = "source-over";
     if (estacion === estacionHover || esc > 7) {
-      etiqueta("ESTACIÓN DE COPIAS", cx, cy - 9.6 * esc, "#e8f4ff", 0.9, 11);
-      etiqueta(estacion.texto, cx, cy - 9.6 * esc + 12, col, 0.75, 8);
+      etiqueta("ESTACIÓN DE COPIAS", cx, cy - 8.6 * esc, "#e8f4ff", 0.9, 11);
+      etiqueta(estacion.texto, cx, cy - 8.6 * esc + 12, col, 0.75, 8);
     }
   };
   let estacionHover = null;
