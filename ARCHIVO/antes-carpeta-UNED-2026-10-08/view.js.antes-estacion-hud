@@ -2743,7 +2743,7 @@ const modGalaxia = (parent) => {
     const LUZ = normal([0.55, 0.6, 0.35]); // luz del «sol» que da volumen al metal
     const metal = (n, k = 1) => { // color del acero según cuánto mira la cara a la luz
       const b = 0.28 + 0.72 * Math.max(0, n[0] * LUZ[0] + n[1] * LUZ[1] + n[2] * LUZ[2]);
-      return `rgb(${Math.round(128 * b * k + 14)}, ${Math.round(168 * b * k + 22)}, ${Math.round(200 * b * k + 36)})`; // acero con tinte cian (estética JARVIS)
+      return `rgb(${Math.round(150 * b * k + 18)}, ${Math.round(172 * b * k + 22)}, ${Math.round(196 * b * k + 32)})`;
     };
     const nW = (n) => normal(rotar(n, 0.22, 0.16)); // normal local → mundo (misma inclinación que la estación)
     // ---- recoger primitivas y pintarlas de atrás a delante ----
@@ -2759,9 +2759,9 @@ const modGalaxia = (parent) => {
       for (let k = 0; k < segs; k++) {
         const u0 = giro + (k / segs) * Math.PI * 2, u1 = giro + ((k + 0.92) / segs) * Math.PI * 2, um = (u0 + u1) / 2;
         const c0 = Math.cos(u0), s0 = Math.sin(u0), c1 = Math.cos(u1), s1 = Math.sin(u1), oscuro = k % 4 === 0 ? 0.75 : 1;
-        cara([[c0 * r1, y - hT, s0 * r1], [c1 * r1, y - hT, s1 * r1], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [Math.cos(um), 0, Math.sin(um)], null, "rgba(62,232,255,.28)");
-        cara([[c0 * r0, y + hT, s0 * r0], [c1 * r0, y + hT, s1 * r0], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [0, 1, 0], metal(nW([0, 1, 0]), oscuro), "rgba(62,232,255,.22)");
-        cara([[c0 * r0, y - hT, s0 * r0], [c1 * r0, y - hT, s1 * r0], [c1 * r0, y + hT, s1 * r0], [c0 * r0, y + hT, s0 * r0]], [-Math.cos(um), 0, -Math.sin(um)], null, "rgba(62,232,255,.28)");
+        cara([[c0 * r1, y - hT, s0 * r1], [c1 * r1, y - hT, s1 * r1], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [Math.cos(um), 0, Math.sin(um)], null, "rgba(20,30,45,.35)");
+        cara([[c0 * r0, y + hT, s0 * r0], [c1 * r0, y + hT, s1 * r0], [c1 * r1, y + hT, s1 * r1], [c0 * r1, y + hT, s0 * r1]], [0, 1, 0], metal(nW([0, 1, 0]), oscuro), "rgba(20,30,45,.3)");
+        cara([[c0 * r0, y - hT, s0 * r0], [c1 * r0, y - hT, s1 * r0], [c1 * r0, y + hT, s1 * r0], [c0 * r0, y + hT, s0 * r0]], [-Math.cos(um), 0, -Math.sin(um)], null, "rgba(20,30,45,.35)");
         if (k % 2 === 0) { // franja de ventanas encendidas (color del estado de la copia)
           const rv = r1 + 0.01, hv = hT * 0.35;
           cara([[Math.cos(u0 + 0.02) * rv, y - hv, Math.sin(u0 + 0.02) * rv], [Math.cos(u1 - 0.02) * rv, y - hv, Math.sin(u1 - 0.02) * rv],
@@ -2779,10 +2779,10 @@ const modGalaxia = (parent) => {
       const v = [[a, a], [-a, a], [-a, -a], [a, -a]].map(([x, z]) => [x * Math.cos(giro) - z * Math.sin(giro), x * Math.sin(giro) + z * Math.cos(giro)]);
       for (let i = 0; i < 4; i++) {
         const [x0, z0] = v[i], [x1, z1] = v[(i + 1) % 4], nx = (x0 + x1) / 2, nz = (z0 + z1) / 2, l = Math.hypot(nx, nz) || 1;
-        cara([[x0, y0, z0], [x1, y0, z1], [x1, y1, z1], [x0, y1, z0]], [nx / l, 0, nz / l], null, "rgba(62,232,255,.3)");
+        cara([[x0, y0, z0], [x1, y0, z1], [x1, y1, z1], [x0, y1, z0]], [nx / l, 0, nz / l], null, "rgba(15,25,40,.4)");
       }
-      cara(v.map(([x, z]) => [x, y1, z]), [0, 1, 0], null, "rgba(62,232,255,.3)");
-      cara(v.map(([x, z]) => [x, y0, z]), [0, -1, 0], null, "rgba(62,232,255,.3)");
+      cara(v.map(([x, z]) => [x, y1, z]), [0, 1, 0], null, "rgba(15,25,40,.4)");
+      cara(v.map(([x, z]) => [x, y0, z]), [0, -1, 0], null, "rgba(15,25,40,.4)");
     };
     caja(0.16, -6.8, 7.4, 0.3);                       // mástil
     caja(0.42, -0.75, 0.15, 0.3 + t * 0.05);           // módulo del anillo grande
@@ -2817,37 +2817,6 @@ const modGalaxia = (parent) => {
       }
     }
     ctx.globalAlpha = 1;
-    // ---- capa holográfica JARVIS ----
-    for (const a of anillosEst) { // anillos de datos que orbitan la estación
-      const giro = a.fase + t * a.vel, pts = [];
-      for (let i = 0; i <= 96; i++) { const ang = giro + (i / 96) * Math.PI * 2; pts.push(W3(rotar([Math.cos(ang) * a.rad, 0.6, Math.sin(ang) * a.rad], a.incX, a.incZ))); }
-      if (a.tipo === "luz") trazo(pts, "#3ee8ff", 1.4, 0.08, 0.5, 10, null, E, a.rad);
-      else if (a.tipo === "datos") trazo(pts, "#4dffb5", 2.4, 0.05, 0.4, 6, a.huecos, E, a.rad);
-      else trazo(pts, "#3ee8ff", 0.7, 0.05, 0.3, 0, null, E, a.rad);
-    }
-    { // barrido de escáner: un anillo cian que sube y baja por el mástil
-      const yS = Math.sin(t * 0.7) * 6.6, pts = Array.from({ length: 49 }, (_, i) => { const u = (i / 48) * Math.PI * 2; return W3([Math.cos(u) * 1.1, yS, Math.sin(u) * 1.1]); });
-      trazo(pts, "#3ee8ff", 1.6, 0.25, 0.8, 12, null, E, 2);
-    }
-    { // HUD de seguimiento en pantalla: corchetes de objetivo y círculo de marcas que gira
-      const hh = 9.4 * esc, hw = 6 * esc, L = Math.max(8, 1.2 * esc), lat2 = 0.75 + 0.25 * Math.sin(t * 2);
-      ctx.strokeStyle = "#3ee8ff"; ctx.lineWidth = 1.4; ctx.globalAlpha = 0.6 * lat2; ctx.beginPath();
-      for (const [sx2, sy2] of [[-1, -1], [1, -1], [1, 1], [-1, 1]]) {
-        const x = cx + sx2 * hw, y = cy + sy2 * hh;
-        ctx.moveTo(x, y - sy2 * L); ctx.lineTo(x, y); ctx.lineTo(x - sx2 * L, y);
-      }
-      ctx.stroke();
-      const RH = 7.2 * esc, giroH = t * 0.15;
-      ctx.lineWidth = 1; ctx.globalAlpha = 0.3; ctx.beginPath();
-      for (let i = 0; i < 72; i++) {
-        const a = giroH + (i / 72) * Math.PI * 2, l = i % 6 === 0 ? 0.05 : 0.02;
-        ctx.moveTo(cx + Math.cos(a) * RH, cy + Math.sin(a) * RH); ctx.lineTo(cx + Math.cos(a) * RH * (1 + l), cy + Math.sin(a) * RH * (1 + l));
-      }
-      ctx.stroke();
-      ctx.globalAlpha = 0.45; ctx.lineWidth = 1.6;
-      for (let j = 0; j < 3; j++) { const a0 = -t * 0.3 + (j / 3) * Math.PI * 2; ctx.beginPath(); ctx.arc(cx, cy, RH * 1.07, a0, a0 + 0.7); ctx.stroke(); }
-      ctx.globalAlpha = 1;
-    }
     // luces de navegación: roja y verde en los extremos del anillo grande, blanca abajo
     ctx.globalCompositeOperation = "lighter";
     const giroG = t * 0.05, parpNav = (Math.sin(t * 2.6) > 0.3) ? 1 : 0.15;
@@ -2886,20 +2855,7 @@ const modGalaxia = (parent) => {
     ctx.globalAlpha = 0.85; ctx.fillStyle = "rgba(6, 14, 24, .85)"; ctx.strokeStyle = cb; ctx.lineWidth = 1.2;
     ctx.beginPath(); ctx.roundRect ? ctx.roundRect(px, py - 9, anchoT, 18, 5) : ctx.rect(px, py - 9, anchoT, 18); ctx.fill(); ctx.stroke();
     ctx.globalAlpha = 1; ctx.fillStyle = cb; ctx.beginPath(); ctx.arc(px + 9, py, 3.5 * (0.8 + 0.3 * lat), 0, Math.PI * 2); ctx.fill();
-    ctx.textAlign = "left"; ctx.fillStyle = "#e8f4ff"; ctx.fillText(txt, px + 17, py + 3.5);
-    { // lecturas (estilo terminal de JARVIS)
-      const hora = estacion.ultima ? new Date(estacion.ultima) : null, h2 = (n) => String(n).padStart(2, "0");
-      const filas = [
-        `ÚLT. COPIA  ${hora ? `${h2(hora.getDate())}/${h2(hora.getMonth() + 1)} ${h2(hora.getHours())}:${h2(hora.getMinutes())}` : "--"}`,
-        `GITHUB     ${String(estacion.github || "?").toUpperCase()}`,
-        `CAMBIOS    ${estacion.cambios || 0}`,
-      ];
-      ctx.font = "9px 'Share Tech Mono', Consolas, monospace"; ctx.fillStyle = "#3ee8ff";
-      filas.forEach((f, i) => { ctx.globalAlpha = 0.75; ctx.fillText(f, px + 4, py + 22 + i * 11); });
-      ctx.strokeStyle = "#3ee8ff"; ctx.globalAlpha = 0.4; ctx.lineWidth = 1; // línea de conexión placa ↔ baliza
-      ctx.beginPath(); ctx.moveTo(bal[0], bal[1]); ctx.lineTo(px, py); ctx.stroke(); ctx.globalAlpha = 1;
-    }
-    ctx.textAlign = "center";
+    ctx.textAlign = "left"; ctx.fillStyle = "#e8f4ff"; ctx.fillText(txt, px + 17, py + 3.5); ctx.textAlign = "center";
     // haz de datos hacia la galaxia GITHUB: continuo si está sincronizada, cortado si no
     const gGH = galN.find((g) => g.id === "GITHUB");
     if (gGH) {
@@ -2915,12 +2871,6 @@ const modGalaxia = (parent) => {
     }
   };
   let estacionHover = null;
-  let semE = 211;
-  const rndE = () => (semE = (semE * 16807) % 2147483647) / 2147483647;
-  const anillosEst = ["luz", "datos", "fino"].map((tipo, i) => ({
-    tipo, rad: 6.2 + i * 0.6, incX: (rndE() - 0.5) * 1.6, incZ: (rndE() - 0.5) * 1.6, vel: (i % 2 ? -1 : 1) * (0.08 + rndE() * 0.1), fase: rndE() * 6.3,
-    huecos: Array.from({ length: 96 }, () => rndE() < (tipo === "datos" ? 0.5 : 0.06)),
-  }));
 
   const nCore = lista.filter((n) => !n.cuerpo).length;
   const nAaron = notasAaron.length;
