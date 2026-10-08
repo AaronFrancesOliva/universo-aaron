@@ -401,23 +401,3 @@ body.jv-mode .terminal-host::before {
 
 /* el lienzo de la galaxia recibe el foco para volar con WASD: sin contorno */
 .jv-galaxia canvas:focus { outline: none; }
-
-/* Centro de alertas (arriba, en el centro del núcleo) */
-.jv-alertas { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 6px; flex-wrap: wrap;
-  justify-content: center; max-width: 62%; pointer-events: none; transition: opacity .8s; }
-.jv-alerta { pointer-events: auto; display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; height: auto; border-radius: 999px;
-  font-family: "Share Tech Mono", Consolas, monospace; font-size: 11px; letter-spacing: .03em; color: #e8f4ff; cursor: pointer;
-  background: rgba(11, 17, 32, .86); border: 1px solid rgba(120, 160, 200, .3); box-shadow: none; backdrop-filter: blur(4px); }
-.jv-alerta:hover { background: rgba(30, 45, 70, .95); }
-.jv-al-error { border-color: #ff4d6a; animation: jv-latir 2s ease-in-out infinite; }
-.jv-al-aviso { border-color: #ffb547; }
-.jv-al-ok { border-color: #4dffb5; color: #4dffb5; opacity: .75; cursor: default; }
-.jv-al-mas { color: #8aa4b8; }
-@keyframes jv-latir { 0%, 100% { box-shadow: 0 0 4px rgba(255, 77, 106, .25); } 50% { box-shadow: 0 0 16px rgba(255, 77, 106, .7); } }
-
-/* Modo cinemático: rótulo grande abajo y el resto del HUD atenuado */
-.jv-cine { position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; pointer-events: none; opacity: 0; transition: opacity 1.4s; z-index: 2; }
-.jv-cine-on { opacity: 1; }
-.jv-cine-t { font-family: Orbitron, sans-serif; font-size: 28px; letter-spacing: .35em; color: #e8fbff; text-shadow: 0 0 18px #3ee8ff, 0 0 4px #3ee8ff; }
-.jv-cine-s { font-family: "Share Tech Mono", Consolas, monospace; font-size: 13px; letter-spacing: .15em; color: #3ee8ff; margin-top: 8px; }
-.jv-cine-activo .jv-nav, .jv-cine-activo .jv-alertas, .jv-cine-activo .jv-zoom, .jv-cine-activo .jv-graph-info { opacity: .12; transition: opacity 1.2s; }

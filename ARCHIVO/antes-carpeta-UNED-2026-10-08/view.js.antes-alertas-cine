@@ -2932,8 +2932,6 @@ const modGalaxia = (parent) => {
   const dibujar = () => {
     const t = performance.now() / 1000;
     if (!arrastre && !hover) yaw += 0.0012;
-    if (t - alertasT > 5) { alertasT = t; pintarAlertas(); } // alertas: cada 5 s (local, sin tokens)
-    cineTick(t);
     J = jarvisPos(t);
     G = galPos(t);
     for (const g of galN) g.C = g.pos(t);
@@ -3406,84 +3404,6 @@ const modGalaxia = (parent) => {
   bUni.addEventListener("click", seguir); bGal.addEventListener("click", seguir); bNuc.addEventListener("click", seguir);
   canvas.addEventListener("click", seguir);
   canvas.addEventListener("dblclick", seguir);
-
-  // ---------- Centro de alertas: todo lo que pide atención, arriba en el centro ----------
-  // Junta: estación de copias que no está al día, cometas a ≤ 3 días, sistemas en error/aviso, repasos de hoy o
-  // atrasados y la agenda sin actualizar. Clic en una alerta → la cámara vuela a su origen. (El correo de la UNED no:
-  // solo Claude puede leer Gmail.)
-  const alertasEl = el(caja, "div", "jv-alertas");
-  let firmaAlertas = "", alertasT = -1e9;
-  const calcularAlertas = () => {
-    const xs = [];
-    const NOM_COPIA = { pendiente: "cambios sin subir", local: "solo en este PC", atrasada: "copia atrasada", error: "error al subir" };
-    if (NOM_COPIA[estacion.estado]) xs.push({ ico: "🛰", txt: `Copia: ${NOM_COPIA[estacion.estado]}`, nivel: estacion.estado === "pendiente" ? "aviso" : "error", f: { tipo: "estacion" } });
-    cometas.forEach((c, i) => {
-      if (c.dias <= 3) xs.push({ ico: "☄", txt: `${c.texto.slice(0, 34)}${c.texto.length > 34 ? "…" : ""} · ${c.dias === 0 ? "hoy" : c.dias === 1 ? "mañana" : c.dias + " días"}`, nivel: c.dias <= 1 ? "error" : "aviso", f: { tipo: "cometa", i } });
-    });
-    for (const g of galN) if (g.def.modo === "salud") for (const pr of g.proy) {
-      if (pr.estado === "error" || pr.estado === "aviso") xs.push({ ico: "⚠", txt: `${pr.nombre}: ${pr.motivo || pr.estado}`, nivel: pr.estado, f: { tipo: "planeta", k: pr.k } });
-    }
-    for (const r of Array.from(repasosHoy)) {
-      const d = diasHasta(r.proximo_repaso), k = String(r.asignatura || "");
-      xs.push({ ico: "📘", txt: `Repaso: ${r.file.name}${d < 0 ? ` (atrasado ${-d} d)` : " (hoy)"}`, nivel: d < 0 ? "error" : "aviso", f: planetaDe[k] ? { tipo: "planeta", k } : { tipo: "galaxia" } });
-    }
-    if (agendaVieja) xs.push({ ico: "🕐", txt: "Agenda sin actualizar: di «buenos días» a JARVIS", nivel: "aviso", f: { tipo: "centro" } });
-    return xs.sort((a, b) => (a.nivel === "error" ? 0 : 1) - (b.nivel === "error" ? 0 : 1));
-  };
-  const pintarAlertas = () => {
-    const xs = calcularAlertas(), todas = !!window.jvAlertasTodas;
-    const firma = JSON.stringify(xs.map((x) => x.txt + x.nivel)) + todas;
-    if (firma === firmaAlertas) return;
-    firmaAlertas = firma;
-    alertasEl.empty();
-    if (!xs.length) { el(alertasEl, "div", "jv-alerta jv-al-ok", "✓ TODO EN ORDEN"); return; }
-    const MAX = 4;
-    for (const x of todas ? xs : xs.slice(0, MAX)) {
-      const b = el(alertasEl, "button", `jv-alerta jv-al-${x.nivel}`);
-      el(b, "span", null, x.ico); el(b, "span", null, x.txt);
-      b.title = "Clic para ir allí";
-      b.onclick = (e) => { e.stopPropagation(); despertar(); window.jvGalSel = galaxiaDeFoco(x.f); irA(x.f); montarMenu(); };
-    }
-    if (xs.length > MAX) {
-      const b = el(alertasEl, "button", "jv-alerta jv-al-mas", todas ? "menos ▲" : `+${xs.length - MAX} más ▼`);
-      b.onclick = (e) => { e.stopPropagation(); window.jvAlertasTodas = !todas; pintarAlertas(); };
-    }
-  };
-
-  // ---------- Modo cinemático: tras 2 minutos sin tocar nada, la cámara recorre sola el universo ----------
-  const cineEl = el(caja, "div", "jv-cine");
-  let ultimaAccion = performance.now(), cine = null;
-  const despertar = () => {
-    ultimaAccion = performance.now();
-    if (cine) { cine = null; cineEl.removeClass("jv-cine-on"); caja.removeClass("jv-cine-activo"); window.jvFoco = foco; marcar(); }
-  };
-  for (const ev of ["mousemove", "mousedown", "wheel", "touchstart"]) caja.addEventListener(ev, despertar, { passive: true });
-  const teclaDespierta = () => { if (!root.isConnected) { window.removeEventListener("keydown", teclaDespierta, true); return; } despertar(); };
-  window.addEventListener("keydown", teclaDespierta, true);
-  const paradasCine = () => {
-    const ps = [{ f: { tipo: "centro" }, t: "UNIVERSO AARON", s: "AARON · la memoria, dentro de JARVIS" },
-      { f: { tipo: "estacion" }, t: "ESTACIÓN DE COPIAS", s: estacion.texto },
-      { f: { tipo: "galaxia" }, t: "GALAXIA UNED", s: `${claves.length} asignaturas en curso · ${cometas.length} cometas en camino` }];
-    if (cometas.length) { const c = cometas[0]; ps.push({ f: { tipo: "cometa", i: 0 }, t: "PRÓXIMA FECHA", s: `${c.texto} · ${c.dias === 0 ? "hoy" : c.dias === 1 ? "mañana" : `faltan ${c.dias} días`}` }); }
-    ps.push({ f: { tipo: "anio", a: 1 }, t: "AÑO 1", s: anios[0].planetas.filter((pl) => pl.activa).map((pl) => `${pl.k} ${pl.pct}%`).join(" · ") || "por explorar" });
-    for (const g of galN) ps.push({ f: { tipo: "galaxiaN", g: g.id }, t: g.def.nombre, s: `${g.proy.length} ${g.def.unidad.toLowerCase()}` + (g.def.modo === "salud" ? ` · ${g.proy.filter((x) => x.estado === "ok").length} en verde` : "") });
-    ps.push({ f: { tipo: "universo" }, t: "UNIVERSO AARON", s: `${sistemas.length} sistemas solares · ${lista.length} notas` });
-    return ps;
-  };
-  const cineTick = (t) => {
-    if (!cine && performance.now() - ultimaAccion > 120000) { cine = { i: -1, t0: -1e9 }; caja.addClass("jv-cine-activo"); }
-    if (!cine) return;
-    yaw += 0.0022; pitch += (-0.42 - pitch) * 0.01; // giro lento de cámara de cine
-    if (t - cine.t0 > 12) {
-      const ps = paradasCine();
-      cine.i = (cine.i + 1) % ps.length; cine.t0 = t;
-      const pa = ps[cine.i];
-      foco = pa.f; zoomExtra = 1; // sin guardar en window.jvFoco: al despertar se queda donde esté
-      cineEl.removeClass("jv-cine-on"); cineEl.empty();
-      el(cineEl, "div", "jv-cine-t", pa.t); el(cineEl, "div", "jv-cine-s", pa.s);
-      setTimeout(() => cineEl.addClass("jv-cine-on"), 600);
-    }
-  };
 
   // el foco empieza ya colocado (sin animación desde cero)
   const t0 = performance.now() / 1000;

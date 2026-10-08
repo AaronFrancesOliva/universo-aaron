@@ -22,5 +22,12 @@ Propuestas de Jarvis que Aaron ha dejado para más adelante ("por si me apetece"
 - [ ] **Lluvia de estrellas**: una estrella fugaz por cada pomodoro completado hoy.
 - [ ] **Día y noche**: la luz del universo cambia con la hora real de Canarias.
 
+## Más ideas (2026-10-08, sin elegir todavía)
+- [ ] **Buscador Ctrl+K**: escribir un nombre y volar hasta ese planeta, nota o elemento.
+- [ ] **Portales a webs**: agujeros de gusano que abren Ágora, el correo de la UNED, Google Calendar o GitHub.
+- [ ] **Minimapa / radar** en una esquina, con las galaxias, la estación, los cometas y hacia dónde mira la cámara.
+- [ ] **Sonido ambiental** (con botón de silencio): zumbido de nave, ping de la baliza, clics.
+- [x] ~~Centro de alertas~~ y ~~modo cinemático~~: hechos el 2026-10-08.
+
 ## Galaxias que no gustaron (para no volver a proponerlas)
 VIDA, CARRERA, IDEAS, CONOCIMIENTO, PERSONAS, TIEMPO, la del código del universo y DRIVE.
