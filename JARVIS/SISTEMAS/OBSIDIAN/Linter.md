@@ -1,9 +1,8 @@
 ---
 tipo: sistema-jarvis
 sistema: OBSIDIAN
-estado: pendiente
-chequeo: "plugin:obsidian-linter"
-motivo: "activado, sin uso conocido: ¿desactivar?"
+estado: inactivo
+motivo: "desactivado el 2026-10-08 (sin uso; sigue instalado)"
 disparador: "—"
 alimenta: []
 conexiones: []
@@ -13,9 +12,8 @@ tags: [jarvis, sistema]
 
 # Linter
 
-Da formato a las notas. Ojo: si se activa al guardar, puede reescribir notas de Aaron. #revisar
+Da formato a las notas. Ojo: si se activa al guardar, puede reescribir notas de Aaron.
 
 - **Sistema:** [[SISTEMAS|JARVIS · SISTEMAS]] › OBSIDIAN
 - **Se activa:** —
-- **Estado anotado:** pendiente (activado, sin uso conocido: ¿desactivar?)
-- **Chequeo en vivo:** `plugin:obsidian-linter` (la galaxia corrige el estado con lo que ve al abrirse)
+- **Estado anotado:** inactivo (desactivado el 2026-10-08 a petición de Aaron para ahorrar recursos; sigue instalado y se puede reactivar en Ajustes → Complementos comunitarios)

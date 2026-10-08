@@ -1,9 +1,8 @@
 ---
 tipo: sistema-jarvis
 sistema: OBSIDIAN
-estado: pendiente
-chequeo: "plugin:obsidian-style-settings"
-motivo: "activado, sin uso conocido: ¿desactivar?"
+estado: inactivo
+motivo: "desactivado el 2026-10-08 (sin uso; sigue instalado)"
 disparador: "—"
 alimenta: []
 conexiones: []
@@ -13,9 +12,8 @@ tags: [jarvis, sistema]
 
 # Style Settings
 
-Ajustes de variables CSS del tema. #revisar
+Ajustes de variables CSS del tema.
 
 - **Sistema:** [[SISTEMAS|JARVIS · SISTEMAS]] › OBSIDIAN
 - **Se activa:** —
-- **Estado anotado:** pendiente (activado, sin uso conocido: ¿desactivar?)
-- **Chequeo en vivo:** `plugin:obsidian-style-settings` (la galaxia corrige el estado con lo que ve al abrirse)
+- **Estado anotado:** inactivo (desactivado el 2026-10-08 a petición de Aaron para ahorrar recursos; sigue instalado y se puede reactivar en Ajustes → Complementos comunitarios)

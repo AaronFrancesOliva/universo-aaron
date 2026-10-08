@@ -1,9 +1,8 @@
 ---
 tipo: sistema-jarvis
 sistema: OBSIDIAN
-estado: pendiente
-chequeo: "plugin:obsidian-custom-frames"
-motivo: "activado sin ningún marco configurado: ¿usarlo (Ágora, Calendar) o desactivarlo?"
+estado: inactivo
+motivo: "desactivado el 2026-10-08 (sin uso; sigue instalado)"
 disparador: "—"
 alimenta: []
 conexiones: []
@@ -13,9 +12,8 @@ tags: [jarvis, sistema]
 
 # Custom Frames
 
-Convierte webs en paneles. Podría mostrar Ágora o Google Calendar dentro de Obsidian. #revisar
+Convierte webs en paneles. Podría mostrar Ágora o Google Calendar dentro de Obsidian.
 
 - **Sistema:** [[SISTEMAS|JARVIS · SISTEMAS]] › OBSIDIAN
 - **Se activa:** —
-- **Estado anotado:** pendiente (activado sin ningún marco configurado: ¿usarlo (Ágora, Calendar) o desactivarlo?)
-- **Chequeo en vivo:** `plugin:obsidian-custom-frames` (la galaxia corrige el estado con lo que ve al abrirse)
+- **Estado anotado:** inactivo (desactivado el 2026-10-08 a petición de Aaron para ahorrar recursos; sigue instalado y se puede reactivar en Ajustes → Complementos comunitarios)
