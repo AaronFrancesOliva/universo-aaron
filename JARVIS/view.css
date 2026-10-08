@@ -436,4 +436,14 @@ body.jv-mode .terminal-host::after { /* líneas de barrido, sin bloquear el rat�
 .jv-al-aviso { border-color: #ffb547; }
 .jv-al-ok { border-color: #4dffb5; color: #4dffb5; opacity: .75; cursor: default; }
 .jv-al-mas { color: #8aa4b8; }
+/* Discretas: solo el icono, pequeño y tenue; al pasar el ratón por encima se despliegan con su texto */
+.jv-alertas { opacity: .45; gap: 4px; }
+.jv-alertas:hover { opacity: 1; gap: 6px; }
+.jv-alerta { gap: 0; padding: 2px 6px; font-size: 10px; transition: padding .2s, gap .2s; }
+.jv-alerta > span + span { display: inline-block; max-width: 0; overflow: hidden; white-space: nowrap; vertical-align: bottom;
+  transition: max-width .3s ease; }
+.jv-alertas:hover .jv-alerta { gap: 6px; padding: 4px 11px; font-size: 11px; }
+.jv-alertas:hover .jv-alerta > span + span { max-width: 340px; }
+.jv-al-mas { display: none; }
+.jv-alertas:hover .jv-al-mas { display: inline-flex; }
 @keyframes jv-latir { 0%, 100% { box-shadow: 0 0 4px rgba(255, 77, 106, .25); } 50% { box-shadow: 0 0 16px rgba(255, 77, 106, .7); } }

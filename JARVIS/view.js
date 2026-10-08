@@ -2873,7 +2873,8 @@ const modGalaxia = (parent) => {
       halo(sh[0], sh[1], Math.max(3, 0.4 * esc), "#ffffff", 0.95);
     }
     ctx.globalCompositeOperation = "source-over";
-    // ---- placa de estado junto a la estación (siempre visible) ----
+    // ---- placa de estado junto a la estación: solo con el ratón encima o de cerca (el color de la baliza ya avisa) ----
+    if (estacion === estacionHover || esc > 7) {
     const CORTO = { ok: "COPIA AL DÍA ✓", pendiente: "CAMBIOS SIN COPIAR", local: "SOLO EN ESTE PC", atrasada: "COPIA ATRASADA", error: "ERROR AL SUBIR", desconocido: "LEYENDO…" };
     const txt = CORTO[estacion.estado] || "…", px = bal[0] + Math.max(14, 1.6 * esc), py = bal[1] - Math.max(10, 1.2 * esc);
     ctx.font = "bold 10px Orbitron, 'Share Tech Mono', monospace";
@@ -2893,6 +2894,7 @@ const modGalaxia = (parent) => {
       filas.forEach((f, i) => { ctx.globalAlpha = 0.75; ctx.fillText(f, px + 4, py + 22 + i * 11); });
       ctx.strokeStyle = "#3ee8ff"; ctx.globalAlpha = 0.4; ctx.lineWidth = 1; // línea de conexión placa ↔ baliza
       ctx.beginPath(); ctx.moveTo(bal[0], bal[1]); ctx.lineTo(px, py); ctx.stroke(); ctx.globalAlpha = 1;
+    }
     }
     ctx.textAlign = "center";
     // haz de datos hacia la galaxia GITHUB: continuo si está sincronizada, cortado si no
@@ -3428,7 +3430,7 @@ const modGalaxia = (parent) => {
     if (firma === firmaAlertas) return;
     firmaAlertas = firma;
     alertasEl.empty();
-    if (!xs.length) { el(alertasEl, "div", "jv-alerta jv-al-ok", "✓ TODO EN ORDEN"); return; }
+    if (!xs.length) { const ok = el(alertasEl, "div", "jv-alerta jv-al-ok"); el(ok, "span", null, "✓"); el(ok, "span", null, "TODO EN ORDEN"); return; }
     const MAX = 4;
     for (const x of todas ? xs : xs.slice(0, MAX)) {
       const b = el(alertasEl, "button", `jv-alerta jv-al-${x.nivel}`);
