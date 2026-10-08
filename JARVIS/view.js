@@ -2693,7 +2693,7 @@ const modGalaxia = (parent) => {
   // ---------- Estación de copias: la copia de seguridad (git) junto al núcleo ----------
   // Inspirada en «Home in the Sky» (Mitchell Stuart, pin de Aaron): mástil vertical con paneles arriba y abajo, gran
   // anillo habitado con radios y un anillo pequeño encima. Su estado sale de .git/copia.log (lo escribe la tarea de
-  // Windows de las 23:30) y de las fechas de modificación de las notas; se revisa al abrir el núcleo y cada 30 minutos.
+  // Windows de las 23:30) y de las fechas de modificación de las notas; se revisa cada minuto (en local).
   //   ok (verde): copiado y subido a GitHub · pendiente (ámbar): cambios desde la última copia
   //   local (blanco + baliza roja): copia solo en este PC, sin GitHub · atrasada / error (rojo)
   const ESTADO_COPIA = { ok: "#4dffb5", pendiente: "#ffb547", local: "#e8fbff", atrasada: "#ff4d6a", error: "#ff4d6a", desconocido: "#7fa9b8" };
@@ -2707,22 +2707,29 @@ const modGalaxia = (parent) => {
       const copias = lineas.filter((l) => /copia hecha|sin cambios/.test(l)), subidas = lineas.filter((l) => /subida a GitHub/.test(l));
       const ult = copias.length ? fecha(copias[copias.length - 1]) : null;
       const sub = subidas.length ? subidas[subidas.length - 1] : null;
+      // ¿está subida? compara la rama local con la de GitHub (refs que git actualiza en cada push)
+      const leerRef = async (r) => {
+        if (await ad.exists(".git/" + r)) return (await ad.read(".git/" + r)).trim();
+        if (await ad.exists(".git/packed-refs")) { const m = (await ad.read(".git/packed-refs")).split(/\r?\n/).find((l) => l.endsWith(" " + r)); return m ? m.split(" ")[0] : null; }
+        return null;
+      };
+      const local = await leerRef("refs/heads/main"), remota = await leerRef("refs/remotes/origin/main");
       const cambios = ult == null ? 0 : app.vault.getFiles().filter((f) => !f.path.startsWith("UNED/LIBROS/") && f.stat && f.stat.mtime > ult + 60000).length;
       const horas = ult == null ? 1e9 : (Date.now() - ult) / 36e5;
       let estado, texto;
       if (ult == null || horas > 48) { estado = "atrasada"; texto = ult == null ? "NUNCA SE HA HECHO UNA COPIA" : `ÚLTIMA COPIA HACE ${Math.round(horas / 24)} DÍAS`; }
-      else if (sub && /ERROR/.test(sub)) { estado = "error"; texto = "FALLÓ LA SUBIDA A GITHUB"; }
-      else if (!sub) { estado = "local"; texto = "COPIA SOLO EN ESTE PC · FALTA CONECTAR GITHUB"; }
+      else if (!remota) { estado = "local"; texto = "COPIA SOLO EN ESTE PC · FALTA SUBIRLA A GITHUB"; }
+      else if (local !== remota) { estado = sub && /ERROR/.test(sub) ? "error" : "pendiente"; texto = sub && /ERROR/.test(sub) ? "FALLÓ LA SUBIDA A GITHUB" : "HAY COPIAS SIN SUBIR A GITHUB"; }
       else if (cambios > 0) { estado = "pendiente"; texto = `${cambios} ARCHIVO${cambios === 1 ? "" : "S"} CAMBIADO${cambios === 1 ? "" : "S"} DESDE LA ÚLTIMA COPIA`; }
       else { estado = "ok"; texto = "TODO COPIADO Y SUBIDO A GITHUB"; }
-      Object.assign(estacion, { estado, texto, ultima: ult, cambios, github: sub ? (/ok/.test(sub) ? "ok" : "error") : "sin conectar" });
+      Object.assign(estacion, { estado, texto, ultima: ult, cambios, github: !remota ? "sin subir" : local === remota ? "al día" : "con copias sin subir" });
     } catch (e) { Object.assign(estacion, { estado: "desconocido", texto: "NO SE PUEDE LEER EL REGISTRO" }); }
   };
   // posición: orbita despacio el centro, por fuera de la cinta de nebulosa
   const posEstacion = (t) => { const a = 2.2 + t * 0.004; return [Math.cos(a) * 19, 6, Math.sin(a) * 19]; };
   const enEst = (E, q) => suma(E, rotar(q, 0.22, 0.16)); // la estación va algo inclinada
   const dibujarEstacion = (t) => {
-    if (t - estacion.revisado > 1800) { estacion.revisado = t; revisarCopia(); } // al abrir el núcleo y cada 30 min (es local: no gasta tokens)
+    if (t - estacion.revisado > 60) { estacion.revisado = t; revisarCopia(); } // cada minuto: lo hace Obsidian en local, no gasta tokens
     const E = posEstacion(t), [cx, cy, , cf] = proy(E, E, 8), esc = S * cf;
     estacion.sx = cx; estacion.sy = cy; estacion.sr = Math.max(10, 4.5 * esc);
     if (esc < 0.6) return;
