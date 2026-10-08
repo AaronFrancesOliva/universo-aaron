@@ -1116,7 +1116,7 @@ const modGrafo = (parent) => {
     if (MODO === "nucleo") {
       const vc = root.closest(".view-content") || root.parentElement;
       const otros = root.offsetHeight - caja.offsetHeight;
-      caja.style.height = `${Math.max(380, vc.clientHeight - otros - 40)}px`;
+      caja.style.height = `${Math.max(380, vc.clientHeight - otros)}px`; // sin franja vacía debajo
     }
     W = caja.clientWidth; H = caja.clientHeight; dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr; canvas.height = H * dpr;
@@ -1410,7 +1410,7 @@ const modGrafo = (parent) => {
 // espirales. Cada año del grado es un sistema solar: su sol orbita el núcleo y está unido a él por un haz de
 // datos; sus planetas son las asignaturas (órbitas interiores = 1.er cuatrimestre, exteriores = 2.º), cada uno
 // con sus notas, su anillo de progreso y su giro propio. Los años sin asignaturas aparecen como soles apagados.
-// Clic en un sol → se acerca a ese sistema; botones ◎ (galaxia) y ⬤ (núcleo); zoom con + − ⟲, rueda y Ctrl +/−/0.
+// Clic en un sol → se acerca a ese sistema; las vistas se eligen en el menú; zoom con + −, rueda y Ctrl +/−/0.
 // La vista anterior (planeta + 3 lunas) sigue en modGrafo: para volver a ella basta montar modGrafo en vez de esta.
 const modGalaxia = (parent) => {
   const caja = el(parent, "div", "jv-graph jv-galaxia");
@@ -1420,17 +1420,12 @@ const modGalaxia = (parent) => {
   animarAnillos(capa);
   const info = el(caja, "div", "jv-graph-info");
   const menu = el(caja, "nav", "jv-nav"); // menú de navegación: se rellena más abajo (montarMenu)
-  // Mandos: zoom y vistas
+  // Mandos: zoom
   const mandos = el(caja, "div", "jv-zoom");
   const bMas = el(mandos, "button", "jv-zoom-b", "+");
   const zTxt = el(mandos, "span", "jv-zoom-v");
   const bMenos = el(mandos, "button", "jv-zoom-b", "−");
-  const bReset = el(mandos, "button", "jv-zoom-b jv-zoom-r", "⟲");
-  const bUni = el(mandos, "button", "jv-zoom-b jv-zoom-r", "✶");
-  const bGal = el(mandos, "button", "jv-zoom-b", "◎");
-  const bNuc = el(mandos, "button", "jv-zoom-b", "⬤");
-  bMas.title = "Acercar (Ctrl +)"; bMenos.title = "Alejar (Ctrl −)"; bReset.title = "Zoom normal de esta vista (Ctrl 0)";
-  bUni.title = "Ver el universo entero"; bGal.title = "Ver la galaxia UNED entera"; bNuc.title = "Ir al centro del universo: AARON y JARVIS";
+  bMas.title = "Acercar (Ctrl +)"; bMenos.title = "Alejar (Ctrl −)";
 
   // ---------- Notas y enlaces ----------
   const estadoDe = new Map(temas.array().map((p) => [p.file.path, p.estado]));
@@ -1885,7 +1880,7 @@ const modGalaxia = (parent) => {
     if (MODO === "nucleo") {
       const vc = root.closest(".view-content") || root.parentElement;
       const otros = root.offsetHeight - caja.offsetHeight;
-      caja.style.height = `${Math.max(380, vc.clientHeight - otros - 40)}px`;
+      caja.style.height = `${Math.max(380, vc.clientHeight - otros)}px`; // sin franja vacía debajo
     }
     W = caja.clientWidth; H = caja.clientHeight; dpr = window.devicePixelRatio || 1;
     canvas.width = W * dpr; canvas.height = H * dpr;
@@ -3099,10 +3094,6 @@ const modGalaxia = (parent) => {
   const ponerZoom = (z) => { zoomExtra = Math.max(0.15, Math.min(4, Math.round(z * 100) / 100)); window.jvZoomExtra = zoomExtra; };
   bMas.onclick = () => ponerZoom(zoomExtra * 1.25);
   bMenos.onclick = () => ponerZoom(zoomExtra / 1.25);
-  bReset.onclick = () => ponerZoom(1);
-  bUni.onclick = () => irA({ tipo: "universo" });
-  bGal.onclick = () => irA({ tipo: "galaxia" });
-  bNuc.onclick = () => irA({ tipo: "centro" });
   let solHover = null, nebHover = null, coreHover = false, coreNHover = null;
   canvas.addEventListener("mousedown", (e) => {
     arrastre = { x: e.clientX, y: e.clientY, movido: 0, mover: e.button === 2 || e.button === 1 || e.shiftKey };
@@ -3400,12 +3391,11 @@ const modGalaxia = (parent) => {
     menu.querySelectorAll(".jv-nav-i").forEach((b) => b.toggleClass("jv-nav-on", b.dataset.foco === actual));
   };
   montarMenu();
-  // los botones de la esquina y los clics en el lienzo también mueven el foco: el menú los sigue
+  // los clics en el lienzo también mueven el foco: el menú los sigue
   const seguir = () => setTimeout(() => {
     const gal = galaxiaDeFoco(foco);
     if (gal !== window.jvGalSel) { window.jvGalSel = gal; montarMenu(); } else marcar();
   }, 0);
-  bUni.addEventListener("click", seguir); bGal.addEventListener("click", seguir); bNuc.addEventListener("click", seguir);
   canvas.addEventListener("click", seguir);
   canvas.addEventListener("dblclick", seguir);
 

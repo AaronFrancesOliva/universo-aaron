@@ -179,21 +179,40 @@ body.jv-mode .workspace-leaf-content[data-type="markdown"] .markdown-preview-pus
 .jv-m-izquierda .jv-obj, .jv-m-derecha .jv-obj { grid-template-columns: 22px 42px 1fr; }
 .jv-m-izquierda .jv-cd, .jv-m-derecha .jv-cd { grid-column: 3; text-align: left; }
 .jv-btns-r { justify-content: flex-end; margin-top: 6px; }
-.jv-m-nucleo { padding: 14px 18px; }
-.jv-m-nucleo .jv-top { margin-bottom: 10px; }
-.jv-graph { position: relative; width: 100%; height: 560px; border: 1px solid var(--c3);
+.jv-m-nucleo { padding: 0; } /* el universo ocupa todo el ancho y llega hasta el terminal */
+.jv-m-nucleo .jv-top { margin: 0; padding: 10px 14px; }
+/* Marco HUD común (núcleo y terminal): corchetes de 2 px con brillo en las cuatro esquinas y un borde de 1 px
+   que se enciende cerca de las esquinas y se desvanece hacia el centro de cada lado */
+body {
+  --jv-esq: linear-gradient(#3ee8ff, #3ee8ff);
+  --jv-lado-h: linear-gradient(90deg, rgba(62, 232, 255, .5), rgba(62, 232, 255, .05) 30%, rgba(62, 232, 255, .05) 70%, rgba(62, 232, 255, .5));
+  --jv-lado-v: linear-gradient(180deg, rgba(62, 232, 255, .5), rgba(62, 232, 255, .05) 30%, rgba(62, 232, 255, .05) 70%, rgba(62, 232, 255, .5));
+  --jv-marco:
+    var(--jv-esq) top left / 22px 2px no-repeat, var(--jv-esq) top left / 2px 22px no-repeat,
+    var(--jv-esq) top right / 22px 2px no-repeat, var(--jv-esq) top right / 2px 22px no-repeat,
+    var(--jv-esq) bottom left / 22px 2px no-repeat, var(--jv-esq) bottom left / 2px 22px no-repeat,
+    var(--jv-esq) bottom right / 22px 2px no-repeat, var(--jv-esq) bottom right / 2px 22px no-repeat,
+    var(--jv-lado-h) top / 100% 1px no-repeat, var(--jv-lado-h) bottom / 100% 1px no-repeat,
+    var(--jv-lado-v) left / 1px 100% no-repeat, var(--jv-lado-v) right / 1px 100% no-repeat;
+}
+.jv-graph { position: relative; width: 100%; height: 560px;
   background: radial-gradient(circle at 50% 50%, rgba(62, 232, 255, .08), transparent 65%); }
 .jv-graph canvas { position: absolute; inset: 0; display: block; }
 .jv-graph-reactor { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: .9; }
 .jv-graph-reactor .jv-reactor { max-width: none; width: 100%; height: 100%; }
-.jv-graph-info { position: absolute; left: 12px; bottom: 10px; right: 12px; font-size: .8em; letter-spacing: .08em; color: var(--c);
-  text-shadow: 0 0 6px var(--c2); pointer-events: none; }
-.jv-graph-ley { position: absolute; top: 10px; left: 12px; display: flex; flex-direction: column; gap: 4px; font-size: .75em;
+.jv-graph-info { position: absolute; left: 1px; bottom: 1px; right: 1px; padding: 8px 16px; z-index: 2; /* franja propia, separada por una línea */
+  font-size: .8em; letter-spacing: .08em; color: var(--c); text-shadow: 0 0 6px var(--c2); pointer-events: none;
+  background: linear-gradient(rgba(3, 7, 12, .55), rgba(3, 7, 12, .85));
+  border-top: 1px solid; border-image: linear-gradient(90deg, transparent, rgba(62, 232, 255, .3) 20%, rgba(62, 232, 255, .3) 80%, transparent) 1; }
+.jv-graph-info:empty { display: none; }
+.jv-graph-ley { position: absolute; top: 16px; left: 16px; display: flex; flex-direction: column; gap: 4px; font-size: .75em;
   letter-spacing: .1em; color: var(--dim); pointer-events: none; }
-.jv-graph::before, .jv-graph::after { /* esquinas de mira */
-  content: ""; position: absolute; width: 22px; height: 22px; border: 2px solid var(--c); pointer-events: none; opacity: .7; }
-.jv-graph::before { top: -1px; right: -1px; border-left: none; border-bottom: none; }
-.jv-graph::after { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+.jv-graph::before { /* marco: corchetes en las cuatro esquinas y borde degradado */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 3;
+  background: var(--jv-marco); filter: drop-shadow(0 0 3px rgba(62, 232, 255, .7)); }
+.jv-graph::after { /* viñeta: el universo se funde con el marco */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+  box-shadow: inset 0 0 55px 12px rgba(2, 5, 9, .85); }
 
 /* ---------- Modo JARVIS: Obsidian sin interfaz ---------- */
 body.jv-mode .workspace-ribbon,
@@ -231,12 +250,18 @@ body.jv-mode .jarvis-panel .markdown-preview-view { padding: 0 !important; }
 body.jv-mode .jarvis-panel .markdown-preview-sizer { padding: 0 !important; min-height: 0 !important; }
 body.jv-mode .jarvis-panel .markdown-preview-section > div { margin: 0 !important; }
 body.jv-mode .jv { border-radius: 0; border: none; min-height: 100%; }
+/* La nota del núcleo no hace scroll: sin hueco reservado para la barra a la derecha, el universo llega de borde a borde */
+body.jv-mode .workspace-leaf-content:has(.jv-m-nucleo) :is(.view-content, .markdown-reading-view, .markdown-preview-view) {
+  overflow: hidden !important; scrollbar-gutter: auto !important; }
+body.jv-mode .workspace-leaf-content:has(.jv-m-nucleo) .markdown-preview-view::-webkit-scrollbar { display: none; }
+body.jv-mode .workspace-leaf-content:has(.jv-m-nucleo) :is(.markdown-preview-section, .block-language-dataviewjs, .jv) {
+  margin: 0 !important; padding-right: 0 !important; width: 100% !important; max-width: none !important; }
 
 /* ---------- Terminal (Lean Terminal) integrada en el HUD ---------- */
-body.jv-mode .workspace-leaf-content[data-type="terminal-view"] { position: relative;
-  border-top: 1px solid rgba(62, 232, 255, .45); box-shadow: inset 0 0 60px rgba(62, 232, 255, .07); }
+body.jv-mode .workspace-leaf-content[data-type="terminal-view"] { position: relative; }
+/* sin márgenes: el terminal tiene la misma anchura que el universo y queda pegado a él */
 body.jv-mode .workspace-leaf-content[data-type="terminal-view"] .view-content { padding: 0 !important; }
-body.jv-mode .terminal-view-container {
+body.jv-mode .terminal-view-container { position: relative; box-shadow: inset 0 0 60px rgba(62, 232, 255, .07);
   background:
     linear-gradient(rgba(62, 232, 255, .035) 1px, transparent 1px) 0 0 / 28px 28px,
     linear-gradient(90deg, rgba(62, 232, 255, .035) 1px, transparent 1px) 0 0 / 28px 28px,
@@ -247,8 +272,9 @@ body.jv-mode .terminal-tab-bar::before { /* rótulo del panel, como los del HUD 
   content: "TERMINAL · CLAUDE"; margin-right: 10px; padding-right: 12px; border-right: 1px solid rgba(62, 232, 255, .25);
   font-family: Orbitron, sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .22em; color: #3ee8ff;
   text-shadow: 0 0 8px rgba(62, 232, 255, .55); white-space: nowrap; }
-body.jv-mode .terminal-tab-bar::after { /* trazo luminoso de la esquina */
-  content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 2px; background: #3ee8ff; box-shadow: 0 0 8px #3ee8ff; }
+body.jv-mode .terminal-view-container::after { /* mismo marco que el núcleo */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 20;
+  background: var(--jv-marco); filter: drop-shadow(0 0 3px rgba(62, 232, 255, .7)); }
 body.jv-mode .terminal-tab, body.jv-mode .terminal-new-tab {
   font-family: 'Share Tech Mono', ui-monospace, Consolas, monospace; font-size: 12px; letter-spacing: .08em;
   color: #5f8a99; border: 1px solid transparent; border-radius: 0; }
@@ -261,13 +287,10 @@ body.jv-mode .terminal-session { inset: 8px 6px 6px 14px; } /* margen para que e
 body.jv-mode .terminal-session .xterm-viewport { background-color: transparent !important; }
 body.jv-mode .terminal-session .xterm-viewport::-webkit-scrollbar-thumb { background: rgba(62, 232, 255, .3); border-radius: 0; }
 body.jv-mode .terminal-session .xterm-viewport::-webkit-scrollbar-thumb:hover { background: rgba(62, 232, 255, .6); }
-body.jv-mode .terminal-host::after { /* líneas de barrido y esquinas de mira, sin bloquear el ratón */
+body.jv-mode .terminal-host::after { /* líneas de barrido, sin bloquear el ratón */
   content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 10;
   background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .022) 0 1px, transparent 1px 3px);
-  box-shadow: inset 0 0 0 1px rgba(62, 232, 255, .06); }
-body.jv-mode .terminal-host::before {
-  content: ""; position: absolute; right: 4px; bottom: 4px; width: 20px; height: 20px; pointer-events: none; z-index: 10;
-  border: 2px solid #3ee8ff; border-left: none; border-top: none; opacity: .7; }
+}
 
 /* ---------- Animaciones ---------- */
 @keyframes jv-rot { to { transform: rotate(360deg); } }
@@ -330,7 +353,7 @@ body.jv-mode .terminal-host::before {
 .jv-sem-btn.jv-off { opacity: .35; pointer-events: none; }
 
 /* Zoom del núcleo */
-.jv-zoom { position: absolute; top: 10px; right: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
+.jv-zoom { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
 .jv-zoom-b { width: 30px; height: 30px; padding: 0; font-family: Orbitron, sans-serif; font-size: 1.05em; line-height: 1;
   color: var(--c); background: rgba(6, 18, 28, .78); border: 1px solid var(--c3); cursor: pointer; box-shadow: none; }
 .jv-zoom-b:hover { background: rgba(62, 232, 255, .18); box-shadow: 0 0 10px var(--c2); }
@@ -343,7 +366,7 @@ body.jv-mode .terminal-host::before {
 .jv-galaxia { background: radial-gradient(ellipse at center, rgba(20, 30, 60, .35), rgba(3, 7, 12, .9) 70%); }
 
 /* Menú de navegación de la galaxia: barra lateral al estilo de la de Stripe (columna de iconos + panel) */
-.jv-nav { position: absolute; top: 10px; left: 10px; bottom: 44px; z-index: 2; display: flex; gap: 6px; align-items: stretch;
+.jv-nav { position: absolute; top: 16px; left: 16px; bottom: 48px; z-index: 2; display: flex; gap: 6px; align-items: stretch;
   font-family: "Share Tech Mono", Consolas, monospace; font-size: 12px; letter-spacing: .02em; pointer-events: none; }
 .jv-nav > * { pointer-events: auto; }
 .jv-sb-rail, .jv-sb-panel { background: rgba(11, 17, 32, .9); border: 1px solid rgba(120, 160, 200, .14); border-radius: 12px;
@@ -397,13 +420,13 @@ body.jv-mode .terminal-host::before {
 .jv-sb-ayuda div { display: flex; justify-content: space-between; gap: 8px; }
 .jv-sb-ayuda kbd { font-family: inherit; font-size: 10px; color: #cfe3f2; background: rgba(140, 180, 220, .1); border: 1px solid rgba(140, 180, 220, .18);
   border-radius: 4px; padding: 0 4px; }
-/* el menú termina por encima de la barra de información (bottom: 44px), así que no se pisan */
+/* el menú termina por encima de la barra de información (bottom: 48px), así que no se pisan */
 
 /* el lienzo de la galaxia recibe el foco para volar con WASD: sin contorno */
 .jv-galaxia canvas:focus { outline: none; }
 
 /* Centro de alertas (arriba, en el centro del núcleo) */
-.jv-alertas { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 6px; flex-wrap: wrap;
+.jv-alertas { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; gap: 6px; flex-wrap: wrap;
   justify-content: center; max-width: 62%; pointer-events: none; transition: opacity .8s; }
 .jv-alerta { pointer-events: auto; display: inline-flex; align-items: center; gap: 6px; padding: 4px 11px; height: auto; border-radius: 999px;
   font-family: "Share Tech Mono", Consolas, monospace; font-size: 11px; letter-spacing: .03em; color: #e8f4ff; cursor: pointer;
