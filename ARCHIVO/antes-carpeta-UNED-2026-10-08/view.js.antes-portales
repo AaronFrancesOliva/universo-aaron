@@ -96,16 +96,6 @@ const CFG = {
       estrellas: ["#3ee8ff", "#e8fbff", "#ffd36e", "#a88bfa"],
     },
   ],
-  // Portales: agujeros de gusano del universo que abren una web. `ancla`: dónde están (UNED, GITHUB, CENTRO o
-  // ESTACION) y `off`: desplazamiento desde el ancla (en las galaxias, se inclina con su disco).
-  portales: [
-    { id: "agora", nombre: "Ágora", icono: "🎓", url: "https://agora.uned.es", color: "#ff6fae", ancla: "UNED", off: [-6, 16, 4] },
-    { id: "correo", nombre: "Correo UNED", icono: "✉️", url: "https://outlook.office.com/mail/", color: "#5484ed", ancla: "UNED", off: [6, 16, -4] },
-    { id: "calendar", nombre: "Google Calendar", icono: "📅", url: "https://calendar.google.com", color: "#46d6db", ancla: "CENTRO", off: [-21, 9, 7] },
-    { id: "gmail", nombre: "Gmail", icono: "📧", url: "https://mail.google.com", color: "#ff887c", ancla: "CENTRO", off: [-15, -8, 19] },
-    { id: "github", nombre: "GitHub", icono: "🐙", url: "https://github.com/AaronFrancesOliva", color: "#39d353", ancla: "GITHUB", off: [0, 14, 0] },
-    { id: "copia", nombre: "Repositorio de la copia", icono: "💾", url: "https://github.com/AaronFrancesOliva/universo-aaron", color: "#4dffb5", ancla: "ESTACION", off: [6, 9, 2] },
-  ],
   // Modos de las barras laterales del modo JARVIS (en el futuro habrá más). Cada modo: notas izquierda y derecha.
   modos: {
     UNED: { nombre: "MODO UNED", color: "#ff6fae", izquierda: "UNED/MODO UNED/Modo UNED - Izquierda.md", derecha: "UNED/MODO UNED/Modo UNED - Derecha.md" },
@@ -2925,63 +2915,6 @@ const modGalaxia = (parent) => {
     }
   };
   let estacionHover = null;
-  // ---------- Portales: vórtices que abren una web ----------
-  const abrirWeb = (url) => { try { window.open(url, "_blank"); } catch { try { window.require("electron").shell.openExternal(url); } catch {} } };
-  const portales = (CFG.portales || []).map((pt, i) => ({ ...pt, fase: i * 1.7, inc: 0.35 + (i % 3) * 0.12, giroE: (i * 0.9) % Math.PI, sx: -99, sy: -99, sr: 0,
-    part: Array.from({ length: 30 }, (_, k) => ({ u: (k * 0.61803) % 1, a: k * 2.39996 })) }));
-  const posPortal = (pt, t) => {
-    if (pt.ancla === "UNED") return suma(G, tiltU(pt.off));
-    if (pt.ancla === "GITHUB") { const g = galN.find((x) => x.id === "GITHUB"); return g ? suma(g.C, g.tilt(pt.off)) : suma(O, pt.off); }
-    if (pt.ancla === "ESTACION") return suma(posEstacion(t), pt.off);
-    return suma(O, pt.off);
-  };
-  let portalHover = null;
-  const dibujarPortales = (t) => {
-    for (const pt of portales) {
-      const P = posPortal(pt, t), q = proy(P, P, 2), rr = Math.max(7, 1.15 * S * q[3]);
-      pt.sx = q[0]; pt.sy = q[1]; pt.sr = rr * 1.3;
-      if (q[0] < -rr * 2 || q[0] > W + rr * 2 || q[1] < -rr * 2 || q[1] > H + rr * 2) continue;
-      const c = pt.color, sq = pt.inc, viva = pt === portalHover;
-      ctx.save(); ctx.translate(q[0], q[1]); ctx.rotate(pt.giroE);
-      ctx.globalCompositeOperation = "lighter";
-      // resplandor
-      let g = ctx.createRadialGradient(0, 0, 0, 0, 0, rr * 2);
-      g.addColorStop(0, c + "55"); g.addColorStop(0.5, c + "18"); g.addColorStop(1, c + "00");
-      ctx.globalAlpha = viva ? 1 : 0.8; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, rr * 2, 0, Math.PI * 2); ctx.fill();
-      // anillos del vórtice girando (en perspectiva)
-      for (let k = 0; k < 5; k++) {
-        const r = rr * (1.2 - k * 0.17), a0 = t * (0.6 + k * 0.35) * (k % 2 ? -1 : 1) + pt.fase;
-        ctx.strokeStyle = c; ctx.lineWidth = Math.max(1, rr * (0.07 - k * 0.008)); ctx.globalAlpha = 0.25 + k * 0.12;
-        ctx.setLineDash([rr * 0.5, rr * 0.25]); ctx.lineDashOffset = -a0 * rr;
-        ctx.beginPath(); ctx.ellipse(0, 0, r, r * sq, 0, 0, Math.PI * 2); ctx.stroke();
-      }
-      ctx.setLineDash([]); ctx.lineDashOffset = 0;
-      // materia que cae en espiral hacia el centro
-      ctx.fillStyle = "#ffffff";
-      for (const m of pt.part) {
-        const u = (m.u + t * 0.22) % 1, a = m.a + t * 1.6 + u * 5, r = rr * 1.25 * (1 - u);
-        ctx.globalAlpha = 0.15 + 0.75 * u;
-        const z = Math.max(1, rr * 0.05 * (0.5 + u));
-        ctx.fillRect(Math.cos(a) * r - z / 2, Math.sin(a) * r * sq - z / 2, z, z);
-      }
-      // garganta: centro oscuro con el borde brillante
-      ctx.globalCompositeOperation = "source-over";
-      g = ctx.createRadialGradient(0, 0, 0, 0, 0, rr * 0.5);
-      g.addColorStop(0, "#000000"); g.addColorStop(0.75, "#02060c"); g.addColorStop(1, "#02060c00");
-      ctx.globalAlpha = 0.95; ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(0, 0, rr * 0.5, rr * 0.5 * sq, 0, 0, Math.PI * 2); ctx.fill();
-      ctx.globalCompositeOperation = "lighter";
-      ctx.strokeStyle = "#ffffff"; ctx.shadowColor = c; ctx.shadowBlur = viva ? 18 : 10; ctx.lineWidth = Math.max(1, rr * 0.05);
-      ctx.globalAlpha = 0.8 + 0.2 * Math.sin(t * 3 + pt.fase);
-      ctx.beginPath(); ctx.ellipse(0, 0, rr * 0.48, rr * 0.48 * sq, 0, 0, Math.PI * 2); ctx.stroke(); ctx.shadowBlur = 0;
-      ctx.restore();
-      ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
-      // rótulo
-      if (rr > 9 || viva) {
-        etiqueta(`${pt.icono} ${pt.nombre.toUpperCase()}`, q[0], q[1] - rr * 1.5 - 4, c, viva ? 1 : 0.8, rr > 20 ? 11 : 9);
-        if (viva) etiqueta(`${pt.url.replace(/^https?:\/\//, "")} ↗`, q[0], q[1] - rr * 1.5 + 9, "#e8f4ff", 0.7, 8);
-      }
-    }
-  };
   let semE = 211;
   const rndE = () => (semE = (semE * 16807) % 2147483647) / 2147483647;
   const anillosEst = ["luz", "datos", "fino"].map((tipo, i) => ({
@@ -3073,7 +3006,6 @@ const modGalaxia = (parent) => {
     for (const c of cuerpos.sort((a, b) => a.z - b.z)) c.f();
     dibujarCentro(t, 1); // borde y retícula de la burbuja, por delante
     dibujarEstacion(t); // estación de copias
-    dibujarPortales(t); // portales a webs
     dibujarNebulosas(t);
     dibujarCometas(t);
     dibujarNaves(t);
@@ -3207,11 +3139,6 @@ const modGalaxia = (parent) => {
     if (!mejor && !solHover) for (const r of rutas) for (const n of r.naves) if (Math.hypot(n.sx - mx, n.sy - my) < 10) nave = n;
     naveHover = nave ? nave.r : null;
     if (nave) { info.setText(`⇄ ${nave.r.nomDe} ⇄ ${nave.r.nomA} · ${nave.r.tema}`); canvas.style.cursor = "help"; hover = null; return; }
-    portalHover = !mejor ? portales.find((pt) => Math.hypot(pt.sx - mx, pt.sy - my) < pt.sr) || null : null;
-    if (portalHover) {
-      info.setText(`🌀 PORTAL · ${portalHover.icono} ${portalHover.nombre.toUpperCase()} · ${portalHover.url} · CLIC PARA ABRIRLO EN EL NAVEGADOR`);
-      canvas.style.cursor = "pointer"; hover = null; solHover = null; estacionHover = null; return;
-    }
     estacionHover = !mejor && Math.hypot(estacion.sx - mx, estacion.sy - my) < estacion.sr ? estacion : null;
     if (estacionHover) {
       const e = estacion, hora = e.ultima ? new Date(e.ultima) : null;
@@ -3242,10 +3169,9 @@ const modGalaxia = (parent) => {
     }
     canvas.style.cursor = hover || solHover ? "pointer" : "grab";
   });
-  canvas.addEventListener("mouseleave", () => { hover = null; solHover = null; coreHover = false; coreNHover = null; cometaHover = null; estacionHover = null; portalHover = null; arrastre = null; info.setText(infoBase); });
+  canvas.addEventListener("mouseleave", () => { hover = null; solHover = null; coreHover = false; coreNHover = null; cometaHover = null; estacionHover = null; arrastre = null; info.setText(infoBase); });
   canvas.addEventListener("click", (e) => {
     if (arrastre && arrastre.movido > 4) return;
-    if (portalHover) { abrirWeb(portalHover.url); return; }
     if (estacionHover) { abrir("JARVIS/SISTEMAS/RUTINAS/Copias de seguridad.md", e.ctrlKey || e.metaKey); return; }
     if (cometaHover) { abrir("UNED/PLANIFICACION/Calendario", e.ctrlKey || e.metaKey); return; }
     if (hover) abrir(hover.path, e.ctrlKey || e.metaKey);
@@ -3388,12 +3314,6 @@ const modGalaxia = (parent) => {
     item(cuerpo, "JARVIS", "jarvis", "#3ee8ff", { tipo: "nucleo" }, nCore, "jv-sb-sub");
     item(cuerpo, "Estación de copias", "universo", ESTADO_COPIA[estacion.estado], { tipo: "estacion" },
       { ok: "al día", pendiente: "cambios", local: "local", atrasada: "atrasada", error: "error" }[estacion.estado] || "…", "jv-sb-sub");
-    titulo(cuerpo, "Portales");
-    for (const pt of portales) {
-      const b = item(cuerpo, `${pt.icono} ${pt.nombre}`, "enlace", pt.color, null, "↗", "jv-sb-sub");
-      b.title = pt.url;
-      b.onclick = (e) => { e.stopPropagation(); abrirWeb(pt.url); };
-    }
     separador(cuerpo);
     // la galaxia elegida
     titulo(cuerpo, g.nombre);
