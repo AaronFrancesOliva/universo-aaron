@@ -1,0 +1,35 @@
+{
+  "showGettingStartedBanner": false,
+  "hasMigratedDailyNoteSettings": true,
+  "hasMigratedWeeklyNoteSettings": true,
+  "daily": {
+    "enabled": true,
+    "format": "YYYY-MM-DD",
+    "folder": "UNED/PLANIFICACION/Rutina/Diario",
+    "template": "UNED/PLANIFICACION/Plantillas/Diario"
+  },
+  "weekly": {
+    "enabled": true,
+    "format": "gggg-[W]ww",
+    "folder": "UNED/PLANIFICACION/Semanas",
+    "template": "UNED/PLANIFICACION/Plantillas/Semana"
+  },
+  "monthly": {
+    "enabled": false,
+    "format": "",
+    "folder": "",
+    "template": ""
+  },
+  "quarterly": {
+    "enabled": false,
+    "format": "",
+    "folder": "",
+    "template": ""
+  },
+  "yearly": {
+    "enabled": false,
+    "format": "",
+    "folder": "",
+    "template": ""
+  }
+}

@@ -1,0 +1,372 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap');
+
+/* La nota del panel ocupa todo el ancho y sin título ni propiedades */
+.jarvis-panel .markdown-preview-sizer,
+.jarvis-panel .cm-sizer { max-width: 100% !important; }
+.jarvis-panel .inline-title,
+.jarvis-panel .metadata-container,
+.jarvis-panel .embedded-backlinks { display: none; }
+/* Lo mismo en cualquier hoja que pinte el HUD, aunque la nota no tenga la clase */
+.workspace-leaf-content:has(.jv) .inline-title,
+.workspace-leaf-content:has(.jv) .metadata-container,
+.workspace-leaf-content:has(.jv) .frontmatter-container,
+.workspace-leaf-content:has(.jv) .embedded-backlinks,
+.workspace-leaf-content:has(.jv) .mod-header,
+.workspace-leaf-content:has(.jv) .mod-footer { display: none !important; }
+/* En modo JARVIS solo se ve el HUD: sin título, propiedades ni márgenes en ninguna nota de la ventana */
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .inline-title,
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .metadata-container,
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .frontmatter-container,
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .embedded-backlinks,
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .mod-header,
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .mod-footer { display: none !important; }
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .view-content { padding: 0 !important; }
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .markdown-preview-view { padding: 0 !important; }
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .markdown-preview-sizer { max-width: 100% !important; padding: 0 !important; min-height: 0 !important; }
+body.jv-mode .workspace-leaf-content[data-type="markdown"] .markdown-preview-pusher { display: none; }
+
+.jv {
+  --c: #3ee8ff; --c2: rgba(62, 232, 255, .55); --c3: rgba(62, 232, 255, .18);
+  --red: #ff4d6a; --amber: #ffb547; --ok: #4dffb5;
+  --bg: #03070c; --panel: rgba(6, 18, 28, .78); --txt: #cdf6ff; --dim: #5f8a99;
+  position: relative; container-type: inline-size; overflow: hidden;
+  color: var(--txt); font-family: 'Share Tech Mono', ui-monospace, Consolas, monospace; font-size: 14px; line-height: 1.4;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(62, 232, 255, .12), transparent 60%),
+    linear-gradient(rgba(62, 232, 255, .045) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(62, 232, 255, .045) 1px, transparent 1px) 0 0 / 28px 28px,
+    var(--bg);
+  border: 1px solid var(--c3); border-radius: 14px; padding: 18px;
+  box-shadow: inset 0 0 90px rgba(62, 232, 255, .08), 0 0 30px rgba(0, 0, 0, .55);
+}
+.jv::after { /* líneas de barrido */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 3px);
+  animation: jv-flicker 7s infinite;
+}
+.jv::before { /* haz que recorre la pantalla */
+  content: ""; position: absolute; left: 0; right: 0; top: -140px; height: 140px; pointer-events: none;
+  background: linear-gradient(transparent, rgba(62, 232, 255, .07), transparent);
+  animation: jv-scan 8s linear infinite;
+}
+.jv * { box-sizing: border-box; }
+.jv a.jv-link { color: var(--c); text-decoration: none; border-bottom: 1px dotted var(--c2); cursor: pointer; }
+.jv a.jv-link:hover { text-shadow: 0 0 8px var(--c); }
+.jv .jv-dim { color: var(--dim); }
+
+/* ---------- Cabecera ---------- */
+.jv-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+  padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--c3); }
+.jv-logo-t { display: block; font-family: Orbitron, sans-serif; font-weight: 900; font-size: 1.7em; letter-spacing: .28em;
+  color: var(--c); text-shadow: 0 0 12px var(--c2); }
+.jv-logo-s { font-size: .75em; letter-spacing: .3em; color: var(--dim); }
+.jv-clock { font-family: Orbitron, sans-serif; font-weight: 700; font-size: 2.3em; letter-spacing: .08em;
+  color: #eaffff; text-shadow: 0 0 14px var(--c2); text-align: center; }
+.jv-clock small { font-size: .45em; color: var(--c2); margin-left: .2em; }
+.jv-top-r { text-align: right; font-size: .82em; letter-spacing: .12em; }
+.jv-top-r > div + div { margin-top: 3px; }
+.jv-online::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px;
+  background: var(--ok); box-shadow: 0 0 8px var(--ok); animation: jv-blink 1.6s infinite; }
+
+/* ---------- Rejilla ---------- */
+.jv-grid { display: grid; gap: 14px; grid-template-columns: 1fr 1.15fr 1fr;
+  grid-template-areas: "brief core tut" "sys core pomo" "obj obj obj" "rep log log"; }
+.jv-a-brief { grid-area: brief; } .jv-a-core { grid-area: core; } .jv-a-tut { grid-area: tut; }
+.jv-a-sys { grid-area: sys; } .jv-a-pomo { grid-area: pomo; } .jv-a-obj { grid-area: obj; }
+.jv-a-rep { grid-area: rep; } .jv-a-log { grid-area: log; }
+@container (max-width: 820px) {
+  .jv-grid { grid-template-columns: 1fr; grid-template-areas: "core" "brief" "tut" "obj" "sys" "rep" "pomo" "log"; }
+  .jv-top { grid-template-columns: 1fr; text-align: center; }
+  .jv-top-r { text-align: center; }
+}
+
+/* ---------- Paneles ---------- */
+.jv-panel { position: relative; background: var(--panel); border: 1px solid var(--c3); padding: 12px 14px 14px;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px)); }
+.jv-panel::before { content: ""; position: absolute; top: 0; left: 0; width: 34px; height: 2px; background: var(--c); box-shadow: 0 0 8px var(--c); }
+.jv-panel-h { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.jv-panel-t { font-family: Orbitron, sans-serif; font-weight: 700; font-size: .78em; letter-spacing: .22em; color: var(--c); white-space: nowrap; }
+.jv-panel-deco { flex: 1; height: 1px; background: linear-gradient(90deg, var(--c2), transparent); }
+.jv-panel-x { font-size: .72em; color: var(--dim); letter-spacing: .1em; white-space: nowrap; }
+
+/* ---------- Briefing ---------- */
+.jv-brief { min-height: 7.5em; white-space: pre-wrap; color: #dffbff; }
+.jv-cursor { display: inline-block; width: .55em; height: 1em; margin-left: 2px; vertical-align: text-bottom;
+  background: var(--c); animation: jv-blink 1s steps(1) infinite; }
+
+/* ---------- Reactor ---------- */
+.jv-a-core .jv-panel-b { display: flex; flex-direction: column; align-items: center; }
+.jv-reactor { width: 100%; max-width: 320px; overflow: visible; }
+.jv-reactor .jv-deco { fill: none; stroke: var(--c2); stroke-width: 1; stroke-dasharray: 14 8 2 8; }
+.jv-reactor .jv-ticks { fill: none; stroke: var(--c2); stroke-width: 6; stroke-dasharray: 1.5 5.2; opacity: .55; }
+.jv-reactor .jv-inner { fill: none; stroke: var(--c); stroke-width: 2; stroke-dasharray: 40 18; opacity: .7; }
+.jv-reactor .jv-ring-bg { fill: none; stroke: rgba(62, 232, 255, .1); stroke-width: 9; }
+.jv-reactor .jv-ring { fill: none; stroke-width: 9; stroke-linecap: round; transition: stroke-dasharray 1.8s cubic-bezier(.2, .8, .2, 1);
+  filter: drop-shadow(0 0 5px rgba(62, 232, 255, .7)); }
+.jv-reactor .jv-core { animation: jv-pulse 3s ease-in-out infinite; transform-origin: 130px 130px; }
+.jv-reactor .jv-core-num { font-family: Orbitron, sans-serif; font-weight: 900; font-size: 30px; fill: #ffffff; text-anchor: middle; }
+.jv-reactor .jv-core-lbl { font-size: 9px; letter-spacing: 3px; fill: var(--c); text-anchor: middle; }
+.jv-spin { transform-origin: 130px 130px; animation: jv-rot 30s linear infinite; }
+.jv-spin-rev { transform-origin: 130px 130px; animation: jv-rot 18s linear infinite reverse; }
+.jv-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 16px; margin-top: 8px; font-size: .85em; }
+.jv-legend span b { font-family: Orbitron, sans-serif; }
+.jv-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; box-shadow: 0 0 8px currentColor; background: currentColor; }
+
+/* ---------- Tutoría ---------- */
+.jv-big { font-family: Orbitron, sans-serif; font-weight: 700; font-size: 1.9em; color: #eaffff; text-shadow: 0 0 10px var(--c2); margin: 4px 0; }
+.jv-kv { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-bottom: 1px dashed var(--c3); font-size: .9em; }
+.jv-kv:last-child { border-bottom: none; }
+.jv-live { color: var(--ok); }
+
+/* ---------- Sistemas ---------- */
+.jv-sys { display: grid; grid-template-columns: auto 1fr auto; gap: 4px 10px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--c3); }
+.jv-sys:last-child { border-bottom: none; }
+.jv-sys-k { font-family: Orbitron, sans-serif; font-weight: 700; }
+.jv-sys-d { grid-column: 1 / -1; font-size: .8em; color: var(--dim); }
+.jv-status { font-size: .72em; letter-spacing: .15em; padding: 1px 8px; border: 1px solid currentColor; }
+.jv-st-ok { color: var(--ok); } .jv-st-warn { color: var(--amber); } .jv-st-crit { color: var(--red); animation: jv-blink 1.2s infinite; }
+.jv-mini { height: 4px; background: rgba(62, 232, 255, .1); }
+.jv-mini > div { height: 100%; box-shadow: 0 0 6px currentColor; }
+
+/* ---------- Objetivos ---------- */
+.jv-obj { display: grid; grid-template-columns: 22px 46px 1fr auto; gap: 4px 10px; align-items: center; padding: 7px 0; border-bottom: 1px dashed var(--c3); }
+.jv-obj:last-child { border-bottom: none; }
+.jv-chk { width: 18px; height: 18px; border: 1px solid var(--c2); background: transparent; cursor: pointer; padding: 0; border-radius: 2px; color: var(--c); font-size: 11px; line-height: 16px; }
+.jv-chk:hover { box-shadow: 0 0 8px var(--c); }
+.jv-chk.jv-armed { border-color: var(--amber); color: var(--amber); }
+.jv-chip { font-family: Orbitron, sans-serif; font-size: .7em; font-weight: 700; text-align: center; padding: 2px 0; border: 1px solid currentColor; }
+.jv-obj-t { min-width: 0; }
+.jv-obj-f { font-size: .78em; color: var(--dim); }
+.jv-cd { font-family: Orbitron, sans-serif; font-size: .85em; text-align: right; white-space: nowrap; }
+.jv-bar { grid-column: 2 / -1; height: 3px; background: rgba(62, 232, 255, .08); }
+.jv-bar > div { height: 100%; background: var(--c); box-shadow: 0 0 6px var(--c); }
+.jv-obj.jv-warn .jv-cd { color: var(--amber); } .jv-obj.jv-warn .jv-bar > div { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.jv-obj.jv-crit .jv-cd { color: var(--red); } .jv-obj.jv-crit .jv-bar > div { background: var(--red); box-shadow: 0 0 6px var(--red); }
+.jv-tag { font-size: .7em; padding: 0 5px; margin-left: 6px; border: 1px dashed var(--dim); color: var(--dim); }
+.jv-more { margin-top: 8px; font-size: .85em; }
+
+/* ---------- Repasos y registro ---------- */
+.jv-row { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px dashed var(--c3); font-size: .92em; }
+.jv-row:last-child { border-bottom: none; }
+.jv-late { color: var(--red); }
+.jv-log-row { display: grid; grid-template-columns: auto auto 1fr; gap: 8px; padding: 3px 0; font-size: .88em; }
+.jv-log-row .jv-dim { white-space: nowrap; }
+.jv-stats { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 8px; font-size: .8em; letter-spacing: .1em; color: var(--dim); }
+.jv-stats b { color: var(--c); font-family: Orbitron, sans-serif; }
+.jv-empty { color: var(--dim); font-style: italic; }
+
+/* ---------- Concentración ---------- */
+.jv-a-pomo .jv-panel-b { display: flex; flex-direction: column; align-items: center; }
+.jv-pomo { width: 150px; }
+.jv-pomo .jv-ring-bg { fill: none; stroke: rgba(62, 232, 255, .1); stroke-width: 6; }
+.jv-pomo .jv-pomo-arc { fill: none; stroke: var(--c); stroke-width: 6; stroke-linecap: round; filter: drop-shadow(0 0 5px var(--c)); }
+.jv-pomo.jv-break .jv-pomo-arc { stroke: var(--ok); filter: drop-shadow(0 0 5px var(--ok)); }
+.jv-pomo text { text-anchor: middle; fill: #eaffff; }
+.jv-pomo .jv-pomo-t { font-family: Orbitron, sans-serif; font-weight: 700; font-size: 22px; }
+.jv-pomo .jv-pomo-m { font-size: 8px; letter-spacing: 3px; fill: var(--c); }
+.jv-btns { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; justify-content: center; }
+.jv-btn { font-family: Orbitron, sans-serif; font-size: .68em; letter-spacing: .15em; color: var(--c); background: rgba(62, 232, 255, .06);
+  border: 1px solid var(--c2); padding: 6px 12px; cursor: pointer; border-radius: 0; box-shadow: none; height: auto; }
+.jv-btn:hover { background: rgba(62, 232, 255, .18); box-shadow: 0 0 10px var(--c2); }
+.jv-pomo-info { margin-top: 8px; font-size: .8em; color: var(--dim); letter-spacing: .1em; }
+
+/* ---------- Columnas laterales y núcleo ---------- */
+.jv-reactor-wrap { width: 100%; display: flex; justify-content: center; }
+.jv-m-izquierda, .jv-m-derecha { display: flex; flex-direction: column; gap: 14px; padding: 12px; }
+.jv-m-izquierda .jv-obj, .jv-m-derecha .jv-obj { grid-template-columns: 22px 42px 1fr; }
+.jv-m-izquierda .jv-cd, .jv-m-derecha .jv-cd { grid-column: 3; text-align: left; }
+.jv-btns-r { justify-content: flex-end; margin-top: 6px; }
+.jv-m-nucleo { padding: 14px 18px; }
+.jv-m-nucleo .jv-top { margin-bottom: 10px; }
+.jv-graph { position: relative; width: 100%; height: 560px; border: 1px solid var(--c3);
+  background: radial-gradient(circle at 50% 50%, rgba(62, 232, 255, .08), transparent 65%); }
+.jv-graph canvas { position: absolute; inset: 0; display: block; }
+.jv-graph-reactor { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); pointer-events: none; opacity: .9; }
+.jv-graph-reactor .jv-reactor { max-width: none; width: 100%; height: 100%; }
+.jv-graph-info { position: absolute; left: 12px; bottom: 10px; right: 12px; font-size: .8em; letter-spacing: .08em; color: var(--c);
+  text-shadow: 0 0 6px var(--c2); pointer-events: none; }
+.jv-graph-ley { position: absolute; top: 10px; left: 12px; display: flex; flex-direction: column; gap: 4px; font-size: .75em;
+  letter-spacing: .1em; color: var(--dim); pointer-events: none; }
+.jv-graph::before, .jv-graph::after { /* esquinas de mira */
+  content: ""; position: absolute; width: 22px; height: 22px; border: 2px solid var(--c); pointer-events: none; opacity: .7; }
+.jv-graph::before { top: -1px; right: -1px; border-left: none; border-bottom: none; }
+.jv-graph::after { bottom: -1px; left: -1px; border-right: none; border-top: none; }
+
+/* ---------- Modo JARVIS: Obsidian sin interfaz ---------- */
+body.jv-mode .workspace-ribbon,
+body.jv-mode .status-bar,
+body.jv-mode .workspace-tab-header-container,
+body.jv-mode .view-header,
+body.jv-mode .workspace-sidedock-vault-profile { display: none !important; }
+/* Franja superior reservada para los botones de la ventana (minimizar, maximizar, cerrar):
+   sin pestañas ni títulos, nada empuja los paneles hacia abajo y quedaban tapados */
+body.jv-mode { --jv-franja: 34px; }
+body.jv-mode .workspace { padding-top: var(--jv-franja) !important; background: #03070c !important;
+  border-top: 1px solid rgba(62, 232, 255, .18); }
+body.jv-mode .workspace::before { /* rótulo en la franja, por debajo de los botones */
+  content: "J.A.R.V.I.S. · SISTEMA DE ESTUDIO"; position: absolute; top: 0; left: 16px; height: var(--jv-franja);
+  display: flex; align-items: center; font-family: Orbitron, sans-serif; font-size: 10px; letter-spacing: .3em;
+  color: rgba(62, 232, 255, .6); pointer-events: none; z-index: 1; }
+body.jv-mode .workspace { position: relative; }
+/* La barra de título se queda (botones de la ventana), pero con el estilo HUD */
+body.jv-mode .titlebar { background: #03070c !important; border-bottom: 1px solid rgba(62, 232, 255, .18); }
+body.jv-mode .titlebar-text { font-family: Orbitron, sans-serif; letter-spacing: .3em; font-size: 11px; color: #3ee8ff; }
+body.jv-mode .titlebar-button { color: #5f8a99; }
+body.jv-mode .titlebar-button:hover { color: #3ee8ff; background: rgba(62, 232, 255, .12); }
+body.jv-mode .titlebar-button.mod-close:hover { color: #fff; background: #ff4d6a; }
+body.jv-mode .workspace,
+body.jv-mode .workspace-split,
+body.jv-mode .workspace-tabs,
+body.jv-mode .workspace-leaf,
+body.jv-mode .workspace-leaf-content,
+body.jv-mode .view-content { background: #03070c !important; }
+body.jv-mode .workspace-tabs .workspace-leaf { border-radius: 0 !important; }
+body.jv-mode .workspace-leaf-resize-handle { background: rgba(62, 232, 255, .12) !important; }
+body.jv-mode .workspace-leaf-resize-handle:hover { background: rgba(62, 232, 255, .5) !important; }
+body.jv-mode .jarvis-panel.markdown-preview-view,
+body.jv-mode .jarvis-panel .markdown-preview-view { padding: 0 !important; }
+body.jv-mode .jarvis-panel .markdown-preview-sizer { padding: 0 !important; min-height: 0 !important; }
+body.jv-mode .jarvis-panel .markdown-preview-section > div { margin: 0 !important; }
+body.jv-mode .jv { border-radius: 0; border: none; min-height: 100%; }
+
+/* ---------- Terminal (Lean Terminal) integrada en el HUD ---------- */
+body.jv-mode .workspace-leaf-content[data-type="terminal-view"] { position: relative;
+  border-top: 1px solid rgba(62, 232, 255, .45); box-shadow: inset 0 0 60px rgba(62, 232, 255, .07); }
+body.jv-mode .workspace-leaf-content[data-type="terminal-view"] .view-content { padding: 0 !important; }
+body.jv-mode .terminal-view-container {
+  background:
+    linear-gradient(rgba(62, 232, 255, .035) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(62, 232, 255, .035) 1px, transparent 1px) 0 0 / 28px 28px,
+    #03070c; }
+body.jv-mode .terminal-tab-bar { position: relative; gap: 6px; padding: 6px 12px; background: rgba(6, 18, 28, .9);
+  border-bottom: 1px solid rgba(62, 232, 255, .18); }
+body.jv-mode .terminal-tab-bar::before { /* rótulo del panel, como los del HUD */
+  content: "TERMINAL · CLAUDE"; margin-right: 10px; padding-right: 12px; border-right: 1px solid rgba(62, 232, 255, .25);
+  font-family: Orbitron, sans-serif; font-weight: 700; font-size: 10px; letter-spacing: .22em; color: #3ee8ff;
+  text-shadow: 0 0 8px rgba(62, 232, 255, .55); white-space: nowrap; }
+body.jv-mode .terminal-tab-bar::after { /* trazo luminoso de la esquina */
+  content: ""; position: absolute; left: 0; top: 0; width: 34px; height: 2px; background: #3ee8ff; box-shadow: 0 0 8px #3ee8ff; }
+body.jv-mode .terminal-tab, body.jv-mode .terminal-new-tab {
+  font-family: 'Share Tech Mono', ui-monospace, Consolas, monospace; font-size: 12px; letter-spacing: .08em;
+  color: #5f8a99; border: 1px solid transparent; border-radius: 0; }
+body.jv-mode .terminal-tab:hover, body.jv-mode .terminal-new-tab:hover {
+  color: #cdf6ff; background: rgba(62, 232, 255, .08); border-color: rgba(62, 232, 255, .25); }
+body.jv-mode .terminal-tab.active { color: #3ee8ff; background: rgba(62, 232, 255, .1); border-color: rgba(62, 232, 255, .45);
+  box-shadow: inset 0 -2px 0 #3ee8ff, 0 0 10px rgba(62, 232, 255, .15); text-shadow: 0 0 6px rgba(62, 232, 255, .55); }
+body.jv-mode .terminal-tab-close:hover { background: rgba(255, 77, 106, .25); color: #ff4d6a; }
+body.jv-mode .terminal-session { inset: 8px 6px 6px 14px; } /* margen para que el texto no toque el marco */
+body.jv-mode .terminal-session .xterm-viewport { background-color: transparent !important; }
+body.jv-mode .terminal-session .xterm-viewport::-webkit-scrollbar-thumb { background: rgba(62, 232, 255, .3); border-radius: 0; }
+body.jv-mode .terminal-session .xterm-viewport::-webkit-scrollbar-thumb:hover { background: rgba(62, 232, 255, .6); }
+body.jv-mode .terminal-host::after { /* líneas de barrido y esquinas de mira, sin bloquear el ratón */
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 10;
+  background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .022) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 0 0 1px rgba(62, 232, 255, .06); }
+body.jv-mode .terminal-host::before {
+  content: ""; position: absolute; right: 4px; bottom: 4px; width: 20px; height: 20px; pointer-events: none; z-index: 10;
+  border: 2px solid #3ee8ff; border-left: none; border-top: none; opacity: .7; }
+
+/* ---------- Animaciones ---------- */
+@keyframes jv-rot { to { transform: rotate(360deg); } }
+@keyframes jv-blink { 50% { opacity: .25; } }
+@keyframes jv-pulse { 50% { transform: scale(1.06); opacity: .85; } }
+@keyframes jv-scan { to { top: 100%; } }
+@keyframes jv-flicker { 0%, 46%, 50%, 100% { opacity: 1; } 48% { opacity: .8; } }
+@media (prefers-reduced-motion: reduce) {
+  .jv *, .jv::before, .jv::after { animation: none !important; transition: none !important; }
+}
+
+/* ---------- Prioridades de hoy ---------- */
+.jv-prio { display: grid; grid-template-columns: 18px 1fr; gap: 10px; align-items: start; padding: 6px 0; border-bottom: 1px dashed var(--c3); }
+.jv-prio:last-of-type { border-bottom: none; }
+.jv-prio-t { font-size: .92em; }
+.jv-prio.jv-done .jv-prio-t { color: var(--dim); text-decoration: line-through; }
+.jv-prio.jv-done .jv-chk { border-color: var(--ok); color: var(--ok); }
+.jv-prio-sub { margin-top: 10px; font-size: .72em; letter-spacing: .2em; color: var(--amber); }
+.jv-prio-arr { font-size: .85em; color: var(--dim); padding: 2px 0; }
+
+/* ---------- Semana en curso ---------- */
+.jv-dia { display: grid; grid-template-columns: 38px 1fr; gap: 10px; padding: 6px 4px; border-bottom: 1px dashed var(--c3); }
+.jv-dia:last-child { border-bottom: none; }
+.jv-dia-f { display: flex; flex-direction: column; align-items: center; line-height: 1.1; font-size: .7em; letter-spacing: .12em; color: var(--dim); }
+.jv-dia-f b { font-family: Orbitron, sans-serif; font-size: 1.6em; letter-spacing: 0; color: var(--txt); }
+.jv-dia-ev { display: flex; flex-direction: column; gap: 3px; font-size: .85em; justify-content: center; }
+.jv-ev { display: flex; gap: 6px; align-items: baseline; }
+.jv-ev-k { font-family: Orbitron, sans-serif; font-size: .75em; font-weight: 700; flex: none; }
+.jv-ev-fecha { color: var(--amber); }
+.jv-dia.jv-hoy { background: rgba(62, 232, 255, .08); box-shadow: inset 2px 0 0 var(--c); }
+.jv-dia.jv-hoy .jv-dia-f, .jv-dia.jv-hoy .jv-dia-f b { color: var(--c); text-shadow: 0 0 6px var(--c2); }
+.jv-dia.jv-pasado { opacity: .45; }
+
+/* ---------- Mapa de calor de actividad (al pie de la columna izquierda) ---------- */
+.jv-m-izquierda .jv-a-calor { margin-top: auto; }
+.jv-calor { display: grid; gap: 3px; align-items: center; margin-top: 8px; }
+.jv-calor-mes { font-size: .62em; letter-spacing: .08em; color: var(--dim); white-space: nowrap; overflow: visible; height: 1.2em; }
+.jv-calor-dia { font-size: .62em; color: var(--dim); padding-right: 4px; }
+.jv-calor-c { display: block; aspect-ratio: 1; border-radius: 2px; border: 1px solid rgba(62, 232, 255, .08); }
+.jv-calor-c.jv-n0 { background: rgba(62, 232, 255, .04); }
+.jv-calor-c.jv-n1 { background: rgba(62, 232, 255, .22); }
+.jv-calor-c.jv-n2 { background: rgba(62, 232, 255, .42); }
+.jv-calor-c.jv-n3 { background: rgba(62, 232, 255, .68); box-shadow: 0 0 4px rgba(62, 232, 255, .35); }
+.jv-calor-c.jv-n4 { background: #3ee8ff; box-shadow: 0 0 7px rgba(62, 232, 255, .7); }
+.jv-calor-c.jv-hoy { outline: 1px solid var(--amber); outline-offset: 1px; }
+.jv-calor-c.jv-futuro { background: transparent; border-style: dashed; opacity: .35; }
+.jv-calor-ley { display: flex; align-items: center; justify-content: flex-end; gap: 3px; margin-top: 8px; font-size: .62em; letter-spacing: .12em; color: var(--dim); }
+.jv-calor-ley .jv-calor-c { width: 10px; }
+.jv-calor-ley span:first-child { margin-right: 3px; } .jv-calor-ley span:last-child { margin-left: 3px; }
+
+/* ---------- Micrófono (dictado) ---------- */
+.jv-mic { color: var(--ok); border-color: rgba(77, 255, 181, .55); }
+.jv-mic:hover { background: rgba(77, 255, 181, .15); box-shadow: 0 0 10px rgba(77, 255, 181, .5); }
+
+/* Semana navegable */
+.jv-sem-nav { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
+.jv-sem-btn { font-family: Orbitron, sans-serif; font-size: .7em; letter-spacing: .15em; color: var(--c); background: rgba(62, 232, 255, .06);
+  border: 1px solid var(--c3); padding: 2px 12px; cursor: pointer; box-shadow: none; height: auto; }
+.jv-sem-btn:hover { background: rgba(62, 232, 255, .18); box-shadow: 0 0 10px var(--c2); }
+.jv-sem-btn.jv-off { opacity: .35; pointer-events: none; }
+
+/* Zoom del núcleo */
+.jv-zoom { position: absolute; top: 10px; right: 12px; display: flex; flex-direction: column; align-items: center; gap: 4px; z-index: 2; }
+.jv-zoom-b { width: 30px; height: 30px; padding: 0; font-family: Orbitron, sans-serif; font-size: 1.05em; line-height: 1;
+  color: var(--c); background: rgba(6, 18, 28, .78); border: 1px solid var(--c3); cursor: pointer; box-shadow: none; }
+.jv-zoom-b:hover { background: rgba(62, 232, 255, .18); box-shadow: 0 0 10px var(--c2); }
+.jv-zoom-r { font-size: .9em; margin-top: 4px; }
+.jv-zoom-v { font-size: .65em; letter-spacing: .08em; color: var(--dim); }
+
+
+/* Galaxia: el reactor sigue al núcleo (se posiciona desde JS) */
+.jv-galaxia .jv-graph-reactor { transition: none; }
+.jv-galaxia { background: radial-gradient(ellipse at center, rgba(20, 30, 60, .35), rgba(3, 7, 12, .9) 70%); }
+
+/* Menú de navegación de la galaxia (desplegables) */
+.jv-nav { position: absolute; top: 10px; left: 12px; z-index: 2; width: max-content; max-width: 260px; max-height: calc(100% - 60px); overflow-y: auto;
+  background: rgba(6, 18, 28, .82); border: 1px solid var(--c3); padding: 6px; font-size: .78em; letter-spacing: .06em;
+  box-shadow: 0 0 14px rgba(62, 232, 255, .12); scrollbar-width: thin; }
+.jv-nav-t { font-family: Orbitron, sans-serif; font-size: .82em; letter-spacing: .14em; color: var(--c); padding: 2px 4px 6px;
+  border-bottom: 1px dashed var(--c3); margin-bottom: 4px; }
+.jv-nav-i { display: flex; align-items: center; gap: 6px; width: 100%; text-align: left; background: none; border: none; box-shadow: none;
+  color: var(--txt); padding: 3px 6px; height: auto; cursor: pointer; font: inherit; letter-spacing: inherit; }
+.jv-nav-i:hover { background: rgba(62, 232, 255, .12); color: #fff; }
+.jv-nav-i.jv-nav-on { background: rgba(62, 232, 255, .18); box-shadow: inset 2px 0 0 var(--c); color: #fff; }
+.jv-nav-x { margin-left: auto; color: var(--dim); font-size: .9em; white-space: nowrap; }
+.jv-nav-d { margin: 2px 0; }
+.jv-nav-s { display: flex; align-items: center; gap: 6px; cursor: pointer; padding: 3px 6px; color: var(--txt); list-style: none; }
+.jv-nav-s::-webkit-details-marker { display: none; }
+.jv-nav-s::before { content: "▸"; color: var(--c); font-size: .9em; width: .8em; }
+details[open] > .jv-nav-s::before { content: "▾"; }
+.jv-nav-s:hover { background: rgba(62, 232, 255, .08); }
+.jv-nav-sub { padding-left: 14px; }
+.jv-nav-sub2 { padding-left: 22px; font-size: .95em; }
+.jv-galaxia .jv-graph-info { left: 272px; }
+
+/* Menú contraíble: cerrado solo muestra el título */
+.jv-nav-raiz > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+.jv-nav-raiz > summary::-webkit-details-marker { display: none; }
+.jv-nav-raiz > summary::before { content: "▸"; color: var(--c); }
+.jv-nav-raiz[open] > summary::before { content: "▾"; }
+.jv-nav-raiz:not([open]) > summary { border-bottom: none; margin-bottom: 0; padding-bottom: 2px; }
+.jv-nav-raiz[open] { width: 250px; }
+
+/* el lienzo de la galaxia recibe el foco para volar con WASD: sin contorno */
+.jv-galaxia canvas:focus { outline: none; }

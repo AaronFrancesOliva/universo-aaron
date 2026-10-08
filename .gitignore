@@ -1,0 +1,30 @@
+# Copia de seguridad del UNIVERSO AARON (repositorio privado). Lo que NO se guarda:
+
+# Libros (2,6 GB) y PDF enormes: se pueden volver a descargar de Ágora (GitHub no admite archivos de más de 100 MB)
+UNED/LIBROS/
+UNED/AÑO 1/CUATRIMESTRE 1/GESTION DE EMPRESAS/Gestión de empresas informáticas.pdf
+UNED/AÑO 1/CUATRIMESTRE 1/LOGICA Y ESTRUCTURAS DISCRETAS/Libro de LED (PDF del libro web, 24-09-2026).pdf
+*.mov
+*.mp4
+
+# Secretos y estado de Obsidian que no deben salir de este PC
+.obsidian/plugins/remotely-save/data.json
+.obsidian/plugins/lean-terminal/data.json
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+
+# Restos de sistema
+desktop.ini
+Thumbs.db
+
+# Dependencias de plugins (se reinstalan con el propio plugin)
+.obsidian/plugins/*/node_modules/
+*.pdb
+
+# Código de los plugins (se reinstala desde Obsidian; algunos llevan datos de conexión de sus apps que GitHub bloquea como si fueran secretos)
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/*.wasm
+
+# Examen en HTML con una imagen que GitHub confunde con una clave de Google (falso positivo; se descarga de Ágora)
+UNED/AÑO 1/CUATRIMESTRE 1/FUNDAMENTOS DE SISTEMAS DEGITALES/EXAMENES ANTERIORES/FSD-2024-FEB.html

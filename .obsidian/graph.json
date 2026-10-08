@@ -1,0 +1,65 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"FUNDAMENTOS DE SISTEMAS DEGITALES\" path:\"LOGICA Y ESTRUCTURAS DISCRETAS\" path: ",
+      "color": {
+        "a": 1,
+        "rgb": 1065169
+      }
+    },
+    {
+      "query": "path:\"GESTION DE EMPRESAS\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 14725458
+      }
+    },
+    {
+      "query": "path:\"LOGICA Y ESTRUCTURAS DISCRETAS\" path:",
+      "color": {
+        "a": 1,
+        "rgb": 11657298
+      }
+    },
+    {
+      "query": "path:PLANIFICACION  ",
+      "color": {
+        "a": 1,
+        "rgb": 572087
+      }
+    },
+    {
+      "query": "path:LIBROS  ",
+      "color": {
+        "a": 1,
+        "rgb": 15400960
+      }
+    },
+    {
+      "query": "path:\"RED NEURONAL\"  ",
+      "color": {
+        "a": 1,
+        "rgb": 10488279
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": -1.1,
+  "nodeSizeMultiplier": 0.930848780487805,
+  "lineSizeMultiplier": 1.13203771235435,
+  "collapse-forces": false,
+  "centerStrength": 0,
+  "repelStrength": 11.3804713804714,
+  "linkStrength": 0.113365853658537,
+  "linkDistance": 114,
+  "scale": 0.03018289506732416,
+  "close": false
+}

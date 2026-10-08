@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Febrero 2012</title>
+    <style>
+        body {
+          margin: 50px;
+          font-family: Verdana, Helvetiva, sans-serif;
+          line-height: 1.5;
+          font-size: 14pt;
+        }
+        
+        button {
+            color: #ffffff;
+            background-color: #00533F;
+            border-radius: 10px;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-size: 13pt;
+        }
+        button:hover {
+            color: #ffffff;
+            background-color: #008040;
+        }
+    
+    
+        h1, h2, h3, h4, h5, h6 {
+            color: #00533F;
+        }
+    
+    
+        math {
+            font-size: 1.1em;
+        }
+    
+    
+        table.tabla_dos_encabezados, table.tabla_dos_encabezados th, table.tabla_dos_encabezados td {
+          border: 1px solid grey;
+        }
+    
+        table.tabla_dos_encabezados th {
+            color:black;
+            font-weight: bolder;
+            min-width: 100px;
+        }
+    
+        table.tabla_verdad {
+            margin: 10px;
+            width: 100%;
+            max-width: 200px;
+            text-align:center; 
+        }
+    
+        img {
+            width: 100%;
+            max-width: 700px;
+        }
+    
+        img.img-med {
+            width: 100%;
+            max-width: 400px;
+        }
+    
+    
+        img.img-med2 {
+            width: 100%;
+            max-width: 300px;
+        }
+    
+        .sr-only {
+            position:absolute;
+            left:-10000px;
+            top:auto;
+            width:1px;
+            height:1px;
+            overflow:hidden;
+        }
+    
+        .solucion {
+            padding: 5px;
+            border: 1px solid black;
+            color: #00533F;
+            font-weight: bold;
+            display: none;
+        }
+        
+        code {
+            font-family: Courier, "Lucida Console", monospace;
+            font-size: 1.1em;
+        }
+        </style>
+    <script>
+    function mostrarOcultarSoluciones() {
+        var esMostrar = false;
+        var respuestasCorrectas = document.getElementsByClassName("correcta");
+        var style = getComputedStyle(respuestasCorrectas[0]);
+        if (style.backgroundColor == "rgba(0, 0, 0, 0)") {
+            esMostrar = true;
+        }
+
+        for (var i = 0; i < respuestasCorrectas.length; i++) {
+            if (esMostrar) {
+                respuestasCorrectas[i].style.backgroundColor = "lightgreen";
+            } else {
+                respuestasCorrectas[i].style.backgroundColor = "transparent";
+            }
+        }
+
+        var soluciones = document.getElementsByClassName("solucion");
+        for (var i = 0; i < soluciones.length; i++) {
+            if (esMostrar) {
+                soluciones[i].style.display = "block";
+            } else {
+                soluciones[i].style.display = "none";
+            }
+        }
+
+        var boton = document.getElementById("botonMostrarOcultarSoluciones");
+        if (esMostrar) {
+            boton.textContent = "Ocultar las soluciones de las preguntas de test";
+        } else {
+            boton.textContent = "Ver las soluciones de las preguntas de test";
+        }
+    }
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+<body>
+    <main>
+        <div id="bloque_soluciones_interactivas">
+            <p>Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación</p>
+            <button id="botonMostrarOcultarSoluciones" type="button" onclick="mostrarOcultarSoluciones()">Ver las soluciones de las preguntas de test</button>
+        </div>
+        <h2> PREGUNTA FSD-2012-FEB_01</h2>
+        <p>De los 4 pares de expresiones dados a continuación ¿Cuál es el que corresponde a las expresiones duales del Teorema de Adyacencia?</p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>+</mo>
+                                <mover>
+                                    <mi>A</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>1</mn>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>A</mi>
+                                <mo>⋅</mo>
+                                <mover>
+                                    <mi>A</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">A + \overline{A} = 1,\quad A \cdot \overline{A} = 0</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>⋅</mo>
+                                <mi>B</mi>
+                                <mo>+</mo>
+                                <mi>A</mi>
+                                <mo>⋅</mo>
+                                <mover>
+                                    <mi>B</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>+</mo>
+                                    <mi>B</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <mi>B</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">A \cdot B + A \cdot \overline{B} = A,\quad\left( A + B \right) \cdot \left( A + \overline{B} \right) = A</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>⋅</mo>
+                                <mi>B</mi>
+                                <mo>+</mo>
+                                <mi>A</mi>
+                                <mo>=</mo>
+                                <mi>B</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>+</mo>
+                                    <mi>B</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mi>A</mi>
+                                <mo>=</mo>
+                                <mi>B</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">A \cdot B + A = B,\quad\left( A + B \right) \cdot A = B</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>⋅</mo>
+                                <mi>B</mi>
+                                <mo>+</mo>
+                                <mi>A</mi>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>+</mo>
+                                    <mi>B</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mi>A</mi>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">A \cdot B + A = A,\quad\left( A + B \right) \cdot A = A</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'b'.</p>
+        <h2> PREGUNTA FSD-2012-FEB_02</h2>
+        <p>De los 4 grupos de palabras binarias de 6 bits cuál es el que corresponde a la representación del número decimal 31, en Binario puro, C-2 y BCD.</p>
+        <ol type='a'>
+            <li>
+                <p>Binario: 100000, C-2: 011110, BCD (8421): 010011</p>
+            </li>
+            <li class='correcta'>
+                <p>Binario: 011111, C-2: 011111, BCD (8421): 110001</p>
+            </li>
+            <li>
+                <p>Binario: 011111, C-2: 100001, BCD (8421): 011111</p>
+            </li>
+            <li>
+                <p>Binario: 011111, C-2: 100001, BCD (8421): 110001</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'b'.</p>
+        <h2> PREGUNTA FSD-2012-FEB_03</h2>
+        <p>¿Cuáles son las expresiones generales de la suma y del acarreo de un semi-sumador realizado sólo con puertas NAND?</p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>S</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>A</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>⋅</mo>
+                                                <msub>
+                                                    <mi>B</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>&#xA0;</mo>
+                                        <mover>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo>⋅</mo>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>B</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mover>
+                                        <mrow>
+                                            <mover>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S_{i} = \overline{\overline{\overline{A_{i}} \cdot B_{i}}\quad\overline{A_{i} \cdot \overline{B_{i}}}},\quad C_{i + 1} = \overline{\overline{\overline{A_{i}} \cdot B_{i}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>S</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>A</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>⋅</mo>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>B</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>⋅</mo>
+                                        <mover>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo>⋅</mo>
+                                                <msub>
+                                                    <mi>B</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mover>
+                                        <mrow>
+                                            <mover>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S_{i} = \overline{\overline{\overline{A_{i}} \cdot \overline{B_{i}}} \cdot \overline{A_{i} \cdot B_{i}}},\quad C_{i + 1} = \overline{\overline{\overline{A_{i}} \cdot B_{i}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>S</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>A</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>⋅</mo>
+                                                <msub>
+                                                    <mi>B</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>⋅</mo>
+                                        <mover>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo>⋅</mo>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>B</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mover>
+                                        <mrow>
+                                            <msub>
+                                                <mi>A</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo>⋅</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S_{i} = \overline{\overline{\overline{A_{i}} \cdot B_{i}} \cdot \overline{A_{i} \cdot \overline{B_{i}}}},\quad C_{i + 1} = \overline{\overline{A_{i} \cdot B_{i}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>S</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>A</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>⋅</mo>
+                                                <mover>
+                                                    <msub>
+                                                        <mi>B</mi>
+                                                        <mi>i</mi>
+                                                    </msub>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>⋅</mo>
+                                        <mover>
+                                            <mrow>
+                                                <msub>
+                                                    <mi>A</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                                <mo>⋅</mo>
+                                                <msub>
+                                                    <mi>B</mi>
+                                                    <mi>i</mi>
+                                                </msub>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <mover>
+                                        <mrow>
+                                            <msub>
+                                                <mi>A</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo>⋅</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">S_{i} = \overline{\overline{\overline{A_{i}} \cdot \overline{B_{i}}} \cdot \overline{A_{i} \cdot B_{i}}},\quad C_{i + 1} = \overline{\overline{A_{i} \cdot B_{i}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'c'.</p>
+        <h2> PREGUNTA FSD-2012-FEB_04</h2>
+        <p>De los 4 cronogramas dados ¿cuál es el que representa el funcionamiento del circuito implementado con biestables J-K disparados a las bajadas (flancos negativos o de bajada) de los pulsos del reloj?</p>
+        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdsAAAC/AQAAAACeE0thAAAABGdBTUEAALGOfPtRkwAAAAlwSFlzAAAOwwAADsMBx2+oZAAABk5JREFUaN7t2k1vG0UYAGCHiHJAqn8AUn3kwCFcUIVKWXpH6i9oXIQEQhU1VQ+mdZ1pFCGOOSNU+VhEVQJCalU56zFwyIEWc0M0jcdRBDm08Tiy0nWy3h1mZj88OzPOfqmHIs8h2djzeGbed72ed50Cyd56hRme4UzYtTHSPY4u2klwZ02LKwcvHK/pcTkZrmrxuX4SXNHjRRn/Mri48MyQ8OV5LV5qgyjuYnP3dxTFRydsPUYSRhWKpV7VPUeH+10IZew8vSP1WtXj/W0FX3Gefm+QDI3hpfreZygrBubeJQnfLLA2r/bmDQi4EmJvQa7rH9jkSzG4CGHvAHRLhIyAn6r+UxGPxwF2q2J8Go0A36IHFvROknr/mSHgoxA7QMTlEJfpAX3TRk9Pf9pH4bQjGJUDjF4Ufk74ubBNsRiwLsJMjw2AUIB5WgwN7tpkiajYRgDBAHPR4dP0cQ9wDGukLuInRY4tDNjbo19m+KcufWgoYpcEuCZihALcJUGqfujSFYx5goGMvzC0+EmRniR85LUubBvzYi8SYqkF2P+TYxoA0MmKIcXDSK8mww8U3Od4QcB0zRSPCmI7w1N1VJDaSS9VH3h/zbNo/4op3o0Msc5efFuddomFVRwZkkHpJmhE18x/KhdB7P2KYJYekAMfkhx4NyPmb4xSRqxrM/ySYGcKhknw4RRsJMEHeuwmGjnXtPPiU46twxtwKR63+o6lw01Yj8fmcwfrcJ1fjo/HQ9N1kIrXMYDVWPzwlutAFf/8JoCVOEy6d13HULF1B8DzsRi+444108aPADx9PGYf9e8qAWNbsOIfsQGjT3XvKanCbNp3Y1NFn3q4dupVW8XDtzaWl2LxsMGPZDzeDXscgzXnNg5//B8wr25KGTGrbh5lHZlVNzlwtLpJh2l1852RFdPqRixQ0mFa3VQ4hsB7aqApUKhzSwHuloSA+bjlvy72NviFM0KBQp3Dd4+k/RovUMJU+dWNGUzKrw7EAoV1x8HI5RBPqpumjMkUjEI8afd9PArXfENcMwnXjEoqvp1+5EmB8m2ITZalbRWz6wirbkLMn+9EA2bSKxirbmTMrmCsuoniYTRVJnuWXinlVLFrJ93pb4WYVzfj6EliIo4b8klS5fjq5CShO/1IgcL6m2xEeP3TSTD5WLjC8Yf+Y2GN0Ylig2NLxuc5XhQxiBQoDK/zaV+zZXyaYwNII48jlchZ1vfBNblCKfKALRjnQuxVN9GRvVQdKdP2UiVM26tupDXzk0QNGD9JFoSAedVNNNpeeu2GjL3jqyImfp4VTPQYSHiYB3cyYqHsT4/l5mF2F0eD26yKisW5Rn5J8Q5a1uGR1QPxeAu1dNiqYhiPW3qM7yfBcAq2kuJR8ce3M2IaMGRUgIyTBAyiJsNAwf0EqWohk9itFpHxfZwoVRyP1FQlwDttGu26KY88GiwkCBhrGhz2iMVHozdyYNLEGbB3o/gV0hxEAqbeKCYrvXb5TyOCiXLDxx80chOJYRPVOg0g42/0+F8QxS0tNvUYK9j+a5HIeEmPEZTwTh48th9vKTjptElNxdv6gI0+UQP2eJMerwIBd/Wpsh6QKKap2mK4KmKXaDGBEl7p2Qy7dgRbemxK2G8uubKzlgD36stfa/DlrUaInSm4TtxDu6bD7C6Dj209dh2G7Qn23ykuubg9wZYeOw5xDiwB894N9t3a1gRjPbY53pjgj9kel6a1evnvCW7r8eAssfewMPIFtsel79PVK/9MMJkSMEfCZRPcvHECBN38g91p2GojEa8TWCcNCf82FTtISBUdmeJdCS8fg4WThK6Z4kEhUZsTXpBH+ytEcSfZtImEAWkbc8RIFjAVE3HbC4iuHYuHeXAnIy5Et73psNRmeIZnOMRucWUOfJQVW3X8/mJWbOfCAF/Ijlfxhcxrtof4UvaRnTy4LuB9PO0jVo9pqqoh7qfExRVcDQOGKqnwpHHcf68KMuO9zXvZR97bPEiBvfthAt5Pgb1/9TEC/Pnm8zR4owa9z0qG++nW7DRrVO37X93vp4u2A6+TudFJQMYG0bUYfI3UbbobG5Wy4OsM96ZtoYpxa+YjT5k2ORZvvA7rNo2W9L8OyTCte2/MHyaGMibKzi0dbuTAKdYbwWN5S5sGZ2kz/PLg/wD8ieC5TXjLKgAAAABJRU5ErkJggg==" alt="Circuito con dos biestables JK" /></p>
+        <ol type='a'>
+            <li class='correcta'>
+                <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAowAAACnAQAAAACzvDCnAAAABGdBTUEAALGOfPtRkwAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAuFJREFUaN7tmkGL2kAUxyMevCybL7BsLkv7JQQv0lM/htAvUdA9eSxlTwExl34PI+mhh8F8BBVKPWrZgys75jV5ycw81IC7TradZh5DeDOZ98sk+ecfIjqgOzaORRqB3Dh6oqWQW02L3FqkgciLcmNOPBoK5CUPUIsi/ZVAXrJQWZsjo8jXiwxW/u6rfuQX3cj7aaD7Wgb+v4+M7qPsxDdEW68IqWnr6nU1t0CYWwOAp0roAAwcxwVYyKE+QLr1AELHaQI8pR2ARA61RLkwt0BIfY8NJtjW2IqhPrY5tmdsCbZiSJYfmZseZOpEvn5k8KAfOdR9LbWv0td/LVNzy+54bm4ctZWJsoOidOVQLs0QdfiE0kxQmsWQLLfmVkdzy2KXply841zIvQvDA/L2yzoL0ekACiiPvuy0CHIvjrMGVHIec3oC82IvxqQYwOjLztYitSN9I5BRKr6G2J0pryk6If1aCAvVYgwKoWI4smPWA1k9sj7m5pchpeMdROPk7ISYWylyD/CC8YSs8sEI5NCIVVaArOCO+2W/lTRKkCV6BdMeyOqR9TG36AAZHuujgzsWVFp0d/MQeSj1+fHRJ7hd47YQep/sfrbIuiOjA3PzjpED+bUhrY0i5SeIeOk+VvPdoxkJ1tws0iIt0iJfg7TmZpEWaZH/JdKaWx2Ql/wBhkbrzURUK6S2sEhDkK4aXJIJK5L/htNzAlk79ggy+aSmsBLkI5yecytrb2KK/KCWydhC5j9JviI5mcNvu7O8mN+wmauQXXVUzmKCVPmU5N9JPu6KNQeMkVX2FHJXgmQkX1JkTyJHFPnOU9eMLQnmdP6D5OO7WVEctGeeQr5XR10xLvPwIyfI0/n4Li6Kx5/jmNxxhYzJdM7OQPYEcsQJEq7UiYeLqUKSfFmSB9eieJRmpj2QFvm2yI5uJHe1I89b5MuQ7fa1p3uV7W+xEUhXP/KMWX8b2b765WlGnhcWWTvkH43ysLFnZ9cxAAAAAElFTkSuQmCC" alt="Cronograma A" /></p>
+            </li>
+            <li>
+                <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAosAAACtAQAAAADw+wi4AAAABGdBTUEAALGOfPtRkwAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAuRJREFUaN7tmkGPmlAQx9mYyK0k7b0mNukH2N6736GfoCe4mvS+eOre2m9gP4omHtpNiO8jCE2DR0k91I2WKQy8NxMXuu76aKS8yYuZN8z8fMDwF1QLdFtoGWRXkVtLj/UIudO0yJ1BthB5kt+aHY/mEnnKBdTjyGAjkacsVNUWyCgK9CLFJth/04/8qhs5C4XuYymC80dGsyjf8S3rrSfY1qh618VNKHEDSLPXAcDMsmyARIWuAMaW5eR3E9YFwD4L+QCWDPVkuRQ3IVs9xQFLHL9wlKEpjjWO3zjAx1GEVPk9cdODzJQo0I8Ut/qRc93HUvsqA/3HMhO3/IwX4pZib+VNOcCmtFVojK0ZYh/usTWhaM0ipMqNuHVR3HLbZ24qP+NsKLQLzQH26ZdPEjkZADZQYVdq0uNI+T5Ze2Mno635DqzLrWjLMoA2VZOdQWpHBq1ARnnzyc15513IScifFsKya9FmZaOijdWkXRdk88juiFtQh1SKd2jVPCZu9ciatdTEfVrlbSuQ81assgFkA2c8qP2upA5Zne237YJsHtkdcYsUkm7RDmzGvlpL6XatFkmt7uPr+n7qku1L2ehTgzTIgzs3KU/AnhTIBrhhyyVv/LdfUu6aee7RjAQjbgZpkAZpkE9BGnEzSIM0yP8SacStC8iG/0HWQBN1CqnNDLIlyBsKJixhw/wtVOcIVSscjnxDKbFfjbyD6pzPqvaTx5GvbEp3R6rgJ/M3MfksJ3WGXlGcPnM9m5BDetvU9YCQ5Icx+d9ZXAzdsljErk/IS0Lu42pkzPyE5YhLhVxw5AuHjlk84geh0v/BfPHcK4vFxHMYckWnJL5WSw5fkx+71X6GLIvFW2/FzjghVwyZukcgLyVycc2RH2nHw9F7OlXMT5JqX9z0y+KF3XfadkEa5L9FftGNTG3tyOMW+Tjk5KXt6F7l5J33cNYZIO2Hsx6L9M8fOel/cDQjjzODNEiDPCfkH3zojS3fua2AAAAAAElFTkSuQmCC" alt="Cronograma B" /></p>
+            </li>
+            <li>
+                <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAooAAACnAQAAAAC+okDgAAAABGdBTUEAALGOfPtRkwAAAAlwSFlzAAAOxAAADsMB2mqY3AAAAtVJREFUaN7tmr1u2zAQxyVo8OihD5C5WwAu7qSHaRGvAbK0S2XAg5HRo6c+ig14yOhHiAwE4mi2Giyjtq4SxY9DQtV2TRVWxANhHKm7n0jpr5OIxAPbtvAcsqvIvWfHfI08WJrkwSFbiLzIb83C2VoiL3mAfIxMvknkJRNVuRWSsSSyiqS75PsX+8jPdhdOd/H90Pa1pMn1I1l8z4ZclP4FyL2r6l0vblQVtwig+O0DxJ4XAGRq6Kb8jvB6AKzoAOTFbwgwkkO+TJfFjSqpR7xtePvNmxh65m3LW84bzHmrhlT62+JmBVlUors768jhi92Fl8i17WtpfZYF0va1LItbccdFcat0GHNpZlyaYmjBpcm4DnMuzVKUoRxS6a64dbG4lZaXupTvuFI4uewU+tBvv7KTyU4fqkLH7UZ1fIyMxHlKeefypFu8gK04ym0jBrg9q87BIa0jk1YgWSk+ieTKk7EM7xaYUC23WAiV20J12vVANo/sTnGrvolMVrcNjYzRI13c6pHm1LrxuZ7lC7QBuW7FLBtANnDHqy+30/VXp9ewbQ9k88juFDemkKO6atbHeYbjr5Fa6vO6s29wJ3pzOHfIriOZ2jaEdcj47yVPbUHkS3ff0L7HLhJccXNIh3RIh/wXpCtuDumQDvkuka64dQHZ8H+QNSCiTiGtmUO2BLnUg1mk/R0K3kfmGKpy6QQjZzokDWuQYI55UrlPBCOnYx1OBiphh/1U+zimNyUiuUfIGCHRaQnRs0Q+e9D+TzROp0Qk05SEaOEamT+YkSnyMxRDZwpJMfJxoq9ZOog0xuz/Qj59JCKZrsgEIVM9szRUU2YftF+syugXSJFMf5AULVwjU4QEcgJyppAhRi7VnymBDW7VogD52VezT5djkUyDca9tD6RD/l/kyjoysI88iXgmsh9Mjkedh1x9JMejrgAZHI86Fxm2ABl8sn3HTzOHvG7kH7y9ZdRhD8BpAAAAAElFTkSuQmCC" alt="Cronograma C" /></p>
+            </li>
+            <li>
+                <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAocAAACxAQAAAACe0yrWAAAABGdBTUEAALGOfPtRkwAAAAlwSFlzAAAOwwAADsQBiC4+owAAAv1JREFUaN7tmkGL2kAUxyM5eNtctyDroYf9ALlUCJlrhUK/jnupFg9B2EuPAWk+ii6ehIIfQaGHvW0LHhrRzWsyycw83QTc5tk6dR7D7pvnm1/eJP+8qGgBsSWWIZ47cWXR2JUk/iCq8ckQtSLW8TXZdeAIYp3bxkFEdyGIdcqUazkxCFxSIlu467fkxDYx0R4y4vPI3HMnBnaQ7XqFNPUHJrVseriyOr4mu866GRPdzAaIUwn0AdK/bYCpDGXvFiwrTRxYVhPgp2U1AHYy5IjlRTdjQuFbPqDPx5KPPJTwARM+fvHxzEcRkssPuxkJMe09LjmR3ZITHeLzSF2jS34e026WXeu8m8VcU5BLcsolmYcSLslMeYyLscnF2JAhudx0M2V1fI12vU6JsXiatYHrIzcG6DmXTaZi0geunNxATq4UcSuOsgQu4NwmuPxJ8Sq3fhHILAE5eTJESqKrATFIRWeL1ExxTTEZ4M8Bg0Kt3IRAOVFNNLoLT06s42u0a7eKKFvcgdml2TvVzSqJW4BXxJ9VjbcaEB0NaqQn0l9rt+prD7uCWK7TBmh1F56cWMfXaNfBAXGAvgvbE4qDkhL1Vu4l8VDhE1T2nphxVpL/WxrihRODg27GeHT1sqHtZeWh6X5HK56ujyf5PENLBNPNDNEQDdEQjyHW8fXdtSEaoiH+f8Q6vr67vhxinR+llHyegVOr53KIVKbXbwsvkpi0VXCGEhbI/w7lOb5c6zFF3KGlYQXxEUpzEk8kJZ0IEe9VkWH4IP058hfIRzmxNxrni+NOOL6RxJE66CaMEFH5Q+SPkO+NRMUsDFWNc0VcVxBD5M8wcS6JHUT8wNT5CmeIUu5/Qb7XHReL/buxL4kf1TEX4Ub6A+SHFb7XjYrF3ib6qq61IkYoe3MMcS6IHURMrtWuPz8MFRH5swrfb4nF71rXvk53oSH+PWLSJybGN9TEo0p8HbHXazFa4qe7bnT+xPdt8hqPyPq3xN6bb4yUeORxDdEQDdEQDbGc+BuOT/5Ze+FklQAAAABJRU5ErkJggg==" alt="Cronograma D"></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'a'.</p>
+        <h2> PREGUNTA FSD-2012-FEB_05</h2>
+        <p>La figura adjunta muestra el Diagrama de Transición de Estados de un autómata finito. ¿Cuál es su Matriz Funcional?</p>
+        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAADQCAYAAAAqLqxQAAAAAXNSR0ICQMB9xQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAABpfSURBVHja7Z09iF1nesdvwOAEVMxiIY9BA14QOIULSSNjFw4YY8QUwsQxxiuJAZNNxBZCBFQ4KcLIVSbVdpt0QVV2q5TbGFIGVCQLIWy2MOk2jcmWKZP7m7nP6MzRufd8vR/P+55/8Wdm7szce855n//z9T7v86y++eablSAIdUIPQRBE8HB49OjRza+++uoj8Mknn/zlRx999Oyzzz77ip9PT09/X4siCAUR/Ouvv97/4osvfnTz5s1/uHLlyn9fvXr112+//fY/g/fff/+nEJyv/MzvX3vttf/le15/+vTp21okQXBIcCwyRH399dd/9+677/7jvXv3fjKUsGsr/wGkh/Bvvvnmv/G/WixBcEBwIzbkvHv37l/Mdbt5v3feeeefsPxffvnlH2vRBCEDwSEyljoUsbuIjjWH7Gu3f0+LJwiJCP7kyZM/hHx37tz5u9iJMlx3rDnJOi2gIEQmOG4zVjtlnEzSjs88Pj4+0iIKQiSCs721t7f3XzmsKZ8pkgtCJIJDLDLkuOe5Lt5ILnddEAISHEJBbrazct8AigaSs9+uBRWEmQSHSJDb05bVhx9++Ddk8LWggjCT4GTKyWS3SL9H5dlQhHapydyTWSf5pkUVhIkExyXHHW5vhVGhNobg7GlHiMc7r00QRPCBYK/bczUZRTAU2WhhBWEkwSHOjRs3fun5ZmTFBWEiwTfVY9mz5kO8DPbntbiCMJDgEBuC9/3d47sHT1erg++Pnpzc4ueTk+O3Dler7w7uPn6a6oYgtzLqgjCC4HZue8jfPjhcPV8dPnje/j4VbBtPbrogDCA4RCGuHXqW++TJ0a2D1cFvjh4e/fhgdfvF8cnJW6lv6vr16/8SI1MvCNUR3M53j3nTc1d99X+HD5/dy3FTeBu0g9ICCyJ4zx9wSqxd2DLITV8TPLV7bqDghYIcLbAggg+Iv8ccBX328PDeanX43f2T+7dIsOWw4iQFx3odQvlg3VHuVlDV7PuHDC+xsWfvH7D3PXR7zLLmRmoje4g4nIWhyIa6c2vaSDINT4Ecgb3GYn7++ef3OcYqoa8byIQ19EQWyL2wg9KsmKR+g+/x6JAPmnpSEAXhl3BAqfcPIMrQB3Hmml8/+vbR6emV8wV4dOXo+urbOa46C8GCsIB8Jba2tsvWuonrs9dYTJSSNXtUH7c6iY0coNhZY7ZGx7TxQiYgPP/P15qJ3v8HawuZ48JYBJQLC8D3Y10rFhztjlKg+EVZ9TpgTUbw5EL05sOA8H4Yhhp7/bkjOCfNrLliqL7ovKe58Oq1Xq7Vxlrjjoe2uLw3BMfFr00+XBEcS81DjtWhxTqzypqXBQiNXMQ+DmzNQ2uSDzcEJ6bCasfOcuKGEaNrmEIZMNKlasuFfODp1XKewQXB2cogpkrp7uHqqRjGveXeg9w53GZIXoMl7/0DDpnEbKyIJc1VlILHoCy735gbTysXyXIql6QEh3yx3BUWj0XMVXzA58aM+YXpwMPK7SZbeFBycUzvH/CQY1hYEid4B7m3JtDQXIdOn/kBXhXelYdroVBmbKl2UQQ3LRb6g9ny8NIkkVg8ZQ5A2I2USbUhXt6YYq/iCA6oCgt5g7bX7SneK3kRawIeI+65p2vKmSdKQnBuLqSF85jcKt0VqwUoWo+JLa/XFYTgNiIoRJyKyz+k/VMOK76ZkLInouWBV9kwI1di7cTgPwy1+e853vWUF1gi7BSYx2ub0vikKILjUoeImz0XEHiM/5aEzZaly869pXp4o26QBZjjppDE4iF5fRgsHglFkS0PgTir7fkaqdkobVz16BgJAkxNNpTg5pSaTCkdPHPvTTo8FN9EJTjAgk8laQkucC01yKWhBOXvOUcQjOBGgik3WkJBiRJtecAz9z6wosT98MmxKgm3sSRnn9n7cMASrrFGlODdlZiEnfyP20i+q71SaPJc9HyjRbOh0f/t8u+HNX8UwfNgbv15nyw0cT6cY/xQjhKLoWb9s5Hc2ujwM5lQsu1dR0xDu+jt0UjtJo9TxijJRc8DtseQm1iycEHuTeffKd1+kd3SegjMfgNIjRVn+4ttBNOeZNvbGceQLg4LdXt18MIGHba1M33Zm78fqrWVZMuDOVuofbJga24Tdw7u3Pn5FAteovIP9kZsc7BAl1ykNTbWfY+/CZkp7WvJ3F7cbULQhrbJ8gHvb0o59ND23E+Oj/+Ilt5TXXTPhTjRCY4GbpPbYLPFQxe6vHS3Xo25phBchS55McdC7pKFEDG49yKt6ARnC2EbwQHamfgllgt8aYHXizuF4CpVzYtQz78tCyEIXqpsBH0z3CubMNIE5X1WJPDee+/9LOZe+LbxxUMIjgVhn1MuerY4PKgHdSELPbH5EJTavy/5B4Y6Erht7pnFY4fHx382JslmhwlQQNomy4cpROqVhdYAzLEExz0nN1NiW69iFnFrYqUxCw2cZUo3r43ZJrM9Tk/9wJaIKd1+hsjCHIKXXBtRzCJuw8UsckNjQS8nXrbvezZbNinRVqYV75OFqQQv2XpnI7i3mKZdoeSp6d9CY3E3pCq9d362DyYWZ18x9wF6hAlCNxsuqlw1PzwcPim52WJ2ggOy61S/5fp8LATbdu3iBcXhPpDzeGbuoRxVELzLPU6JbYUVeBXemw8sBaxR6iYLNgughgacLi4CNyh1ET9KZZd1qGEuVQ2wQZGp+gjgVdY0J9zNhUA4FjLF+GDc774YO+ZMNmE8MABY85jygUzgltfUOtvVxUAoYuJY2pPMONp5SFZUZav+QDhF6BRa8RJvIxfm1dU0cdbdBZHwYhGxoKFGCaEwsNq43UNHIZd6uKB2sC4o3jfeeOM/5x7dRNaw2M1Ea20TbtxeGFsURvSpR/SIpxAG3meKVtbZcJ9gTT7++OO/wmXnEJMl4oa41sgBMoXyxmq32yB7m5tXLcEB8RZEZyFYEMjKArHAbUvMwvA6C82CU42Gdp7jzvHZctPdWfA9ZMHWFRnBkrNOrDkVbBAU5dyEVbfhybGuu7zDzbDNKuLwolwzFpUFYsE4sNIsS7RFZaFZ8BALZMKk2eF+wPqz3rs8MlP2TYz9jFricAlND/AC1KPNB1DwptBjhk41xeESnB6U0K97CSAkI95OQfCa4nAJz4A8QE0xWalrAOGaIVnsw0C1rLkEaABylEsKL4G73G4BFrvSrJY4XAI0AGyllDgbupZn39XjLzbBS+yBLoLPd9P39TzSAiKT9Gq76LHd51pyLxKigQh1IOa8+f7B9xe94jZdZw7uPn6q57wdkBy3mVLSED39+lBLok3CM2LBQ5WuThmptHRA7pR5ELw2svYi+ILAnniIxMu21s7CduTIauMplB6WSXhGAHKHcttsTla7pa/Q6T3NGkw4x2to16qL4JUDgoew4hcdQOWe94LcR47WTWTSS+/NJwGaYMXnbplZo34moJJgkxXvt6Q59qTJpKvp4sJgE1CmVlJZ1txIvW0qh5A/FmaNS69/kABNgG3ZTHbNGw35h46+XSpyDqKw/uwiuKy4EM+KfpCztXbpW2USookgAVN6fFaKt5Sqo2oXNiOt9kTw5bmO+ypfjY/c3W1Lb58tIZoBTjnV1KDPI3DPc/bFy/35IrgDK65YPB7IoOe0oNYCTARfcIyoo6TxkDvJRYFNycUuEqJAcVpNzfI9eUi5t6nowJozySeCOwAxmrqvhkeuGvQmUNwlt86WIAUChS81dADxBA9NF2yMsAgud1LbZoGBwsztHkPwknMsEqTAAqkWy+HAHjgxcO4wQQQXzkAMTlJo6iw14TJwjXOfx2aLbgjBOUR0e3XwwlpxieCVImRTiKWDPfCh02BjEnxID7jz8/0ve+2J4JVbntIbBXgAe+C5dyYg+K6tOjv+e97tVQRfBGy2eG7rUzogTe5r6CP42Xn+wwfPL/rsieDLAFs8uOpL2xunbLdrUME2bPN0cp4DH0PwC0sugi8PFEjoMEpcYqUKFURwodMKIaQln0YSwYeFCiL4QmFlrJpOOg7kL1JMMBHBhdngRJIKYMYrRi8FJiK4sBMk2jg0sbQRxHPmsHkhuJJswmCXk6xwye1/pmDqHDYRXAQvDtRVY8mXtHU2dQ4b3o6HY5qekn0ieAHgWOnSurFOmcPmheAezqSL4IXF4xTALOns+JQ5bF4IruOiwiS3j62zJbR5mjqHLdfAQRFcCOb61d6Rdc4cNsjtgeAo4aljqkTwhYN6dRI4tWbW58xh80JwL6GCCF4ocEWXeCilD7lHFongQjBQ5VayG1gzsdjaLHnXQ8LkAFbpppNn/gjuJVQQwQuHNfnP3WRQBL8MwoSStzRFLkcgo05mfWk1611ge8rDAR3NJhNE8kgE97D/zDVouqggkldK8NK3MUUokdwlOH3ngeAeGj+K4BWTHAuyRJIPHTgQEx6mm4rgCxD0JZLcA7lKH1skgovkrjGkm2lMkD0vuYpNBBfJXYP7zdmsknLZkotcRPBCSb6Us+RU9+WcDkNlYemFRyJOebHpHoJPEUjtB1Soz8+5B83n555uKoIvEBAbgkN0klG13ifxb86QJLcHIYIvHMSHm3nkN2u9v5xTWqlDKN1LElEKB5leBLHG9k/Ev7nOhJPvqGHOu0hSAaz9U23JN5RWrm2qnJ8tggtbLU5NybechSZ4DjnDAxFceAVk2G/cuPHLWpJv3A/dZ3N8Ns+xhqmwIkaFoMUQLnvpWzwg12RWnl8NE2FFiEoBuSEHcWTJgoolxVVPHBrcrCHBJoIvwGWH4BA9NUlCIUc1GdtztfTHExEWADLCuJwkjkpLwEHu1GQjsVdDeCOCL8ua7+PuXr169dclFcbgeXDdsT+HijkUCYk1TrHVshMh4V8YEGRc9lL2zFNl0nHLzwYkrgHBIXsNFYIS+oVac7bSQAn9xlJk0glfjOCG3MdVRXBhFrDikMf7GfMUnU1JRjbJjRUvNTEpggsX4LSUWXOvhR0ppou0CV5DFZsILlyATDsuKWegvR2RTNFCmUSekbv0PmwiuNAJMsdYLrbUSDJ5KXflumIf3YTUkHsT71dzxr5o1xLNjuUxF46fQc1NEFKAxBJJJ4Sd5+phy2hsHE4GnL/nOC33QL6hIR972wheQ/15kQRnUUgGcVqKBAj7uSwKLqURnJ8Bggmoya7xnHTCZ75vlXC5e5P1xeFcK9eIPEBUSk2RBeSF/0NhmXzgDRCO2L43/8/PpTdYLJLgbOOwaCyKDYIbYlGaC45CYIFrODyQA1hDK5LJpTC3xeFcmyn1MQoduSIcMcKvFcKvapQP19aDBUOzzhUqFAIuGu/FotberDAmycwypt5Casfhpvi5nrluNcTGmtc4vtnlRUForEXoh20LWUqBh1fgRbE+gLAplcLEiyD3glzE8CbMqNTUzNLdBWFh0cwx3SU7DlhDIUNui06MawdZUihNFDQkjKlUkAtIrlLVwC4YwpLq5BAKBFdz6XO4Q+VJIDhEj9VL3NYrVQEK9wTJ1Rc9ENDKqeMflApuXy1HAz0oaRSmue+s5y5PbIwVzrFOJh8lb525uAgEAYLn+GybFFJ6g3vP7jtr2+W+Wwzf9154B7lOv9nBnK7rRwHY3jrAu0AJbdtrXyTBeRhoyZyZbetIqm20uO47zxgSoEyJc600lPXfltQioYeiyHkPxOKQHBnle+7BSlttbx2gyADfc692Iq25374ogvPANkfysmcsWbRa2vR4BVlvCMCeNYRvHu7g53aIZjPCPWxrWvIXrwM54V6GXBfKjP9FQXCPKKuUyTuRqoFNZv2myBgfEKV9/ho0wyVkw8uprhDGiP+lWs6KtlLsOmR7YLjDLLKn/Ua0MlpaBIzvtneRu3kWe+3W/y3y4akoKVSuCNmH6FZhGfMesz2snIkTWfG84Plabfk2XLt27d9zzSXr8zxCJWQxbhiUmIU1VTyokEDpeBSsJQGLlmvgQQ7DRBjC/cbYBszykCA2BPcoXJ6vbSlA0FN0Up3ofZxVucV4X0jOroFbgpOE4OYty7jN7fBuJb16F0tBjqKnMYjVFILcRGhLHpzg7YQJZCFjSEGDkcZ79Zin7O0S4V3BstUV2tI28xObSTQ33RAcbWZxxK7sqB3H46vn01zaE88LZMXz9cVuAmlz5da8eisrwYkbsM6k+/naZcFtz69ZyRNqcsTp6aMrR9dX3176zMMHz+33zx4e3nv5u4Pvj56c3Bryvh6qp5YKjMWUQQd9sgBOnhzdOlitvrffHz58dm/KNaYorSaMDbFlO3URLvXssnik2ZmS77u6r/C/kD7EQ3hwuHreXMSLRV6/dr6YB78xUp+T/fC745OTXq2YoounsN1FnTLZc5csnJH75Pitw9XqOyP1uTwMV/pNpKiXgDc8h7ln3ie7D11jadE6uLe7EhC45lj6uQ+ABbu9OnjRXqBzYt9+0Sbytr+PeY3CeExRrkNk4YzQ14++fXR6eqWpAKZY8VQGwDLraz79QRKC45aQAJlTOD/VBdvqkrXcsG14fPfgaXOB+x5sjK0QYZhQj332Y2Why6KPNXKptvHg3Jx80OA/xGKHOvUVKolii7Qt5rocdykGLwFTvachsjBV4bfBjhB8SJiT+O1UK56c3CBGFv3SAncs7pgYXFn0vJhrAPpk4YzcA2WhCylGKTVBvD91W26QixD6vHbMYXLt5NqUGNxrnfxSEMoAdMnCObmnJdeaBi9lqy8SbVNj/t5kQozzuCE04DaLvC15MobgOnCSF2MJNFQW5lrumB5oH3DTpxT/7EhcnJ9/jWFpp26FdCZWWnGUxVZPHr73o+Zinmnzg6Nf9MVcyqDnx9htqD5Z4LVtnl0O2Z0CvMop1ZU7XfOYiYRQWvBs/7NZ3NBY5HONbb8bprlz9ocTXhqXKcMGd8nCK7+bWOySOv5uKr0pid+tWir2cT2v9d4phs0LwxJLHufK5QrfMIabLji/N5vgaIrYSSZP/bYMno8pLg25XOGQoUNorL2a/1nH4T+YRXCIh3uUopWSt2y1kmu+EPPU1pSwAfnIecoN4zN2Gk9njJFqE99TV1X1Y/MHb11Vc9dGTAkfX3kBPz/lzC4PbrGNqall4FxN8JD0xGpv5GOvaIJb9jL1hefs8MI91zJorlbk7PDiafLNbIJjuXMdkyTeyjEI0Gu2VrishHPOJvPSfWg2wdGSueIMHiZkS7V1hmZm8TRdtJh4/Gy6aKqkm0f5mDII8dIPqWtsu4CCwZrHTKxYTHX79u2/Ly3ubtdS28GKg7uPny7BkqcYMW1bdN7qIfb39/91bKgw2wWIAbQ0yb7QrjMCwi6BxVSh2uKkRrN7SbuTSe3AXV6v4V/HIKB1Kto2TTS3cmMffFahi6cqLh4w5Au1kNbscdNias8eGu+fo/RwDi7qqh8e/bire01trjlepY0itmYhWFmb6jk3QYocoOyRD756Kr5qexXVELx5Y1zX2DGsLBKeAGGHzajucsftcElpx0Otzn5q48ASgIJv1463d1uQBwQfj4/fDSU7imOt9P/cFAf/63l8NLI8ZbvQPcGbRCQBxzWyIKa9WRg7AGCzmQGdWy0z37dwRvKSDplcHJ6o2D2HrO0xw9sIbCEXZMfKmxw0552h7HnNRvleu3btPz799NM/9Wix25ia8Lv0A4QYGvfywJrDz3chdJwLYVFE62v9k/WC/soWEDec16coKcvSetnz3AU7/3z/5P6tqX3FSgDrsHFLL4ZoDFzLfZODJsEhCK9ZIRev8f4p4u05yVGuj/h7StumSz9gIYcWnPCh9hD7EKuIxNz3kO+JEKDdCQc8Zti72//Ob2Lg0SXFEqO0SazhkYUOo5BNFEfISSK9XteE5CicnLpzcOkHHmRJWWWuN0bdPMTmgXok+plgdLT/rcVVh9h4Ue3xRax1DEtrIQAKJHbB05Tk6GbS6m+nKqBXBLukbiZ4HDEz4J6JXhMIj1hLZA+XOWUtBmFpM8aPXRI7NjnK9cwxuq+8MHZyYs7CC248RRkhAogigeh85pDEnTAsxCKxac81R4KXtWxn6mMW0oxJjlrsvfZkfhiM4Nzc2IMfuQovNufWkxHNtt7Q+pal7xrPJOwOqyA1hgQ3HHnLWVSCMetq5RRjR2VscpTM+dy8Q6dW5eGPEdochRfESzmnjzTJjqLhK26mTqW9SqBmPQIuOM/J005FM1Nv5A5tOMYmR/EsQsh354tkpscmHFIXXoQYzBaS7FwL1ohFwbqb9l1afzcUHHEjCo+YGmOB+81rXnMYhF+2DQdiHHgakxy1+X8hlGDni2jcsU0YUhZe2FA2r64x12V7sFZ0w1esGK+xgN732ofkJbhHiNu8TxQcig4Z8jwDvi1PVqK6iXt/l8t4GLlDeYJbBXTMYY/UhRcpj5WGFCKeJ2TAukEEFCKeCMqU17knqx3woAAQMq5lc8DjohIMIlu1GGQ2T6WWXAT3wv2lLl8OTe6tBG9ayb5YJHXhBRoWAatFmKxgCGGCRCgvqwC0mLBZemlewDY0q/m6qrm6gIJplvjavrC9hkLi77DKSwk5CCfs/mOHFsgyie0YBTc7f0myoS+bmLrwAmFc2mBAc4cByZddZG3W43fV63cByzG1xLd2oHhx2WPtzWNI8ZZR3DF2hHo1C4kSLy1rEF5cW21LCanDKxQlFpYwKoT88Z6QmveMya9BcVjsixgCq3RSNZmQMzYnhLLKxrEez+aI6k8sW7/ZWdiLec2Dky2pCvK3JR94qKVnnoU6gBxa7sJ2DrrCoOYOA4Tmb7HaKduSjyLZhuQfpHyYfB7k9hImCEKXjFqStA3bGcnleY52USB5ih7mzcyiyC0ICQi+iSP2cU1iNkawg/7EOzrUIQgJCW6wxgjEFKGIDplxdbDa6lcuCBkJbtbcjlFOmXzYjGFQFHZCS5lyQXBA8Ga8TMYQt9rIDvGb1VRm5a1oA0vNvnbKLQNBEMEDkN3KI5slkJCYEkj2sq3bJaWPOl4pCAURXBAEEVwQBBFcEAQRXBAEEVwQlob/BwDzPu/E8rTtAAAAAElFTkSuQmCC" alt="Diagrama de transición de estados" /></p>
+        <p><strong>Tabla 1</strong></p>
+        <table class="tabla_dos_encabezados">
+            <thead>
+                <tr class="header">
+                    <td></td>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                    </mstyle>
+                                    <mstyle mathvariant="bold">
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S}\mathbf{1}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                    </mstyle>
+                                    <mstyle mathvariant="bold">
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S}\mathbf{2}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                    </mstyle>
+                                    <mstyle mathvariant="bold">
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S}\mathbf{3}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Tabla 2</strong></p>
+        <table class="tabla_dos_encabezados">
+            <thead>
+                <tr class="header">
+                    <td></td>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Tabla 3</strong></p>
+        <table class="tabla_dos_encabezados">
+            <thead>
+                <tr class="header">
+                    <td></td>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1</td>
+                    <td>0</td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+        <p><strong>Tabla 4</strong></p>
+        <table class="tabla_dos_encabezados">
+            <thead>
+                <tr class="header">
+                    <td></td>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <th scope="col"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                            <mo>+</mo>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>Δ</mi>
+                                        </mstyle>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t +}\mathbf{\Delta}\mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>0</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S0}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>1</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S1}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+                <tr class="odd">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>2</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S2}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                </tr>
+                <tr class="even">
+                    <th scope="row"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mrow>
+                                    <mstyle mathvariant="bold">
+                                        <mi>S</mi>
+                                        <mn>3</mn>
+                                    </mstyle>
+                                    <mrow>
+                                        <mo stretchy="true" form="prefix">(</mo>
+                                        <mstyle mathvariant="bold">
+                                            <mi>t</mi>
+                                        </mstyle>
+                                        <mo stretchy="true" form="postfix">)</mo>
+                                    </mrow>
+                                </mrow>
+                                <annotation encoding="application/x-tex">\mathbf{S3}\left( \mathbf{t} \right)</annotation>
+                            </semantics>
+                        </math></th>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mi>x</mi>
+                                <annotation encoding="application/x-tex">x</annotation>
+                            </semantics>
+                        </math></td>
+                    <td>0</td>
+                    <td><math display="block" xmlns="http://www.w3.org/1998/Math/MathML">
+                            <semantics>
+                                <mover>
+                                    <mi>x</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <annotation encoding="application/x-tex">\overline{x}</annotation>
+                            </semantics>
+                        </math></td>
+                </tr>
+            </tbody>
+        </table>
+        <ol type='a'>
+            <li class='correcta'>
+                <p>Tabla 1</p>
+            </li>
+            <li>
+                <p>Tabla 2</p>
+            </li>
+            <li>
+                <p>Tabla 3</p>
+            </li>
+            <li>
+                <p>Tabla 4</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'a'.</p>
+    </main>
+</body>
+
+</html>

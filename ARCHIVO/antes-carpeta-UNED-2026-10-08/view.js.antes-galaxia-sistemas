@@ -1,0 +1,2740 @@
+// J.A.R.V.I.S. — el agente del UNIVERSO AARON (carpeta JARVIS/).
+// Uso: dv.view("JARVIS", { modo })
+//   modo "completo"  → todo en una nota ([[Panel de estudio]])
+//   modo "nucleo"    → cabecera + universo (AARON, JARVIS y la galaxia UNED)
+//   modo "izquierda" → briefing, tutoría, sistemas, repasos, semana en curso y mapa de calor
+//   modo "derecha"   → prioridades de hoy, objetivos, ritmo, concentración y registro
+// El botón MODO JARVIS monta la pantalla: núcleo arriba y la terminal (Lean Terminal) debajo, nada más.
+// Encima se pueden activar modos (CFG.modos): cada uno pone sus notas en las barras laterales.
+// De momento solo existe el modo UNED (izquierda y derecha, en UNED/MODO UNED/).
+// Datos: tareas con [fecha:: …] de UNED/PLANIFICACION/Calendario y propiedades
+// (asignatura, tema, estado, proximo_repaso) de las notas de tema.
+
+// ---------- Configuración ----------
+// Si cambian las tutorías o el nº de temas, se actualiza aquí (y en Calendario).
+const CFG = {
+  nombre: "Aaron",
+  asig: {
+    GEI: { nombre: "Gestión de Empresas Informáticas", carpeta: "UNED/AÑO 1/CUATRIMESTRE 1/GESTION DE EMPRESAS", anio: 1, cuatri: 1, color: "#3ee8ff", temas: 14 },
+    LED: { nombre: "Lógica y Estructuras Discretas", carpeta: "UNED/AÑO 1/CUATRIMESTRE 1/LOGICA Y ESTRUCTURAS DISCRETAS", anio: 1, cuatri: 1, color: "#b388ff", temas: null },
+    FSD: { nombre: "Fundamentos de Sistemas Digitales", carpeta: "UNED/AÑO 1/CUATRIMESTRE 1/FUNDAMENTOS DE SISTEMAS DEGITALES", anio: 1, cuatri: 1, color: "#ffb547", temas: 10, temasExamen: 9 }, // el tema 10 no entra
+  },
+  // Resto del plan de estudios (UNED/PLANIFICACION/Plan de estudios): solo se usa en la galaxia, como planetas
+  // "por cursar". Cuando una empiece, se pasa a `asig` (con su tutoría, temas…) y se quita de aquí.
+  plan: [
+    { k: "IC1", nombre: "Ingeniería de Computadores I", carpeta: "UNED/AÑO 1/CUATRIMESTRE 2/INGENIERIA DE COMPUTADORES I", anio: 1, cuatri: 2, color: "#ea9470" },
+    { k: "EST", nombre: "Estadística", carpeta: "UNED/AÑO 1/CUATRIMESTRE 2/ESTADISTICA", anio: 1, cuatri: 2, color: "#dbea70" },
+    { k: "EPED", nombre: "Estrategias de Programación y Estructuras de Datos", carpeta: "UNED/AÑO 1/CUATRIMESTRE 2/ESTRATEGIAS DE PROGRAMACION Y ESTRUCTURAS DE DATOS", anio: 1, cuatri: 2, color: "#77ea70" },
+    { k: "FMI", nombre: "Fundamentos Matemáticos de la Informática", carpeta: "UNED/AÑO 2/CUATRIMESTRE 1/FUNDAMENTOS MATEMATICOS DE LA INFORMATICA", anio: 2, cuatri: 1, color: "#70eacd" },
+    { k: "FFI", nombre: "Fundamentos Físicos de la Informática", carpeta: "UNED/AÑO 2/CUATRIMESTRE 1/FUNDAMENTOS FISICOS DE LA INFORMATICA", anio: 2, cuatri: 1, color: "#70a2ea" },
+    { k: "IC2", nombre: "Ingeniería de Computadores II", carpeta: "UNED/AÑO 2/CUATRIMESTRE 1/INGENIERIA DE COMPUTADORES II", anio: 2, cuatri: 1, color: "#a270ea" },
+    { k: "IC3", nombre: "Ingeniería de Computadores III", carpeta: "UNED/AÑO 2/CUATRIMESTRE 2/INGENIERIA DE COMPUTADORES III", anio: 2, cuatri: 2, color: "#ea70ce" },
+    { k: "AGL", nombre: "Autómatas, Gramáticas y Lenguajes", carpeta: "UNED/AÑO 2/CUATRIMESTRE 2/AUTOMATAS GRAMATICAS Y LENGUAJES", anio: 2, cuatri: 2, color: "#ea7670" },
+    { k: "IIS", nombre: "Introducción a la Ingeniería de Software", carpeta: "UNED/AÑO 2/CUATRIMESTRE 2/INTRODUCCION A LA INGENIERIA DE SOFTWARE", anio: 2, cuatri: 2, color: "#eadb70" },
+    { k: "RC", nombre: "Redes de Computadores", carpeta: "UNED/AÑO 3/CUATRIMESTRE 1/REDES DE COMPUTADORES", anio: 3, cuatri: 1, color: "#95ea70" },
+    { k: "PEDA", nombre: "Programación y Estructuras de Datos Avanzadas", carpeta: "UNED/AÑO 3/CUATRIMESTRE 1/PROGRAMACION Y ESTRUCTURAS DE DATOS AVANZADAS", anio: 3, cuatri: 1, color: "#70eaaf" },
+    { k: "TLP", nombre: "Teoría de los Lenguajes de Programación", carpeta: "UNED/AÑO 3/CUATRIMESTRE 2/TEORIA DE LOS LENGUAJES DE PROGRAMACION", anio: 3, cuatri: 2, color: "#70c0ea" },
+    { k: "FIA", nombre: "Fundamentos de Inteligencia Artificial", carpeta: "UNED/AÑO 3/CUATRIMESTRE 2/FUNDAMENTOS DE INTELIGENCIA ARTIFICIAL", anio: 3, cuatri: 2, color: "#8470ea" },
+    { k: "STR", nombre: "Sistemas en Tiempo Real", carpeta: "UNED/AÑO 3/CUATRIMESTRE 2/SISTEMAS EN TIEMPO REAL", anio: 3, cuatri: 2, color: "#e870ea" },
+    { k: "PL1", nombre: "Procesadores del Lenguaje I", carpeta: "UNED/AÑO 4/CUATRIMESTRE 1/PROCESADORES DEL LENGUAJE I", anio: 4, cuatri: 1, color: "#ea7087" },
+    { k: "DS", nombre: "Diseño del Software", carpeta: "UNED/AÑO 4/CUATRIMESTRE 1/DISENO DEL SOFTWARE", anio: 4, cuatri: 1, color: "#eabd70" },
+    { k: "SBD", nombre: "Sistemas de Bases de Datos", carpeta: "UNED/AÑO 4/CUATRIMESTRE 1/SISTEMAS DE BASES DE DATOS", anio: 4, cuatri: 1, color: "#b3ea70" },
+    { k: "PL2", nombre: "Procesadores del Lenguaje II", carpeta: "UNED/AÑO 4/CUATRIMESTRE 2/PROCESADORES DEL LENGUAJE II", anio: 4, cuatri: 2, color: "#70ea91" },
+    { k: "SEG", nombre: "Seguridad", carpeta: "UNED/AÑO 4/CUATRIMESTRE 2/SEGURIDAD", anio: 4, cuatri: 2, color: "#70deea" },
+    { k: "DASO", nombre: "Diseño y Administración de Sistemas Operativos", carpeta: "UNED/AÑO 5/CUATRIMESTRE 1/DISENO Y ADMINISTRACION DE SISTEMAS OPERATIVOS", anio: 5, cuatri: 1, color: "#707aea" },
+    { k: "SD", nombre: "Sistemas Distribuidos", carpeta: "UNED/AÑO 5/CUATRIMESTRE 1/SISTEMAS DISTRIBUIDOS", anio: 5, cuatri: 1, color: "#ca70ea" },
+    { k: "CYC", nombre: "Complejidad y Computabilidad", carpeta: "UNED/AÑO 5/CUATRIMESTRE 1/COMPLEJIDAD Y COMPUTABILIDAD", anio: 5, cuatri: 1, color: "#ea70a5" },
+    { k: "GPI", nombre: "Gestión de Proyectos Informáticos", carpeta: "UNED/AÑO 5/CUATRIMESTRE 2/GESTION DE PROYECTOS INFORMATICOS", anio: 5, cuatri: 2, color: "#ea9f70" },
+    { k: "EYL", nombre: "Ética y Legislación", carpeta: "UNED/AÑO 5/CUATRIMESTRE 2/ETICA Y LEGISLACION", anio: 5, cuatri: 2, color: "#d1ea70" },
+    { k: "AA", nombre: "Aprendizaje Automático", carpeta: "UNED/AÑO 6/CUATRIMESTRE 1/APRENDIZAJE AUTOMATICO", anio: 6, cuatri: 1, color: "#70ea73" },
+    { k: "ASI", nombre: "Ampliación de Sistemas Inteligentes", carpeta: "UNED/AÑO 6/CUATRIMESTRE 1/AMPLIACION DE SISTEMAS INTELIGENTES", anio: 6, cuatri: 1, color: "#70ead8" },
+    { k: "TFG", nombre: "Trabajo Fin de Grado", carpeta: "UNED/AÑO 6/CUATRIMESTRE 2/TRABAJO FIN DE GRADO", anio: 6, cuatri: 2, color: "#7098ea" },
+  ],
+  // Relaciones entre asignaturas (pueden ser de años distintos): en la galaxia se dibuja una conexión entre sus planetas
+  relaciones: [
+    { de: "LED", a: "FSD", tema: "Lógica proposicional y álgebra de Boole" },
+  ],
+  // Las relaciones entre años (sistemas solares) no van aquí: cada par de años tiene su nota en
+  // UNED/PLANIFICACION/Nebulosas (propiedades de, a y relaciones) y se dibuja como una nebulosa
+  anios: 6, // años del grado (cada uno con 2 cuatrimestres): un sistema solar por año en la galaxia del núcleo
+  // color de las notas que no son de una asignatura, según su carpeta (dentro de UNED/ cuenta la subcarpeta)
+  otrasCarpetas: { PLANIFICACION: "#e8fbff", LIBROS: "#4dffb5", "MODO UNED": "#e8fbff", AARON: "#c9a7ff", JARVIS: "#3ee8ff", GITHUB: "#39d353" },
+  // Galaxia GITHUB AARON: los proyectos de código (el código vive en Documents/GitHubLocal; aquí solo sus notas).
+  // Cada nota con `tipo: proyecto` dentro de GITHUB/ es un planeta; su propiedad `sistema` dice en qué sistema solar va.
+  github: {
+    carpeta: "GITHUB",
+    sistemas: [ // un sistema solar por ámbito
+      { id: "COLABORACIÓN", color: "#58a6ff" },
+      { id: "PERSONAL", color: "#39d353" },
+      { id: "PROFESIONAL", color: "#d29922" },
+      { id: "FORMACIÓN DAM", color: "#a371f7" },
+    ],
+  },
+  // Modos de las barras laterales del modo JARVIS (en el futuro habrá más). Cada modo: notas izquierda y derecha.
+  modos: {
+    UNED: { nombre: "MODO UNED", color: "#ff6fae", izquierda: "UNED/MODO UNED/Modo UNED - Izquierda.md", derecha: "UNED/MODO UNED/Modo UNED - Derecha.md" },
+  },
+  // Carpetas que no salen como notas en el universo (el propio panel y la rutina diaria)
+  fueraDelGrafo: ["JARVIS/", "UNED/MODO UNED/", "UNED/PLANIFICACION/Rutina/", "ARCHIVO/"],
+  // Hora canaria (la del ordenador). dia: 1 = lunes … 7 = domingo
+  tutorias: [
+    { dia: 1, ini: "16:00", fin: "17:00", asig: "GEI", modo: "Solo AVIP" },
+    { dia: 3, ini: "17:00", fin: "18:00", asig: "LED", modo: "Presencial + AVIP" },
+    { dia: 3, ini: "19:00", fin: "20:00", asig: "FSD", modo: "Presencial + AVIP" },
+  ],
+  pomodoro: { foco: 25, descanso: 5 }, // minutos
+  horizonte: 60,   // días que abarca la barra de cada objetivo
+  maxObjetivos: 8,
+  maxObjetivosLateral: 1, // en la columna derecha del modo JARVIS: el resto, con "+N más"
+};
+const RUTAS = {
+  nucleo: "JARVIS/JARVIS Núcleo.md",
+};
+const fueraDelGrafo = (path) => CFG.fueraDelGrafo.some((c) => path.startsWith(c));
+// carpeta que da color a una nota: la primera, o la segunda si está dentro de UNED/
+const carpetaTop = (path) => {
+  const partes = path.split("/");
+  if (partes.length < 2) return "";
+  return partes[0] === "UNED" && partes.length > 2 ? partes[1] : partes[0];
+};
+const TIPO_TERMINAL = "terminal-view"; // vista de Lean Terminal
+const PESO = { pendiente: 0, leido: 1 / 3, resumido: 2 / 3, dominado: 1 };
+const DIAS = ["", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"];
+
+const MODO = (input && input.modo) || "completo";
+const EN_HUD = MODO !== "completo";
+
+// ---------- Utilidades ----------
+const app = window.app;
+const moment = window.moment;
+const HOY = dv.date("today");
+const pad = (n) => String(n).padStart(2, "0");
+const el = (parent, tag, cls, text) => {
+  const e = parent.createEl(tag, { cls });
+  if (text != null) e.setText(String(text));
+  return e;
+};
+const panel = (parent, titulo, area, extra) => {
+  const p = el(parent, "section", `jv-panel ${area}`);
+  const h = el(p, "header", "jv-panel-h");
+  el(h, "span", "jv-panel-t", titulo);
+  el(h, "span", "jv-panel-deco");
+  if (extra) el(h, "span", "jv-panel-x", extra);
+  return el(p, "div", "jv-panel-b");
+};
+// En modo JARVIS las notas se abren en una ventana aparte para no romper la pantalla
+const abrir = (ruta, nueva) => {
+  const f = app.metadataCache.getFirstLinkpathDest(ruta.replace(/\.md$/, ""), "") || app.vault.getAbstractFileByPath(ruta);
+  if (!f) return;
+  const leaf = document.body.hasClass("jv-mode") ? app.workspace.getLeaf("window") : app.workspace.getLeaf(nueva ? "tab" : false);
+  leaf.openFile(f);
+};
+const enlace = (parent, ruta, texto) => {
+  const a = el(parent, "a", "jv-link", texto);
+  a.href = "#";
+  a.onclick = (e) => { e.preventDefault(); abrir(ruta, e.ctrlKey || e.metaKey); };
+  return a;
+};
+const cuenta = (ms) => {
+  const s = Math.floor(Math.abs(ms) / 1000);
+  const d = Math.floor(s / 86400), h = Math.floor((s % 86400) / 3600), m = Math.floor((s % 3600) / 60);
+  const txt = `${d ? d + "d " : ""}${pad(h)}:${pad(m)}:${pad(s % 60)}`;
+  return ms < 0 ? `VENCIDO +${txt}` : `T-${txt}`;
+};
+const store = {
+  get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} },
+  sget(k) { try { return sessionStorage.getItem(k); } catch { return null; } },
+  sset(k, v) { try { sessionStorage.setItem(k, v); } catch {} },
+};
+const aviso = (msg) => { try { new Notice(msg, 8000); } catch {} };
+
+// ---------- Datos ----------
+const claves = Object.keys(CFG.asig);
+const claveDe = (nombre) => claves.find((k) => CFG.asig[k].nombre === nombre);
+const asigDeTexto = (txt) => claves.find((k) => txt.startsWith(k + ":"));
+const diasHasta = (f) => Math.round(f.startOf("day").diff(HOY, "days").days);
+const limpiar = (txt) => txt.replace(/\s*\[fecha::[^\]]*\]/, "").replace(/^(GEI|LED|FSD):\s*/, "");
+// Hora límite: la que diga el texto ("22:59 de Canarias"); si no dice ninguna, 23:59.
+const momentoDe = (t) => {
+  const m = t.text.match(/(\d{1,2}):(\d{2}) de Canarias/);
+  const base = t.fecha.startOf("day");
+  return (m ? base.set({ hour: +m[1], minute: +m[2] }) : base.set({ hour: 23, minute: 59 })).toMillis();
+};
+
+const temas = dv.pages().where((p) => p.tema && p.asignatura);
+const cal = dv.page("UNED/PLANIFICACION/Calendario");
+const tareas = (cal ? cal.file.tasks : dv.array([]))
+  .where((t) => !t.completed && t.fecha)
+  .sort((t) => t.fecha, "asc");
+const repasos = temas.where((p) => p.proximo_repaso && diasHasta(p.proximo_repaso) <= 7)
+  .sort((p) => p.proximo_repaso, "asc");
+const repasosHoy = repasos.where((p) => diasHasta(p.proximo_repaso) <= 0);
+
+const progreso = claves.map((k) => {
+  const a = CFG.asig[k];
+  const ts = temas.where((p) => p.asignatura === a.nombre);
+  const total = a.temas ?? ts.length;
+  const avance = ts.array().reduce((s, p) => s + (PESO[p.estado] ?? 0), 0);
+  return {
+    k, a, total, notas: ts.length,
+    pct: total ? Math.round((100 * avance) / total) : 0,
+    dominados: ts.where((p) => p.estado === "dominado").length,
+  };
+});
+const global = Math.round(progreso.reduce((s, x) => s + x.pct, 0) / progreso.length);
+
+const proxTutoria = () => {
+  const ahora = moment();
+  for (let d = 0; d <= 7; d++) {
+    const dia = ahora.clone().add(d, "days");
+    const delDia = CFG.tutorias.filter((x) => x.dia === dia.isoWeekday()).sort((a, b) => a.ini.localeCompare(b.ini));
+    for (const t of delDia) {
+      const [hi, mi] = t.ini.split(":"), [hf, mf] = t.fin.split(":");
+      const ini = dia.clone().hour(+hi).minute(+mi).second(0);
+      const fin = dia.clone().hour(+hf).minute(+mf).second(0);
+      if (fin.isAfter(ahora)) return { ...t, iniM: ini, finM: fin, d };
+    }
+  }
+  return null;
+};
+
+// ---------- Modo JARVIS (ocupa toda la ventana de Obsidian) ----------
+const FLAG = "jarvis-modo";
+const ventana = () => {
+  const candidatos = [
+    () => window.electronWindow,
+    () => window.require("@electron/remote").getCurrentWindow(),
+    () => window.require("electron").remote.getCurrentWindow(),
+  ];
+  for (const c of candidatos) { try { const w = c(); if (w && w.setFullScreen) return w; } catch {} }
+  return null;
+};
+// Versiones anteriores ponían la pantalla completa del sistema: al salir se deshace
+const quitarPantallaCompleta = () => {
+  const w = ventana();
+  try { if (w && w.isFullScreen()) w.setFullScreen(false); } catch {}
+  document.body.removeClass("jv-fs");
+};
+
+// ---------- Terminal con colores HUD ----------
+// Lean Terminal pinta con xterm.js, así que los colores se cambian en sus opciones (no basta con CSS)
+const TEMA_TERMINAL = {
+  background: "#03070c", foreground: "#cdf6ff", cursor: "#3ee8ff", cursorAccent: "#03070c",
+  selectionBackground: "rgba(62, 232, 255, .30)",
+  black: "#03070c", red: "#ff4d6a", green: "#4dffb5", yellow: "#ffb547", blue: "#3ea6ff", magenta: "#b388ff", cyan: "#3ee8ff", white: "#cdf6ff",
+  brightBlack: "#5f8a99", brightRed: "#ff7a90", brightGreen: "#8affd0", brightYellow: "#ffd08a", brightBlue: "#7cc4ff", brightMagenta: "#d0b8ff", brightCyan: "#9af4ff", brightWhite: "#ffffff",
+};
+const sesionesTerminal = () => app.workspace.getLeavesOfType(TIPO_TERMINAL)
+  .flatMap((l) => (l.view && l.view.tabManager && l.view.tabManager.sessions) || []);
+const temaTerminal = (on) => {
+  for (const s of sesionesTerminal()) {
+    const t = s.terminal;
+    if (!t || !t.options) continue;
+    if (on) { if (t.options.theme && t.options.theme.background !== TEMA_TERMINAL.background) t.options.theme = { ...TEMA_TERMINAL }; }
+  }
+  // Al salir, Lean Terminal recupera su propio tema
+  if (!on) app.workspace.getLeavesOfType(TIPO_TERMINAL).forEach((l) => { try { l.view.tabManager.updateTheme(); } catch {} });
+};
+const abrirEn = async (leaf, ruta) => {
+  const f = app.vault.getAbstractFileByPath(ruta);
+  if (!f) { aviso(`Falta la nota ${ruta}`); return; }
+  await leaf.openFile(f, { state: { mode: "preview" } });
+};
+const hojaCon = (ruta) => app.workspace.getLeavesOfType("markdown").find((l) => l.view.file && l.view.file.path === ruta);
+const activarModo = async () => {
+  const ws = app.workspace;
+  // 1. La terminal: se reutiliza la que haya (no se corta la sesión de Claude)
+  const terminales = ws.getLeavesOfType(TIPO_TERMINAL);
+  let term = terminales.find((l) => l.getRoot() === ws.rootSplit) || terminales[0];
+  if (term && term.getRoot() !== ws.rootSplit) {
+    // Está en una barra lateral: se mueve al área central sin cerrarla (como al arrastrarla)
+    try {
+      let destino = null;
+      ws.iterateRootLeaves((l) => { if (!destino) destino = l.parent; });
+      if (!destino) destino = ws.getLeaf("tab").parent;
+      term.parent.removeChild(term);
+      destino.insertChild(destino.children.length, term);
+      if (destino.selectTab) destino.selectTab(term);
+    } catch (e) {
+      console.error("JARVIS: no se pudo mover la terminal", e);
+      term = null;
+    }
+  }
+  if (!term || term.getRoot() !== ws.rootSplit) {
+    term = ws.getLeaf("tab");
+    await term.setViewState({ type: TIPO_TERMINAL, active: true });
+  }
+  // 2. Se cierran las demás pestañas del área central (solo pestañas, no archivos)
+  const cerrar = [];
+  ws.iterateRootLeaves((l) => { if (l !== term && l.view.getViewType() !== TIPO_TERMINAL) cerrar.push(l); });
+  cerrar.forEach((l) => l.detach());
+  // 3. El núcleo siempre se crea de nuevo encima de la terminal (arriba núcleo, abajo terminal)
+  const nucleo = ws.createLeafBySplit(term, "horizontal", true);
+  await abrirEn(nucleo, RUTAS.nucleo);
+  try { term.view.onResize && term.view.onResize(); } catch {}
+  // 4. JARVIS es solo núcleo + terminal: las barras laterales quedan para los modos (se recupera el último)
+  store.set(FLAG, true);
+  document.body.addClass("jv-mode");
+  quitarPantallaCompleta();
+  temaTerminal(true);
+  const ultimo = store.get(FLAG_MODO);
+  if (ultimo && CFG.modos[ultimo]) await activarSubmodo(ultimo);
+  else cerrarBarras();
+  ws.setActiveLeaf(term, { focus: true });
+};
+const salirModo = () => {
+  store.set(FLAG, false);
+  document.body.removeClass("jv-mode");
+  quitarPantallaCompleta();
+  temaTerminal(false);
+};
+
+// ---------- Modos de las barras laterales (CFG.modos: de momento, MODO UNED) ----------
+const FLAG_MODO = "jarvis-submodo";
+const submodoActivo = () => {
+  const k = store.get(FLAG_MODO);
+  return k && CFG.modos[k] && document.body.hasClass("jv-mode") ? k : null;
+};
+const hojasDeModos = () => {
+  const rutas = new Set(Object.values(CFG.modos).flatMap((m) => [m.izquierda, m.derecha]));
+  return app.workspace.getLeavesOfType("markdown").filter((l) => l.view.file && rutas.has(l.view.file.path));
+};
+const cerrarBarras = () => {
+  hojasDeModos().forEach((l) => l.detach());
+  app.workspace.leftSplit.collapse();
+  app.workspace.rightSplit.collapse();
+};
+const activarSubmodo = async (k) => {
+  const ws = app.workspace, m = CFG.modos[k];
+  // fuera las columnas de otro modo
+  hojasDeModos().filter((l) => ![m.izquierda, m.derecha].includes(l.view.file.path)).forEach((l) => l.detach());
+  for (const [lado, ruta] of [["izquierda", m.izquierda], ["derecha", m.derecha]]) {
+    let hoja = hojaCon(ruta);
+    if (!hoja) {
+      hoja = lado === "izquierda" ? ws.getLeftLeaf(false) : ws.getRightLeaf(false);
+      await abrirEn(hoja, ruta);
+    }
+    ws.revealLeaf(hoja);
+  }
+  ws.leftSplit.expand();
+  ws.rightSplit.expand();
+  try {
+    ws.leftSplit.setSize(Math.round(window.innerWidth * 0.24));
+    ws.rightSplit.setSize(Math.round(window.innerWidth * 0.26));
+  } catch {}
+  store.set(FLAG_MODO, k);
+};
+const quitarSubmodo = () => { store.set(FLAG_MODO, null); cerrarBarras(); };
+// Versiones anteriores ponían un botón fijo de salida abajo a la izquierda: ahora ese hueco es del mapa de calor
+document.getElementById("jv-exit")?.remove();
+// Atajo Ctrl+Shift+J para salir (se registra una sola vez)
+if (!window.jvAtajoSalir) {
+  window.jvAtajoSalir = true;
+  window.addEventListener("keydown", (e) => {
+    if (e.ctrlKey && e.shiftKey && e.code === "KeyJ" && document.body.hasClass("jv-mode")) {
+      e.preventDefault(); e.stopPropagation();
+      store.set(FLAG, false);
+      document.body.removeClass("jv-mode");
+      quitarPantallaCompleta();
+      temaTerminal(false);
+    }
+  }, true);
+}
+if (EN_HUD && store.get(FLAG)) document.body.addClass("jv-mode");
+
+// ---------- Micrófono: dictado de Windows (Win + H) en la terminal ----------
+// Pone el foco en la terminal y pulsa Win + H con PowerShell (oculto). Volver a pulsarlo cierra el dictado.
+const PULSAR_WIN_H = `Add-Type -Name K -Namespace W -MemberDefinition '[DllImport("user32.dll")] public static extern void keybd_event(byte b, byte s, uint f, UIntPtr e);';`
+  + " [W.K]::keybd_event(0x5B,0,0,[UIntPtr]::Zero); [W.K]::keybd_event(0x48,0,0,[UIntPtr]::Zero);"
+  + " [W.K]::keybd_event(0x48,0,2,[UIntPtr]::Zero); [W.K]::keybd_event(0x5B,0,2,[UIntPtr]::Zero)";
+const dictar = () => {
+  const term = app.workspace.getLeavesOfType(TIPO_TERMINAL)[0];
+  if (!term) { aviso("No hay ninguna terminal abierta para dictar."); return; }
+  app.workspace.setActiveLeaf(term, { focus: true });
+  try { term.view.tabManager.focusActive(); } catch {}
+  try {
+    window.require("child_process").execFile("powershell.exe", ["-NoProfile", "-NonInteractive", "-Command", PULSAR_WIN_H],
+      { windowsHide: true }, (err) => { if (err) aviso("No se pudo abrir el dictado de Windows: pulsa Win + H."); });
+  } catch { aviso("No se pudo abrir el dictado de Windows: pulsa Win + H."); }
+};
+
+// ---------- Estructura ----------
+const root = el(dv.container, "div", `jv jv-m-${MODO}`);
+const ticks = [];
+
+// ---------- Cabecera ----------
+const modCabecera = (parent) => {
+  const top = el(parent, "div", "jv-top");
+  const logo = el(top, "div");
+  el(logo, "span", "jv-logo-t", "J.A.R.V.I.S.");
+  el(logo, "span", "jv-logo-s", "SISTEMA DE ESTUDIO · UNED");
+  const reloj = el(top, "div", "jv-clock");
+  const derecha = el(top, "div", "jv-top-r");
+  el(derecha, "div", null, HOY.setLocale("es").toFormat("cccc d LLLL yyyy").toUpperCase());
+  const semana = moment().format("gggg-[W]ww");
+  const rutaSemana = `UNED/PLANIFICACION/Semanas/${semana}`;
+  const semEl = el(derecha, "div");
+  if (dv.page(rutaSemana)) enlace(semEl, rutaSemana, `SEMANA ${semana} ▸`);
+  else el(semEl, "span", "jv-dim", `SEMANA ${semana} · SIN NOTA`);
+  el(derecha, "div", "jv-online", "EN LÍNEA · HORA DE CANARIAS");
+  const btns = el(derecha, "div", "jv-btns jv-btns-r");
+  const bMic = el(btns, "button", "jv-btn jv-mic", "🎙 HABLAR");
+  bMic.title = "Dictar a Claude en la terminal (dictado de Windows, Win + H). Púlsalo otra vez para parar.";
+  bMic.onclick = dictar;
+  const bModo = el(btns, "button", "jv-btn");
+  const pintarBoton = () => bModo.setText(document.body.hasClass("jv-mode") ? "SALIR DEL MODO JARVIS" : "MODO JARVIS");
+  bModo.onclick = async () => {
+    if (document.body.hasClass("jv-mode")) salirModo();
+    else { bModo.setText("INICIANDO…"); await activarModo(); }
+    pintarBoton();
+  };
+  pintarBoton();
+  ticks.push(() => { if (bModo.textContent !== "INICIANDO…") pintarBoton(); }); // por si se sale con el botón fijo o el atajo
+  // Un botón por modo de las barras laterales: lo enciende (y, si hace falta, entra en el modo JARVIS) o lo apaga
+  for (const [k, m] of Object.entries(CFG.modos)) {
+    const b = el(btns, "button", "jv-btn jv-submodo");
+    b.style.setProperty("--cm", m.color);
+    b.title = `Barras laterales del ${m.nombre}`;
+    const pintar = () => { b.setText(m.nombre); b.toggleClass("jv-on", submodoActivo() === k); };
+    b.onclick = async () => {
+      if (submodoActivo() === k) quitarSubmodo();
+      else if (!document.body.hasClass("jv-mode")) { store.set(FLAG_MODO, k); b.setText("INICIANDO…"); await activarModo(); }
+      else await activarSubmodo(k);
+      pintar(); pintarBoton();
+    };
+    pintar();
+    ticks.push(() => { if (b.textContent !== "INICIANDO…") pintar(); });
+  }
+  ticks.push(() => {
+    const m = moment();
+    reloj.empty();
+    reloj.appendText(m.format("HH:mm"));
+    el(reloj, "small", null, m.format(":ss"));
+  });
+};
+
+// ---------- Briefing ----------
+const modBriefing = (parent) => {
+  const b = panel(parent, "BRIEFING", "jv-a-brief");
+  const briefTxt = el(b, "div", "jv-brief");
+  const h = new Date().getHours();
+  const saludo = h < 6 ? "Buenas noches" : h < 14 ? "Buenos días" : h < 21 ? "Buenas tardes" : "Buenas noches";
+  const lineas = [`${saludo}, ${CFG.nombre}.`];
+  lineas.push(repasosHoy.length
+    ? `Tienes ${repasosHoy.length} ${repasosHoy.length === 1 ? "repaso pendiente" : "repasos pendientes"} para hoy.`
+    : "No hay repasos pendientes hoy.");
+  const sig = tareas.where((t) => momentoDe(t) >= Date.now()).first();
+  if (sig) {
+    const n = diasHasta(sig.fecha);
+    lineas.push(`Próximo objetivo: ${limpiar(sig.text)}, ${n === 0 ? "hoy" : n === 1 ? "mañana" : `en ${n} días`}.`);
+  }
+  const vencidos = tareas.where((t) => momentoDe(t) < Date.now()).length;
+  if (vencidos) lineas.push(`Atención: ${vencidos} ${vencidos === 1 ? "objetivo vencido" : "objetivos vencidos"} sin marcar.`);
+  const semanaCrit = tareas.where((t) => { const n = diasHasta(t.fecha); return n >= 0 && n <= 7; }).length;
+  if (semanaCrit) lineas.push(`${semanaCrit} ${semanaCrit === 1 ? "fecha" : "fechas"} en los próximos 7 días.`);
+  lineas.push(`Progreso global del curso: ${global} %.`);
+  const texto = lineas.join("\n");
+
+  // Efecto máquina de escribir solo la primera vez que cambia el texto
+  const cursor = el(briefTxt, "span", "jv-cursor");
+  if (store.sget("jarvis-brief") === texto) {
+    briefTxt.insertBefore(document.createTextNode(texto), cursor);
+  } else {
+    store.sset("jarvis-brief", texto);
+    const nodo = briefTxt.insertBefore(document.createTextNode(""), cursor);
+    let i = 0;
+    const tw = setInterval(() => {
+      if (!root.isConnected || i >= texto.length) { clearInterval(tw); return; }
+      nodo.textContent += texto[i++];
+    }, 16);
+  }
+};
+
+// ---------- Reactor (progreso) ----------
+const svgReactor = (conTexto = true) => {
+  const radios = [100, 84, 68];
+  const anillos = progreso.map((x, i) => {
+    const r = radios[i], circ = 2 * Math.PI * r;
+    return `<circle cx="130" cy="130" r="${r}" class="jv-ring-bg"/>
+      <circle cx="130" cy="130" r="${r}" class="jv-ring" stroke="${x.a.color}"
+        data-final="${(circ * x.pct) / 100} ${circ}" stroke-dasharray="0 ${circ}" transform="rotate(-90 130 130)"/>`;
+  }).join("");
+  return `<svg viewBox="0 0 260 260" class="jv-reactor">
+    <defs><radialGradient id="jv-core-grad-${MODO}">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity=".95"/>
+      <stop offset="35%" stop-color="#3ee8ff" stop-opacity=".55"/>
+      <stop offset="100%" stop-color="#3ee8ff" stop-opacity="0"/>
+    </radialGradient></defs>
+    <circle cx="130" cy="130" r="126" class="jv-deco jv-spin"/>
+    <circle cx="130" cy="130" r="115" class="jv-ticks jv-spin-rev"/>
+    ${anillos}
+    <circle cx="130" cy="130" r="54" class="jv-inner jv-spin-rev"/>
+    <circle cx="130" cy="130" r="46" class="jv-core" fill="url(#jv-core-grad-${MODO})"/>
+    ${conTexto ? `<text x="130" y="134" class="jv-core-num">${global}%</text>
+    <text x="130" y="152" class="jv-core-lbl">GLOBAL</text>` : ""}
+  </svg>`;
+};
+const animarAnillos = (cont) =>
+  setTimeout(() => cont.querySelectorAll(".jv-ring").forEach((c) => c.setAttribute("stroke-dasharray", c.dataset.final)), 60);
+const leyendaProgreso = (parent) => {
+  const ley = el(parent, "div", "jv-legend");
+  for (const x of progreso) {
+    const s = el(ley, "span");
+    el(s, "span", "jv-dot").style.color = x.a.color;
+    el(s, "b", null, `${x.k} ${x.pct}%`);
+    el(s, "span", "jv-dim", x.total ? ` · ${x.notas}/${x.total} temas` : " · sin notas");
+  }
+};
+const modReactor = (parent) => {
+  const b = panel(parent, "NÚCLEO DE PROGRESO", "jv-a-core");
+  const wrap = el(b, "div", "jv-reactor-wrap");
+  wrap.innerHTML = svgReactor();
+  animarAnillos(wrap);
+  leyendaProgreso(b);
+};
+
+// ---------- Tutoría ----------
+const modTutoria = (parent) => {
+  const b = panel(parent, "PRÓXIMA TUTORÍA", "jv-a-tut");
+  const tutAsig = el(b, "div", "jv-big");
+  const tutCd = el(b, "div", "jv-kv");
+  const tutDia = el(b, "div", "jv-kv");
+  const tutModo = el(b, "div", "jv-kv");
+  ticks.push(() => {
+    const t = proxTutoria();
+    if (!t) { tutAsig.setText("—"); return; }
+    const ahora = moment();
+    const enCurso = ahora.isAfter(t.iniM);
+    tutAsig.setText(t.asig);
+    tutAsig.style.color = CFG.asig[t.asig].color;
+    tutCd.empty();
+    el(tutCd, "span", "jv-dim", enCurso ? "EN CURSO · TERMINA" : "EMPIEZA");
+    el(tutCd, "span", enCurso ? "jv-live" : null, enCurso ? cuenta(t.finM.diff(ahora)) : cuenta(t.iniM.diff(ahora)));
+    tutDia.empty();
+    el(tutDia, "span", "jv-dim", "CUÁNDO");
+    el(tutDia, "span", null, `${t.d === 0 ? "hoy" : t.d === 1 ? "mañana" : DIAS[t.dia]} ${t.ini}-${t.fin}`);
+    tutModo.empty();
+    el(tutModo, "span", "jv-dim", "MODALIDAD");
+    el(tutModo, "span", null, t.modo);
+  });
+};
+
+// ---------- Estado de sistemas (asignaturas) ----------
+const modSistemas = (parent) => {
+  const b = panel(parent, "ESTADO DE SISTEMAS", "jv-a-sys");
+  for (const x of progreso) {
+    const fila = el(b, "div", "jv-sys");
+    el(fila, "span", "jv-sys-k", x.k).style.color = x.a.color;
+    const relleno = el(el(fila, "div", "jv-mini"), "div");
+    relleno.style.width = `${x.pct}%`;
+    relleno.style.background = x.a.color;
+    relleno.style.color = x.a.color;
+
+    const prox = tareas.where((t) => asigDeTexto(t.text) === x.k).first();
+    const n = prox ? diasHasta(prox.fecha) : null;
+    const atrasados = repasosHoy.where((p) => p.asignatura === x.a.nombre).length;
+    const [cls, txt] = n !== null && n <= 3 ? ["jv-st-crit", "CRÍTICO"]
+      : (n !== null && n <= 14) || atrasados ? ["jv-st-warn", "ATENCIÓN"]
+      : ["jv-st-ok", "NOMINAL"];
+    el(fila, "span", `jv-status ${cls}`, txt);
+    el(fila, "div", "jv-sys-d", prox
+      ? `PRÓX ▸ ${limpiar(prox.text)} · ${n < 0 ? `vencido hace ${-n} d` : n === 0 ? "hoy" : `${n} d`}`
+      : "Sin objetivos en el calendario");
+  }
+};
+
+// ---------- Concentración (pomodoro) ----------
+const modPomodoro = (parent) => {
+  const b = panel(parent, "MODO CONCENTRACIÓN", "jv-a-pomo");
+  const KEY = "jarvis-pomodoro";
+  const DUR = { foco: CFG.pomodoro.foco * 60000, descanso: CFG.pomodoro.descanso * 60000 };
+  const hoyISO = moment().format("YYYY-MM-DD");
+  let pomo = store.get(KEY);
+  if (!pomo || !DUR[pomo.modo]) pomo = { modo: "foco", fin: null, resto: DUR.foco, dia: hoyISO, ciclos: 0 };
+  if (pomo.dia !== hoyISO) { pomo.dia = hoyISO; pomo.ciclos = 0; }
+  store.set(KEY, pomo);
+
+  const PR = 56, PCIRC = 2 * Math.PI * PR;
+  const pWrap = el(b, "div");
+  pWrap.innerHTML = `<svg viewBox="0 0 140 140" class="jv-pomo">
+    <circle cx="70" cy="70" r="${PR}" class="jv-ring-bg"/>
+    <circle cx="70" cy="70" r="${PR}" class="jv-pomo-arc" transform="rotate(-90 70 70)" stroke-dasharray="${PCIRC} ${PCIRC}"/>
+    <text x="70" y="74" class="jv-pomo-t">25:00</text>
+    <text x="70" y="92" class="jv-pomo-m">FOCO</text>
+  </svg>`;
+  const pSvg = pWrap.querySelector("svg");
+  const pArc = pWrap.querySelector(".jv-pomo-arc");
+  const pT = pWrap.querySelector(".jv-pomo-t");
+  const pM = pWrap.querySelector(".jv-pomo-m");
+  const btns = el(b, "div", "jv-btns");
+  const bPlay = el(btns, "button", "jv-btn", "INICIAR");
+  const bReset = el(btns, "button", "jv-btn", "REINICIAR");
+  const bSkip = el(btns, "button", "jv-btn", "SALTAR");
+  const pInfo = el(b, "div", "jv-pomo-info");
+
+  const pitido = () => {
+    try {
+      const ctx = new AudioContext();
+      [0, 0.28, 0.56].forEach((t) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.frequency.value = 880;
+        o.connect(g); g.connect(ctx.destination);
+        g.gain.setValueAtTime(0.15, ctx.currentTime + t);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.22);
+        o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + 0.24);
+      });
+    } catch {}
+  };
+  const restante = () => (pomo.fin ? pomo.fin - Date.now() : pomo.resto);
+  const cambiarModo = (contar) => {
+    if (contar && pomo.modo === "foco") pomo.ciclos++;
+    pomo.modo = pomo.modo === "foco" ? "descanso" : "foco";
+    pomo.fin = null;
+    pomo.resto = DUR[pomo.modo];
+    store.set(KEY, pomo);
+  };
+  const pintar = () => {
+    // Otra vista del panel puede haber cambiado el estado
+    const guardado = store.get(KEY);
+    if (guardado) pomo = guardado;
+    if (pomo.fin && pomo.fin <= Date.now()) {
+      const eraFoco = pomo.modo === "foco";
+      cambiarModo(true);
+      pitido();
+      aviso(eraFoco ? "J.A.R.V.I.S.: bloque de foco completado. Toca descansar." : "J.A.R.V.I.S.: descanso terminado. Vuelta al estudio.");
+    }
+    const ms = Math.max(0, restante());
+    pT.textContent = `${pad(Math.floor(ms / 60000))}:${pad(Math.floor((ms % 60000) / 1000))}`;
+    pM.textContent = pomo.modo === "foco" ? "FOCO" : "DESCANSO";
+    pSvg.classList.toggle("jv-break", pomo.modo === "descanso");
+    pArc.setAttribute("stroke-dasharray", `${(PCIRC * ms) / DUR[pomo.modo]} ${PCIRC}`);
+    bPlay.setText(pomo.fin ? "PAUSAR" : ms < DUR[pomo.modo] ? "REANUDAR" : "INICIAR");
+    pInfo.setText(`CICLOS HOY: ${pomo.ciclos} · ${pomo.ciclos * CFG.pomodoro.foco} MIN DE FOCO`);
+  };
+  bPlay.onclick = () => {
+    if (pomo.fin) { pomo.resto = Math.max(0, pomo.fin - Date.now()); pomo.fin = null; }
+    else pomo.fin = Date.now() + pomo.resto;
+    store.set(KEY, pomo); pintar();
+  };
+  bReset.onclick = () => { pomo.fin = null; pomo.resto = DUR[pomo.modo]; store.set(KEY, pomo); pintar(); };
+  bSkip.onclick = () => { cambiarModo(false); pintar(); };
+  ticks.push(pintar);
+};
+
+// ---------- Objetivos (cuenta atrás) ----------
+const modObjetivos = (parent) => {
+  const max = MODO === "derecha" ? CFG.maxObjetivosLateral : CFG.maxObjetivos;
+  const b = panel(parent, "OBJETIVOS · CUENTA ATRÁS", "jv-a-obj", `${tareas.length} PENDIENTES`);
+  const relojes = [];
+  const completar = async (t) => {
+    const file = app.vault.getAbstractFileByPath(t.path);
+    if (!file) return;
+    await app.vault.process(file, (data) => {
+      const lineas = data.split("\n");
+      if (lineas[t.line] && lineas[t.line].includes("- [ ]")) lineas[t.line] = lineas[t.line].replace("- [ ]", "- [x]");
+      return lineas.join("\n");
+    });
+  };
+  if (!tareas.length) el(b, "div", "jv-empty", "Sin objetivos pendientes en el Calendario.");
+  for (const t of tareas.slice(0, max)) {
+    const k = asigDeTexto(t.text);
+    const objetivo = momentoDe(t);
+    const fila = el(b, "div", "jv-obj");
+    const chk = el(fila, "button", "jv-chk");
+    chk.title = "Marcar como hecho (pulsa dos veces para confirmar)";
+    let armado = null;
+    chk.onclick = () => {
+      if (armado) { clearTimeout(armado); chk.setText("✓"); completar(t); return; }
+      chk.addClass("jv-armed"); chk.setText("?");
+      armado = setTimeout(() => { armado = null; chk.removeClass("jv-armed"); chk.setText(""); }, 3000);
+    };
+    const chip = el(fila, "span", "jv-chip", k || "UNED");
+    chip.style.color = k ? CFG.asig[k].color : "var(--dim)";
+    const cuerpo = el(fila, "div", "jv-obj-t");
+    el(cuerpo, "div", null, limpiar(t.text));
+    const meta = el(cuerpo, "div", "jv-obj-f", moment(objetivo).locale("es").format("ddd D MMM YYYY · HH:mm"));
+    if (/aprox|no publicad|según Ágora/i.test(t.text)) el(meta, "span", "jv-tag", "POR CONFIRMAR");
+    const cd = el(fila, "div", "jv-cd");
+    const barra = el(el(fila, "div", "jv-bar"), "div");
+    relojes.push({ fila, cd, barra, objetivo });
+  }
+  if (tareas.length > max) {
+    enlace(el(b, "div", "jv-more"), "UNED/PLANIFICACION/Calendario", `+${tareas.length - max} más en el Calendario ▸`);
+  }
+  ticks.push(() => {
+    const ahora = Date.now();
+    for (const r of relojes) {
+      const ms = r.objetivo - ahora;
+      const dias = ms / 86400000;
+      r.cd.setText(cuenta(ms));
+      r.fila.toggleClass("jv-crit", dias <= 3);
+      r.fila.toggleClass("jv-warn", dias > 3 && dias <= 14);
+      r.barra.style.width = `${Math.max(2, Math.min(100, 100 * (1 - dias / CFG.horizonte)))}%`;
+    }
+  });
+};
+
+// ---------- Repasos ----------
+const modRepasos = (parent) => {
+  const b = panel(parent, "PROTOCOLO DE REPASO", "jv-a-rep", "7 DÍAS");
+  if (!repasos.length) el(b, "div", "jv-empty", "Sin repasos programados en los próximos 7 días.");
+  for (const p of repasos) {
+    const n = diasHasta(p.proximo_repaso);
+    const k = claveDe(p.asignatura);
+    const fila = el(b, "div", "jv-row");
+    const izq = el(fila, "span");
+    if (k) el(izq, "b", null, `${k} `).style.color = CFG.asig[k].color;
+    enlace(izq, p.file.path, p.file.name);
+    el(fila, "span", n < 0 ? "jv-late" : "jv-dim",
+      n < 0 ? `ATRASADO ${-n} d` : n === 0 ? "HOY" : n === 1 ? "MAÑANA" : p.proximo_repaso.setLocale("es").toFormat("ccc d LLL"));
+  }
+};
+
+// ---------- Registro de actividad ----------
+const modRegistro = (parent) => {
+  const b = panel(parent, "REGISTRO DEL SISTEMA", "jv-a-log");
+  const st = el(b, "div", "jv-stats");
+  const archivos = app.vault.getFiles();
+  const dato = (etq, n) => { const s = el(st, "span", null, `${etq} `); el(s, "b", null, n); };
+  dato("NOTAS", archivos.filter((f) => f.extension === "md").length);
+  dato("PDF", archivos.filter((f) => f.extension === "pdf").length);
+  dato("TEMAS", temas.length);
+  dato("DOMINADOS", temas.where((p) => p.estado === "dominado").length);
+  const recientes = dv.pages().where((p) => !fueraDelGrafo(p.file.path))
+    .sort((p) => p.file.mtime, "desc").limit(6);
+  for (const p of recientes) {
+    const fila = el(b, "div", "jv-log-row");
+    el(fila, "span", "jv-dim", p.file.mtime.setLocale("es").toFormat("dd/LL HH:mm"));
+    el(fila, "span", "jv-dim", "▸ ACTUALIZADO");
+    enlace(el(fila, "span"), p.file.path, p.file.name);
+  }
+};
+
+// ---------- Prioridades de hoy (nota diaria de Jarvis) ----------
+const RUTA_DIARIO = "UNED/PLANIFICACION/Rutina/Diario";
+const textoPlano = (txt) => txt
+  .replace(/\[\[[^\]|]*\|([^\]]*)\]\]/g, "$1").replace(/\[\[([^\]]*)\]\]/g, "$1")
+  .replace(/\*\*([^*]*)\*\*/g, "$1").replace(/\s*#revisar\b/g, "").trim();
+const enSeccion = (x, clave) => !!(x.section && x.section.subpath && x.section.subpath.toLowerCase().includes(clave));
+const modPrioridades = (parent) => {
+  const ruta = `${RUTA_DIARIO}/${HOY.toFormat("yyyy-LL-dd")}`;
+  const nota = dv.page(ruta);
+  const prios = nota ? nota.file.tasks.where((t) => enSeccion(t, "prioridades") && textoPlano(t.text)) : dv.array([]);
+  const hechas = prios.where((t) => t.completed).length;
+  const b = panel(parent, "PRIORIDADES DE HOY", "jv-a-prio", prios.length ? `${hechas}/${prios.length} HECHAS` : null);
+  if (!nota) { el(b, "div", "jv-empty", "Sin nota de hoy: di «buenos días» a Jarvis en la terminal."); return; }
+  if (!prios.length) el(b, "div", "jv-empty", "Sin prioridades en la nota de hoy.");
+  for (const t of prios) {
+    const fila = el(b, "div", "jv-prio");
+    const chk = el(fila, "button", "jv-chk", t.completed ? "✓" : "");
+    chk.title = "Marcar o desmarcar";
+    el(fila, "span", "jv-prio-t", textoPlano(t.text));
+    fila.toggleClass("jv-done", t.completed);
+    chk.onclick = async () => {
+      const file = app.vault.getAbstractFileByPath(t.path);
+      if (!file) return;
+      const hecha = !fila.hasClass("jv-done");
+      await app.vault.process(file, (data) => {
+        const lineas = data.split("\n");
+        const l = lineas[t.line];
+        if (l) lineas[t.line] = hecha ? l.replace("- [ ]", "- [x]") : l.replace(/- \[[xX]\]/, "- [ ]");
+        return lineas.join("\n");
+      });
+      fila.toggleClass("jv-done", hecha);
+      chk.setText(hecha ? "✓" : "");
+    };
+  }
+  const arrastra = nota.file.lists.where((x) => !x.task && enSeccion(x, "arrastrando") && x.text.trim());
+  if (arrastra.length) {
+    el(b, "div", "jv-prio-sub", "VENÍA ARRASTRANDO");
+    for (const x of arrastra) el(b, "div", "jv-prio-arr", `▸ ${textoPlano(x.text)}`);
+  }
+  enlace(el(b, "div", "jv-more"), ruta, "Abrir la nota de hoy ▸");
+};
+
+// ---------- Ritmo hasta el examen ----------
+// Temas que faltan (con el mismo peso por estado que el progreso) ÷ semanas hasta cada hito.
+// Hitos: las tareas "tener estudiados los temas X-Y" del Calendario y la 1.ª semana de exámenes;
+// se muestra el más exigente. Umbrales (criterio de Jarvis): ≤ 1 tema/sem nominal, ≤ 2 atención.
+const modRitmo = (parent) => {
+  const examen = tareas.where((t) => /^Exámenes: 1\.ª semana/.test(t.text)).first();
+  const b = panel(parent, "RITMO HASTA EL EXAMEN", "jv-a-ritmo", "TEMAS / SEMANA");
+  const num = (n) => n.toLocaleString("es", { maximumFractionDigits: 1 });
+  for (const x of progreso) {
+    const total = x.a.temasExamen ?? x.a.temas;
+    const fila = el(b, "div", "jv-sys");
+    el(fila, "span", "jv-sys-k", x.k).style.color = x.a.color;
+    if (!total || !examen) {
+      el(fila, "span", "jv-dim", "—");
+      el(fila, "span", "jv-status jv-dim", "SIN DATOS");
+      el(fila, "div", "jv-sys-d", !total ? "Sin nº de temas (el material está en Ágora)." : "Falta la fecha de examen en el Calendario.");
+      continue;
+    }
+    const notas = temas.where((p) => p.asignatura === x.a.nombre);
+    const falta = (hasta) => hasta - notas.where((p) => +p.tema <= hasta).array().reduce((s, p) => s + (PESO[p.estado] ?? 0), 0);
+    const hitos = tareas.where((t) => asigDeTexto(t.text) === x.k && /tener estudiados/.test(t.text) && diasHasta(t.fecha) > 0)
+      .array().map((t) => {
+        const m = t.text.match(/temas (\d+)-(\d+)/);
+        return m && { hasta: Math.min(+m[2], total), fecha: t.fecha, txt: `temas ${m[1]}-${m[2]}` };
+      }).filter(Boolean);
+    hitos.push({ hasta: total, fecha: examen.fecha, txt: "examen (1.ª semana)" });
+    const calc = hitos.map((h) => {
+      const sem = Math.max(diasHasta(h.fecha) / 7, 1 / 7);
+      return { ...h, sem, falta: falta(h.hasta), ritmo: falta(h.hasta) / sem };
+    }).filter((h) => h.falta > 0);
+    if (!calc.length) {
+      el(fila, "span", null, "al día");
+      el(fila, "span", "jv-status jv-st-ok", "NOMINAL");
+      el(fila, "div", "jv-sys-d", "Todos los temas estudiados.");
+      continue;
+    }
+    const peor = calc.reduce((a, h) => (h.ritmo > a.ritmo ? h : a));
+    el(fila, "span", null, `${num(peor.ritmo)} temas/sem`);
+    const [cls, txt] = peor.ritmo > 2 ? ["jv-st-crit", "CRÍTICO"] : peor.ritmo > 1 ? ["jv-st-warn", "ATENCIÓN"] : ["jv-st-ok", "NOMINAL"];
+    el(fila, "span", `jv-status ${cls}`, txt);
+    el(fila, "div", "jv-sys-d",
+      `Faltan ${num(peor.falta)} de ${peor.hasta} temas para ${peor.txt} · ${peor.fecha.setLocale("es").toFormat("d LLL")} (${num(peor.sem)} sem)`);
+  }
+};
+
+// ---------- Semana en curso (navegable) ----------
+// Lunes a domingo: tutorías (CFG), repasos (proximo_repaso de las notas de tema) y fechas del Calendario.
+// Los repasos atrasados se muestran en el día de hoy. Con ◀ ▶ se pasa de semana; HOY vuelve a la actual.
+// El desplazamiento se guarda en window para que no se pierda cuando Dataview repinta la vista.
+const modSemana = (parent) => {
+  const fmt = (d) => d.setLocale("es").toFormat("d LLL");
+  const b = panel(parent, "SEMANA EN CURSO", "jv-a-sem", " ");
+  const cab = b.parentElement;
+  const tit = cab.querySelector(".jv-panel-t"), rango = cab.querySelector(".jv-panel-x");
+  const nav = el(b, "div", "jv-sem-nav");
+  const prev = el(nav, "button", "jv-sem-btn", "◀");
+  const hoyB = el(nav, "button", "jv-sem-btn jv-sem-hoy", "HOY");
+  const next = el(nav, "button", "jv-sem-btn", "▶");
+  const lista = el(b, "div", "jv-sem-lista");
+  const pintar = () => {
+    const off = window.jvSemOffset || 0;
+    const lunes = HOY.startOf("week").plus({ weeks: off });
+    tit.setText(off === 0 ? "SEMANA EN CURSO" : off === 1 ? "SEMANA QUE VIENE" : off === -1 ? "SEMANA PASADA" : `SEMANA ${off > 0 ? "+" : "−"}${Math.abs(off)}`);
+    rango.setText(`${fmt(lunes)} – ${fmt(lunes.plus({ days: 6 }))}`.toUpperCase());
+    hoyB.toggleClass("jv-off", off === 0);
+    lista.empty();
+    for (let i = 0; i < 7; i++) {
+      const dia = lunes.plus({ days: i });
+      const n = diasHasta(dia);
+      const fila = el(lista, "div", "jv-dia");
+      fila.toggleClass("jv-hoy", n === 0);
+      fila.toggleClass("jv-pasado", n < 0);
+      const f = el(fila, "div", "jv-dia-f");
+      el(f, "span", null, dia.setLocale("es").toFormat("ccc").replace(".", "").toUpperCase());
+      el(f, "b", null, dia.day);
+      const items = [];
+      for (const t of CFG.tutorias.filter((t) => t.dia === i + 1)) items.push({ k: t.asig, txt: `Tutoría ${t.ini}-${t.fin}` });
+      const reps = temas.where((p) => p.proximo_repaso && (diasHasta(p.proximo_repaso) === n || (n === 0 && diasHasta(p.proximo_repaso) < 0)));
+      for (const p of reps) {
+        const tarde = diasHasta(p.proximo_repaso) < 0;
+        items.push({ k: claveDe(p.asignatura), txt: `Repaso tema ${p.tema}${tarde ? " (atrasado)" : ""}`, ruta: p.file.path, cls: tarde ? "jv-late" : null });
+      }
+      for (const t of tareas.where((t) => diasHasta(t.fecha) === n)) {
+        items.push({ k: asigDeTexto(t.text), txt: limpiar(t.text), ruta: "UNED/PLANIFICACION/Calendario", cls: "jv-ev-fecha" });
+      }
+      const ev = el(fila, "div", "jv-dia-ev");
+      if (!items.length) el(ev, "span", "jv-dim", "—");
+      for (const it of items) {
+        const c = el(ev, "div", `jv-ev ${it.cls || ""}`);
+        el(c, "span", "jv-ev-k", it.k || "UNED").style.color = it.k ? CFG.asig[it.k].color : "var(--dim)";
+        if (it.ruta) enlace(c, it.ruta, it.txt); else el(c, "span", null, it.txt);
+      }
+    }
+  };
+  const mover = (d) => { window.jvSemOffset = d === 0 ? 0 : (window.jvSemOffset || 0) + d; pintar(); };
+  prev.onclick = () => mover(-1);
+  next.onclick = () => mover(1);
+  hoyB.onclick = () => mover(0);
+  pintar();
+};
+
+// ---------- Mapa de calor de actividad ----------
+// Últimas semanas (columnas) × lunes a domingo (filas). Cada día suma: notas de las asignaturas
+// creadas o editadas ese día, repasos hechos (ultimo_repaso, valen 2) y tareas marcadas en la nota diaria.
+const modCalor = (parent) => {
+  const SEMANAS = 16;
+  const act = new Map(); // "yyyy-MM-dd" → { notas, repasos, tareas }
+  const sumar = (fecha, campo, n = 1) => {
+    const k = fecha.toFormat("yyyy-MM-dd");
+    const d = act.get(k) || { notas: 0, repasos: 0, tareas: 0 };
+    d[campo] += n;
+    act.set(k, d);
+  };
+  const carpetas = claves.map((k) => CFG.asig[k].carpeta + "/");
+  for (const f of app.vault.getMarkdownFiles().filter((f) => carpetas.some((c) => f.path.startsWith(c)))) {
+    const crea = dv.luxon.DateTime.fromMillis(f.stat.ctime), edita = dv.luxon.DateTime.fromMillis(f.stat.mtime);
+    sumar(crea, "notas");
+    if (!edita.hasSame(crea, "day")) sumar(edita, "notas");
+  }
+  for (const p of temas.where((p) => p.ultimo_repaso && p.ultimo_repaso.toFormat)) sumar(p.ultimo_repaso, "repasos");
+  for (const d of dv.pages(`"${RUTA_DIARIO}"`).where((p) => p.fecha && p.fecha.toFormat)) {
+    const hechas = d.file.tasks.where((t) => t.completed).length;
+    if (hechas) sumar(d.fecha, "tareas", hechas);
+  }
+  const puntos = (d) => (d ? d.notas + 2 * d.repasos + d.tareas : 0);
+  const nivel = (n) => (n === 0 ? 0 : n === 1 ? 1 : n <= 3 ? 2 : n <= 6 ? 3 : 4);
+
+  // Racha: días seguidos con actividad hasta hoy (si hoy aún no hay nada, cuenta desde ayer)
+  let racha = 0;
+  for (let d = puntos(act.get(HOY.toFormat("yyyy-MM-dd"))) ? HOY : HOY.minus({ days: 1 }); puntos(act.get(d.toFormat("yyyy-MM-dd"))); d = d.minus({ days: 1 })) racha++;
+  let activos30 = 0;
+  for (let i = 0; i < 30; i++) if (puntos(act.get(HOY.minus({ days: i }).toFormat("yyyy-MM-dd")))) activos30++;
+
+  const b = panel(parent, "ACTIVIDAD", "jv-a-calor", `${SEMANAS} SEMANAS`);
+  const st = el(b, "div", "jv-stats");
+  const dato = (etq, n) => { const s = el(st, "span", null, `${etq} `); el(s, "b", null, n); };
+  dato("RACHA", `${racha} d`);
+  dato("ACTIVOS (30 d)", activos30);
+
+  const rej = el(b, "div", "jv-calor");
+  rej.style.gridTemplateColumns = `auto repeat(${SEMANAS}, 1fr)`;
+  const inicio = HOY.startOf("week").minus({ weeks: SEMANAS - 1 });
+  // Fila de meses: el nombre aparece en la semana en que empieza el mes
+  el(rej, "span");
+  for (let w = 0; w < SEMANAS; w++) {
+    const lunes = inicio.plus({ weeks: w });
+    const nuevo = w === 0 || lunes.month !== lunes.minus({ weeks: 1 }).month;
+    el(rej, "span", "jv-calor-mes", nuevo ? lunes.setLocale("es").toFormat("LLL").replace(".", "").toUpperCase() : "");
+  }
+  for (let fila = 0; fila < 7; fila++) {
+    el(rej, "span", "jv-calor-dia", ["L", "", "X", "", "V", "", "D"][fila]);
+    for (let w = 0; w < SEMANAS; w++) {
+      const dia = inicio.plus({ weeks: w, days: fila });
+      const n = diasHasta(dia);
+      const d = act.get(dia.toFormat("yyyy-MM-dd"));
+      const c = el(rej, "span", `jv-calor-c jv-n${nivel(puntos(d))}`);
+      if (n > 0) { c.addClass("jv-futuro"); continue; }
+      if (n === 0) c.addClass("jv-hoy");
+      const partes = d ? [d.notas && `${d.notas} nota${d.notas > 1 ? "s" : ""}`, d.repasos && `${d.repasos} repaso${d.repasos > 1 ? "s" : ""}`,
+        d.tareas && `${d.tareas} tarea${d.tareas > 1 ? "s" : ""}`].filter(Boolean) : [];
+      c.title = `${dia.setLocale("es").toFormat("cccc d LLL")}: ${partes.length ? partes.join(", ") : "sin actividad"}`;
+    }
+  }
+  const ley = el(b, "div", "jv-calor-ley");
+  el(ley, "span", null, "MENOS");
+  for (let i = 0; i <= 4; i++) el(ley, "span", `jv-calor-c jv-n${i}`);
+  el(ley, "span", null, "MÁS");
+};
+
+// ---------- Sistema planetario de notas con el reactor en el centro ----------
+// Planeta central = la máquina (JARVIS): las notas que no son de ninguna asignatura (planificación,
+// red neuronal, memoria, libros…) sobre una esfera 3D con retícula, anillos, partículas y rayos de datos.
+// Tres lunas = las asignaturas: cada una es una esfera pequeña con sus notas, orbita alrededor del
+// planeta y está unida a él por un haz de datos con pulsos en los dos sentidos (la luna envía sus
+// notas a la máquina y la máquina le devuelve conocimiento). Los enlaces entre notas son filamentos.
+// Gira sola; se puede arrastrar para girarla y se para al pasar el ratón por un nodo.
+const modGrafo = (parent) => {
+  const caja = el(parent, "div", "jv-graph");
+  const canvas = el(caja, "canvas");
+  const capa = el(caja, "div", "jv-graph-reactor");
+  capa.innerHTML = svgReactor(false); // en el núcleo, sin porcentaje
+  animarAnillos(capa);
+  const info = el(caja, "div", "jv-graph-info");
+  const ley = el(caja, "div", "jv-graph-ley");
+  // Zoom del sistema: botones en la esquina, rueda del ratón y Ctrl + / Ctrl − / Ctrl 0 con el ratón encima.
+  // Se guarda en window para que no se pierda cuando Dataview repinta la vista.
+  const ZMIN = 0.35, ZMAX = 3;
+  const zoomBox = el(caja, "div", "jv-zoom");
+  const bMas = el(zoomBox, "button", "jv-zoom-b", "+");
+  const zTxt = el(zoomBox, "span", "jv-zoom-v");
+  const bMenos = el(zoomBox, "button", "jv-zoom-b", "−");
+  const bReset = el(zoomBox, "button", "jv-zoom-b jv-zoom-r", "⟲");
+  bMas.title = "Acercar (Ctrl +)"; bMenos.title = "Alejar (Ctrl −)"; bReset.title = "Tamaño normal (Ctrl 0)";
+  const zoom = () => window.jvZoom || 1;
+  const ponerZoom = (z) => {
+    window.jvZoom = Math.max(ZMIN, Math.min(ZMAX, Math.round(z * 100) / 100));
+    zTxt.setText(`${Math.round(zoom() * 100)}%`);
+    if (W) medir();
+  };
+  for (const k of claves) {
+    const s = el(ley, "span");
+    el(s, "span", "jv-dot").style.color = CFG.asig[k].color;
+    s.appendText(`${k} ${progreso.find((x) => x.k === k).pct}%`);
+  }
+  for (const [c, color] of Object.entries(CFG.otrasCarpetas)) {
+    const s = el(ley, "span");
+    el(s, "span", "jv-dot").style.color = color;
+    s.appendText(c);
+  }
+
+  // Nodos: todas las notas + los archivos enlazados (PDF, etc.)
+  const estadoDe = new Map(temas.array().map((p) => [p.file.path, p.estado]));
+  const colorDe = (path) => {
+    const top = carpetaTop(path);
+    const k = claves.find((k) => path.startsWith(CFG.asig[k].carpeta + "/"));
+    return k ? CFG.asig[k].color : CFG.otrasCarpetas[top] || "#7fa9b8";
+  };
+  const nodos = new Map();
+  const add = (path) => {
+    if (fueraDelGrafo(path)) return null;
+    if (!nodos.has(path)) {
+      const f = app.vault.getAbstractFileByPath(path);
+      if (!f) return null;
+      nodos.set(path, {
+        path, nombre: f.basename, ext: f.extension, carpeta: f.parent ? f.parent.path : "",
+        color: colorDe(path), estado: estadoDe.get(path), vecinos: new Set(),
+      });
+    }
+    return nodos.get(path);
+  };
+  for (const f of app.vault.getMarkdownFiles()) add(f.path);
+  const aristas = [];
+  for (const [src, dsts] of Object.entries(app.metadataCache.resolvedLinks)) {
+    const a = add(src);
+    if (!a) continue;
+    for (const dst of Object.keys(dsts)) {
+      const b = dst !== src ? add(dst) : null;
+      if (!b || a.vecinos.has(b)) continue;
+      a.vecinos.add(b); b.vecinos.add(a);
+      aristas.push([a, b]);
+    }
+  }
+  const lista = [...nodos.values()].sort((a, b) => a.path.localeCompare(b.path));
+  const asigDeRuta = (path) => claves.find((k) => path.startsWith(CFG.asig[k].carpeta + "/"));
+  for (const n of lista) n.luna = asigDeRuta(n.path) || null;
+
+  // ---------- Geometría (unidades: radio de la esfera = 1) ----------
+  let sem = 11;
+  const rnd = () => (sem = (sem * 16807) % 2147483647) / 2147483647;
+  const fib = (i, n) => {
+    const y = 1 - (2 * (i + 0.5)) / n, r = Math.sqrt(1 - y * y), th = i * Math.PI * (3 - Math.sqrt(5));
+    return [Math.cos(th) * r, y, Math.sin(th) * r];
+  };
+  // Lunas: una por asignatura, con su órbita, inclinación, velocidad y giro propio
+  const R_LUNA = 0.34;
+  // Cada luna tiene su propia órbita: radio (a, b → elipse), inclinación, velocidad y sentido.
+  // Periodos de unos 18-30 s para que se vea que se mueven por su cuenta.
+  const ORBITAS = [
+    { a: 1.75, b: 1.6, incX: 0.45, incZ: -0.2, vel: 0.34 },
+    { a: 2.15, b: 1.95, incX: -0.3, incZ: 0.35, vel: -0.24 },
+    { a: 2.5, b: 2.25, incX: 0.15, incZ: 0.55, vel: 0.2 },
+  ];
+  const lunas = claves.map((k, i) => ({
+    k, color: CFG.asig[k].color, pct: progreso.find((x) => x.k === k).pct,
+    fase: (i / claves.length) * Math.PI * 2, ...ORBITAS[i % ORBITAS.length], giro: 0.5 + rnd() * 0.4,
+    polvo: Array.from({ length: 120 }, (_, j) => fib(j, 120)),
+    pulsos: Array.from({ length: 6 }, (_, j) => ({ u: j / 6, sube: j % 2 === 0 })),
+  }));
+  const lunaDe = Object.fromEntries(lunas.map((m) => [m.k, m]));
+  // Posición local de cada nota en su cuerpo (radio 1); el radio y el centro se aplican al dibujar
+  const repartir = (ns) => ns.forEach((n, i) => {
+    const [x, y, z] = fib(i, ns.length), k = 0.97 + rnd() * 0.06;
+    n.p = [x * k, y * k, z * k];
+  });
+  repartir(lista.filter((n) => !n.luna));
+  for (const m of lunas) repartir(lista.filter((n) => n.luna === m.k));
+  lista.forEach((n) => {
+    n.r = (n.ext === "md" ? 3.2 : 2.2) + Math.min(5, Math.sqrt(n.vecinos.size) * 1.3) + (n.estado ? 1.5 : 0);
+    if (n.luna) n.r *= 0.75;
+  });
+  // Partículas: polvo sobre la superficie y algunas dentro
+  const polvo = [];
+  for (let i = 0; i < 650; i++) { const [x, y, z] = fib(i, 650), k = 1 + (rnd() - 0.5) * 0.04; polvo.push([x * k, y * k, z * k]); }
+  for (let i = 0; i < 220; i++) { const [x, y, z] = fib(Math.floor(rnd() * 650), 650), k = 0.35 + rnd() * 0.55; polvo.push([x * k, y * k, z * k]); }
+  // Retícula: meridianos y paralelos
+  const reticula = [];
+  for (let m = 0; m < 8; m++) {
+    const lon = (m / 8) * Math.PI, pts = [];
+    for (let i = 0; i <= 64; i++) { const lat = (i / 64) * Math.PI * 2; pts.push([Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon)]); }
+    reticula.push(pts);
+  }
+  for (const lat of [-0.6, -0.3, 0, 0.3, 0.6]) {
+    const pts = [], r = Math.cos(lat), y = Math.sin(lat);
+    for (let i = 0; i <= 64; i++) { const a = (i / 64) * Math.PI * 2; pts.push([Math.cos(a) * r, y, Math.sin(a) * r]); }
+    reticula.push(pts);
+  }
+  // Anillos orbitales: brillantes, de bloques de datos y finos; cada uno con su inclinación y velocidad
+  const TIPOS = ["luz", "datos", "datos", "fino", "luz", "datos", "fino", "fino"];
+  const anillos = TIPOS.map((tipo, i) => ({
+    tipo, rad: 1.08 + rnd() * 0.24, incX: (rnd() - 0.5) * 2.4, incZ: (rnd() - 0.5) * 2.4,
+    vel: (rnd() < 0.5 ? -1 : 1) * (0.05 + rnd() * 0.2), fase: rnd() * 6.3,
+    huecos: Array.from({ length: 96 }, () => rnd() < (tipo === "datos" ? 0.45 : 0.08)),
+    color: i % 4 === 3 ? "#4dffb5" : "#3ee8ff",
+  }));
+  // Rayos de datos que salen de la esfera
+  const rayos = Array.from({ length: 110 }, (_, i) => {
+    const d = fib(i, 110), ini = 1.04 + rnd() * 0.06;
+    return { d, ini, fin: ini + 0.08 + rnd() * rnd() * 0.55, fase: rnd() };
+  });
+
+  const infoBase = `NÚCLEO + ${lunas.length} LUNAS · NODOS ${lista.length} · ENLACES ${aristas.length} · ARRASTRA PARA GIRAR · PASA EL RATÓN POR UN NODO`;
+  info.setText(infoBase);
+
+  // ---------- Proyección ----------
+  const ctx = canvas.getContext("2d");
+  let W = 0, H = 0, dpr = 1, S = 100, ladoReactor = 0;
+  let yaw = 0.6, pitch = -0.32, hover = null, arrastre = null;
+  const paquetes = [];
+  const rotar = ([x, y, z], ax, az) => { // inclinación propia de un anillo
+    let c = Math.cos(ax), s = Math.sin(ax);
+    [y, z] = [y * c - z * s, y * s + z * c];
+    c = Math.cos(az); s = Math.sin(az);
+    return [x * c - y * s, x * s + y * c, z];
+  };
+  const proy = ([x, y, z]) => { // → [x, y, profundidad 0 (detrás) … 1 (delante), escala]
+    let c = Math.cos(yaw), s = Math.sin(yaw);
+    const x1 = x * c - z * s, z1 = x * s + z * c;
+    c = Math.cos(pitch); s = Math.sin(pitch);
+    const y1 = y * c - z1 * s, z2 = y * s + z1 * c;
+    const f = 7 / (7 - z2);
+    return [W / 2 + x1 * f * S, H / 2 + y1 * f * S, Math.max(0, Math.min(1, (z2 + 1.1) / 2.2)), f];
+  };
+
+  const medir = () => {
+    if (MODO === "nucleo") {
+      const vc = root.closest(".view-content") || root.parentElement;
+      const otros = root.offsetHeight - caja.offsetHeight;
+      caja.style.height = `${Math.max(380, vc.clientHeight - otros - 40)}px`;
+    }
+    W = caja.clientWidth; H = caja.clientHeight; dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = `${W}px`; canvas.style.height = `${H}px`;
+    S = Math.min(W / 6.2, H / 3.6) * zoom();
+  };
+  const ro = new ResizeObserver(medir);
+  ro.observe(caja);
+  const vc = root.closest(".view-content");
+  if (vc) ro.observe(vc);
+
+  // Polilínea 3D en dos pasadas (detrás tenue, delante intensa) para no partirla en mil trazos
+  const trazo = (pts, color, ancho, aDetras, aDelante, brillo, saltar) => {
+    const P = pts.map(proy);
+    for (const delante of [false, true]) {
+      ctx.beginPath();
+      for (let i = 1; i < P.length; i++) {
+        if (saltar && saltar[i % saltar.length]) continue;
+        const a = P[i - 1], b = P[i];
+        if ((a[2] + b[2] > 1) !== delante) continue;
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      }
+      ctx.globalAlpha = delante ? aDelante : aDetras;
+      ctx.strokeStyle = color; ctx.lineWidth = ancho;
+      ctx.shadowColor = color; ctx.shadowBlur = delante ? brillo : 0;
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+
+  // ---------- Lunas ----------
+  const giraY = ([x, y, z], a) => { const c = Math.cos(a), s = Math.sin(a); return [x * c - z * s, y, x * s + z * c]; };
+  const centroLuna = (m, t) => {
+    const a = m.fase + t * m.vel;
+    return rotar([Math.cos(a) * m.a, 0, Math.sin(a) * m.b], m.incX, m.incZ);
+  };
+  const enLuna = (m, q, t) => { // punto local (radio 1) → mundo
+    const l = giraY(q, t * m.giro);
+    return [m.c[0] + l[0] * R_LUNA, m.c[1] + l[1] * R_LUNA, m.c[2] + l[2] * R_LUNA];
+  };
+  const retLuna = [];
+  for (let mm = 0; mm < 4; mm++) {
+    const lon = (mm / 4) * Math.PI, pts = [];
+    for (let i = 0; i <= 40; i++) { const lat = (i / 40) * Math.PI * 2; pts.push([Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon)]); }
+    retLuna.push(pts);
+  }
+  for (const lat of [-0.5, 0, 0.5]) {
+    const pts = [], r = Math.cos(lat), y = Math.sin(lat);
+    for (let i = 0; i <= 40; i++) { const a = (i / 40) * Math.PI * 2; pts.push([Math.cos(a) * r, y, Math.sin(a) * r]); }
+    retLuna.push(pts);
+  }
+  const dibujarOrbitas = () => {
+    ctx.setLineDash([3, 6]);
+    for (const m of lunas) {
+      const pts = [];
+      for (let i = 0; i <= 120; i++) { const a = (i / 120) * Math.PI * 2; pts.push(rotar([Math.cos(a) * m.a, 0, Math.sin(a) * m.b], m.incX, m.incZ)); }
+      trazo(pts, m.color, 0.8, 0.07, 0.25, 0);
+    }
+    ctx.setLineDash([]);
+  };
+  // Haz de datos luna ↔ planeta: línea con pulsos que suben a la máquina (color de la asignatura) y bajan (cian)
+  const dibujarHaz = (m) => {
+    const len = Math.hypot(...m.c), dir = m.c.map((v) => v / len);
+    const ini = dir.map((v) => v * 1.02), fin = dir.map((v) => v * (len - R_LUNA * 1.05));
+    const pts = Array.from({ length: 13 }, (_, i) => ini.map((v, j) => v + (fin[j] - v) * (i / 12)));
+    trazo(pts, m.color, 2.4, 0.12, 0.35, 10);
+    trazo(pts, "#ffffff", 0.6, 0.15, 0.5, 0);
+    for (const q of m.pulsos) {
+      q.u = (q.u + 0.006) % 1;
+      const p = proy(fin.map((v, j) => v + (ini[j] - v) * (q.sube ? q.u : 1 - q.u)));
+      ctx.globalAlpha = 0.35 + 0.65 * p[2];
+      ctx.fillStyle = q.sube ? m.color : "#cdf6ff";
+      ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 10;
+      ctx.beginPath(); ctx.arc(p[0], p[1], 2.2 * p[3], 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+  const dibujarLuna = (m, t) => {
+    const [cx, cy, cz, cf] = proy(m.c), rr = R_LUNA * S * cf;
+    const g = ctx.createRadialGradient(cx, cy, rr * 0.2, cx, cy, rr * 2.2);
+    g.addColorStop(0, m.color + "33"); g.addColorStop(0.45, m.color + "14"); g.addColorStop(1, m.color + "00");
+    ctx.fillStyle = g; ctx.globalAlpha = 0.5 + 0.5 * cz;
+    ctx.beginPath(); ctx.arc(cx, cy, rr * 2.2, 0, Math.PI * 2); ctx.fill();
+    ctx.globalAlpha = 1;
+    for (const pts of retLuna) trazo(pts.map((q) => enLuna(m, q, t)), m.color, 0.7, 0.08, 0.3, 4);
+    ctx.globalAlpha = 0.25 + 0.5 * cz; ctx.strokeStyle = m.color; ctx.lineWidth = 1.2;
+    ctx.shadowColor = m.color; ctx.shadowBlur = 12;
+    ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
+    // anillo con el progreso de la asignatura
+    ctx.lineWidth = 2.4; ctx.globalAlpha = 0.6 + 0.4 * cz;
+    ctx.beginPath(); ctx.arc(cx, cy, rr + 6, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (m.pct / 100)); ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = m.color;
+    for (const q of m.polvo) {
+      const p = proy(enLuna(m, q, t));
+      ctx.globalAlpha = 0.06 + 0.4 * p[2] * p[2];
+      ctx.fillRect(p[0] - 0.6, p[1] - 0.6, 1.2, 1.2);
+    }
+    ctx.globalAlpha = 0.55 + 0.45 * cz;
+    ctx.font = "bold 12px Orbitron, 'Share Tech Mono', monospace"; ctx.textAlign = "center";
+    ctx.fillStyle = m.color; ctx.shadowColor = m.color; ctx.shadowBlur = 8;
+    ctx.fillText(`${m.k} · ${m.pct}%`, cx, cy - rr - 14);
+    ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+  };
+
+  const dibujar = () => {
+    const t = performance.now() / 1000;
+    for (const m of lunas) m.c = centroLuna(m, t);
+    const detras = lunas.filter((m) => proy(m.c)[2] < 0.5), delante = lunas.filter((m) => !detras.includes(m));
+    if (!arrastre && !hover) yaw += 0.0025;
+    const lado = Math.round(S * 0.62);
+    if (lado !== ladoReactor) { ladoReactor = lado; capa.style.width = capa.style.height = `${lado}px`; }
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    const g = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, S * 1.6);
+    g.addColorStop(0, "rgba(62,232,255,.10)"); g.addColorStop(1, "rgba(62,232,255,0)");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    dibujarOrbitas();
+    for (const m of detras) { dibujarHaz(m); dibujarLuna(m, t); }
+    // Retícula
+    for (const pts of reticula) trazo(pts, "#3ee8ff", 0.7, 0.04, 0.12, 0);
+    // Rayos de datos (con un pulso que sale hacia fuera)
+    ctx.setLineDash([2, 3]);
+    for (const delante of [false, true]) {
+      ctx.beginPath();
+      for (const r of rayos) {
+        const a = proy(r.d.map((v) => v * r.ini)), b = proy(r.d.map((v) => v * r.fin));
+        if ((a[2] > 0.5) !== delante) continue;
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      }
+      ctx.globalAlpha = delante ? 0.55 : 0.15; ctx.strokeStyle = "#3ee8ff"; ctx.lineWidth = 1.2; ctx.stroke();
+    }
+    ctx.setLineDash([]);
+    ctx.fillStyle = "#cdf6ff";
+    for (const r of rayos) {
+      const u = (t * 0.35 + r.fase) % 1, k = r.ini + (r.fin - r.ini) * u;
+      const p = proy(r.d.map((v) => v * k));
+      ctx.globalAlpha = (1 - u) * (0.2 + 0.8 * p[2]);
+      ctx.fillRect(p[0] - 1, p[1] - 1, 2, 2);
+    }
+    // Partículas
+    for (const q of polvo) {
+      const p = proy(q);
+      ctx.globalAlpha = 0.08 + 0.5 * p[2] * p[2];
+      ctx.fillStyle = "#3ee8ff";
+      ctx.fillRect(p[0] - 0.7, p[1] - 0.7, 1.4 * p[3], 1.4 * p[3]);
+    }
+    ctx.globalAlpha = 1;
+    // Anillos orbitales
+    for (const a of anillos) {
+      const giro = a.fase + t * a.vel, pts = [];
+      for (let i = 0; i <= 96; i++) {
+        const ang = giro + (i / 96) * Math.PI * 2;
+        pts.push(rotar([Math.cos(ang) * a.rad, 0, Math.sin(ang) * a.rad], a.incX, a.incZ));
+      }
+      if (a.tipo === "luz") trazo(pts, a.color, 2.2, 0.18, 0.9, 14);
+      else if (a.tipo === "datos") trazo(pts, a.color, 4, 0.1, 0.55, 6, a.huecos);
+      else trazo(pts, a.color, 0.8, 0.08, 0.35, 0);
+    }
+    for (const m of delante) { dibujarHaz(m); dibujarLuna(m, t); }
+
+    // Proyección de las notas
+    for (const n of lista) [n.sx, n.sy, n.z, n.f] = proy(n.luna ? enLuna(lunaDe[n.luna], n.p, t) : n.p);
+    const resaltados = hover ? new Set([hover, ...hover.vecinos]) : null;
+    // Filamentos (enlaces) atravesando la esfera
+    for (const [a, b] of aristas) {
+      const on = hover && (a === hover || b === hover);
+      const prof = (a.z + b.z) / 2;
+      ctx.globalAlpha = on ? 0.95 : resaltados ? 0.04 : 0.08 + 0.3 * prof;
+      ctx.strokeStyle = on ? "#ffffff" : a.color; ctx.lineWidth = on ? 1.4 : 0.8;
+      ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+    }
+    // Paquetes de datos por los enlaces
+    if (aristas.length && Math.random() < 0.2 && paquetes.length < 24) {
+      const e = aristas[Math.floor(Math.random() * aristas.length)];
+      paquetes.push({ e: Math.random() < 0.5 ? e : [e[1], e[0]], t: 0 });
+    }
+    ctx.fillStyle = "rgba(220,255,255,.95)"; ctx.shadowColor = "#3ee8ff"; ctx.shadowBlur = 8;
+    for (let i = paquetes.length - 1; i >= 0; i--) {
+      const p = paquetes[i];
+      p.t += 0.015;
+      if (p.t >= 1) { paquetes.splice(i, 1); continue; }
+      const [a, b] = p.e;
+      ctx.globalAlpha = 0.3 + 0.7 * ((a.z + b.z) / 2);
+      ctx.beginPath(); ctx.arc(a.sx + (b.sx - a.sx) * p.t, a.sy + (b.sy - a.sy) * p.t, 1.6, 0, Math.PI * 2); ctx.fill();
+    }
+    // Nodos, de atrás hacia delante
+    for (const n of [...lista].sort((a, b) => a.z - b.z)) {
+      const tenue = resaltados && !resaltados.has(n);
+      ctx.globalAlpha = tenue ? 0.12 : 0.25 + 0.75 * n.z;
+      const r = n.r * n.f;
+      ctx.shadowColor = n.color; ctx.shadowBlur = n === hover ? 24 : 6 + 10 * n.z;
+      ctx.fillStyle = n.ext === "md" ? n.color : "rgba(127,169,184,.8)";
+      ctx.beginPath(); ctx.arc(n.sx, n.sy, r, 0, Math.PI * 2); ctx.fill();
+      if (n.estado) { // anillo con el estado del tema
+        ctx.shadowBlur = 0; ctx.strokeStyle = n.color; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.arc(n.sx, n.sy, r + 3.5, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (PESO[n.estado] ?? 0)); ctx.stroke();
+      }
+    }
+    // Etiquetas: las notas de delante con más enlaces o con estado, y las del nodo señalado
+    ctx.shadowBlur = 0;
+    ctx.font = "11px 'Share Tech Mono', Consolas, monospace";
+    ctx.textAlign = "center";
+    for (const n of lista) {
+      const ver = resaltados ? resaltados.has(n) : n.z > 0.6 && n.ext === "md" && (n.vecinos.size >= 3 || n.estado);
+      if (!ver) continue;
+      ctx.globalAlpha = resaltados ? 1 : Math.min(1, (n.z - 0.6) * 3);
+      ctx.fillStyle = n === hover ? "#ffffff" : "rgba(205,246,255,.8)";
+      const txt = n.nombre.length > 30 ? n.nombre.slice(0, 29) + "…" : n.nombre;
+      ctx.fillText(txt, n.sx, n.sy + n.r * n.f + 13);
+    }
+    ctx.globalAlpha = 1;
+  };
+
+  const bucle = () => {
+    if (!root.isConnected) { ro.disconnect(); return; }
+    if (W && H) dibujar();
+    requestAnimationFrame(bucle);
+  };
+
+  // Ratón: señalar, abrir y arrastrar para girar
+  canvas.addEventListener("mousedown", (e) => { arrastre = { x: e.clientX, y: e.clientY, movido: 0 }; });
+  canvas.addEventListener("mouseup", () => { setTimeout(() => { arrastre = null; }, 0); });
+  canvas.addEventListener("mousemove", (e) => {
+    if (arrastre && e.buttons) {
+      const dx = e.clientX - arrastre.x, dy = e.clientY - arrastre.y;
+      arrastre.movido += Math.abs(dx) + Math.abs(dy);
+      arrastre.x = e.clientX; arrastre.y = e.clientY;
+      yaw += dx * 0.008;
+      pitch = Math.max(-1.3, Math.min(1.3, pitch + dy * 0.008));
+      canvas.style.cursor = "grabbing";
+      return;
+    }
+    const r = canvas.getBoundingClientRect();
+    const mx = e.clientX - r.left, my = e.clientY - r.top;
+    let mejor = null, dmin = Infinity;
+    for (const n of lista) {
+      if (n.z < 0.4) continue; // solo los de la cara visible
+      const d = Math.hypot(n.sx - mx, n.sy - my);
+      if (d < Math.max(8, n.r * n.f + 4) && d < dmin) { mejor = n; dmin = d; }
+    }
+    if (mejor !== hover) {
+      hover = mejor;
+      info.setText(hover
+        ? `▸ ${hover.nombre}${hover.ext !== "md" ? "." + hover.ext : ""} · ${hover.carpeta || "raíz"} · ENLACES ${hover.vecinos.size}${hover.estado ? " · ESTADO " + hover.estado.toUpperCase() : ""}`
+        : infoBase);
+    }
+    canvas.style.cursor = hover ? "pointer" : "grab";
+  });
+  canvas.addEventListener("mouseleave", () => { hover = null; arrastre = null; info.setText(infoBase); });
+  bMas.onclick = () => ponerZoom(zoom() * 1.2);
+  bMenos.onclick = () => ponerZoom(zoom() / 1.2);
+  bReset.onclick = () => ponerZoom(1);
+  canvas.addEventListener("wheel", (e) => { e.preventDefault(); ponerZoom(zoom() * (e.deltaY < 0 ? 1.1 : 1 / 1.1)); }, { passive: false });
+  // Ctrl + / − / 0 solo cuando el ratón está sobre el núcleo (fuera de él, Obsidian hace su zoom normal)
+  let dentro = false;
+  caja.addEventListener("mouseenter", () => { dentro = true; });
+  caja.addEventListener("mouseleave", () => { dentro = false; });
+  const teclas = (e) => {
+    if (!root.isConnected) { window.removeEventListener("keydown", teclas, true); return; }
+    if (!dentro || !(e.ctrlKey || e.metaKey)) return;
+    const k = e.key;
+    if (k === "+" || k === "=" || k === "Add") ponerZoom(zoom() * 1.2);
+    else if (k === "-" || k === "Subtract") ponerZoom(zoom() / 1.2);
+    else if (k === "0") ponerZoom(1);
+    else return;
+    e.preventDefault(); e.stopPropagation();
+  };
+  window.addEventListener("keydown", teclas, true);
+  ponerZoom(zoom());
+  canvas.addEventListener("click", (e) => {
+    if (arrastre && arrastre.movido > 4) return; // era un arrastre, no un clic
+    if (hover) abrir(hover.path, e.ctrlKey || e.metaKey);
+  });
+
+  setTimeout(() => { medir(); bucle(); }, 30);
+};
+
+// ---------- UNIVERSO AARON › GALAXIA UNED ----------
+// Arquitectura (ver AARON/CLAUDE.md): en el centro del universo, AARON (agujero negro: el humano que decide;
+// carpeta AARON/) y JARVIS (el agente, carpeta JARVIS/, que orbita a AARON). Fuera de ellos, orbitándolos, la
+// galaxia UNED (carpeta UNED/): su núcleo es un remolino blanco, rosa y violeta (la propia carpeta UNED, con sus
+// notas de planificación y libros), un sistema solar por año y planetas = asignaturas.
+// Por ahora solo existe la galaxia UNED; el código está pensado para que en el futuro haya otras.
+// (2026-10-08: antes AARON y JARVIS estaban en el centro de la galaxia; copia en ARCHIVO/antes-carpeta-UNED-2026-10-08/)
+// ---------- Galaxia: la máquina en el centro, un sistema solar por año, planetas = asignaturas ----------
+// Núcleo galáctico = la máquina (JARVIS): las notas que no son de ninguna asignatura (planificación, red
+// neuronal, memoria, libros…) sobre una esfera con el reactor dentro. Alrededor gira un disco de brazos
+// espirales. Cada año del grado es un sistema solar: su sol orbita el núcleo y está unido a él por un haz de
+// datos; sus planetas son las asignaturas (órbitas interiores = 1.er cuatrimestre, exteriores = 2.º), cada uno
+// con sus notas, su anillo de progreso y su giro propio. Los años sin asignaturas aparecen como soles apagados.
+// Clic en un sol → se acerca a ese sistema; botones ◎ (galaxia) y ⬤ (núcleo); zoom con + − ⟲, rueda y Ctrl +/−/0.
+// La vista anterior (planeta + 3 lunas) sigue en modGrafo: para volver a ella basta montar modGrafo en vez de esta.
+const modGalaxia = (parent) => {
+  const caja = el(parent, "div", "jv-graph jv-galaxia");
+  const canvas = el(caja, "canvas");
+  const capa = el(caja, "div", "jv-graph-reactor");
+  capa.innerHTML = svgReactor(false);
+  animarAnillos(capa);
+  const info = el(caja, "div", "jv-graph-info");
+  const menu = el(caja, "nav", "jv-nav"); // menú de navegación: se rellena más abajo (montarMenu)
+  // Mandos: zoom y vistas
+  const mandos = el(caja, "div", "jv-zoom");
+  const bMas = el(mandos, "button", "jv-zoom-b", "+");
+  const zTxt = el(mandos, "span", "jv-zoom-v");
+  const bMenos = el(mandos, "button", "jv-zoom-b", "−");
+  const bReset = el(mandos, "button", "jv-zoom-b jv-zoom-r", "⟲");
+  const bUni = el(mandos, "button", "jv-zoom-b jv-zoom-r", "✶");
+  const bGal = el(mandos, "button", "jv-zoom-b", "◎");
+  const bNuc = el(mandos, "button", "jv-zoom-b", "⬤");
+  bMas.title = "Acercar (Ctrl +)"; bMenos.title = "Alejar (Ctrl −)"; bReset.title = "Zoom normal de esta vista (Ctrl 0)";
+  bUni.title = "Ver el universo entero"; bGal.title = "Ver la galaxia UNED entera"; bNuc.title = "Ir al centro del universo: AARON y JARVIS";
+
+  // ---------- Notas y enlaces ----------
+  const estadoDe = new Map(temas.array().map((p) => [p.file.path, p.estado]));
+  // asignaturas de la galaxia: las que están en curso (CFG.asig) y el resto del plan (CFG.plan, "por cursar")
+  const gal = {};
+  for (const k of claves) gal[k] = { ...CFG.asig[k], k, activa: true };
+  for (const x of CFG.plan || []) if (!gal[x.k]) gal[x.k] = { ...x, activa: false };
+  const galK = Object.keys(gal);
+  const asigDeRuta = (path) => galK.find((k) => path.startsWith(gal[k].carpeta + "/"));
+  const colorDe = (path) => {
+    const k = asigDeRuta(path) || ghDeRuta.get(path);
+    if (k) return (gal[k] || ghProy.find((p) => p.k === k)).color;
+    const top = carpetaTop(path);
+    return CFG.otrasCarpetas[top] || "#7fa9b8";
+  };
+  // Proyectos de la galaxia GITHUB AARON: notas con tipo: proyecto (cada una, un planeta)
+  const HOY_MS = Date.now();
+  const ghProy = Array.from(dv.pages(`"${CFG.github.carpeta}"`)).filter((p) => p.tipo === "proyecto").map((p) => {
+    const ult = p.ultimo_commit ? new Date(String(p.ultimo_commit).slice(0, 10)).getTime() : NaN;
+    const dias = isNaN(ult) ? 9999 : Math.max(0, (HOY_MS - ult) / 864e5);
+    return {
+      k: `gh:${p.file.name}`, nombre: p.file.name, path: p.file.path, sistema: String(p.sistema || "PERSONAL"),
+      color: p.color || "#39d353", estado: String(p.estado || "activo"), commits: Number(p.commits) || 0,
+      stack: Array.from(p.stack || []).map(String), dias,
+      // conexiones con otros proyectos y con asignaturas de la UNED: [{a, tema}]
+      conexiones: Array.from(p.conexiones || []).filter((c) => c && c.a).map((c) => ({ a: String(c.a), tema: String(c.tema || "") })),
+      asignaturas: Array.from(p.asignaturas || []).filter((c) => c && c.a).map((c) => ({ a: String(c.a), tema: String(c.tema || "") })),
+      actividad: Math.round(Math.max(0, 100 - dias / 3.65)), // 100 % = commit hoy · 0 % = hace un año o más
+    };
+  });
+  const ghDeRuta = new Map(ghProy.map((p) => [p.path, p.k]));
+  const nodos = new Map();
+  const add = (path) => {
+    if (fueraDelGrafo(path)) return null;
+    if (!nodos.has(path)) {
+      const f = app.vault.getAbstractFileByPath(path);
+      if (!f) return null;
+      nodos.set(path, {
+        path, nombre: f.basename, ext: f.extension, carpeta: f.parent ? f.parent.path : "",
+        color: colorDe(path), estado: estadoDe.get(path), vecinos: new Set(),
+        cuerpo: path.startsWith("AARON/") ? "AARON" : asigDeRuta(path) || ghDeRuta.get(path)
+          || (path.startsWith("UNED/") ? "UNED" : path.startsWith(CFG.github.carpeta + "/") ? "GITHUB" : null),
+      });
+    }
+    return nodos.get(path);
+  };
+  for (const f of app.vault.getMarkdownFiles()) add(f.path);
+  const aristas = [];
+  for (const [src, dsts] of Object.entries(app.metadataCache.resolvedLinks)) {
+    const a = add(src);
+    if (!a) continue;
+    for (const dst of Object.keys(dsts)) {
+      const b = dst !== src ? add(dst) : null;
+      if (!b || a.vecinos.has(b)) continue;
+      a.vecinos.add(b); b.vecinos.add(a);
+      aristas.push([a, b]);
+    }
+  }
+  const lista = [...nodos.values()].sort((a, b) => a.path.localeCompare(b.path));
+
+  // ---------- Geometría (unidades: radio del núcleo = 1) ----------
+  let sem = 11;
+  const rnd = () => (sem = (sem * 16807) % 2147483647) / 2147483647;
+  const gauss0 = () => (rnd() + rnd() + rnd() - 1.5) / 1.5; // aprox. normal en [-1, 1]
+  const fib = (i, n) => {
+    const y = 1 - (2 * (i + 0.5)) / n, r = Math.sqrt(1 - y * y), th = i * Math.PI * (3 - Math.sqrt(5));
+    return [Math.cos(th) * r, y, Math.sin(th) * r];
+  };
+  const rotar = ([x, y, z], ax, az) => {
+    let c = Math.cos(ax), s = Math.sin(ax);
+    [y, z] = [y * c - z * s, y * s + z * c];
+    c = Math.cos(az); s = Math.sin(az);
+    return [x * c - y * s, x * s + y * c, z];
+  };
+  const giraY = ([x, y, z], a) => { const c = Math.cos(a), s = Math.sin(a); return [x * c - z * s, y, x * s + z * c]; };
+  const suma = (a, b, k = 1) => [a[0] + b[0] * k, a[1] + b[1] * k, a[2] + b[2] * k];
+
+  // Sistemas solares: uno por año, a lo largo de un brazo espiral
+  const R_SOL = 0.42, R_PLANETA = 0.2;
+  // Un color por año: oro, coral, rosa, azul, menta y violeta
+  const COLORES_SOL = ["#ffd36e", "#ff8a65", "#ff6fae", "#7fd4ff", "#7dffc4", "#c49bff"];
+  const aclarar = (hex, k) => { // mezcla con blanco
+    const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map((v) => Math.round(v + (255 - v) * k));
+    return "#" + c.map((v) => v.toString(16).padStart(2, "0")).join("");
+  };
+  const ORB_CUATRI = [1.25, 3.9]; // radio de la primera órbita de cada cuatrimestre
+  const anios = Array.from({ length: CFG.anios }, (_, i) => {
+    const a = i + 1, R = 13 + i * 12; // sistemas bien separados entre sí
+    const asigs = galK.filter((k) => (gal[k].anio ?? 1) === a);
+    const cuatri = (c) => asigs.filter((k) => (gal[k].cuatri ?? 1) === c);
+    const planetas = [];
+    for (const c of [1, 2]) cuatri(c).forEach((k, j) => {
+      const r = ORB_CUATRI[c - 1] + j * 0.75; // órbitas holgadas: 1.er cuatrimestre dentro, 2.º fuera
+      planetas.push({
+        k, cuatri: c, color: gal[k].color, nombre: gal[k].nombre, activa: gal[k].activa,
+        pct: gal[k].activa ? progreso.find((x) => x.k === k).pct : 0, r,
+        vel: 0.9 / Math.pow(r, 1.5), fase: rnd() * 6.3, incX: (rnd() - 0.5) * 0.35, incZ: (rnd() - 0.5) * 0.35,
+        giro: 0.5 + rnd() * 0.4, polvo: Array.from({ length: 70 }, (_, q) => fib(q, 70)),
+      });
+    });
+    return {
+      a, R, th0: 0.5 + i * 2.2, vel: 0.05 / Math.sqrt(R), color: COLORES_SOL[i % COLORES_SOL.length],
+      activo: asigs.length > 0, enCurso: asigs.some((k) => gal[k].activa), planetas, radio: planetas.length ? Math.max(...planetas.map((p) => p.r)) + 0.4 : 1.2,
+      pulsos: Array.from({ length: 8 }, (_, j) => ({ u: j / 8, sube: j % 2 === 0 })),
+      anillos: ["luz", "datos", "fino"].map((tipo) => ({
+        tipo, rad: 1.25 + rnd() * 0.35, incX: (rnd() - 0.5) * 2.4, incZ: (rnd() - 0.5) * 2.4,
+        vel: (rnd() < 0.5 ? -1 : 1) * (0.1 + rnd() * 0.25), fase: rnd() * 6.3,
+        huecos: Array.from({ length: 60 }, () => rnd() < (tipo === "datos" ? 0.45 : 0.08)),
+      })),
+    };
+  });
+  // Galaxia GITHUB AARON: un sistema solar por ámbito (CFG.github.sistemas) y planetas = proyectos.
+  // Usa su propio azar para no mover nada de la galaxia UNED.
+  let semG = 29;
+  const rndG = () => (semG = (semG * 16807) % 2147483647) / 2147483647;
+  const ghSis = CFG.github.sistemas.map((def, i) => {
+    const R = 9 + i * 9;
+    const proys = ghProy.filter((p) => p.sistema === def.id).sort((a, b) => b.commits - a.commits);
+    const planetas = proys.map((p, j) => {
+      const r = 1.25 + j * 0.75;
+      return {
+        ...p, gh: true, activa: p.estado !== "archivado", pct: p.actividad, r,
+        // tamaño según los commits (los grandes, algo mayores)
+        tam: 0.8 + Math.min(0.9, Math.log10(1 + p.commits) * 0.45),
+        vel: 0.9 / Math.pow(r, 1.5), fase: rndG() * 6.3, incX: (rndG() - 0.5) * 0.35, incZ: (rndG() - 0.5) * 0.35,
+        giro: 0.5 + rndG() * 0.4, polvo: Array.from({ length: 70 }, (_, q) => fib(q, 70)),
+      };
+    });
+    return {
+      gh: true, id: def.id, a: `gh${i}`, R, th0: 1.1 + i * 2.4, vel: 0.05 / Math.sqrt(R), color: def.color,
+      activo: planetas.length > 0, enCurso: planetas.some((p) => p.activa && p.dias < 365), planetas,
+      radio: planetas.length ? Math.max(...planetas.map((p) => p.r)) + 0.4 : 1.2,
+      pulsos: Array.from({ length: 8 }, (_, j) => ({ u: j / 8, sube: j % 2 === 0 })),
+      anillos: ["luz", "datos", "fino"].map((tipo) => ({
+        tipo, rad: 1.25 + rndG() * 0.35, incX: (rndG() - 0.5) * 2.4, incZ: (rndG() - 0.5) * 2.4,
+        vel: (rndG() < 0.5 ? -1 : 1) * (0.1 + rndG() * 0.25), fase: rndG() * 6.3,
+        huecos: Array.from({ length: 60 }, () => rndG() < (tipo === "datos" ? 0.45 : 0.08)),
+      })),
+    };
+  });
+  const sistemas = [...anios, ...ghSis]; // todos los sistemas solares del universo
+  const planetaDe = {};
+  for (const s of sistemas) for (const p of s.planetas) { p.sol = s; planetaDe[p.k] = p; }
+
+  // Notas del núcleo y de cada planeta, repartidas sobre su esfera (radio 1)
+  const repartir = (ns) => ns.forEach((n, i) => {
+    const [x, y, z] = fib(i, ns.length), k = 0.97 + rnd() * 0.06;
+    n.p = [x * k, y * k, z * k];
+  });
+  repartir(lista.filter((n) => !n.cuerpo));
+  // AARON: agujero negro en el origen. Sus notas (memoria, red neuronal, perfil…) orbitan en el disco de acreción.
+  const R_BH = 0.62, DISCO = [0.95, 2.05], INC_DISCO = 0.28;
+  const enDisco = (q) => rotar(q, INC_DISCO, 0.08);
+  const notasAaron = lista.filter((n) => n.cuerpo === "AARON");
+  notasAaron.forEach((n, i) => { n.orb = { r: DISCO[0] + 0.1 + (i / Math.max(1, notasAaron.length - 1)) * (DISCO[1] - DISCO[0] - 0.2), a0: i * 2.4 }; });
+  const discoP = Array.from({ length: 1100 }, () => {
+    const r = DISCO[0] + Math.pow(rnd(), 1.6) * (DISCO[1] - DISCO[0]);
+    const u = (r - DISCO[0]) / (DISCO[1] - DISCO[0]);
+    return { r, a0: rnd() * 6.3, h: (rnd() - 0.5) * 0.05, c: u < 0.15 ? "#fff4e0" : u < 0.45 ? "#ffb070" : u < 0.75 ? "#ff6fae" : "#a77bff", t: rnd() };
+  });
+  const caida = Array.from({ length: 36 }, () => ({ u: rnd(), a0: rnd() * 6.3, r0: 2.4 + rnd() * 1.6, v: 0.05 + rnd() * 0.06 }));
+  // JARVIS: el agente orbita a AARON
+  const D_J = 3.4;
+  const jarvisPos = (t) => { const a = 0.4 + t * 0.035; return [Math.cos(a) * D_J, Math.sin(a * 2) * 0.15, Math.sin(a) * D_J]; };
+  let J = jarvisPos(performance.now() / 1000);
+  const enJ = (q) => suma(J, q);
+  for (const k of galK) repartir(lista.filter((n) => n.cuerpo === k));
+  for (const p of ghProy) lista.filter((n) => n.cuerpo === p.k).forEach((n, i, ns) => { // con su propio azar
+    const [x, y, z] = fib(i, ns.length), k = 0.97 + rndG() * 0.06;
+    n.p = [x * k, y * k, z * k];
+  });
+  // Notas de la propia carpeta UNED (planificación, libros…): giran dentro del núcleo de la galaxia
+  const R_CORE = 7;
+  const notasUned = lista.filter((n) => n.cuerpo === "UNED");
+  notasUned.forEach((n, i) => { n.orb = { r: 1.2 + (i / Math.max(1, notasUned.length - 1)) * (R_CORE * 0.8 - 1.2), a0: i * 2.39996 }; });
+  lista.forEach((n) => {
+    n.r = (n.ext === "md" ? 3.2 : 2.2) + Math.min(5, Math.sqrt(n.vecinos.size) * 1.3) + (n.estado ? 1.5 : 0);
+    if (n.cuerpo) n.r *= 0.6;
+  });
+
+  // Núcleo: polvo, retícula, anillos y rayos (como el planeta de antes)
+  const polvoN = [];
+  for (let i = 0; i < 450; i++) { const [x, y, z] = fib(i, 450), k = 1 + (rnd() - 0.5) * 0.04; polvoN.push([x * k, y * k, z * k]); }
+  const reticula = [];
+  for (let m = 0; m < 8; m++) {
+    const lon = (m / 8) * Math.PI, pts = [];
+    for (let i = 0; i <= 48; i++) { const lat = (i / 48) * Math.PI * 2; pts.push([Math.cos(lat) * Math.cos(lon), Math.sin(lat), Math.cos(lat) * Math.sin(lon)]); }
+    reticula.push(pts);
+  }
+  for (const lat of [-0.6, -0.3, 0, 0.3, 0.6]) {
+    const pts = [], r = Math.cos(lat), y = Math.sin(lat);
+    for (let i = 0; i <= 48; i++) { const a = (i / 48) * Math.PI * 2; pts.push([Math.cos(a) * r, y, Math.sin(a) * r]); }
+    reticula.push(pts);
+  }
+  const retPeq = reticula.filter((_, i) => i % 2 === 0);
+  const anillosN = ["luz", "datos", "fino", "luz", "datos"].map((tipo) => ({
+    tipo, rad: 1.1 + rnd() * 0.3, incX: (rnd() - 0.5) * 2.4, incZ: (rnd() - 0.5) * 2.4,
+    vel: (rnd() < 0.5 ? -1 : 1) * (0.05 + rnd() * 0.2), fase: rnd() * 6.3,
+    huecos: Array.from({ length: 72 }, () => rnd() < (tipo === "datos" ? 0.45 : 0.08)),
+  }));
+  // Disco galáctico: dos brazos espirales de estrellas y polvo
+  const estrellas = Array.from({ length: 2600 }, (_, i) => {
+    const brazo = i % 2, s = R_CORE * 0.8 + Math.pow(rnd(), 0.7) * (anios[anios.length - 1].R + 3 - R_CORE * 0.8);
+    const th = s * 0.3 + brazo * Math.PI + (rnd() - 0.5) * (0.5 + 4 / s);
+    const h = (rnd() - 0.5) * 0.5 * Math.max(0.2, 1 - s / 25);
+    return { p: [Math.cos(th) * s, h, Math.sin(th) * s], c: rnd() < 0.7 ? "#3ee8ff" : rnd() < 0.5 ? "#b388ff" : "#ffd36e", t: rnd() };
+  });
+  const R_GAL = anios[anios.length - 1].R + 3;
+  // La galaxia UNED orbita, muy despacio, el centro del universo (AARON + JARVIS)
+  const D_UNED = R_GAL + 22;
+  const galPos = (t) => { const a = 0.9 + t * 0.0006; return [Math.cos(a) * D_UNED, 0, Math.sin(a) * D_UNED]; };
+  let G = galPos(performance.now() / 1000);
+  // Núcleo de la galaxia UNED (la carpeta UNED), como el remolino del pin de Aaron: centro blanco y crema,
+  // dos brazos apretados rosa → magenta → violeta, franjas de polvo oscuro entre ellos y un borde de trazos claros
+  const COLOR_CORE = ["#fff6e8", "#ffd9cc", "#ff9cc2", "#ef6aae", "#c357b8", "#9a4cc4", "#6a3fa8"];
+  const espiral = (r, brazo) => brazo * Math.PI + 2.3 * Math.log(r / 0.3);
+  const coreP = Array.from({ length: 3400 }, (_, i) => {
+    const u = Math.pow(rnd(), 0.85), r = 0.3 + u * (R_CORE - 0.3);
+    const th = espiral(r, i % 2) + gauss0() * (0.35 + 0.25 * u);
+    return { p: [Math.cos(th) * r, gauss0() * 0.18 * (1 - u * 0.8), Math.sin(th) * r], u,
+      c: COLOR_CORE[Math.min(COLOR_CORE.length - 1, Math.floor(Math.pow(u, 0.8) * COLOR_CORE.length))], t: rnd() };
+  });
+  const corePolvo = Array.from({ length: 1100 }, (_, i) => { // franjas oscuras, entre los brazos
+    const u = 0.15 + rnd() * 0.85, r = 0.3 + u * (R_CORE - 0.3), th = espiral(r, i % 2) + Math.PI / 2 + gauss0() * 0.3;
+    return { p: [Math.cos(th) * r, gauss0() * 0.1, Math.sin(th) * r], s: 1 + rnd() * 2.2 };
+  });
+  const coreBorde = Array.from({ length: 500 }, () => { // trazos claros y estrellas sueltas en el borde
+    const r = R_CORE * (0.92 + Math.abs(gauss0()) * 0.35), th = rnd() * Math.PI * 2;
+    return { p: [Math.cos(th) * r, gauss0() * 0.12, Math.sin(th) * r], largo: 0.05 + rnd() * 0.3, c: rnd() < 0.6 ? "#f3e8ff" : "#b388ff", t: rnd() };
+  });
+
+  // ---------- Galaxia GITHUB AARON ----------
+  // Orbita el centro del universo por el lado opuesto a la UNED. Su núcleo es la carpeta GITHUB/: un remolino
+  // igual que el de la UNED pero con los verdes de GitHub (centro blanco verdoso, brazos verde claro → verde oscuro).
+  const gauss0G = () => (rndG() + rndG() + rndG() - 1.5) / 1.5;
+  const R_CORE_GH = 5;
+  const R_GH = ghSis[ghSis.length - 1].R + ghSis[ghSis.length - 1].radio + 3;
+  const D_GH = R_GH + 22;
+  const ghPos = (t) => { const a = 0.9 + Math.PI + t * 0.0006; return [Math.cos(a) * D_GH, 0, Math.sin(a) * D_GH]; };
+  let GH = ghPos(performance.now() / 1000);
+  const notasGithub = lista.filter((n) => n.cuerpo === "GITHUB");
+  notasGithub.forEach((n, i) => { n.orb = { r: 1 + (i / Math.max(1, notasGithub.length - 1)) * (R_CORE_GH * 0.7 - 1), a0: i * 2.39996 }; });
+  // Remolino del núcleo: el mismo algoritmo que el de la UNED (crearRemolino), con los verdes de GitHub
+  const crearRemolino = (R, paleta, bordes, rndF, gF) => ({
+    p: Array.from({ length: 3400 }, (_, i) => {
+      const u = Math.pow(rndF(), 0.85), r = 0.3 + u * (R - 0.3);
+      const th = espiral(r, i % 2) + gF() * (0.35 + 0.25 * u);
+      return { p: [Math.cos(th) * r, gF() * 0.18 * (1 - u * 0.8), Math.sin(th) * r], u,
+        c: paleta[Math.min(paleta.length - 1, Math.floor(Math.pow(u, 0.8) * paleta.length))], t: rndF() };
+    }),
+    polvo: Array.from({ length: 1100 }, (_, i) => { // franjas oscuras, entre los brazos
+      const u = 0.15 + rndF() * 0.85, r = 0.3 + u * (R - 0.3), th = espiral(r, i % 2) + Math.PI / 2 + gF() * 0.3;
+      return { p: [Math.cos(th) * r, gF() * 0.1, Math.sin(th) * r], s: 1 + rndF() * 2.2 };
+    }),
+    borde: Array.from({ length: 500 }, () => { // trazos claros y estrellas sueltas en el borde
+      const r = R * (0.92 + Math.abs(gF()) * 0.35), th = rndF() * Math.PI * 2;
+      return { p: [Math.cos(th) * r, gF() * 0.12, Math.sin(th) * r], largo: 0.05 + rndF() * 0.3, c: rndF() < 0.6 ? bordes[0] : bordes[1], t: rndF() };
+    }),
+  });
+  const remolinoGH = crearRemolino(R_CORE_GH, ["#f4fff6", "#d7ffe0", "#a6f5b5", "#7ee787", "#39d353", "#26a641", "#196c2e"], ["#e6edf3", "#7ee787"], rndG, gauss0G);
+  // disco: estrellas en tonos de GitHub, en cuatro brazos (uno por rama)
+  const estrellasGH = Array.from({ length: 1500 }, (_, i) => {
+    const brazo = i % 4, s = R_CORE_GH * 1.2 + Math.pow(rndG(), 0.8) * (R_GH - R_CORE_GH * 1.2);
+    const th = (brazo / 4) * Math.PI * 2 + 2.1 + (s - R_CORE_GH * 1.9) * 0.05 + gauss0G() * (0.25 + 3 / s);
+    return { p: [Math.cos(th) * s, gauss0G() * 0.3 * Math.max(0.2, 1 - s / 40), Math.sin(th) * s],
+      c: rndG() < 0.55 ? "#39d353" : rndG() < 0.5 ? "#e6edf3" : rndG() < 0.5 ? "#58a6ff" : "#a371f7", t: rndG() };
+  });
+
+  // ---------- Cámara ----------
+  const ctx = canvas.getContext("2d");
+  let W = 0, H = 0, dpr = 1, S = 100, ladoReactor = -1;
+  let yaw = 0.6, pitch = -0.55, hover = null, arrastre = null;
+  const VIEW_R = anios[0].R + anios[0].radio + 0.6; // la vista inicial muestra el núcleo y el sistema del año 1
+  let foco = window.jvFoco || { tipo: "galaxia" }; // galaxia | nucleo | anio
+  const F = [0, 0, 0]; // punto al que mira la cámara (se acerca suavemente al objetivo)
+  // universo: AARON en el centro y las dos galaxias, una a cada lado
+  const R_UNI = Math.max(D_UNED + R_GAL, D_GH + R_GH) + 4;
+  const sisGH = (id) => ghSis.find((s) => s.id === id) || ghSis[0];
+  const zoomDe = (f) => (f.tipo === "nucleo" ? VIEW_R / 1.8 : f.tipo === "aaron" ? VIEW_R / 2.6 : f.tipo === "centro" ? VIEW_R / 5
+    : f.tipo === "anio" ? VIEW_R / (anios[f.a - 1].radio + 0.9)
+    : f.tipo === "sis" ? VIEW_R / (sisGH(f.id).radio + 0.9)
+    : f.tipo === "uned" ? VIEW_R / (R_CORE + 2) : f.tipo === "ghcore" ? VIEW_R / (R_CORE_GH * 2 + 2)
+    : f.tipo === "universo" ? VIEW_R / (R_UNI + 2) : f.tipo === "galaxiaGH" ? VIEW_R / (R_GH + 5)
+    : f.tipo === "planeta" ? VIEW_R / 0.75 : f.tipo === "libre" ? f.z : VIEW_R / (R_GAL + 5)); // galaxia: se ve entera
+  let zoomExtra = window.jvZoomExtra || 1; // ajuste del usuario sobre el zoom de la vista
+  let zoomAct = zoomDe(foco) * zoomExtra;
+  const objetivo = (t) => (foco.tipo === "anio" ? solPos(anios[foco.a - 1], t)
+    : foco.tipo === "sis" ? solPos(sisGH(foco.id), t)
+    : foco.tipo === "planeta" && planetaDe[foco.k] ? planetaDe[foco.k].c || solPos(planetaDe[foco.k].sol, t)
+    : foco.tipo === "nucleo" ? jarvisPos(t) : foco.tipo === "centro" ? J.map((v) => v / 2)
+    : foco.tipo === "universo" ? [0, 0, 0]
+    : foco.tipo === "galaxiaGH" || foco.tipo === "ghcore" ? ghPos(t)
+    : foco.tipo === "libre" ? foco.p : galPos(t)); // galaxia y núcleo UNED: el centro de la galaxia
+  // Vuelo libre: la cámara deja de seguir un cuerpo y se queda donde la lleves (arrastre con botón derecho,
+  // Shift o rueda pulsada; WASD/flechas para volar, Q/E para bajar/subir)
+  const ejesCam = () => {
+    const c = Math.cos(yaw), s = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    return { der: [c, 0, -s], abajo: [-sp * s, cp, -sp * c], atras: [cp * s, sp, cp * c] };
+  };
+  const soltarFoco = () => {
+    if (foco.tipo !== "libre") { foco = { tipo: "libre", p: [...F], z: zoomAct / zoomExtra }; window.jvFoco = foco; }
+  };
+  const moverCam = (v, k) => { soltarFoco(); for (let j = 0; j < 3; j++) { foco.p[j] += v[j] * k; F[j] += v[j] * k; } };
+  const teclasVuelo = new Set();
+
+  const centroDe = (s, t) => (s.gh ? ghPos(t) : galPos(t)); // centro de la galaxia del sistema
+  const solPos = (s, t) => { const th = s.th0 + t * s.vel; return suma(centroDe(s, t), [Math.cos(th) * s.R, Math.sin(th * 2) * 0.12, Math.sin(th) * s.R]); };
+  const planetaPos = (p, t) => { const a = p.fase + t * p.vel; return suma(p.sol.c, rotar([Math.cos(a) * p.r, 0, Math.sin(a) * p.r], p.incX, p.incZ)); };
+  const enPlaneta = (p, q, t) => suma(p.c, giraY(q, t * p.giro), R_PLANETA);
+
+  // Proyección: [x, y, profundidad relativa al cuerpo (0 detrás … 1 delante), escala]
+  const camZ = (p) => {
+    const x = p[0] - F[0], y = p[1] - F[1], z = p[2] - F[2];
+    let c = Math.cos(yaw), s = Math.sin(yaw);
+    const x1 = x * c - z * s, z1 = x * s + z * c;
+    c = Math.cos(pitch); s = Math.sin(pitch);
+    return [x1, y * c - z1 * s, y * s + z1 * c];
+  };
+  const proy = (p, centro = null, rad = 1.1) => {
+    const [x1, y1, z2] = camZ(p);
+    const D = 4.5 * VIEW_R / zoomAct;
+    const f = D / Math.max(D * 0.2, D - z2);
+    const zc = centro ? camZ(centro)[2] : camZ([0, 0, 0])[2];
+    return [W / 2 + x1 * f * S, H / 2 + y1 * f * S, Math.max(0, Math.min(1, (z2 - zc + rad) / (2 * rad))), f];
+  };
+
+  const medir = () => {
+    if (MODO === "nucleo") {
+      const vc = root.closest(".view-content") || root.parentElement;
+      const otros = root.offsetHeight - caja.offsetHeight;
+      caja.style.height = `${Math.max(380, vc.clientHeight - otros - 40)}px`;
+    }
+    W = caja.clientWidth; H = caja.clientHeight; dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = `${W}px`; canvas.style.height = `${H}px`;
+  };
+  const ro = new ResizeObserver(medir);
+  ro.observe(caja);
+  const vc = root.closest(".view-content");
+  if (vc) ro.observe(vc);
+
+  const trazo = (pts, color, ancho, aDetras, aDelante, brillo, saltar, centro, rad) => {
+    const P = pts.map((q) => proy(q, centro, rad));
+    for (const delante of [false, true]) {
+      ctx.beginPath();
+      for (let i = 1; i < P.length; i++) {
+        if (saltar && saltar[i % saltar.length]) continue;
+        const a = P[i - 1], b = P[i];
+        if ((a[2] + b[2] > 1) !== delante) continue;
+        ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]);
+      }
+      ctx.globalAlpha = delante ? aDelante : aDetras;
+      ctx.strokeStyle = color; ctx.lineWidth = ancho;
+      ctx.shadowColor = color; ctx.shadowBlur = delante ? brillo : 0;
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+  const circulo = (c, r, n = 72) => Array.from({ length: n + 1 }, (_, i) => { const a = (i / n) * Math.PI * 2; return [c[0] + Math.cos(a) * r, c[1], c[2] + Math.sin(a) * r]; });
+  const halo = (x, y, r, color, alpha) => {
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, color + "cc"); g.addColorStop(0.25, color + "55"); g.addColorStop(1, color + "00");
+    ctx.globalAlpha = alpha; ctx.fillStyle = g;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill(); ctx.globalAlpha = 1;
+  };
+  const etiqueta = (txt, x, y, color, alpha, tam = 12) => {
+    ctx.globalAlpha = alpha; ctx.font = `bold ${tam}px Orbitron, 'Share Tech Mono', monospace`; ctx.textAlign = "center";
+    ctx.fillStyle = color; ctx.shadowColor = color; ctx.shadowBlur = 8;
+    ctx.fillText(txt, x, y); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+  };
+
+  // ---------- Dibujo de cada cuerpo ----------
+  const dibujarNucleo = (t) => {
+    const [cx, cy, , cf] = proy(J, J), rr = S * cf;
+    halo(cx, cy, rr * 3.2, "#3ee8ff", 0.35);
+    for (const pts of rr > 60 ? reticula : retPeq) trazo(pts.map(enJ), "#3ee8ff", 0.7, 0.04, 0.14, 0, null, J, 1.1);
+    ctx.fillStyle = "#3ee8ff";
+    for (const q of polvoN) {
+      const p = proy(enJ(q), J);
+      ctx.globalAlpha = 0.06 + 0.45 * p[2] * p[2];
+      ctx.fillRect(p[0] - 0.7, p[1] - 0.7, 1.4, 1.4);
+    }
+    for (const a of anillosN) {
+      const giro = a.fase + t * a.vel, pts = [];
+      for (let i = 0; i <= 72; i++) { const ang = giro + (i / 72) * Math.PI * 2; pts.push(enJ(rotar([Math.cos(ang) * a.rad, 0, Math.sin(ang) * a.rad], a.incX, a.incZ))); }
+      if (a.tipo === "luz") trazo(pts, "#3ee8ff", 2, 0.15, 0.8, 12, null, J, 1.4);
+      else if (a.tipo === "datos") trazo(pts, "#4dffb5", 3.5, 0.1, 0.5, 6, a.huecos, J, 1.4);
+      else trazo(pts, "#3ee8ff", 0.8, 0.08, 0.35, 0, null, J, 1.4);
+    }
+    etiqueta("JARVIS", cx, cy - rr * 1.55 - 6, "#e8fbff", 0.85, rr > 50 ? 13 : 10);
+    if (rr > 40) etiqueta("EL AGENTE", cx, cy - rr * 1.55 + 7, "#3ee8ff", 0.5, 8);
+  };
+
+  // ---------- AARON: agujero negro ----------
+  const O = [0, 0, 0];
+  const posDisco = (r, a0, h, t) => { const a = a0 + t * (0.55 / Math.pow(r, 1.5)); return enDisco([Math.cos(a) * r, h, Math.sin(a) * r]); };
+  const dibujarAgujero = (t, fase) => { // fase 0: lo de detrás del horizonte · fase 1: horizonte y lo de delante
+    const [cx, cy, , cf] = proy(O), rh = R_BH * S * cf;
+    if (fase === 0) {
+      halo(cx, cy, rh * 7, "#7b5cff", 0.45);
+      halo(cx, cy, rh * 3.5, "#ff6fae", 0.25);
+      // retícula HUD de gravedad: anillos punteados que giran
+      ctx.strokeStyle = "#b388ff"; ctx.lineWidth = 1;
+      [[2.6, 0.12, [2, 6]], [3.2, -0.08, [10, 8]], [3.9, 0.05, [1, 9]]].forEach(([k, v, d]) => {
+        ctx.setLineDash(d); ctx.globalAlpha = 0.28;
+        ctx.beginPath(); ctx.ellipse(cx, cy, rh * k, rh * k * 0.5, 0, t * v, t * v + Math.PI * 2); ctx.stroke();
+      });
+      ctx.setLineDash([]); ctx.globalAlpha = 1;
+      // materia cayendo en espiral
+      for (const q of caida) {
+        q.u = (q.u + q.v * 0.016) % 1;
+        const r = q.r0 * (1 - q.u) + R_BH * q.u, a = q.a0 + q.u * 7;
+        const s = proy(enDisco([Math.cos(a) * r, 0, Math.sin(a) * r]), O, 2.5);
+        ctx.globalAlpha = 0.15 + 0.6 * q.u; ctx.fillStyle = q.u > 0.7 ? "#ffffff" : "#c9a7ff";
+        ctx.fillRect(s[0] - 0.8, s[1] - 0.8, 1.6, 1.6);
+      }
+    }
+    // disco de acreción (partículas), mitad trasera o delantera
+    for (const d of discoP) {
+      const s = proy(posDisco(d.r, d.a0, d.h, t), O, DISCO[1]);
+      if ((s[2] >= 0.5) !== (fase === 1)) continue;
+      const tw = 0.7 + 0.3 * Math.sin(t * 3 + d.t * 30);
+      ctx.globalAlpha = (fase === 1 ? 0.75 : 0.5) * tw; ctx.fillStyle = d.c;
+      const z = 1.3 * s[3];
+      ctx.fillRect(s[0] - z / 2, s[1] - z / 2, z, z);
+    }
+    ctx.globalAlpha = 1;
+    if (fase === 0) {
+      // lente gravitatoria: el disco de detrás se ve curvado por encima y por debajo del horizonte
+      const g = ctx.createLinearGradient(cx - rh * 1.8, cy, cx + rh * 1.8, cy);
+      g.addColorStop(0, "#a77bff00"); g.addColorStop(0.3, "#ff6fae"); g.addColorStop(0.5, "#fff4e0"); g.addColorStop(0.7, "#ffb070"); g.addColorStop(1, "#a77bff00");
+      ctx.strokeStyle = g; ctx.shadowColor = "#ff9ad5"; ctx.shadowBlur = 18;
+      ctx.lineWidth = Math.max(1.5, rh * 0.22); ctx.globalAlpha = 0.75;
+      ctx.beginPath(); ctx.ellipse(cx, cy, rh * 1.45, rh * 1.25, 0, Math.PI * 1.05, Math.PI * 1.95); ctx.stroke();
+      ctx.lineWidth = Math.max(1, rh * 0.1); ctx.globalAlpha = 0.45;
+      ctx.beginPath(); ctx.ellipse(cx, cy, rh * 1.3, rh * 1.15, 0, Math.PI * 0.1, Math.PI * 0.9); ctx.stroke();
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+      // horizonte de sucesos: negro absoluto con el anillo de fotones
+      const h = ctx.createRadialGradient(cx, cy, rh * 0.6, cx, cy, rh * 1.25);
+      h.addColorStop(0, "#000000"); h.addColorStop(0.75, "#000000"); h.addColorStop(1, "#00000000");
+      ctx.fillStyle = h; ctx.beginPath(); ctx.arc(cx, cy, rh * 1.25, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#fff1ff"; ctx.shadowColor = "#d6a8ff"; ctx.shadowBlur = 22; ctx.lineWidth = Math.max(1, rh * 0.06);
+      ctx.globalAlpha = 0.9 + 0.1 * Math.sin(t * 2);
+      ctx.beginPath(); ctx.arc(cx, cy, rh * 1.02, 0, Math.PI * 2); ctx.stroke();
+      ctx.lineWidth = 0.8; ctx.globalAlpha = 0.5; ctx.shadowBlur = 8;
+      ctx.beginPath(); ctx.arc(cx, cy, rh * 1.12, 0, Math.PI * 2); ctx.stroke();
+      ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+    } else {
+      etiqueta("AARON", cx, cy - rh * 2.1, "#f1e4ff", 0.95, rh > 40 ? 16 : 13);
+      if (rh > 30) etiqueta("DECISIONES · MEMORIA", cx, cy - rh * 2.1 + 13, "#c9a7ff", 0.6, 8);
+    }
+    return [cx, cy, rh];
+  };
+  // Enlace AARON ↔ JARVIS: el humano y su agente
+  const dibujarVinculo = (t) => {
+    const len = Math.hypot(...J), dir = J.map((v) => v / len);
+    const ini = dir.map((v) => v * (DISCO[1] + 0.05)), fin = dir.map((v) => v * (len - 1.2));
+    const pts = Array.from({ length: 13 }, (_, i) => ini.map((v, j) => v + (fin[j] - v) * (i / 12)));
+    trazo(pts, "#b388ff", 2.4, 0.2, 0.45, 12, null, J, len);
+    trazo(pts, "#3ee8ff", 0.8, 0.2, 0.6, 0, null, J, len);
+    for (let i = 0; i < 6; i++) {
+      const u = (t * 0.25 + i / 6) % 1, haciaAaron = i % 2 === 0;
+      const q = proy(fin.map((v, j) => v + (ini[j] - v) * (haciaAaron ? u : 1 - u)), J, len);
+      ctx.globalAlpha = 0.7; ctx.fillStyle = haciaAaron ? "#d6a8ff" : "#3ee8ff";
+      ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 10;
+      ctx.beginPath(); ctx.arc(q[0], q[1], 2.2 * q[3], 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+  const dibujarHaz = (s) => { // núcleo de su galaxia ↔ sol: haz con pulsos (del color del sol hacia el núcleo, cian hacia el sol)
+    const C = s.gh ? GH : G, rC = s.gh ? R_CORE_GH * 0.9 : R_CORE * 0.9;
+    const rel = s.c.map((v, j) => v - C[j]), len = Math.hypot(...rel), dir = rel.map((v) => v / len);
+    const ini = dir.map((v, j) => C[j] + v * rC), fin = dir.map((v, j) => C[j] + v * (len - R_SOL * 1.4));
+    const pts = Array.from({ length: 17 }, (_, i) => ini.map((v, j) => v + (fin[j] - v) * (i / 16)));
+    if (!s.activo) { ctx.setLineDash([2, 8]); trazo(pts, s.color, 0.8, 0.08, 0.15, 0, null, s.c, len); ctx.setLineDash([]); return; }
+    trazo(pts, s.color, 2.2, 0.15, 0.35, 10, null, s.c, len);
+    trazo(pts, "#ffffff", 0.6, 0.15, 0.4, 0, null, s.c, len);
+    for (const q of s.pulsos) {
+      q.u = (q.u + 0.004) % 1;
+      const p = proy(fin.map((v, j) => v + (ini[j] - v) * (q.sube ? q.u : 1 - q.u)), s.c, len);
+      ctx.globalAlpha = 0.6; ctx.fillStyle = q.sube ? s.color : "#cdf6ff";
+      ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 10;
+      ctx.beginPath(); ctx.arc(p[0], p[1], 2 * p[3], 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+  // JARVIS ↔ cada galaxia: el agente trabaja sobre la carpeta (haz largo con pulsos en los dos sentidos)
+  const dibujarPuente = (t, C = G, rC = R_CORE, color = "#ff6fae", claro = "#ff9cc2") => {
+    const rel = C.map((v, j) => v - J[j]), len = Math.hypot(...rel), dir = rel.map((v) => v / len);
+    const ini = J.map((v, j) => v + dir[j] * 1.4), fin = J.map((v, j) => v + dir[j] * (len - rC * 1.05));
+    const pts = Array.from({ length: 41 }, (_, i) => ini.map((v, j) => v + (fin[j] - v) * (i / 40)));
+    const mid = ini.map((v, j) => (v + fin[j]) / 2);
+    trazo(pts, color, 2.6, 0.15, 0.35, 12, null, mid, len / 2);
+    trazo(pts, "#3ee8ff", 0.8, 0.2, 0.55, 0, null, mid, len / 2);
+    for (let i = 0; i < 10; i++) {
+      const u = (t * 0.06 + i / 10) % 1, haciaJ = i % 2 === 0;
+      const q = proy(fin.map((v, j) => v + (ini[j] - v) * (haciaJ ? u : 1 - u)), mid, len / 2);
+      ctx.globalAlpha = 0.75; ctx.fillStyle = haciaJ ? claro : "#3ee8ff";
+      ctx.shadowColor = ctx.fillStyle; ctx.shadowBlur = 10;
+      ctx.beginPath(); ctx.arc(q[0], q[1], 2.2 * q[3], 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1; ctx.shadowBlur = 0;
+  };
+  // ---------- Núcleo de la galaxia UNED (la carpeta UNED) ----------
+  const giroCore = (t) => -t * 0.035;
+  const enCore = (q, t) => suma(G, giraY(q, giroCore(t)));
+  // Remolino genérico (núcleo de una galaxia): o = { C, R, datos: {p, polvo, borde}, en, halo, centro, nucleo,
+  // polvo, nombre, sub, colorNombre, colorSub, enfoque, scr }
+  const dibujarRemolino = (t, o) => {
+    const { C, R, datos, en } = o;
+    const [cx, cy, , cf] = proy(C, C, R), rc = R * S * cf;
+    if (rc < 1.5) return;
+    // aplastamiento del disco según la inclinación de la cámara (para los resplandores)
+    const plano = Math.max(0.18, Math.abs(Math.sin(pitch)));
+    const resplandor = (r, paradas, alpha) => {
+      ctx.save(); ctx.translate(cx, cy); ctx.scale(1, plano);
+      const g = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
+      paradas.forEach(([k, c]) => g.addColorStop(k, c));
+      ctx.globalAlpha = alpha; ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, r, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    };
+    ctx.globalCompositeOperation = "lighter";
+    resplandor(rc * 1.15, o.halo, 1);
+    // brazos: partículas de colores (más grandes y brillantes cerca del centro)
+    const det = rc > 120 ? 1 : rc > 50 ? 2 : 4; // con la galaxia lejos se dibujan menos
+    for (let i = 0; i < datos.p.length; i += det) {
+      const d = datos.p[i], s = proy(en(d.p, t), C, R);
+      const tw = 0.75 + 0.25 * Math.sin(t * 2 + d.t * 40);
+      ctx.globalAlpha = (0.25 + 0.5 * (1 - d.u)) * tw * (0.6 + 0.4 * s[2]);
+      ctx.fillStyle = d.c;
+      const z = Math.max(0.8, (1.6 - d.u) * 1.2 * s[3] * Math.min(2, rc / 60)) * Math.sqrt(det);
+      ctx.fillRect(s[0] - z / 2, s[1] - z / 2, z, z);
+    }
+    // borde: trazos claros que siguen el giro
+    for (let i = 0; i < datos.borde.length; i += det) {
+      const b = datos.borde[i], a = en(b.p, t), q = en(giraY(b.p, b.largo / R), t);
+      const A = proy(a, C, R), B = proy(q, C, R);
+      ctx.globalAlpha = (0.2 + 0.35 * A[2]) * (0.7 + 0.3 * Math.sin(t + b.t * 30));
+      ctx.strokeStyle = b.c; ctx.lineWidth = Math.max(0.6, A[3] * 1.2);
+      ctx.beginPath(); ctx.moveTo(A[0], A[1]); ctx.lineTo(B[0], B[1]); ctx.stroke();
+    }
+    // centro: blanco con un halo de color
+    resplandor(rc * 0.55, o.centro, 0.9);
+    resplandor(rc * 0.2, o.nucleo, 1);
+    ctx.globalCompositeOperation = "source-over";
+    // franjas de polvo oscuro entre los brazos
+    ctx.fillStyle = o.polvo;
+    for (let i = 0; i < datos.polvo.length; i += det) {
+      const d = datos.polvo[i], s = proy(en(d.p, t), C, R);
+      ctx.globalAlpha = 0.28;
+      const z = d.s * Math.max(0.8, s[3] * Math.min(2.5, rc / 50));
+      ctx.fillRect(s[0] - z / 2, s[1] - z / 2, z, z);
+    }
+    ctx.globalAlpha = 1;
+    if (o.enfoque || rc > 40) {
+      etiqueta(o.nombre, cx, cy + rc * plano + 22, o.colorNombre, 0.9, rc > 60 ? 15 : 12);
+      if (rc > 25) etiqueta(o.sub, cx, cy + rc * plano + 35, o.colorSub, 0.55, 8);
+    }
+    o.scr.sx = cx; o.scr.sy = cy; o.scr.sr = rc * Math.max(plano, 0.4);
+  };
+  const datosUned = { p: coreP, polvo: corePolvo, borde: coreBorde };
+  const dibujarCoreUned = (t) => dibujarRemolino(t, {
+    C: G, R: R_CORE, datos: datosUned, en: enCore, scr: coreScr,
+    halo: [[0, "#ff6fae55"], [0.45, "#a64fc433"], [0.8, "#5a3a9a22"], [1, "#5a3a9a00"]],
+    centro: [[0, "#ffd9ccaa"], [0.5, "#ff9cc244"], [1, "#ff6fae00"]],
+    nucleo: [[0, "#ffffff"], [0.35, "#fff6e8dd"], [1, "#ffd9cc00"]],
+    polvo: "#12081f", nombre: "UNED", sub: `NÚCLEO DE LA GALAXIA · ${notasUned.length} NOTAS`,
+    colorNombre: "#ffd9e8", colorSub: "#ff9cc2", enfoque: foco.tipo === "uned" || foco.tipo === "galaxia",
+  });
+  const coreScr = { sx: -99, sy: -99, sr: 0 }; // dónde quedó el núcleo en pantalla (para el ratón)
+  // ---------- Núcleo de la galaxia GITHUB AARON (la carpeta GITHUB): el mismo remolino, en verde ----------
+  const giroGH = (t) => -t * 0.035; // gira igual que el de la UNED
+  const enCoreGH = (q, t) => suma(GH, giraY(q, giroGH(t)));
+  const coreGHScr = { sx: -99, sy: -99, sr: 0 };
+  const dibujarCoreGithub = (t) => dibujarRemolino(t, {
+    C: GH, R: R_CORE_GH, datos: remolinoGH, en: enCoreGH, scr: coreGHScr,
+    halo: [[0, "#39d35355"], [0.45, "#1f883d33"], [0.8, "#0e442922"], [1, "#0e442900"]],
+    centro: [[0, "#d7ffe0aa"], [0.5, "#7ee78744"], [1, "#39d35300"]],
+    nucleo: [[0, "#ffffff"], [0.35, "#f4fff6dd"], [1, "#d7ffe000"]],
+    polvo: "#04140a", nombre: "GITHUB", sub: `NÚCLEO DE LA GALAXIA · ${ghProy.length} PROYECTOS`,
+    colorNombre: "#e6edf3", colorSub: "#39d353", enfoque: foco.tipo === "galaxiaGH" || foco.tipo === "ghcore",
+  });
+  const dibujarPlaneta = (p, t) => {
+    const [cx, cy, cz, cf] = proy(p.c, p.sol.c, p.r), rr = Math.max(2, R_PLANETA * S * cf * (p.tam || 1));
+    if (!p.activa) { // por cursar: planeta tenue, solo contorno, polvo y nombre
+      halo(cx, cy, rr * 2, p.color, 0.25);
+      ctx.strokeStyle = p.color; ctx.lineWidth = 1; ctx.globalAlpha = 0.35 + 0.25 * cz;
+      ctx.setLineDash([3, 3]); ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = p.color;
+      if (rr > 6) for (const q of p.polvo) {
+        const s = proy(enPlaneta(p, q, t), p.c, R_PLANETA);
+        ctx.globalAlpha = 0.03 + 0.2 * s[2] * s[2];
+        ctx.fillRect(s[0] - 0.6, s[1] - 0.6, 1.2, 1.2);
+      }
+      ctx.globalAlpha = 1;
+      if (rr > 7) etiqueta(p.gh ? p.nombre : p.k, cx, cy - rr - 8, p.color, 0.55, rr > 14 ? 11 : 9); // por cursar o archivado: nombre solo de cerca
+      p.sx = cx; p.sy = cy; p.sr = rr;
+      return;
+    }
+    halo(cx, cy, rr * 2.6, p.color, p.gh ? 0.2 + 0.4 * (p.pct / 100) : 0.55); // proyectos: brillan más cuanto más reciente su último commit
+    if (rr > 9) for (const pts of retPeq) trazo(pts.map((q) => enPlaneta(p, q, t)), p.color, 0.6, 0.06, 0.3, 3, null, p.c, R_PLANETA);
+    ctx.strokeStyle = p.color; ctx.shadowColor = p.color; ctx.shadowBlur = 10;
+    ctx.globalAlpha = 0.5 + 0.4 * cz; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2); ctx.stroke();
+    ctx.lineWidth = 2.2; ctx.globalAlpha = 0.85;
+    ctx.beginPath(); ctx.arc(cx, cy, rr + 4, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (p.pct / 100)); ctx.stroke();
+    ctx.shadowBlur = 0; ctx.fillStyle = p.color;
+    if (rr > 6) for (const q of p.polvo) {
+      const s = proy(enPlaneta(p, q, t), p.c, R_PLANETA);
+      ctx.globalAlpha = 0.06 + 0.4 * s[2] * s[2];
+      ctx.fillRect(s[0] - 0.6, s[1] - 0.6, 1.2, 1.2);
+    }
+    if (rr > 4) etiqueta(p.gh ? p.nombre : `${p.k} · ${p.pct}%`, cx, cy - rr - 10, p.color, 0.9, rr > 14 ? 12 : 10);
+    p.sx = cx; p.sy = cy; p.sr = rr;
+  };
+  const dibujarSistema = (s, t) => {
+    const [cx, cy, , cf] = proy(s.c, s.c, s.radio), rr = Math.max(3, R_SOL * S * cf);
+    // órbitas: 1.er cuatrimestre continuas, zona del 2.º punteada
+    for (const p of s.planetas) {
+      const pts = Array.from({ length: 97 }, (_, i) => { const a = (i / 96) * Math.PI * 2; return suma(s.c, rotar([Math.cos(a) * p.r, 0, Math.sin(a) * p.r], p.incX, p.incZ)); });
+      trazo(pts, p.color, 0.8, 0.1, 0.3, 0, null, s.c, p.r);
+    }
+    ctx.setLineDash([2, 7]);
+    if (!s.gh) for (const r of ORB_CUATRI) trazo(circulo(s.c, r - 0.38), s.color, 0.6, 0.05, s.activo ? 0.14 : 0.08, 0, null, s.c, r);
+    ctx.setLineDash([]);
+    // sol: misma estética que el núcleo (retícula, polvo, anillos de datos y reactor), en dorado
+    const k = s.enCurso ? 1 : s.activo ? 0.6 : 0.4; // el año en curso brilla; los futuros, más apagados
+    const enSol = (q) => suma(s.c, q, R_SOL);
+    halo(cx, cy, rr * (s.activo ? 4.2 : 2.6), s.color, 0.7 * k);
+    if (rr > 6) {
+      for (const pts of rr > 40 ? reticula : retPeq) trazo(pts.map(enSol), s.color, 0.7, 0.05 * k, 0.2 * k, 0, null, s.c, R_SOL);
+      ctx.fillStyle = s.color;
+      for (let i = 0; i < polvoN.length; i += rr > 40 ? 1 : 3) {
+        const q = proy(enSol(polvoN[i]), s.c, R_SOL);
+        ctx.globalAlpha = (0.06 + 0.45 * q[2] * q[2]) * k;
+        ctx.fillRect(q[0] - 0.7, q[1] - 0.7, 1.4, 1.4);
+      }
+      for (const a of s.anillos) {
+        const giro = a.fase + t * a.vel, pts = [];
+        for (let i = 0; i <= 60; i++) { const ang = giro + (i / 60) * Math.PI * 2; pts.push(enSol(rotar([Math.cos(ang) * a.rad, 0, Math.sin(ang) * a.rad], a.incX, a.incZ))); }
+        const rad = a.rad * R_SOL;
+        if (a.tipo === "luz") trazo(pts, s.color, 1.8, 0.15 * k, 0.8 * k, 12, null, s.c, rad);
+        else if (a.tipo === "datos") trazo(pts, aclarar(s.color, 0.55), 3, 0.1 * k, 0.5 * k, 6, a.huecos, s.c, rad);
+        else trazo(pts, s.color, 0.8, 0.08 * k, 0.35 * k, 0, null, s.c, rad);
+      }
+    }
+    // reactor dorado en el centro (como el del núcleo, dibujado en el lienzo)
+    const rc = rr * 0.62;
+    ctx.globalAlpha = k;
+    const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rc);
+    g.addColorStop(0, aclarar(s.color, 0.85)); g.addColorStop(0.35, s.color); g.addColorStop(1, s.color + "00");
+    ctx.fillStyle = g; ctx.shadowColor = s.color; ctx.shadowBlur = s.activo ? 25 : 6;
+    ctx.beginPath(); ctx.arc(cx, cy, rc, 0, Math.PI * 2); ctx.fill(); ctx.shadowBlur = 0;
+    ctx.strokeStyle = s.color;
+    [[0.95, 1.4, 0.35, [6, 4]], [0.75, 1, -0.6, [2, 3]], [0.55, 0.8, 0.9, []]].forEach(([f, w, v, dash]) => {
+      ctx.setLineDash(dash); ctx.lineWidth = w; ctx.globalAlpha = 0.8 * k;
+      ctx.beginPath(); ctx.arc(cx, cy, rc * f, t * v, t * v + Math.PI * 1.6); ctx.stroke();
+    });
+    ctx.setLineDash([]);
+    for (let i = 0; i < 3; i++) { // tres segmentos tipo "arc reactor"
+      const a = t * 0.8 + (i / 3) * Math.PI * 2;
+      ctx.lineWidth = 2.2; ctx.globalAlpha = 0.9 * k;
+      ctx.beginPath(); ctx.arc(cx, cy, rc * 1.15, a, a + 0.6); ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+    const sub = s.gh ? `${s.planetas.length} PROYECTO${s.planetas.length === 1 ? "" : "S"}${s.enCurso ? " · CON COMMITS ESTE AÑO" : " · SIN COMMITS ESTE AÑO"}`
+      : s.enCurso ? `EN CURSO · ${s.planetas.length} ASIGNATURAS` : s.activo ? `${s.planetas.length} ASIGNATURA${s.planetas.length > 1 ? "S" : ""} POR CURSAR` : "POR EXPLORAR";
+    etiqueta(s.gh ? s.id : `AÑO ${s.a}`, cx, cy + rr + 18, s.color, s.activo ? 0.95 : 0.5, 12);
+    if (rr > 14) etiqueta(sub, cx, cy + rr + 31, s.color, s.activo ? 0.6 : 0.35, 9);
+    s.sx = cx; s.sy = cy; s.sr = rr;
+    // planetas: los de detrás del sol primero
+    const ps = [...s.planetas].sort((a, b) => camZ(a.c)[2] - camZ(b.c)[2]);
+    for (const p of ps) dibujarPlaneta(p, t);
+  };
+
+  // ---------- Bucle de dibujo ----------
+  // ---------- Naves: relaciones entre asignaturas ----------
+  const rutas = (CFG.relaciones || []).filter((r) => planetaDe[r.de] && planetaDe[r.a]).map((r) => ({
+    ...r, tipo: "uned", nomDe: r.de, nomA: r.a, naves: [{ sx: -99, sy: -99 }],
+  }));
+  // Conexiones de los proyectos (propiedades `conexiones` y `asignaturas` de sus notas):
+  // proyecto ⇄ proyecto dentro de la galaxia GITHUB y proyecto ⇄ asignatura, de una galaxia a la otra
+  const yaUnidos = new Set();
+  const unir = (de, a, tema, tipo) => {
+    if (!planetaDe[de] || !planetaDe[a] || de === a) return;
+    const clave = [de, a].sort().join("|");
+    if (yaUnidos.has(clave)) return;
+    yaUnidos.add(clave);
+    rutas.push({ de, a, tema, tipo, nomDe: planetaDe[de].nombre || de, nomA: planetaDe[a].k.startsWith("gh:") ? planetaDe[a].nombre : a, naves: [{ sx: -99, sy: -99 }] });
+  };
+  for (const p of ghProy) {
+    for (const c of p.conexiones) unir(p.k, `gh:${c.a}`, c.tema, "proyecto");
+    for (const c of p.asignaturas) unir(p.k, c.a, c.tema, "asignatura");
+  }
+  const bezier = (a, c, b, u) => [0, 1, 2].map((j) => (1 - u) * (1 - u) * a[j] + 2 * (1 - u) * u * c[j] + u * u * b[j]);
+  // ¿está encendida la conexión? (se señala o se enfoca uno de sus dos planetas)
+  const conexionViva = (r) => (hover && (hover.cuerpo === r.de || hover.cuerpo === r.a))
+    || (foco.tipo === "planeta" && (foco.k === r.de || foco.k === r.a)) || naveHover === r;
+  let naveHover = null;
+  const dibujarNaves = (t) => {
+    for (const r of rutas) {
+      const A = planetaDe[r.de], B = planetaDe[r.a];
+      const dist = Math.hypot(A.c[0] - B.c[0], A.c[1] - B.c[1], A.c[2] - B.c[2]);
+      // las que cruzan de una galaxia a otra se arquean menos (si no, saldrían del universo)
+      const ctrl = suma([(A.c[0] + B.c[0]) / 2, (A.c[1] + B.c[1]) / 2, (A.c[2] + B.c[2]) / 2], [0, 1, 0], dist * (r.tipo === "asignatura" ? 0.16 : 0.45));
+      const mid = ctrl;
+      // solo la conexión: una línea curva entre los dos planetas, del color de uno al del otro
+      const pts = Array.from({ length: 33 }, (_, i) => bezier(A.c, ctrl, B.c, i / 32));
+      const P = pts.map((q) => proy(q, mid, dist));
+      const g = ctx.createLinearGradient(P[0][0], P[0][1], P[32][0], P[32][1]);
+      g.addColorStop(0, A.color); g.addColorStop(1, B.color);
+      const viva = conexionViva(r);
+      ctx.strokeStyle = g; ctx.shadowColor = "#e8fbff"; ctx.shadowBlur = viva ? 14 : 8;
+      // proyecto ⇄ asignatura: casi invisible hasta que se señala uno de sus planetas
+      ctx.lineWidth = viva ? 2 : r.tipo === "asignatura" ? 0.8 : 1.4;
+      ctx.globalAlpha = viva ? 0.9 : r.tipo === "asignatura" ? 0.07 : 0.55;
+      if (r.tipo === "asignatura") ctx.setLineDash([4, 6]);
+      ctx.beginPath(); ctx.moveTo(P[0][0], P[0][1]);
+      for (const q of P.slice(1)) ctx.lineTo(q[0], q[1]);
+      ctx.stroke();
+      ctx.setLineDash([]); ctx.shadowBlur = 0; ctx.globalAlpha = 1;
+      if (viva && r.tipo !== "uned") etiqueta(r.tema, P[16][0], P[16][1] - 8, "#e8fbff", 0.8, 9);
+      // punto para pasar el ratón: el centro de la curva
+      const n = r.naves[0];
+      n.sx = P[16][0]; n.sy = P[16][1]; n.r = r;
+    }
+  };
+
+  // ---------- Nebulosas: la memoria de la relación entre dos sistemas solares ----------
+  // Cada nota de UNED/PLANIFICACION/Nebulosas (propiedades de/a = años y la lista `relaciones`) es una nebulosa.
+  // Inspirada en el resto de una supernova: una burbuja de filamentos de gas con los colores de sus dos soles,
+  // borde brillante, velos azulados dentro, una estrella blanca en el centro y un hilo punteado hacia cada sol.
+  const mezclar = (a, b, k) => { // mezcla dos colores #rrggbb
+    const A = parseInt(a.slice(1), 16), B = parseInt(b.slice(1), 16);
+    return "#" + [16, 8, 0].map((s) => Math.round(((A >> s) & 255) + (((B >> s) & 255) - ((A >> s) & 255)) * k).toString(16).padStart(2, "0")).join("");
+  };
+  const gauss = () => (rnd() + rnd() + rnd() - 1.5) / 1.5; // aprox. normal en [-1, 1]
+  const notasNeb = Array.from(dv.pages('"UNED/PLANIFICACION/Nebulosas"')).filter((p) => anios[p.de - 1] && anios[p.a - 1] && p.de !== p.a);
+  const RN = 2; // radio de la burbuja de cada nebulosa
+  const alAzar = () => { // dirección al azar sobre la esfera
+    const z = rnd() * 2 - 1, a = rnd() * Math.PI * 2, r = Math.sqrt(1 - z * z);
+    return [Math.cos(a) * r, z, Math.sin(a) * r];
+  };
+  const normal = (v) => { const l = Math.hypot(v[0], v[1], v[2]) || 1; return [v[0] / l, v[1] / l, v[2] / l]; };
+  const cruz = (a, b) => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
+  // filamento: un camino que serpentea sobre la superficie de la burbuja
+  const filamento = () => {
+    let p = alAzar(), d = normal(cruz(p, alAzar()));
+    const n = 7 + Math.floor(rnd() * 7), pts = [];
+    for (let j = 0; j < n; j++) {
+      const r = RN * (1 + (rnd() - 0.5) * 0.08);
+      pts.push([p[0] * r, p[1] * r, p[2] * r]);
+      const lado = normal(cruz(p, d)); // gira un poco a cada paso
+      d = normal(suma(d, lado, (rnd() - 0.5) * 1.1));
+      p = normal(suma(p, d, 0.16));
+      d = normal(cruz(cruz(p, d), p)); // vuelve a dejar la dirección tangente a la esfera
+    }
+    return pts;
+  };
+  const nebulosas = notasNeb.map((p) => ({
+    A: anios[p.de - 1], B: anios[p.a - 1], path: p.file.path, sx: -99, sy: -99, sr: 10,
+    rel: Array.from(p.relaciones || []).map((r) => `${r.de ?? "?"}→${r.a ?? "?"}`),
+    // capa de la burbuja: filamentos de gas (color de un sol, del otro, mezclas o casi blanco)
+    filamentos: Array.from({ length: 46 }, (_, j) => ({ pts: filamento(), k: [0, 1, 0.5, 0.25, 0.75][j % 5], blanco: j % 7 === 0, ancho: 0.6 + rnd() * 1.6, f: rnd() * 6.3 })),
+    // grumos de gas sobre la capa (la textura de algodón)
+    grumos: Array.from({ length: 260 }, () => { const v = alAzar(), r = RN * (0.94 + rnd() * 0.1); return { p: [v[0] * r, v[1] * r, v[2] * r], k: rnd(), t: 0.05 + rnd() * 0.11, f: rnd() * 6.3 }; }),
+    // velos azulados en el interior, alrededor de la estrella central
+    velos: Array.from({ length: 10 }, () => { const v = alAzar(), r = RN * (0.15 + rnd() * 0.55); return { p: [v[0] * r, v[1] * r * 0.5, v[2] * r], r: 0.5 + rnd() * 0.7 }; }),
+    // estrellas que se ven a través de la burbuja
+    estrellas: Array.from({ length: 14 }, () => { const v = alAzar(), r = RN * rnd() * 0.9; return { p: [v[0] * r, v[1] * r, v[2] * r], f: rnd() * 6.3 }; }),
+    eje: [rnd() - 0.5, 0, rnd() - 0.5], // cada burbuja va algo inclinada
+  }));
+  const dibujarNebulosas = (t) => {
+    nebulosas.forEach((g, i) => {
+      const { A, B } = g, cA = A.color, cB = B.color, cM = mezclar(cA, cB, 0.5);
+      // repartidas en una esfera alrededor de la galaxia: alternan encima y debajo del disco (sin tocarlo)
+      // y se escalonan en altura y ángulo (ángulo áureo), girando con el disco
+      const h = (0.3 + 0.6 * (i + 0.5) / nebulosas.length) * (i % 2 ? 1 : -1), rc = Math.sqrt(1 - h * h), ang = i * 2.39996 + t * 0.01, RC = R_GAL * 0.85;
+      const X = suma(G, [Math.cos(ang) * rc * RC, h * RC * 0.6, Math.sin(ang) * rc * RC]);
+      const giro = t * 0.025 + i, late = 1 + 0.015 * Math.sin(t * 0.4 + i); // gira despacio y "respira"
+      const inc = (q) => [q[0] + g.eje[0] * q[1] * 0.6, q[1], q[2] + g.eje[2] * q[1] * 0.6];
+      const en = (q) => suma(X, giraY(inc(q), giro), late);
+      const sX = proy(X, X, RN), esc = S * sX[3], R = RN * esc;
+
+      // hilo tenue hacia cada sol
+      ctx.setLineDash([1, 8]);
+      trazo([X, A.c], cA, 0.8, 0.06, 0.18, 0, null, X, RC);
+      trazo([X, B.c], cB, 0.8, 0.06, 0.18, 0, null, X, RC);
+      ctx.setLineDash([]);
+      g.sx = sX[0]; g.sy = sX[1]; g.sr = Math.max(10, R);
+      if (R < 2) return;
+
+      ctx.globalCompositeOperation = "lighter";
+      // resplandor interior azulado y halo exterior
+      let gr = ctx.createRadialGradient(sX[0], sX[1], 0, sX[0], sX[1], R * 1.25);
+      gr.addColorStop(0, "#9cc4ff55"); gr.addColorStop(0.35, mezclar("#5f86d8", cM, 0.3) + "22");
+      gr.addColorStop(0.75, cM + "10"); gr.addColorStop(0.9, cM + "1c"); gr.addColorStop(1, cM + "00");
+      ctx.globalAlpha = 1; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(sX[0], sX[1], R * 1.25, 0, Math.PI * 2); ctx.fill();
+      // borde brillante: dos anillos algo desplazados, uno con el color de cada sol
+      for (const [c, d] of [[cA, -0.03], [cB, 0.03]]) {
+        const cx = sX[0] + d * R, cy = sX[1] + d * R;
+        gr = ctx.createRadialGradient(cx, cy, R * 0.78, cx, cy, R * 1.06);
+        gr.addColorStop(0, c + "00"); gr.addColorStop(0.65, c + "30"); gr.addColorStop(0.82, c + "70"); gr.addColorStop(1, c + "00");
+        ctx.globalAlpha = 0.55; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(cx, cy, R * 1.06, 0, Math.PI * 2); ctx.fill();
+      }
+      // velos interiores
+      for (const v of g.velos) {
+        const q = proy(en(v.p), X, RN), r = v.r * esc;
+        if (r < 1) continue;
+        gr = ctx.createRadialGradient(q[0], q[1], 0, q[0], q[1], r);
+        gr.addColorStop(0, "#a9c8ff30"); gr.addColorStop(1, "#a9c8ff00");
+        ctx.globalAlpha = 0.7; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(q[0], q[1], r, 0, Math.PI * 2); ctx.fill();
+      }
+      // grumos de gas: la cara de delante más viva que la de detrás
+      for (const d of g.grumos) {
+        const q = proy(en(d.p), X, RN), r = Math.max(0.8, d.t * esc);
+        ctx.globalAlpha = (0.12 + 0.3 * q[2]) * (0.75 + 0.25 * Math.sin(t * 0.8 + d.f));
+        ctx.fillStyle = mezclar(cA, cB, d.k); ctx.beginPath(); ctx.arc(q[0], q[1], r, 0, Math.PI * 2); ctx.fill();
+      }
+      // filamentos: hebras de gas que se enredan sobre la burbuja (halo ancho y hebra fina)
+      ctx.lineCap = "round"; ctx.lineJoin = "round";
+      for (const fl of g.filamentos) {
+        const P = fl.pts.map((p) => proy(en(p), X, RN));
+        const prof = P.reduce((s, q) => s + q[2], 0) / P.length;
+        const c = fl.blanco ? mezclar(cM, "#fff4dc", 0.6) : mezclar(cA, cB, fl.k);
+        const brillo = (0.18 + 0.55 * prof) * (0.8 + 0.2 * Math.sin(t * 0.6 + fl.f));
+        for (const [ancho, a] of [[fl.ancho * 3.2, 0.18], [fl.ancho, 1]]) {
+          ctx.globalAlpha = brillo * a; ctx.strokeStyle = c; ctx.lineWidth = Math.max(0.5, ancho * esc * 0.025);
+          ctx.beginPath(); ctx.moveTo(P[0][0], P[0][1]);
+          for (let j = 1; j < P.length - 1; j++) ctx.quadraticCurveTo(P[j][0], P[j][1], (P[j][0] + P[j + 1][0]) / 2, (P[j][1] + P[j + 1][1]) / 2);
+          ctx.lineTo(P[P.length - 1][0], P[P.length - 1][1]); ctx.stroke();
+        }
+      }
+      // estrellas que se ven a través del gas
+      ctx.fillStyle = "#ffffff";
+      for (const e of g.estrellas) {
+        const q = proy(en(e.p), X, RN);
+        ctx.globalAlpha = 0.35 + 0.35 * Math.sin(t * 1.5 + e.f); ctx.fillRect(q[0] - 0.6, q[1] - 0.6, 1.2, 1.2);
+      }
+      // estrella central: el corazón blanco con un destello en cruz
+      const l = Math.min(10, 0.1 * esc) * (0.85 + 0.15 * Math.sin(t * 1.2 + i));
+      gr = ctx.createRadialGradient(sX[0], sX[1], 0, sX[0], sX[1], l * 2.5);
+      gr.addColorStop(0, "#ffffffee"); gr.addColorStop(0.25, "#dfeaffaa"); gr.addColorStop(1, "#9cc4ff00");
+      ctx.globalAlpha = 1; ctx.fillStyle = gr; ctx.beginPath(); ctx.arc(sX[0], sX[1], l * 2.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#ffffff"; ctx.globalAlpha = 0.6;
+      ctx.fillRect(sX[0] - l * 2, sX[1] - 0.5, l * 4, 1); ctx.fillRect(sX[0] - 0.5, sX[1] - l * 2, 1, l * 4);
+      ctx.globalCompositeOperation = "source-over"; ctx.globalAlpha = 1;
+
+      if (g === nebHover) { // título solo al pasar el ratón (la barra de info da el detalle)
+        etiqueta("NEBULOSA", sX[0], sX[1] - R - 22, "#e8fbff", 0.75, 10);
+        etiqueta(`AÑO ${A.a} ⇄ AÑO ${B.a} · ${g.rel.length} RELACIÓN${g.rel.length === 1 ? "" : "ES"}`, sX[0], sX[1] - R - 10, cM, 0.6, 8);
+      }
+    });
+  };
+
+  const nCore = lista.filter((n) => !n.cuerpo).length;
+  const nAaron = notasAaron.length;
+  const activos = anios.filter((s) => s.activo).length;
+  const infoBase = `UNIVERSO AARON · AARON ${nAaron} · JARVIS ${nCore} · GALAXIA UNED ${notasUned.length} · GITHUB ${ghProy.length} PROYECTOS · AÑOS ACTIVOS ${activos}/${anios.length} · NODOS ${lista.length} · NEBULOSAS ${nebulosas.length} · ARRASTRA: GIRAR · BOTÓN DERECHO O SHIFT + ARRASTRAR: MOVERTE · WASD/QE: VOLAR`;
+  info.setText(infoBase);
+  const paquetes = [];
+
+  const dibujar = () => {
+    const t = performance.now() / 1000;
+    if (!arrastre && !hover) yaw += 0.0012;
+    J = jarvisPos(t);
+    G = galPos(t);
+    GH = ghPos(t);
+    for (const s of sistemas) s.c = solPos(s, t);
+    for (const s of sistemas) for (const p of s.planetas) p.c = planetaPos(p, t);
+    // vuelo con el teclado (velocidad proporcional a lo que se ve en pantalla)
+    if (teclasVuelo.size) {
+      const { der, abajo, atras } = ejesCam(), v = (0.012 * VIEW_R) / zoomAct, has = (...k) => k.some((x) => teclasVuelo.has(x));
+      if (has("w", "arrowup")) moverCam(atras, -v);
+      if (has("s", "arrowdown")) moverCam(atras, v);
+      if (has("a", "arrowleft")) moverCam(der, -v);
+      if (has("d", "arrowright")) moverCam(der, v);
+      if (has("q")) moverCam(abajo, v);
+      if (has("e")) moverCam(abajo, -v);
+    }
+    // cámara: acercarse suavemente al foco y al zoom deseado
+    const obj = objetivo(t), zObj = zoomDe(foco) * zoomExtra;
+    for (let j = 0; j < 3; j++) F[j] += (obj[j] - F[j]) * 0.08;
+    zoomAct += (zObj - zoomAct) * 0.08;
+    S = (Math.min(W, H) / 2 / VIEW_R) * zoomAct;
+    zTxt.setText(`${Math.round(zoomExtra * 100)}%`);
+
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    // disco galáctico
+    const giroGal = t * 0.01;
+    for (const e of estrellas) {
+      const p = proy(suma(G, giraY(e.p, giroGal)), G, R_GAL);
+      if (p[0] < -5 || p[0] > W + 5 || p[1] < -5 || p[1] > H + 5) continue;
+      const tw = 0.6 + 0.4 * Math.sin(t * 1.5 + e.t * 20);
+      ctx.globalAlpha = (0.15 + 0.45 * p[2]) * tw; ctx.fillStyle = e.c;
+      const z = Math.min(2.2, 0.8 * p[3]);
+      ctx.fillRect(p[0] - z / 2, p[1] - z / 2, z, z);
+    }
+    // disco de la galaxia GITHUB AARON
+    for (const e of estrellasGH) {
+      const p = proy(suma(GH, giraY(e.p, t * 0.01)), GH, R_GH); // gira como el disco de la UNED
+      if (p[0] < -5 || p[0] > W + 5 || p[1] < -5 || p[1] > H + 5) continue;
+      const tw = 0.6 + 0.4 * Math.sin(t * 1.5 + e.t * 20);
+      ctx.globalAlpha = (0.15 + 0.45 * p[2]) * tw; ctx.fillStyle = e.c;
+      const z = Math.min(2.2, 0.8 * p[3]);
+      ctx.fillRect(p[0] - z / 2, p[1] - z / 2, z, z);
+    }
+    ctx.globalAlpha = 1;
+    // haces núcleo de cada galaxia ↔ sus soles, AARON ↔ JARVIS y JARVIS ↔ cada galaxia
+    for (const s of sistemas) dibujarHaz(s);
+    dibujarVinculo(t);
+    dibujarPuente(t);
+    dibujarPuente(t, GH, R_CORE_GH, "#39d353", "#7ee787");
+    // cuerpos ordenados de atrás hacia delante (AARON, JARVIS, núcleo UNED y sistemas)
+    const cuerpos = [
+      { z: camZ(O)[2], f: () => { dibujarAgujero(t, 0); dibujarAgujero(t, 1); } },
+      { z: camZ(J)[2], f: () => dibujarNucleo(t) },
+      { z: camZ(G)[2], f: () => dibujarCoreUned(t) },
+      { z: camZ(GH)[2], f: () => dibujarCoreGithub(t) },
+      ...sistemas.map((s) => ({ z: camZ(s.c)[2], f: () => dibujarSistema(s, t) })),
+    ];
+    for (const c of cuerpos.sort((a, b) => a.z - b.z)) c.f();
+    dibujarNebulosas(t);
+    dibujarNaves(t);
+
+    // reactor sobre JARVIS
+    const [rx, ry, , rf] = proy(J, J);
+    const lado = Math.round(S * rf * 0.62);
+    capa.style.left = `${rx}px`; capa.style.top = `${ry}px`;
+    capa.style.display = lado < 24 ? "none" : "";
+    if (lado !== ladoReactor) { ladoReactor = lado; capa.style.width = capa.style.height = `${lado}px`; }
+
+    // notas
+    for (const n of lista) {
+      if (n.cuerpo === "AARON") {
+        [n.sx, n.sy, n.z, n.f] = proy(posDisco(n.orb.r, n.orb.a0, 0, t), O, DISCO[1]);
+        n.vis = R_BH * S * n.f > 14;
+      } else if (n.cuerpo === "UNED") {
+        [n.sx, n.sy, n.z, n.f] = proy(enCore([Math.cos(n.orb.a0) * n.orb.r, 0.25, Math.sin(n.orb.a0) * n.orb.r], t), G, R_CORE);
+        n.vis = R_CORE * S * n.f > 70;
+      } else if (n.cuerpo === "GITHUB") {
+        [n.sx, n.sy, n.z, n.f] = proy(enCoreGH([Math.cos(n.orb.a0) * n.orb.r, 0.3, Math.sin(n.orb.a0) * n.orb.r], t), GH, R_CORE_GH);
+        n.vis = R_CORE_GH * S * n.f > 60;
+      } else if (n.cuerpo) {
+        const pl = planetaDe[n.cuerpo];
+        [n.sx, n.sy, n.z, n.f] = proy(enPlaneta(pl, n.p, t), pl.c, R_PLANETA);
+        n.vis = pl.sr > 10;
+      } else {
+        [n.sx, n.sy, n.z, n.f] = proy(enJ(n.p), J);
+        n.vis = S * n.f > 35;
+      }
+    }
+    const resaltados = hover ? new Set([hover, ...hover.vecinos]) : null;
+    for (const [a, b] of aristas) {
+      if (!a.vis && !b.vis && !(hover && (a === hover || b === hover))) continue;
+      const on = hover && (a === hover || b === hover);
+      ctx.globalAlpha = on ? 0.95 : resaltados ? 0.03 : a.cuerpo !== b.cuerpo ? 0.07 : 0.06 + 0.25 * ((a.z + b.z) / 2);
+      ctx.strokeStyle = on ? "#ffffff" : a.color; ctx.lineWidth = on ? 1.3 : 0.7;
+      ctx.beginPath(); ctx.moveTo(a.sx, a.sy); ctx.lineTo(b.sx, b.sy); ctx.stroke();
+    }
+    if (aristas.length && Math.random() < 0.2 && paquetes.length < 24) {
+      const e = aristas[Math.floor(Math.random() * aristas.length)];
+      paquetes.push({ e: Math.random() < 0.5 ? e : [e[1], e[0]], t: 0 });
+    }
+    ctx.fillStyle = "rgba(220,255,255,.95)"; ctx.shadowColor = "#3ee8ff"; ctx.shadowBlur = 8;
+    for (let i = paquetes.length - 1; i >= 0; i--) {
+      const p = paquetes[i];
+      p.t += 0.015;
+      if (p.t >= 1) { paquetes.splice(i, 1); continue; }
+      const [a, b] = p.e;
+      if (!a.vis && !b.vis) continue;
+      ctx.globalAlpha = 0.3 + 0.6 * ((a.z + b.z) / 2);
+      ctx.beginPath(); ctx.arc(a.sx + (b.sx - a.sx) * p.t, a.sy + (b.sy - a.sy) * p.t, 1.5, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    const escala = (n) => (n.cuerpo === "AARON" ? Math.min(1, (R_BH * S * n.f) / 45) : n.cuerpo === "UNED" ? Math.min(1, (R_CORE * S * n.f) / 250) : n.cuerpo === "GITHUB" ? Math.min(1, (R_CORE_GH * S * n.f) / 200) : n.cuerpo ?Math.min(1, planetaDe[n.cuerpo].sr / 40) : Math.min(1.2, (S * n.f) / 110));
+    for (const n of [...lista].filter((n) => n.vis).sort((a, b) => a.z - b.z)) {
+      const tenue = resaltados && !resaltados.has(n);
+      ctx.globalAlpha = tenue ? 0.12 : 0.25 + 0.75 * n.z;
+      const r = Math.max(1.2, n.r * escala(n));
+      ctx.shadowColor = n.color; ctx.shadowBlur = n === hover ? 22 : 4 + 8 * n.z;
+      ctx.fillStyle = n.ext === "md" ? n.color : "rgba(127,169,184,.8)";
+      ctx.beginPath(); ctx.arc(n.sx, n.sy, r, 0, Math.PI * 2); ctx.fill();
+      if (n.estado) {
+        ctx.shadowBlur = 0; ctx.strokeStyle = n.color; ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(n.sx, n.sy, r + 3, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (PESO[n.estado] ?? 0)); ctx.stroke();
+      }
+      n.rr = r;
+    }
+    ctx.shadowBlur = 0;
+    ctx.font = "11px 'Share Tech Mono', Consolas, monospace"; ctx.textAlign = "center";
+    for (const n of lista) {
+      if (!n.vis) continue;
+      const ver = resaltados ? resaltados.has(n) : n.z > 0.6 && n.ext === "md" && (n.vecinos.size >= 3 || n.estado) && n.rr > 2.5;
+      if (!ver) continue;
+      ctx.globalAlpha = resaltados ? 1 : Math.min(1, (n.z - 0.6) * 3);
+      ctx.fillStyle = n === hover ? "#ffffff" : "rgba(205,246,255,.8)";
+      const txt = n.nombre.length > 30 ? n.nombre.slice(0, 29) + "…" : n.nombre;
+      ctx.fillText(txt, n.sx, n.sy + n.rr + 12);
+    }
+    ctx.globalAlpha = 1;
+  };
+
+  const bucle = () => {
+    if (!root.isConnected) { ro.disconnect(); return; }
+    if (W && H) dibujar();
+    requestAnimationFrame(bucle);
+  };
+
+  // ---------- Interacción ----------
+  const irA = (f) => { foco = f; window.jvFoco = f; zoomExtra = 1; window.jvZoomExtra = 1; };
+  const ponerZoom = (z) => { zoomExtra = Math.max(0.15, Math.min(4, Math.round(z * 100) / 100)); window.jvZoomExtra = zoomExtra; };
+  bMas.onclick = () => ponerZoom(zoomExtra * 1.25);
+  bMenos.onclick = () => ponerZoom(zoomExtra / 1.25);
+  bReset.onclick = () => ponerZoom(1);
+  bUni.onclick = () => irA({ tipo: "universo" });
+  bGal.onclick = () => irA({ tipo: "galaxia" });
+  bNuc.onclick = () => irA({ tipo: "centro" });
+  let solHover = null, nebHover = null, coreHover = false, coreGHHover = false;
+  canvas.addEventListener("mousedown", (e) => {
+    arrastre = { x: e.clientX, y: e.clientY, movido: 0, mover: e.button === 2 || e.button === 1 || e.shiftKey };
+    if (e.button === 1) e.preventDefault();
+    canvas.tabIndex = 0; canvas.focus({ preventScroll: true }); // así WASD vuela en vez de escribir en la nota
+  });
+  canvas.addEventListener("contextmenu", (e) => e.preventDefault());
+  canvas.addEventListener("mouseup", () => { setTimeout(() => { arrastre = null; }, 0); });
+  canvas.addEventListener("mousemove", (e) => {
+    if (arrastre && e.buttons) {
+      const dx = e.clientX - arrastre.x, dy = e.clientY - arrastre.y;
+      arrastre.movido += Math.abs(dx) + Math.abs(dy);
+      arrastre.x = e.clientX; arrastre.y = e.clientY;
+      if (arrastre.mover) { // desplazar la cámara: el universo se mueve con el ratón
+        const { der, abajo } = ejesCam();
+        moverCam(der, -dx / S); moverCam(abajo, -dy / S);
+        canvas.style.cursor = "move";
+        return;
+      }
+      yaw += dx * 0.008;
+      pitch = Math.max(-1.45, Math.min(1.45, pitch + dy * 0.008));
+      canvas.style.cursor = "grabbing";
+      return;
+    }
+    const r = canvas.getBoundingClientRect();
+    const mx = e.clientX - r.left, my = e.clientY - r.top;
+    let mejor = null, dmin = Infinity;
+    for (const n of lista) {
+      if (!n.vis || n.z < 0.4) continue;
+      const d = Math.hypot(n.sx - mx, n.sy - my);
+      if (d < Math.max(7, (n.rr || 2) + 4) && d < dmin) { mejor = n; dmin = d; }
+    }
+    solHover = null;
+    if (!mejor) for (const s of sistemas) if (s.sx != null && Math.hypot(s.sx - mx, s.sy - my) < Math.max(12, s.sr + 6)) solHover = s;
+    let nave = null;
+    if (!mejor && !solHover) for (const r of rutas) for (const n of r.naves) if (Math.hypot(n.sx - mx, n.sy - my) < 10) nave = n;
+    naveHover = nave ? nave.r : null;
+    if (nave) { info.setText(`⇄ ${nave.r.nomDe} ⇄ ${nave.r.nomA} · ${nave.r.tema}`); canvas.style.cursor = "help"; hover = null; return; }
+    nebHover = !mejor && !solHover ? nebulosas.find((g) => Math.hypot(g.sx - mx, g.sy - my) < g.sr + 6) || null : null;
+    if (nebHover) { info.setText(`☁ NEBULOSA AÑO ${nebHover.A.a} ⇄ AÑO ${nebHover.B.a} · ${nebHover.rel.join(" · ") || "SIN RELACIONES"} · CLIC PARA ABRIR SU MEMORIA`); canvas.style.cursor = "pointer"; hover = null; return; }
+    // el núcleo de la galaxia (si no se está ya encima de él, para poder señalar sus notas)
+    coreHover = !mejor && !solHover && foco.tipo !== "uned" && Math.hypot(coreScr.sx - mx, coreScr.sy - my) < Math.max(10, coreScr.sr * 0.6);
+    if (coreHover) { info.setText(`✺ GALAXIA UNED · NÚCLEO: LA CARPETA UNED · ${notasUned.length} NOTAS (PLANIFICACIÓN, LIBROS…) · CLIC PARA ACERCARTE`); canvas.style.cursor = "pointer"; hover = null; return; }
+    coreGHHover = !mejor && !solHover && foco.tipo !== "ghcore" && Math.hypot(coreGHScr.sx - mx, coreGHScr.sy - my) < Math.max(10, coreGHScr.sr * 0.6);
+    if (coreGHHover) { info.setText(`✺ GALAXIA GITHUB AARON · NÚCLEO: LA CARPETA GITHUB · ${ghProy.length} PROYECTOS EN ${ghSis.filter((s) => s.activo).length} SISTEMAS · CLIC PARA ACERCARTE`); canvas.style.cursor = "pointer"; hover = null; return; }
+    if (mejor !== hover || !mejor) {
+      hover = mejor;
+      info.setText(hover
+        ? `▸ ${hover.nombre}${hover.ext !== "md" ? "." + hover.ext : ""} · ${hover.carpeta || "raíz"} · ENLACES ${hover.vecinos.size}${hover.estado ? " · ESTADO " + hover.estado.toUpperCase() : ""}`
+        : solHover && solHover.gh ? `☀ ${solHover.id} · ${solHover.planetas.map((p) => p.nombre).join(", ") || "sin proyectos"} · CLIC PARA ACERCARTE`
+        : solHover ? `☀ AÑO ${solHover.a} · ${solHover.activo ? solHover.planetas.map((p) => p.k).join(", ") + (solHover.enCurso ? " · EN CURSO" : " · POR CURSAR") : "sin asignaturas todavía"} · CLIC PARA ACERCARTE`
+          : infoBase);
+    }
+    canvas.style.cursor = hover || solHover ? "pointer" : "grab";
+  });
+  canvas.addEventListener("mouseleave", () => { hover = null; solHover = null; coreHover = false; coreGHHover = false; arrastre = null; info.setText(infoBase); });
+  canvas.addEventListener("click", (e) => {
+    if (arrastre && arrastre.movido > 4) return;
+    if (hover) abrir(hover.path, e.ctrlKey || e.metaKey);
+    else if (solHover) irA(solHover.gh ? { tipo: "sis", id: solHover.id } : { tipo: "anio", a: solHover.a });
+    else if (nebHover) abrir(nebHover.path, e.ctrlKey || e.metaKey);
+    else if (coreHover) irA({ tipo: "uned" });
+    else if (coreGHHover) irA({ tipo: "ghcore" });
+  });
+  canvas.addEventListener("dblclick", () => { if (!hover && !solHover) irA({ tipo: "galaxia" }); });
+  canvas.addEventListener("wheel", (e) => { e.preventDefault(); ponerZoom(zoomExtra * (e.deltaY < 0 ? 1.1 : 1 / 1.1)); }, { passive: false });
+  let dentro = false;
+  caja.addEventListener("mouseenter", () => { dentro = true; });
+  caja.addEventListener("mouseleave", () => { dentro = false; teclasVuelo.clear(); });
+  const VUELO = ["w", "a", "s", "d", "q", "e", "arrowup", "arrowdown", "arrowleft", "arrowright"];
+  const soltar = (e) => {
+    if (!root.isConnected) { window.removeEventListener("keyup", soltar, true); return; }
+    teclasVuelo.delete(e.key.toLowerCase());
+  };
+  window.addEventListener("keyup", soltar, true);
+  const teclas = (e) => {
+    if (!root.isConnected) { window.removeEventListener("keydown", teclas, true); return; }
+    const kv = e.key.toLowerCase(), act = document.activeElement;
+    if (dentro && !e.ctrlKey && !e.metaKey && !e.altKey && VUELO.includes(kv)
+      && !(act && (/INPUT|TEXTAREA/.test(act.tagName) || act.isContentEditable))) {
+      teclasVuelo.add(kv); e.preventDefault(); e.stopPropagation(); return;
+    }
+    if (!dentro || !(e.ctrlKey || e.metaKey)) return;
+    const k = e.key;
+    if (k === "+" || k === "=" || k === "Add") ponerZoom(zoomExtra * 1.25);
+    else if (k === "-" || k === "Subtract") ponerZoom(zoomExtra / 1.25);
+    else if (k === "0") ponerZoom(1);
+    else return;
+    e.preventDefault(); e.stopPropagation();
+  };
+  window.addEventListener("keydown", teclas, true);
+
+  // ---------- Menú de navegación: barra lateral (columna de iconos + panel) ----------
+  // Inspirado en la barra lateral de Stripe (pin de Aaron): una columna estrecha de iconos siempre visible y, al pulsar
+  // el logo, un panel con cabecera (UNIVERSO AARON y selector de galaxia ⇅), grupos con iconos, separadores, el
+  // elemento activo resaltado, contadores y, abajo, Conexiones y Ayuda. Un solo sistema desplegado a la vez.
+  const ICONO = {
+    universo: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 3v4M17 5h4"/>',
+    centro: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    aaron: '<circle cx="12" cy="12" r="3.5" fill="currentColor"/><ellipse cx="12" cy="12" rx="10" ry="3.5" transform="rotate(-15 12 12)"/>',
+    jarvis: '<circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="7.5" stroke-dasharray="3 3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>',
+    galaxia: '<path d="M12 12c1.5-1 3.5 0 3.3 2s-3 3.5-5.5 2.6S6 12.8 7.8 10s6.2-3.4 8.6-1.4 3.2 6.4 1 9"/><path d="M12 12c-1.5 1-3.5 0-3.3-2s3-3.5 5.5-2.6"/>',
+    github: '<circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="7" r="2"/><path d="M6 7v10M18 9c0 5-6 4-11.5 8.5"/>',
+    vista: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+    nucleo: '<circle cx="12" cy="12" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="9" stroke-dasharray="2 3"/>',
+    sol: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+    planeta: '<circle cx="12" cy="12" r="5"/><ellipse cx="12" cy="12" rx="10.5" ry="3" transform="rotate(-20 12 12)"/>',
+    enlace: '<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+    ayuda: '<circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.7M12 17h.01"/>',
+    selector: '<path d="M8 9l4-4 4 4M8 15l4 4 4-4"/>',
+    flecha: '<path d="M9 6l6 6-6 6"/>',
+  };
+  const icono = (padre, nombre, color) => {
+    const s = el(padre, "span", "jv-sb-ico");
+    s.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${ICONO[nombre]}</svg>`;
+    if (color) s.style.color = color;
+    return s;
+  };
+  // ¿a qué galaxia pertenece un foco? (para que el selector del panel la siga)
+  const galaxiaDeFoco = (f) => (["galaxiaGH", "ghcore", "sis"].includes(f.tipo) || (f.tipo === "planeta" && String(f.k).startsWith("gh:")) ? "GITHUB" : "UNED");
+  const GALAXIAS = {
+    UNED: { nombre: "GALAXIA UNED", sub: "Universidad · 6 años", color: "#ff6fae", icono: "galaxia", vista: { tipo: "galaxia" }, nucleo: { tipo: "uned" }, notasNucleo: notasUned.length },
+    GITHUB: { nombre: "GITHUB AARON", sub: `Proyectos · ${ghProy.length}`, color: "#39d353", icono: "github", vista: { tipo: "galaxiaGH" }, nucleo: { tipo: "ghcore" }, notasNucleo: ghProy.length },
+  };
+  const montarMenu = () => {
+    menu.empty();
+    if (!window.jvGalSel) window.jvGalSel = galaxiaDeFoco(foco);
+    menu.toggleClass("jv-sb-abierta", !!window.jvMenuAbierto);
+    // un elemento del menú: icono + texto + contador; al pulsarlo, la cámara va allí
+    const item = (padre, txt, ico, color, f, extra, cls) => {
+      const b = el(padre, "button", `jv-nav-i ${cls || ""}`);
+      icono(b, ico, color);
+      el(b, "span", "jv-sb-txt", txt);
+      if (extra != null && extra !== "") el(b, "span", "jv-sb-badge", String(extra));
+      if (f) {
+        b.onclick = (e) => { e.stopPropagation(); window.jvGalSel = galaxiaDeFoco(f); irA(f); montarMenu(); };
+        b.dataset.foco = JSON.stringify(f);
+      }
+      return b;
+    };
+    const separador = (padre) => el(padre, "div", "jv-sb-sep");
+    const titulo = (padre, txt) => el(padre, "div", "jv-sb-grupo", txt);
+
+    // ---- Columna de iconos (siempre visible) ----
+    const rail = el(menu, "div", "jv-sb-rail");
+    const logo = el(rail, "button", "jv-sb-logo", "U");
+    logo.title = window.jvMenuAbierto ? "Cerrar el menú" : "Abrir el menú";
+    logo.onclick = (e) => { e.stopPropagation(); window.jvMenuAbierto = !window.jvMenuAbierto; montarMenu(); };
+    const atajo = (ico, color, f, txt, extra) => {
+      const b = el(rail, "button", "jv-nav-i jv-sb-r");
+      icono(b, ico, color);
+      b.title = txt;
+      if (extra) el(b, "span", "jv-sb-punto", String(extra));
+      b.dataset.foco = JSON.stringify(f);
+      b.onclick = (e) => { e.stopPropagation(); window.jvGalSel = galaxiaDeFoco(f); irA(f); montarMenu(); };
+    };
+    atajo("universo", "#e8fbff", { tipo: "universo" }, "Universo completo");
+    atajo("centro", "#e8fbff", { tipo: "centro" }, "Centro: AARON + JARVIS");
+    el(rail, "div", "jv-sb-sep");
+    atajo("galaxia", GALAXIAS.UNED.color, { tipo: "galaxia" }, "Galaxia UNED");
+    atajo("github", GALAXIAS.GITHUB.color, { tipo: "galaxiaGH" }, "Galaxia GITHUB AARON");
+    el(rail, "div", "jv-sb-hueco");
+    const bAyudaR = el(rail, "button", "jv-nav-i jv-sb-r");
+    icono(bAyudaR, "ayuda", "#8aa4b8");
+    bAyudaR.title = "Controles de la galaxia";
+    bAyudaR.onclick = (e) => { e.stopPropagation(); window.jvMenuAbierto = true; window.jvMenuAyuda = true; montarMenu(); };
+
+    // ---- Panel (se abre con el logo) ----
+    const panel = el(menu, "div", "jv-sb-panel");
+    const g = GALAXIAS[window.jvGalSel];
+    // cabecera: espacio de trabajo + selector de galaxia
+    const cab = el(panel, "button", "jv-sb-cab");
+    cab.title = "Cambiar de galaxia";
+    const marca = el(cab, "span", "jv-sb-marca"); marca.style.background = g.color;
+    icono(marca, g.icono, "#03070c");
+    const cabTxt = el(cab, "span", "jv-sb-cabtxt");
+    el(cabTxt, "b", null, g.nombre);
+    el(cabTxt, "small", null, `UNIVERSO AARON · ${g.sub}`);
+    icono(cab, "selector", "#8aa4b8").addClass("jv-sb-sel");
+    cab.onclick = (e) => { e.stopPropagation(); window.jvGalSel = window.jvGalSel === "UNED" ? "GITHUB" : "UNED"; window.jvMenuExp = null; montarMenu(); };
+
+    const cuerpo = el(panel, "div", "jv-sb-cuerpo");
+    // universo
+    item(cuerpo, "Universo completo", "universo", "#e8fbff", { tipo: "universo" });
+    item(cuerpo, "Centro", "centro", "#e8fbff", { tipo: "centro" });
+    item(cuerpo, "AARON", "aaron", "#c9a7ff", { tipo: "aaron" }, nAaron, "jv-sb-sub");
+    item(cuerpo, "JARVIS", "jarvis", "#3ee8ff", { tipo: "nucleo" }, nCore, "jv-sb-sub");
+    separador(cuerpo);
+    // la galaxia elegida
+    titulo(cuerpo, g.nombre);
+    item(cuerpo, "Vista general", "vista", g.color, g.vista);
+    item(cuerpo, window.jvGalSel === "UNED" ? "Núcleo · carpeta UNED" : "Núcleo · carpeta GITHUB", "nucleo", g.color, g.nucleo, g.notasNucleo);
+    titulo(cuerpo, window.jvGalSel === "UNED" ? "Sistemas · años" : "Sistemas · ámbitos");
+    const sisLista = window.jvGalSel === "UNED" ? anios : ghSis;
+    for (const s of sisLista) {
+      const clave = s.gh ? `gh-${s.id}` : `a${s.a}`;
+      const abierto = window.jvMenuExp === clave;
+      const f = s.gh ? { tipo: "sis", id: s.id } : { tipo: "anio", a: s.a };
+      const n = s.planetas.length;
+      const b = item(cuerpo, s.gh ? s.id.charAt(0) + s.id.slice(1).toLowerCase() : `Año ${s.a}`, "sol", s.color, null,
+        n ? n : "—", `jv-sb-sis${abierto ? " jv-sb-exp" : ""}${s.activo ? "" : " jv-sb-off"}`);
+      icono(b, "flecha", "#5f7488").addClass("jv-sb-flecha");
+      b.dataset.foco = JSON.stringify(f);
+      b.onclick = (e) => { e.stopPropagation(); window.jvMenuExp = abierto ? null : clave; irA(f); montarMenu(); };
+      if (!abierto) continue;
+      const sub = el(cuerpo, "div", "jv-sb-planetas");
+      if (s.gh) {
+        for (const p of s.planetas) item(sub, p.nombre, "planeta", p.color, { tipo: "planeta", k: p.k }, `${p.commits}`);
+      } else {
+        for (const c of [1, 2]) {
+          const ps = s.planetas.filter((p) => p.cuatri === c);
+          el(sub, "div", "jv-sb-cuatri", `${c}.º cuatrimestre${ps.length ? "" : " · vacío"}`);
+          for (const p of ps) item(sub, `${p.k} · ${p.nombre}`, "planeta", p.color, { tipo: "planeta", k: p.k }, p.activa ? `${p.pct}%` : "", p.activa ? "" : "jv-sb-off");
+        }
+      }
+    }
+    // conexiones de la galaxia elegida
+    const rs = rutas.filter((r) => (window.jvGalSel === "UNED" ? r.tipo === "uned" : r.tipo !== "uned"));
+    if (rs.length) {
+      separador(cuerpo);
+      const abierto = window.jvMenuExp === "rutas";
+      const b = item(cuerpo, "Conexiones", "enlace", g.color, null, rs.length, `jv-sb-sis${abierto ? " jv-sb-exp" : ""}`);
+      icono(b, "flecha", "#5f7488").addClass("jv-sb-flecha");
+      b.onclick = (e) => { e.stopPropagation(); window.jvMenuExp = abierto ? null : "rutas"; montarMenu(); };
+      if (abierto) {
+        const sub = el(cuerpo, "div", "jv-sb-planetas");
+        for (const tipo of ["uned", "proyecto", "asignatura"]) {
+          const xs = rs.filter((r) => r.tipo === tipo);
+          if (!xs.length) continue;
+          if (window.jvGalSel === "GITHUB") el(sub, "div", "jv-sb-cuatri", tipo === "proyecto" ? "Entre proyectos" : "Proyectos ⇄ UNED");
+          for (const r of xs) item(sub, `${r.nomDe} ⇄ ${r.nomA}`, "enlace", planetaDe[r.de].color, { tipo: "planeta", k: r.de }).title = r.tema;
+        }
+      }
+    }
+    // pie: ayuda con los controles
+    const pie = el(panel, "div", "jv-sb-pie");
+    const bAyuda = item(pie, "Controles", "ayuda", "#8aa4b8", null, null, window.jvMenuAyuda ? "jv-sb-exp" : "");
+    bAyuda.onclick = (e) => { e.stopPropagation(); window.jvMenuAyuda = !window.jvMenuAyuda; montarMenu(); };
+    if (window.jvMenuAyuda) {
+      const ay = el(pie, "div", "jv-sb-ayuda");
+      for (const [k, v] of [["Arrastrar", "girar"], ["Botón dcho. / Shift", "moverte"], ["WASD · Q/E", "volar"], ["Rueda · Ctrl ±", "zoom"], ["Clic en un sol", "acercarte"], ["Doble clic", "galaxia entera"]]) {
+        const f = el(ay, "div"); el(f, "kbd", null, k); el(f, "span", null, v);
+      }
+    }
+    marcar();
+  };
+  const marcar = () => {
+    const actual = JSON.stringify(foco);
+    menu.querySelectorAll(".jv-nav-i").forEach((b) => b.toggleClass("jv-nav-on", b.dataset.foco === actual));
+  };
+  montarMenu();
+  // los botones de la esquina y los clics en el lienzo también mueven el foco: el menú los sigue
+  const seguir = () => setTimeout(() => {
+    const gal = galaxiaDeFoco(foco);
+    if (gal !== window.jvGalSel) { window.jvGalSel = gal; montarMenu(); } else marcar();
+  }, 0);
+  bUni.addEventListener("click", seguir); bGal.addEventListener("click", seguir); bNuc.addEventListener("click", seguir);
+  canvas.addEventListener("click", seguir);
+  canvas.addEventListener("dblclick", seguir);
+
+  // el foco empieza ya colocado (sin animación desde cero)
+  const t0 = performance.now() / 1000;
+  for (const s of sistemas) s.c = solPos(s, t0);
+  const o0 = objetivo(t0); F[0] = o0[0]; F[1] = o0[1]; F[2] = o0[2];
+  setTimeout(() => { medir(); bucle(); }, 30);
+};
+
+// ---------- Montaje según el modo ----------
+if (MODO === "nucleo") {
+  modCabecera(root);
+  modGalaxia(root); // vista anterior (planeta + lunas): modGrafo(root)
+} else if (MODO === "izquierda") {
+  modBriefing(root);
+  modTutoria(root);
+  modSistemas(root);
+  modRepasos(root);
+  modSemana(root);
+  modCalor(root);
+} else if (MODO === "derecha") {
+  modPrioridades(root);
+  modObjetivos(root);
+  modRitmo(root);
+  modPomodoro(root);
+  modRegistro(root);
+} else {
+  modCabecera(root);
+  const grid = el(root, "div", "jv-grid");
+  modBriefing(grid);
+  modReactor(grid);
+  modTutoria(grid);
+  modSistemas(grid);
+  modPomodoro(grid);
+  modObjetivos(grid);
+  modRepasos(grid);
+  modRegistro(grid);
+}
+
+// ---------- Bucle de 1 s ----------
+const tick = () => {
+  if (!root.isConnected) {
+    clearInterval(intervalo);
+    // Si ya no queda ninguna vista JARVIS abierta, se devuelve la interfaz normal
+    if (!document.querySelector(".jv-m-nucleo, .jv-m-izquierda, .jv-m-derecha") && document.body.hasClass("jv-mode")) {
+      document.body.removeClass("jv-mode");
+      temaTerminal(false);
+    }
+    return;
+  }
+  // Pestañas de terminal nuevas, o Lean Terminal que repinta con su tema al cambiar el de Obsidian
+  if (MODO === "nucleo" && document.body.hasClass("jv-mode")) temaTerminal(true);
+  ticks.forEach((f) => f());
+};
+const intervalo = setInterval(tick, 1000);
+tick();

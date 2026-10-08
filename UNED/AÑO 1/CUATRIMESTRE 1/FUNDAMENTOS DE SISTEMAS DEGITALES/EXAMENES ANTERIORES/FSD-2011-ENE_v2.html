@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Enero 2011</title>
+    <style>
+        body {
+          margin: 50px;
+          font-family: Verdana, Helvetiva, sans-serif;
+          line-height: 1.5;
+          font-size: 14pt;
+        }
+        
+        button {
+            color: #ffffff;
+            background-color: #00533F;
+            border-radius: 10px;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-size: 13pt;
+        }
+        button:hover {
+            color: #ffffff;
+            background-color: #008040;
+        }
+    
+    
+        h1, h2, h3, h4, h5, h6 {
+            color: #00533F;
+        }
+    
+    
+        math {
+            font-size: 1.1em;
+        }
+    
+    
+        table.tabla_dos_encabezados, table.tabla_dos_encabezados th, table.tabla_dos_encabezados td {
+          border: 1px solid grey;
+        }
+    
+        table.tabla_dos_encabezados th {
+            color:black;
+            font-weight: bolder;
+            min-width: 100px;
+        }
+    
+        table.tabla_verdad {
+            margin: 10px;
+            width: 100%;
+            max-width: 200px;
+            text-align:center; 
+        }
+    
+        img {
+            width: 100%;
+            max-width: 700px;
+        }
+    
+        img.img-med {
+            width: 100%;
+            max-width: 400px;
+        }
+    
+    
+        img.img-med2 {
+            width: 100%;
+            max-width: 300px;
+        }
+    
+        .sr-only {
+            position:absolute;
+            left:-10000px;
+            top:auto;
+            width:1px;
+            height:1px;
+            overflow:hidden;
+        }
+    
+        .solucion {
+            padding: 5px;
+            border: 1px solid black;
+            color: #00533F;
+            font-weight: bold;
+            display: none;
+        }
+        
+        code {
+            font-family: Courier, "Lucida Console", monospace;
+            font-size: 1.1em;
+        }
+        </style>
+    <script>
+    function mostrarOcultarSoluciones() {
+        var esMostrar = false;
+        var respuestasCorrectas = document.getElementsByClassName("correcta");
+        var style = getComputedStyle(respuestasCorrectas[0]);
+        if (style.backgroundColor == "rgba(0, 0, 0, 0)") {
+            esMostrar = true;
+        }
+
+        for (var i = 0; i < respuestasCorrectas.length; i++) {
+            if (esMostrar) {
+                respuestasCorrectas[i].style.backgroundColor = "lightgreen";
+            } else {
+                respuestasCorrectas[i].style.backgroundColor = "transparent";
+            }
+        }
+
+        var soluciones = document.getElementsByClassName("solucion");
+        for (var i = 0; i < soluciones.length; i++) {
+            if (esMostrar) {
+                soluciones[i].style.display = "block";
+            } else {
+                soluciones[i].style.display = "none";
+            }
+        }
+
+        var boton = document.getElementById("botonMostrarOcultarSoluciones");
+        if (esMostrar) {
+            boton.textContent = "Ocultar las soluciones de las preguntas de test";
+        } else {
+            boton.textContent = "Ver las soluciones de las preguntas de test";
+        }
+    }
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+<body>
+    <main>
+        <div id="bloque_soluciones_interactivas">
+            <p>Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación</p>
+            <button id="botonMostrarOcultarSoluciones" type="button" onclick="mostrarOcultarSoluciones()">Ver las soluciones de las preguntas de test</button>
+        </div>
+        <h2> PREGUNTA FSD-2011-ENE_01</h2>
+        <p>Dada la función de 2 variables, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mrow>
+                        <mi>f</mi>
+                        <mo>=</mo>
+                        <mover>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>0</mn>
+                            </msub>
+                            <mo accent="true">¯</mo>
+                        </mover>
+                        <mo>⋅</mo>
+                        <mover>
+                            <msub>
+                                <mi>x</mi>
+                                <mn>1</mn>
+                            </msub>
+                            <mo accent="true">¯</mo>
+                        </mover>
+                        <mo>+</mo>
+                        <msub>
+                            <mi>x</mi>
+                            <mn>0</mn>
+                        </msub>
+                        <mo>⋅</mo>
+                        <msub>
+                            <mi>x</mi>
+                            <mn>1</mn>
+                        </msub>
+                    </mrow>
+                    <annotation encoding="application/x-tex">f = \overline{x_{0}} \cdot \overline{x_{1}} + x_{0} \cdot x_{1}</annotation>
+                </semantics>
+            </math>, expresada en su forma normal disyuntiva (suma de minterms) ¿cuál es la representación de esta misma función en su forma normal conjuntiva (producto de maxterms)?</p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>0</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \left( x_{0} + x_{1} \right) \cdot \left( \overline{x_{0}} + \overline{x_{1}} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mover>
+                                    <mi>f</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>0</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\overline{f} = \left( x_{0} + \overline{x_{1}} \right) \cdot \left( \overline{x_{0}} + x_{1} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>0</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \left( x_{0} + \overline{x_{1}} \right) \cdot \left( \overline{x_{0}} + x_{1} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>1</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>x</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo>+</mo>
+                                    <mover>
+                                        <msub>
+                                            <mi>x</mi>
+                                            <mn>1</mn>
+                                        </msub>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \left( x_{0} + x_{1} \right) \cdot \left( x_{0} + \overline{x_{1}} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'c'.</p>
+        <h2> PREGUNTA FSD-2011-ENE_02</h2>
+        <p>¿Cuál de los 4 cronogramas es el de un Biestable J-K sincronizado a niveles?</p>
+        <ol type='a'>
+            <li>
+                <p><img src="data:image/png;base64,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" alt="Cronograma A" /></p>
+            </li>
+            <li class='correcta'>
+                <p><img src="data:image/png;base64,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" alt="Cronograma B" /></p>
+            </li>
+            <li>
+                <p><img src="data:image/png;base64,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" alt="Cronograma C" /></p>
+            </li>
+            <li>
+                <p><img src="data:image/png;base64,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" alt="Cronograma D" /></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'b'.</p>
+        <h2> PREGUNTA FSD-2011-ENE_03</h2>
+        <p>Las funciones lógicas de la diferencia y del arrastre del restador completo son:</p>
+        <ol type='a'>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i} = A_{i} \oplus B_{i} \oplus C_{i}</annotation>
+                        </semantics>
+                    </math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <mover>
+                                    <msub>
+                                        <mi>A</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>&#xA0;</mo>
+                                <mo>⋅</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <mrow>
+                                            <msub>
+                                                <mi>A</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo>&#xA0;</mo>
+                                            <mo>⊕</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">C_{i + 1} = \overline{A_{i}}\, \cdot B_{i} + C_{i} \cdot \left( \overline{A_{i}\, \oplus B_{i}} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i} = A_{i} \oplus B_{i} \oplus C_{i}</annotation>
+                        </semantics>
+                    </math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>A</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo>⊕</mo>
+                                    <msub>
+                                        <mi>B</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo>&#xA0;</mo>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">C_{i + 1} = A_{i} \cdot B_{i} + C_{i} \cdot \left( A_{i} \oplus B_{i}\, \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <mover>
+                                    <msub>
+                                        <mi>C</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i} = A_{i} \oplus B_{i} \oplus \overline{C_{i}}</annotation>
+                        </semantics>
+                    </math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mover>
+                                    <msub>
+                                        <mi>B</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <mrow>
+                                            <msub>
+                                                <mi>A</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                            <mo>⊕</mo>
+                                            <msub>
+                                                <mi>B</mi>
+                                                <mi>i</mi>
+                                            </msub>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">C_{i + 1} = A_{i} \cdot \overline{B_{i}} + C_{i} \cdot \left( \overline{A_{i} \oplus B_{i}} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>B</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⊕</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i} = A_{i} \oplus B_{i} \oplus C_{i}</annotation>
+                        </semantics>
+                    </math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mrow>
+                                        <mi>i</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                </msub>
+                                <mo>=</mo>
+                                <msub>
+                                    <mi>A</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mover>
+                                    <msub>
+                                        <mi>B</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>+</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>A</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo>⊕</mo>
+                                    <msub>
+                                        <mi>B</mi>
+                                        <mi>i</mi>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">C_{i + 1} = A_{i} \cdot \overline{B_{i}} + C_{i} \cdot \left( A_{i} \oplus B_{i} \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'a'.</p>
+        <h2> PREGUNTA FSD-2011-ENE_04</h2>
+        <p>¿Cuál de las 4 soluciones dadas es la función que realiza el circuito de la figura?</p>
+        <p><img src="data:image/png;base64,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" alt="Circuito con puertas NOT, AND y NAND" /></p>
+        <ol type='a'>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>⊕</mo>
+                                <mi>B</mi>
+                                <mo>⊕</mo>
+                                <mi>C</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = A \oplus B \oplus C</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mrow>
+                                            <mo stretchy="true" form="prefix">(</mo>
+                                            <mi>A</mi>
+                                            <mo>⋅</mo>
+                                            <mi>B</mi>
+                                            <mo>⋅</mo>
+                                            <mi>C</mi>
+                                            <mo stretchy="true" form="postfix">)</mo>
+                                        </mrow>
+                                        <mo>⋅</mo>
+                                        <mrow>
+                                            <mo stretchy="true" form="prefix">(</mo>
+                                            <mi>A</mi>
+                                            <mo>⋅</mo>
+                                            <mover>
+                                                <mi>B</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <mover>
+                                                <mi>C</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo stretchy="true" form="postfix">)</mo>
+                                        </mrow>
+                                        <mo>⋅</mo>
+                                        <mrow>
+                                            <mo stretchy="true" form="prefix">(</mo>
+                                            <mover>
+                                                <mi>A</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <mi>B</mi>
+                                            <mo>⋅</mo>
+                                            <mover>
+                                                <mi>C</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo stretchy="true" form="postfix">)</mo>
+                                        </mrow>
+                                        <mo>⋅</mo>
+                                        <mrow>
+                                            <mo stretchy="true" form="prefix">(</mo>
+                                            <mover>
+                                                <mi>A</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <mover>
+                                                <mi>B</mi>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>⋅</mo>
+                                            <mi>C</mi>
+                                            <mo stretchy="true" form="postfix">)</mo>
+                                        </mrow>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{\left( A \cdot B \cdot C \right) \cdot \left( A \cdot \overline{B} \cdot \overline{C} \right) \cdot \left( \overline{A} \cdot B \cdot \overline{C} \right) \cdot \left( \overline{A} \cdot \overline{B} \cdot C \right)}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>⋅</mo>
+                                    <mi>B</mi>
+                                    <mo>⋅</mo>
+                                    <mi>C</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>A</mi>
+                                    <mo>⋅</mo>
+                                    <mover>
+                                        <mi>B</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>⋅</mo>
+                                    <mover>
+                                        <mi>C</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <mi>A</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>⋅</mo>
+                                    <mi>B</mi>
+                                    <mo>⋅</mo>
+                                    <mover>
+                                        <mi>C</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <mi>A</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>⋅</mo>
+                                    <mover>
+                                        <mi>B</mi>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo>⋅</mo>
+                                    <mi>C</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \left( A \cdot B \cdot C \right) \cdot \left( A \cdot \overline{B} \cdot \overline{C} \right) \cdot \left( \overline{A} \cdot B \cdot \overline{C} \right) \cdot \left( \overline{A} \cdot \overline{B} \cdot C \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mi>A</mi>
+                                        <mo>⊕</mo>
+                                        <mi>B</mi>
+                                        <mo>⊕</mo>
+                                        <mi>C</mi>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{A \oplus B \oplus C}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'a'.</p>
+        <h2> PREGUNTA FSD-2011-ENE_05</h2>
+        <p>Queremos escribir un "1" en la celda de memoria RAM estática en tecnología NMOS de la figura adjunta. ¿Qué valores de tensión debemos poner en la línea de selección de bit, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mtext mathvariant="normal">WL</mtext>
+                    <annotation encoding="application/x-tex">\text{WL}</annotation>
+                </semantics>
+            </math>, y en las líneas de bit, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mtext mathvariant="normal">BL</mtext>
+                    <annotation encoding="application/x-tex">\text{BL}</annotation>
+                </semantics>
+            </math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mover>
+                        <mtext mathvariant="normal">BL</mtext>
+                        <mo accent="true">¯</mo>
+                    </mover>
+                    <annotation encoding="application/x-tex">\overline{\text{BL}}</annotation>
+                </semantics>
+            </math>?</p>
+        <p>¿En qué estado están cada uno de los transistores?</p>
+        <p><img src="data:image/png;base64,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" alt="NMOS" /></p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>W</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">WL = 0V,\quad BL = 12V,\quad\overline{\text{BL}} = 0V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>6</sub>, Q<sub>1</sub> y Q<sub>3</sub> conducen. Q<sub>5,</sub> Q<sub>2</sub> y Q<sub>4</sub> no conducen.</p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>W</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">WL = 12V,\quad BL = 0V,\quad\overline{\text{BL}} = 12V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5</sub>, Q<sub>6</sub>, Q<sub>2</sub> y Q<sub>4</sub> conducen. Q<sub>1,</sub> y Q<sub>3</sub> no conducen.</p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>W</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">WL = 0V,\quad BL = 12V,\quad\overline{\text{BL}} = 0V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5,</sub> Q<sub>6</sub>, Q<sub>1</sub> y Q<sub>4</sub> conducen. Q<sub>2</sub> y Q<sub>3</sub> no conducen</p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>W</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">WL = 12V,\quad BL = 12V,\quad\overline{\text{BL}} = 0V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5</sub>, Q<sub>6</sub>, Q<sub>1</sub> y Q<sub>3</sub> conducen. Q<sub>2</sub> y Q<sub>4</sub> no conducen.</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'd'.</p>
+    </main>
+</body>
+
+</html>

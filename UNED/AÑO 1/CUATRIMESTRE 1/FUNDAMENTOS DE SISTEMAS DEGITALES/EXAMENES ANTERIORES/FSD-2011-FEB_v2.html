@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Febrero 2011</title>
+    <style>
+        body {
+          margin: 50px;
+          font-family: Verdana, Helvetiva, sans-serif;
+          line-height: 1.5;
+          font-size: 14pt;
+        }
+        
+        button {
+            color: #ffffff;
+            background-color: #00533F;
+            border-radius: 10px;
+            padding: 10px 30px;
+            cursor: pointer;
+            font-size: 13pt;
+        }
+        button:hover {
+            color: #ffffff;
+            background-color: #008040;
+        }
+    
+    
+        h1, h2, h3, h4, h5, h6 {
+            color: #00533F;
+        }
+    
+    
+        math {
+            font-size: 1.1em;
+        }
+    
+    
+        table.tabla_dos_encabezados, table.tabla_dos_encabezados th, table.tabla_dos_encabezados td {
+          border: 1px solid grey;
+        }
+    
+        table.tabla_dos_encabezados th {
+            color:black;
+            font-weight: bolder;
+            min-width: 100px;
+        }
+    
+        table.tabla_verdad {
+            margin: 10px;
+            width: 100%;
+            max-width: 200px;
+            text-align:center; 
+        }
+    
+        img {
+            width: 100%;
+            max-width: 700px;
+        }
+    
+        img.img-med {
+            width: 100%;
+            max-width: 400px;
+        }
+    
+    
+        img.img-med2 {
+            width: 100%;
+            max-width: 300px;
+        }
+    
+        .sr-only {
+            position:absolute;
+            left:-10000px;
+            top:auto;
+            width:1px;
+            height:1px;
+            overflow:hidden;
+        }
+    
+        .solucion {
+            padding: 5px;
+            border: 1px solid black;
+            color: #00533F;
+            font-weight: bold;
+            display: none;
+        }
+        
+        code {
+            font-family: Courier, "Lucida Console", monospace;
+            font-size: 1.1em;
+        }
+        </style>
+    <script>
+    function mostrarOcultarSoluciones() {
+        var esMostrar = false;
+        var respuestasCorrectas = document.getElementsByClassName("correcta");
+        var style = getComputedStyle(respuestasCorrectas[0]);
+        if (style.backgroundColor == "rgba(0, 0, 0, 0)") {
+            esMostrar = true;
+        }
+
+        for (var i = 0; i < respuestasCorrectas.length; i++) {
+            if (esMostrar) {
+                respuestasCorrectas[i].style.backgroundColor = "lightgreen";
+            } else {
+                respuestasCorrectas[i].style.backgroundColor = "transparent";
+            }
+        }
+
+        var soluciones = document.getElementsByClassName("solucion");
+        for (var i = 0; i < soluciones.length; i++) {
+            if (esMostrar) {
+                soluciones[i].style.display = "block";
+            } else {
+                soluciones[i].style.display = "none";
+            }
+        }
+
+        var boton = document.getElementById("botonMostrarOcultarSoluciones");
+        if (esMostrar) {
+            boton.textContent = "Ocultar las soluciones de las preguntas de test";
+        } else {
+            boton.textContent = "Ver las soluciones de las preguntas de test";
+        }
+    }
+    </script>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</head>
+
+<body>
+    <main>
+        <div id="bloque_soluciones_interactivas">
+            <p>Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación</p>
+            <button id="botonMostrarOcultarSoluciones" type="button" onclick="mostrarOcultarSoluciones()">Ver las soluciones de las preguntas de test</button>
+        </div>
+        <h2> PREGUNTA FSD-2011-FEB_01</h2>
+        <p>¿Cuál de las 4 soluciones dadas es la correcta de la representación del número decimal negativo, -3, en Signo-magnitud, C-1 y C-2? Marque la respuesta correcta.</p>
+        <ol type='a'>
+            <li>
+                <p>S-M: 1100, C-1: 1011, C-2: 1010</p>
+            </li>
+            <li>
+                <p>S-M: 0011, C-1: 1100, C-2: 1011</p>
+            </li>
+            <li>
+                <p>S-M: 1011, C-1: 1010, C-2: 1101</p>
+            </li>
+            <li class='correcta'>
+                <p>S-M: 1011, C-1: 1100, C-2: 1101</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'd'.</p>
+        <h2> PREGUNTA FSD-2011-FEB_02</h2>
+        <p>Queremos escribir un "0" en la celda de memoria RAM estática en tecnología CMOS de la figura adjunta. ¿Qué valores de tensión debemos poner en la línea de selección de bit, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mtext mathvariant="normal">WL</mtext>
+                    <annotation encoding="application/x-tex">\text{WL}</annotation>
+                </semantics>
+            </math>, y en las líneas de bit, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mtext mathvariant="normal">BL</mtext>
+                    <annotation encoding="application/x-tex">\text{BL}</annotation>
+                </semantics>
+            </math> y <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mover>
+                        <mtext mathvariant="normal">BL</mtext>
+                        <mo accent="true">¯</mo>
+                    </mover>
+                    <annotation encoding="application/x-tex">\overline{\text{BL}}</annotation>
+                </semantics>
+            </math>?. ¿En qué estado están cada uno de los transistores?</p>
+        <p><img src="data:image/png;base64,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" alt="CMOS" /></p>
+        <ol type='a'>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>W</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mi>L</mi>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">WL = 12V,\quad BL = 0V,\quad\overline{\text{BL}} = 12V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5</sub>, Q<sub>6</sub>, Q<sub>2</sub> y Q<sub>3</sub> conducen. Q<sub>1</sub> y Q<sub>4</sub> no conducen.</p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mtext mathvariant="normal">WL</mtext>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mtext mathvariant="normal">BL</mtext>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{WL} = 12V,\quad\text{BL} = 0V,\quad\overline{\text{BL}} = 12V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5</sub>, Q<sub>6</sub>, Q<sub>2</sub> y Q<sub>4</sub> conducen. Q<sub>1,</sub> y Q<sub>3</sub> no conducen.</p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mtext mathvariant="normal">WL</mtext>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mtext mathvariant="normal">BL</mtext>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{WL} = 0V,\quad\text{BL} = 0V,\quad\overline{\text{BL}} = 12V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5,</sub> Q<sub>6</sub>, Q<sub>1</sub> y Q<sub>3</sub> conducen. Q<sub>2</sub> y Q<sub>4</sub> no conducen.</p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mtext mathvariant="normal">WL</mtext>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mtext mathvariant="normal">BL</mtext>
+                                <mo>=</mo>
+                                <mn>12</mn>
+                                <mi>V</mi>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <mover>
+                                    <mtext mathvariant="normal">BL</mtext>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                                <mi>V</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">\text{WL} = 0V,\quad\text{BL} = 12V,\quad\overline{\text{BL}} = 0V</annotation>
+                        </semantics>
+                    </math>.<br />
+                    Q<sub>5</sub>, Q<sub>1</sub> y Q<sub>3</sub> conducen. Q<sub>6,</sub> Q<sub>2</sub> y Q<sub>4</sub> no conducen.</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'a'.</p>
+        <h2> PREGUNTA FSD-2011-FEB_03</h2>
+        <p>¿Cuál es el resultado de Restar aritméticamente las dos palabras de 5 bits A (A5, …, A0) = 11011 y B (B5, …, B0) = 01111? Marque la solución correcta.</p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>5</mn>
+                                    </msub>
+                                    <mo>,</mo>
+                                    <mi>…</mi>
+                                    <mo>,</mo>
+                                    <mo>&#xA0;</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>m</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>s</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mo>=</mo>
+                                <mn>00100</mn>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mn>6</mn>
+                                </msub>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i}\left( D_{5},\ldots,\, D_{0} \right) = A\mspace{6mu} minus\mspace{6mu} B = 00100,\quad C_{6} = 0</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>5</mn>
+                                    </msub>
+                                    <mo>,</mo>
+                                    <mi>…</mi>
+                                    <mo>,</mo>
+                                    <mo>&#xA0;</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>m</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>s</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mo>=</mo>
+                                <mn>01100</mn>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mn>6</mn>
+                                </msub>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i}\left( D_{5},\ldots,\, D_{0} \right) = A\mspace{6mu} minus\mspace{6mu} B = 01100,\quad C_{6} = 0</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>5</mn>
+                                    </msub>
+                                    <mo>,</mo>
+                                    <mi>…</mi>
+                                    <mo>,</mo>
+                                    <mo>&#xA0;</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>m</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>s</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mo>=</mo>
+                                <mn>10000</mn>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mn>6</mn>
+                                </msub>
+                                <mo>=</mo>
+                                <mn>1</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i}\left( D_{5},\ldots,\, D_{0} \right) = A\mspace{6mu} minus\mspace{6mu} B = 10000,\quad C_{6} = 1</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>D</mi>
+                                    <mi>i</mi>
+                                </msub>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>5</mn>
+                                    </msub>
+                                    <mo>,</mo>
+                                    <mi>…</mi>
+                                    <mo>,</mo>
+                                    <mo>&#xA0;</mo>
+                                    <msub>
+                                        <mi>D</mi>
+                                        <mn>0</mn>
+                                    </msub>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>=</mo>
+                                <mi>A</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>m</mi>
+                                <mi>i</mi>
+                                <mi>n</mi>
+                                <mi>u</mi>
+                                <mi>s</mi>
+                                <mo>&#xA0;</mo>
+                                <mi>B</mi>
+                                <mo>=</mo>
+                                <mn>01000</mn>
+                                <mo>,</mo>
+                                <mo>&#xA0;</mo>
+                                <msub>
+                                    <mi>C</mi>
+                                    <mn>6</mn>
+                                </msub>
+                                <mo>=</mo>
+                                <mn>0</mn>
+                            </mrow>
+                            <annotation encoding="application/x-tex">D_{i}\left( D_{5},\ldots,\, D_{0} \right) = A\mspace{6mu} minus\mspace{6mu} B = 01000,\quad C_{6} = 0</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'b'.</p>
+        <h2> PREGUNTA FSD-2011-FEB_04</h2>
+        <p>¿Qué función lógica realiza el circuito de la figura?</p>
+        <p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAS4AAAE/CAYAAAD4yi59AAAAAXNSR0ICQMB9xQAAAAlwSFlzAAAOxAAADsQBlSsOGwAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAABuOSURBVHja7d1NaBxnnsfxEjh4Djr4YOSIuI3GOChBPsjuYC9tEzpg5GbQQT4IeyQEgoRiWZLGoIO87KEVFsZ9CW72suCL16fB7GHmkp5DDMrNR52CmTReHQXB4IU9iN2Dauup6up66r2qu6q6uur7wA+iVqsVS9UfPc+/nhfl+++/VwghZJbCD4EQAlyEEAJchBACXMFpt9uf7e7uNsl44RoiwDWFfPTRR/93+/btDyR5Ll68eLq5ufmI64gAV94/DEXRaOO1ra2t/3nw4MEu1xEBLuACLkKAC7iAiwAXcNGAiwAXcAEXIcAFXMBFgAu4aMBFgAu4gIsQ4EoTrtPTU21jY0NrNpu+abVa2snJyei54uOg51rPF88DLkKAK9Me15s3b7TDw8PAyO3o6Cj0ueLz9LgIAS6GisBFgGs202m3btQU5b2i1N632p0bacLVVxVNPG5G1frmg/Zjan/03EGvMXq80Rs4v77R0wbARQhwiXS76nyrVnslwOp0dhbrV+4/V7vd+VR7XAZUDa03cD4mmSV/QlMt4EzOtF6vT4+LEOCyc7BdX1fqWy+tj7fqysv69sF62kNFozdl9ZoGPa2h9kOfa/e4XOABFyHA9e1aba+29u1e0Mdp1riMYZ+q97Qih33DXpcOnFoFtYCLAFdx4TJBUjQ1xsjPrHfJQ0bgIgS4codroPUaZi+qocQY/om6mFoVtoCLAFcha1xyrcpR7wIu4CLAlTSOu4piWkSt9Srtu4qituU0SPS+lHCYgIsQ4ApLdvO4hkDJc7g019wuv55XwDwv4CIEuNL/YTBzHrgIcAEXcBECXMAFXIQAF3ABFwGunNJsNg+WlpYOx8m5c+dO7UXT3tCAiwBXJtnb21sa95j4brf7O3pcwEWAi6EiDbgIcAEXcBECXMAFXAS4gIsGXAS4gAu4CAEu4AIuAlzARQMuAlzABVyEABdwARcBLuCiARcBLuACLkKAC7iAiwDXzEcckjHu6T5hcB0fH2uHh4e+OTo6QizgIsA1XsSRZAKdLOB6/Pix1mw2fbOxsYFYwEWAazK8soCLBlwEuGYOLseJPtZJPwGn+JinV5uPN4aHMI6+PuocRuAiBLhS7XEZULlOr9Yf8z95rK+p0lFmxhFnvfIfUQZcBLgKOFR0nF496GmNkPMSxXPtHpcLPOAiBLjyrHEZwz5V72lFDvuGvS4dOLUKagEXAa7iwmWCpGhxDqc2613ykBG4CAEuF1pWUXwSvMLhGmi9htmLaigxhn+iLqZWhS3gIsA1vR9GCFxyrcpR7wIu4CLAVUS4RG3LaZDofSnhMAEXIcA1HbiGQMlzuDTX3C6/nlfAPC/gIgS4ch0q0oCLABdwARch1YOr2WweLC0tHaYZ4AIuAlyZZm9vb2l3d7eZZoALuAhwVXioKBX1Q4rzzgXc9sJsa6KrVfzvJVjo7fi/kJYeBX3/Rkoz+4GLAFdJalzm7PmAyarGRFYTDu90iyF+8uLsRAu9bfyCYLJ2sgAuAlzA5cJB7y0JIHx0sT4XGy4t2ULvvqqOXj8MVuAiwAVcHpz6nm1uhr0hHZ1BQrhGw8uohd46auJLHTD5LFUCLgJcwBUAlxeIQU81ABkHruiF3vrXqSZqg4L0uLpddb51WXkt1/OC1pZ22q0bNUV5ryi196125wbXJQGuKcHl3FzQBik5XDEWevd7jjWVRRoqigNN6tsH69bHB9v1dQOw+tbLEXC12isBVqezs1i/cv+52u3Oc20S4JoKXNIdPKmgLsPlBcQcTjqHiVELveUlSn53K4sFl42X2bsy/nuIWNDzCQGuHOGyakwN1cZmBIdxx9C13XPD2QsbZ6F30Xtc8jBSDBnde6qlsccaAS7gik+W1POxe0k2Pq6ekd5z6ksHbSiOGtaYC7218OK838EewEWAix5XpRpwEeACrsrARY2LABdwzRRc1l1Fq1fluKsopkXUWq+4q0iAC7imAlfYPC53j4p5XAS4gKtQPS5CgAu4gIsAF5kcrsePH2t+wyErGxsbwEUIcNkRhd/sD4SlARcBrpRiHQibBVz9BJv4+U3qHH191DmMM94ePnz4v8vLy38VW2pnFf17bPCmJaXqcaUxWTGwx5VoEz/3NjZBuzwAV5Lcvn372YULF4550xLgSjBUTLKJn7zURl4YzVBx/IgzBoCLANcYNa5Ym/jJvS4dOLUKagEXAa7iwhW9iZ+rh+bZ+RS4gIsAV65wxdjEz9k9C91yBriAiwBX5nBFb+IHXMBFgCshWkF7mKcB1zib+AEXcBHgyueH4YFrzE38YhzWClzARYArI7howEWAC7iAC7gIcAEXcBHgAi4EAi4CXMAFXMBFgMvI/v7+hd3d3WbaAS7gcmdzc3NneXn5iIyX9fX1fwauYQQyS0tLh2kHuIDLnVu3bv3nkydPtMPDQ5Iwz5490wRe+vtqDrgYKgJXznC9ePGCX/AYTeD1+eefAxdwAdc4XzvJyUHABVzABVy5w+U4q7Gzs1i/cv95krMagQu4gAu4codr0tOxgQu4gAu4cofLvWtI0l1EgAu4gAu4Jr6TXAS4jo+PtVarpTWbTU+ePn06ep74b7/nWDk6OgIu4AIu4MoHrtPT08ApAG/fvh097+TkJHS6QNkbcAEXcI0JFzUu4AIu2szB5birKKZF1FqvJr+r2NfUuYATy0f7r4m93OY852w6vrbkZ20CF3AB15hwiaQ/j0vHx7VBZF+d84XIu3vuELUKnLUJXMAFXDHgymIN68rKys8euAY9zeFOX9XmAk50Ai7gAi7gOozznDSzsLDwW2iNyzj1KfjIOuACLuACrsO8r4nw4rx5JkEj5Kw64AKuqcDlOBjDGg4EHIZhHgLrLMaOvr7khdgqwhVU1/LCdQZcwDWFHpcBlesQWP0x/+GBOO1arndU4yKtHFy+dS3/or23R+Z9HnABVyZDRcchsKKuEXLhiefaPa4Yp14D12zBNaprnXkw8yBlAXcm/SFrzGlVOLUOuDK83Z2kxmUM+1S9pxU57Bv2uvQLXK2CWpWCyzk/yx0/kMQfsrmI5wBXxeCadNuSZMV5AVK8C8+sd/nfIgeushTnacA1ZiZd0hEfLvGX1uxFNZQYwz9RF6vKn1bgogFXsky6iDYuXHKtylHvAi7gogFXEeHyzsUx5++EwgRcwAVcwDUduIZAyXO4NNfcLr+eV8A8L+ACLuACrpxrXDTgogFXFncVx9i2BLiAC7iAayrJax4XDbhowFW4ABdwARdwARdwARdwARdwARdwAdfMwiV2ujx//vyHoPVik4QGXMAFXPS4XE0cX/Xo0aPMXl+8tnxEFnABF3ABVyq/THEYaFZNvPY0zuwDLhpwTSkXL148yWL4WZUIXICLBlwlTNZvQPHaWQJS1p8bcAEXAS7gogEXb0DgAi7gAq6UIxZ227We+rudTmfRWPxtPSYtAk/6BhS7XVivY+16Mfp+l1uv3esygQu4gIvEjgmVc62keMy9U8U4b0CxJfVN5eZPAkTxsbGwvLX9NT0u4AIuMnGM3tGwF2Qs/K5v/ZDWG1DeZ2yrXvshaDE5cGUP1+npqfb06VOt0+l48uzZM8QCrhkdNt68+VPQoR3jvgGtXtd2u/WH+lr7G2pc0+1xCaD84KJ3BlwzGeOkIUV5F7SZ4SRvQLPeZdbQgIuhInCRVCJqT/ev1J+LXlFNqf3dbzg3yRvQvdsrcE0Lrr6mzgVMxB1t1e08f9E+KFb62sjzOYELuHIZJtq1J7neBVwlhMt1lkBfnfOFyHvQyhC1XvnPIgCuGaltycND487fZeW1GxrgKgFcg57mcKevanMBh/8C14zDtba29pj1fGaWl5f/MhZaPvPCgGvKNS7jgODg082Ba8bhWl1dfZHl7gGk3HDt7Oy0xB5s4t+XZz755JPjYLjM4+saIceaAxdwkQrD1e12fyf+XXlHv277QXAF1bW8cJ0BF3CRKsI1rQQOFX3rWv5Fe2+PzPs84AIu4AKuzIvzZl3rzIOZBykLuDN5eDmnVeGAc+AiwFUYuJzzs9zxA2nQa+h4hT8HuIALuIAr+6EiDbgIcAEXcAEXcAEXcAFXXnDdu3fvSd7zdMoWMdcJuIALuHKE68KFC8ebm5uPpjFfp0wBHOACrpzh2tvbW+INQ6oLl3TXUu1rZwHPMia/SncqG71frc9o6pzfXc/hlAwxPWNOiXx9cSdUTO0I+/7ie54BF3AR4JLhUJSG5ruaaNDT7syZWAlAQmfmG1Dpr/PrmaxOxJQMc+udIJgGvTvG9A7gAi4CXC4cejo+Dd9ekfU50SOKhMuCptHTDLsEehETyfqqOnr94B7ZndDPAxchFYWrb/R85Fn3w96QDs8gAVyjoaUOkhq1eeFwy57RUNHo3bl6bMAFXAS4guGyAbEfV43hY1K4rNqX+uNZeH1NNWEb0OMy88UXX/z7+vr6PwIXAa74cGmOXpcNUjK49I/v6K8h1lj69J5s23qjmpr5+r8CV7PZPBABLgJcSeCy7+DJRXUZLi8wzt0n+uodCSSp3uXG7o73bmRYgR64gIsAVyBc5m4UOlSqXZ8aDeWMu4aq9uOZEyCrF+btkQ2nW6g/hqITb6gYfVexVqudWO/9JIkqKwEXKX2Mw3kV5b37pPFiwiXvPmFPhzAB8ukZ6b2nvmf3iTPX8+wCv3idOelrfw2B6U5Acd7otc2F98gmhevhw4cbwEUqG+PQklrtlQDLOPMy4KDeovW4ytAYKhIyZtwnI7lPYwIu4AIuUriI8y1ra9/uBX0MXPnDZfaClZ/8NmKM+7sBLgJcwDWVHtd2XfkPufcrapH1tfY3wEWAC7hmBi6GihNEbAszzl0QYqZo2+pMs8Z1enqqLS4uBu5Pv7GxAVzD30Xnj60vk9zxBS6fC1VcUJ1OhySM+LmJn1+R4HLcVRTTImqtV9xVLA5cNuS19/f+6V9uAtcEcHGhjtfEz61ocFm1k3TncZnbvvj2pEYz1p2nAdnrDaWvjVrwTI8LuICrunClfz34H/zqB5F5krX7J8VJ1tS4gAu48r4ehlu/SDr5nGoNXMAFXMBV1OthdKq1/6eBK3oeV5K7vMAFXMA18fUg6liKY78s4IqGK40AF3CVBi5VVVfTnt5x9erVX4Kuh6C6lheuOBv9ARdwAVcl4RI7CuQGl29dy79o7+2ReZ8HXMCVOlxiIuHu7q6m///7ptVqacfHx8BVoeJ8Q/HpSemYeZCygJP3y2rMaRVwC7iK0ON68+aN8YsIisDNao8ePQpETkR8HrhmFS7n/Cx3/EAaePbLqsYfMuCasaHi27dvQ5ETnweuktxVpAEXNS7gAi7gAq6ULlRxZ8hxlLn5oM8yD7OZpxA7l3qMXqPEyzyAiwZcRbtQDahcR6KHHmXe11THXafy3wIHLhpwFfBCNXpSVo9J3FmKqLLKh3n2VRd6wAVcwFUOuObn50/29/c/LvKFagz54hxlbj7b7HXpyKllVwu4aFWFS9SAin+hCozi39I2613+C3CBC7iAC7hyuFDFHJ7hUeZKzKGfqI1VZOIOcNGAK0bENrzjrCwf90KV61SOehdwARcNuOJEHHow7pYY41yo3lX+5s4AkSgBF3ABF3C58coeriFQ8hwuzTW3K6jnFTLXC7iAC7iAiwsVuIALuNLPvXv3nty9e/cpcAEXcAHXzMD14MGD3dXV1RfABVzABVzABVzABVzABVxcqMDF9QBcGcFlTYdIe0oEFypwcT0AV+pw7ezstJaWlg6zysLCwm9cqMAFXMCVKlxiEfbu7m4zq6ysrPzMhQpcwAVcmdW4uFCBi+sBuICLCxW4uB6AC7iAq5xw9TV1zv+UH3tpl/M0IPvYMulrS7yNN3ABF3AVES6fg1/9IPIuzh+ixknWwAVcwJXr9TDoaQ53fE+1Bi7gAi7gKur1MDrV2v/TwAVcwAVcBbsezC2PGiFb4QIXcE31Qj06Ogo8dl3ks88+005PT4FrSnCJE6LCfj+T5LvvvgtAaS6ywG7CdQZcwEWPC7jyu3bCztn01rX8i/beHpn3ecAFXMAFXJkX58261pkHMw9SFnCjp5rTJKqwmzdwTRkuxzbN1l/ZkG2ZzSPJnPN3Rq9R4rk71YDLOT/LHT+QxPUwF/Ec4AKuzIYGivtIMv2x4ItweBisfMGXvK5RqaEiDbhmZajoOJJMDBci/nSK59s9rpjnMAIXcAEXcKV9oRpDPlXvacUa8g17XTpyatnVAi4acBW5OC8wil+nMOtd/rOqgQu4gAu4crhQRWHW7EE1lJhDPw6EBS7gAi4rnXbrRk1R3itK7X2r3bmRx4Uq16kc9S7gAi4acEWl21XnW7XaKwFWp7OzWL9y/7na7c5neaF6l24MT7iOQgm4gAu4ygvX/v7+hfPnz3+I81oH2/V1pb710vp4q668rG8frGdzoQ6Bkudwaa65XUE9r5C5XsAFXMBVArj29vaWxHqzOK/lPpYszWPKuFCBy309bGxsaJ1OhyTM7u6utry8DFzABVx5w6Wq6mqz2TzIOpcuXTrS3+R/zer1xWjm9u3bvTz+LXLEATSZ/L6BC7iAa/oR7w3xHsnq9fX31n+J99gs/4xmHq58a1w04AIu4EoBLsddRTEtotZ6lfVdxeyaVPwPKeA7F3q7Dl/wXfAbvRjc8X8hLU8K+v6NiIlrwAVcwBWRaczjypQvY4Z9wKTW4TYqAo7IHTUTLwa38QuCydrtAriAq3JwbW5uPrp+/fqf04Irq0wPrp6OT8O3V2R9LhZcWvLF4H1VHb3+uD0y4AKuUsIl7i4sLS0dpgXXvXv3nojXSzsLCwu/TQuuvmcrnGFvSIdnkACu0dAyzmLw4Yk1I5gCljMBF3ABVwpwtdvtz8Rrpp2VlZWfpweXF4hBT9VMT5LBFW8xuP51qgnbgB4XcAFX9nCVcajYH4Fj9bpskJLBFXMxeL/nWHsJXMAFXMA1JlzSHTypqC7DFXX4QrzF4PJSJr+7lbMF1/z8/Mn+/v7HYc8x1rUqyjvfbZel6TXABVzANQZcVp2podrgjOAw7hq6toRu2L2wcReDz3qPS1w7UW9MA676dkd+TMwBVC63Xqc1nQa4gKsicMk9H7unZAPk6hnpvae+dBiHffjCBIvBtfDivN/hHzMJV7t1o/XHzpfWx8ZEZqX+bqfTWWSoCFzAVdFWdLjciIl5gGmtuAAu4AIu4MoULmPlxWXldVrrW4ELuIALuDKHK6quJYr8WUy1Ccu1a9f+BlzABVzA5Ru/upa7aH/37t2nWUxujoqqqv8AXMAFXMAVq64lMCvSsBG4gCtXuD58+KDp/4bA49lFyoxikeGy6lpBv5eiFOmBC7jocQEXAS7gokXDdfXq1V/y3h7Y2poYuIALuKTm3MQveoM+vwmbo9eIcxYjcCXO2traY4ACLuByt8Qb9Lm3qPHbwYGhIgEu4Mp4qJh0gz55fZ+88Bm4CHABV641rtgb9Mm9Lh05texqRcAVdlfPPRVBTBAt+/QE4AKunIvzcTboc/XSPLuaVrfH5T6RyZwQam8rI46a88OMABdwjQ1XzA36nF20yC1lqgyXjZd96Ema52SOk/39/QvLy8t/mcbs+axy7ty503a7/XvgqiBc8TboA66kcLkXPU8bLut6LVOyXE4EXAU+nmzcDfqAqxhwuWts1us7dkUtwIaCpMRwOQ6EFRfelfvPszsQdoIN+mIexgpc+fW4Ar9/a/trQACuTOEyaiLSHuF+F2N2xXla2nDlWeMCLuBKFS59DL566dKloziv5b6w07zQgStfuKy7iln9PoELuDKFK+rzwDXbcIXN45IhsaZDZDUlAriAC7hoiXtc0w5wAdfU4KLGBVyTwOX+I+d3bBkBrtThctxVFNMiaq1X2d1VpJUJLvfWzdYQtuwbCQJXAeAy/krmPI+LVg643HW0Kux+ClwFgiurAFf54SLAFTtiycHly5ffABdwETIzcEVNMAUu4CKkMnCJ101zMerKysrPwAVcBLgyhUvsN57m9h8LCwu/ARdwEeBiqAhchAAXcAEXAS7gAi7gIsAFXMBFCHABF3ARAlzABVwEuICLBlwEuIALuAgBLuACLgJcwEUDLgJcwAVchAAXcAEXAS7gogEXAS7gAi5CgCtDuPqqfA6gqvXNB+3H1L7j+YNeY/S5Rm/gfI1GTxsAFyHAlUuPy4CqofUGzsdcZsmf1FQLOZMzrdfr0+MiBLjyHSoaPSmrxzToaQ01HCLxfLvH5UIPuAipJlx+h3tmXeMyhnyq3tOKNeQb9rp05NSyqwVcBLiiY52NlzdcJkaKpsYc9Zn1LnnICFyEVLrHJfDKF66B1muYPaiGEnPoJ2pjahXYAi4CXIWES65TOepdwAVcpJpwbW5uPrp+/fqfiwqXqG05/RG9LyUaJeAipLxwPXjwYHd1dfVF8eAaAiXP4dJcc7uCel4hc72AixDgyqnGRQMuAlzABVyEVAkuazpE2lMigAu4CHBl2uPKIsAFXAS4gAu4CJlduPb39z+en58/SRMu8TVi7leaWVhY+O3Jkyfa4eEhSRjxcwMuUiq4jG+mKFqacOkYXhATV9PMV1999adr1669XV5ePsoiV69eHXz66ae/ZPX6ly5d+u+sXjtONjc3d3hjEeAqWcS/Ufxbp/EzJqS0cIkdF+xN8+rvdjqdxYPt+vrosfrWS+ACLkIK1+Myoaq9b7U7N+TH6tsH6/S4gIuQwg4VjXlSl1uv1W53vtNu3ajVt35gqAhchBQartGw8ebNn+pX7j8XgAEXcBFSeLg6nZ3FuqK8m3SIWDa4JqkDRsHltyJg9P2GPWDgIsAV8IluV52/f6X+fLvd+kNNqf1drnfR4xq/DhinxyX+YNxUbv4kQLR+F63W9tf0uAiJgGurXvvBelPK9S7gcvWOEtYB4w4V5QXk8u8CuAgJgEsMTeSeg/EX/7LyepKpEGWEazSMS1AHjAuX1esSPd76WvubNH7GhJQSrhFQUu1m9Oa06jcT9LzKCFfSOmCS4rxZ77J/D8BFSMRQMZNvVjK4xqkDJoHLqKMl7OUCFwEu4IoYJiavAwIXIcA1RbTGqwMCFyHANZXh4SR1wLhwjbs+FLgIcIVE7K+VZLsYVVVXz58//8GeuFndPHz4cGMafxwIqTxc4hzEJBv0RfWmqrLkZ5q9WkIYKqYc4AIuQoALuAipDlyTLvIFLuAiZCo9rkkW+QIXcBEytaHiuIt8gQu4CJkaXOMu8gUu4CJkanBZva6ki3ytiLlbejuIm1u3bv3btWvX/pb2cWNVC3CRysM1zpITK2KSZRK4vvzyy39N+3DXKoZeKwGuCeAihBDgIoSQKLjSOgSWEEJy7XERQghwEUIIcBFCgIsQQoCLEEKAixBCgIsQAlyEEAJchBACXISQmc//A9EBJF+cYtVqAAAAAElFTkSuQmCC" alt="Circuito con tres multiplexores 4 a 1" /></p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>F</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mi>Z</mi>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                                <mo>⋅</mo>
+                                <mi>U</mi>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mover>
+                                        <mrow>
+                                            <mi>X</mi>
+                                            <mo>⊕</mo>
+                                            <mi>Y</mi>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>+</mo>
+                                <mi>Z</mi>
+                                <mo>⋅</mo>
+                                <mi>U</mi>
+                                <mo>⋅</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>X</mi>
+                                    <mo>⊕</mo>
+                                    <mi>Y</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                            </mrow>
+                            <annotation encoding="application/x-tex">F = \overline{Z} \cdot U \cdot \left( \overline{X \oplus Y} \right) + Z \cdot U \cdot \left( X \oplus Y \right)</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>F</mi>
+                                <mo>=</mo>
+                                <mrow>
+                                    <mo stretchy="true" form="prefix">(</mo>
+                                    <mi>X</mi>
+                                    <mo>⊕</mo>
+                                    <mi>Y</mi>
+                                    <mo>⊕</mo>
+                                    <mi>Z</mi>
+                                    <mo stretchy="true" form="postfix">)</mo>
+                                </mrow>
+                                <mo>⋅</mo>
+                                <mi>U</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">F = \left( X \oplus Y \oplus Z \right) \cdot U</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>F</mi>
+                                <mo>=</mo>
+                                <mi>X</mi>
+                                <mo>⊕</mo>
+                                <mi>Y</mi>
+                                <mo>⊕</mo>
+                                <mi>Z</mi>
+                                <mo>⊕</mo>
+                                <mi>U</mi>
+                            </mrow>
+                            <annotation encoding="application/x-tex">F = X \oplus Y \oplus Z \oplus U</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p>Ninguna de las tres</p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'b'.</p>
+        <h2> PREGUNTA FSD-2011-FEB_05</h2>
+        <p>De las 4 expresiones dadas ¿Cuál es la que corresponde a la representación mínima y con sólo puertas NOR de la función <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mrow>
+                        <mi>f</mi>
+                        <mo>=</mo>
+                        <mi>x</mi>
+                        <mo>⋅</mo>
+                        <mi>y</mi>
+                        <mo>⋅</mo>
+                        <mover>
+                            <mi>z</mi>
+                            <mo accent="true">¯</mo>
+                        </mover>
+                        <mo>+</mo>
+                        <mi>x</mi>
+                        <mo>⋅</mo>
+                        <mrow>
+                            <mo stretchy="true" form="prefix">(</mo>
+                            <mover>
+                                <mi>y</mi>
+                                <mo accent="true">¯</mo>
+                            </mover>
+                            <mo>+</mo>
+                            <mover>
+                                <mi>z</mi>
+                                <mo accent="true">¯</mo>
+                            </mover>
+                            <mo stretchy="true" form="postfix">)</mo>
+                        </mrow>
+                        <mo>+</mo>
+                        <mover>
+                            <mi>x</mi>
+                            <mo accent="true">¯</mo>
+                        </mover>
+                        <mo>⋅</mo>
+                        <mi>z</mi>
+                    </mrow>
+                    <annotation encoding="application/x-tex">f = x \cdot y \cdot \overline{z} + x \cdot \left( \overline{y} + \overline{z} \right) + \overline{x} \cdot z</annotation>
+                </semantics>
+            </math> ?.</p>
+        <ol type='a'>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>+</mo>
+                                                <mover>
+                                                    <mi>y</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>+</mo>
+                                                <mi>z</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>+</mo>
+                                                <mi>y</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mi>x</mi>
+                                                <mo>⋅</mo>
+                                                <mover>
+                                                    <mi>z</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>⋅</mo>
+                                                <mi>z</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{\overline{\overline{x} + \overline{y} + z} + \overline{\overline{x} + y} + \overline{x \cdot \overline{z}} + \overline{\overline{x} \cdot z}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>+</mo>
+                                                <mi>z</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mo>+</mo>
+                                                <mi>y</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mi>x</mi>
+                                                <mo>+</mo>
+                                                <mover>
+                                                    <mi>z</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{\overline{\overline{x} + z} + \overline{\overline{x} + y} + \overline{x + \overline{z}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li class='correcta'>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mover>
+                                        <mrow>
+                                            <mover>
+                                                <mrow>
+                                                    <mover>
+                                                        <mi>x</mi>
+                                                        <mo accent="true">¯</mo>
+                                                    </mover>
+                                                    <mo>+</mo>
+                                                    <mi>z</mi>
+                                                </mrow>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>+</mo>
+                                            <mover>
+                                                <mrow>
+                                                    <mover>
+                                                        <mi>x</mi>
+                                                        <mo accent="true">¯</mo>
+                                                    </mover>
+                                                    <mo>+</mo>
+                                                    <mi>y</mi>
+                                                </mrow>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                            <mo>+</mo>
+                                            <mover>
+                                                <mrow>
+                                                    <mi>x</mi>
+                                                    <mo>+</mo>
+                                                    <mover>
+                                                        <mi>z</mi>
+                                                        <mo accent="true">¯</mo>
+                                                    </mover>
+                                                </mrow>
+                                                <mo accent="true">¯</mo>
+                                            </mover>
+                                        </mrow>
+                                        <mo accent="true">¯</mo>
+                                    </mover>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{\overline{\overline{\overline{x} + z} + \overline{\overline{x} + y} + \overline{x + \overline{z}}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+            <li>
+                <p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>f</mi>
+                                <mo>=</mo>
+                                <mover>
+                                    <mrow>
+                                        <mover>
+                                            <mrow>
+                                                <mi>x</mi>
+                                                <mo>+</mo>
+                                                <mi>x</mi>
+                                                <mo>+</mo>
+                                                <mover>
+                                                    <mi>z</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mi>x</mi>
+                                                <mo>+</mo>
+                                                <mover>
+                                                    <mi>y</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mover>
+                                                    <mi>x</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                                <mi>z</mi>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                        <mo>+</mo>
+                                        <mover>
+                                            <mrow>
+                                                <mi>x</mi>
+                                                <mover>
+                                                    <mi>z</mi>
+                                                    <mo accent="true">¯</mo>
+                                                </mover>
+                                            </mrow>
+                                            <mo accent="true">¯</mo>
+                                        </mover>
+                                    </mrow>
+                                    <mo accent="true">¯</mo>
+                                </mover>
+                            </mrow>
+                            <annotation encoding="application/x-tex">f = \overline{\overline{x + x + \overline{z}} + \overline{x + \overline{y}} + \overline{\overline{x}z} + \overline{x\overline{z}}}</annotation>
+                        </semantics>
+                    </math></p>
+            </li>
+        </ol>
+        <p class='solucion'>La solución correcta es la 'c'.</p>
+    </main>
+</body>
+
+</html>

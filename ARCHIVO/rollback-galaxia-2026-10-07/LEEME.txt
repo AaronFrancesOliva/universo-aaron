@@ -1,0 +1,5 @@
+Rollback de la galaxia (2026-10-07)
+- Carpetas movidas: "GESTION DE EMPRESAS", "LOGICA Y ESTRUCTURAS DISCRETAS" y "FUNDAMENTOS DE SISTEMAS DEGITALES" pasaron de la raíz a "AÑO 1/CUATRIMESTRE 1/". Para deshacer: moverlas de vuelta a la raíz y borrar las carpetas AÑO vacías.
+- view.js, view.css, MEMORY.md y CLAUDE.md: copias .bak en esta carpeta.
+- Las rutas de texto en las notas se cambiaron de "X/" a "AÑO 1/CUATRIMESTRE 1/X/".
+- Paso a AARON (2026-10-07): MEMORY.md, RED NEURONAL/, CLAUDE.md (raíz) y PLANIFICACION/Jarvis/Perfil.md se movieron a AARON/. En la raíz queda un CLAUDE.md de una línea que importa AARON/CLAUDE.md. Para deshacer: moverlos de vuelta y borrar el CLAUDE.md de una línea.

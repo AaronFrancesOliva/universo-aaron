@@ -1,0 +1,3656 @@
+########## FSD-2011-ENE_v2.html (5 preguntas)
+Enero 2011
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2011-ENE_01
+ Dada la función de 2 variables, , expresada en su forma normal disyuntiva (suma de minterms) ¿cuál es la representación de esta misma función en su forma normal conjuntiva (producto de maxterms)?
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2011-ENE_02
+ ¿Cuál de los 4 cronogramas es el de un Biestable J-K sincronizado a niveles?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-ENE_03
+ Las funciones lógicas de la diferencia y del arrastre del restador completo son:
+ , 
+ , 
+ , 
+ , 
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2011-ENE_04
+ ¿Cuál de las 4 soluciones dadas es la función que realiza el circuito de la figura?
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2011-ENE_05
+ Queremos escribir un "1" en la celda de memoria RAM estática en tecnología NMOS de la figura adjunta. ¿Qué valores de tensión debemos poner en la línea de selección de bit, , y en las líneas de bit, y ?
+ ¿En qué estado están cada uno de los transistores?
+ [FIGURA]
+ .
+ Q6, Q1 y Q3 conducen. Q5, Q2 y Q4 no conducen.
+ .
+ Q5, Q6, Q2 y Q4 conducen. Q1, y Q3 no conducen.
+ .
+ Q5, Q6, Q1 y Q4 conducen. Q2 y Q3 no conducen
+ .
+ Q5, Q6, Q1 y Q3 conducen. Q2 y Q4 no conducen.
+ La solución correcta es la 'd'.
+
+########## FSD-2011-FEB_v2.html (5 preguntas)
+Febrero 2011
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2011-FEB_01
+ ¿Cuál de las 4 soluciones dadas es la correcta de la representación del número decimal negativo, -3, en Signo-magnitud, C-1 y C-2? Marque la respuesta correcta.
+ S-M: 1100, C-1: 1011, C-2: 1010
+ S-M: 0011, C-1: 1100, C-2: 1011
+ S-M: 1011, C-1: 1010, C-2: 1101
+ S-M: 1011, C-1: 1100, C-2: 1101
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2011-FEB_02
+ Queremos escribir un "0" en la celda de memoria RAM estática en tecnología CMOS de la figura adjunta. ¿Qué valores de tensión debemos poner en la línea de selección de bit, , y en las líneas de bit, y ?. ¿En qué estado están cada uno de los transistores?
+ [FIGURA]
+ .
+ Q5, Q6, Q2 y Q3 conducen. Q1 y Q4 no conducen.
+ .
+ Q5, Q6, Q2 y Q4 conducen. Q1, y Q3 no conducen.
+ .
+ Q5, Q6, Q1 y Q3 conducen. Q2 y Q4 no conducen.
+ .
+ Q5, Q1 y Q3 conducen. Q6, Q2 y Q4 no conducen.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2011-FEB_03
+ ¿Cuál es el resultado de Restar aritméticamente las dos palabras de 5 bits A (A5, …, A0) = 11011 y B (B5, …, B0) = 01111? Marque la solución correcta.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-FEB_04
+ ¿Qué función lógica realiza el circuito de la figura?
+ [FIGURA]
+ Ninguna de las tres
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-FEB_05
+ De las 4 expresiones dadas ¿Cuál es la que corresponde a la representación mínima y con sólo puertas NOR de la función ?.
+ La solución correcta es la 'c'.
+
+########## FSD-2011-SEP_v2.html (10 preguntas)
+Septiembre 2011
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2011-SEP_01
+ El circuito de la figura corresponde a la implementación de la función universal realizada con términos máximos. ¿Qué función realiza cuando la palabra de programación es: A (A3 A2 A1 A0) = 1001?
+ [FIGURA]
+ Ninguna de las anteriores.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-SEP_02
+ ¿Cuáles son las expresiones lógicas de los bits de la palabra de salida, Z2(MSB) Z1 Z0 (LSB), de un convertidor de S-M a C-2 de 3 bits?
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2011-SEP_03
+ Necesitamos usar un MUX de 8 a 1 y sólo tenemos MUX de 4 a 1 con señal de facilitación, G (activa en alta), y distintos tipos de puertas. ¿Cuál es el circuito correcto?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2011-SEP_04
+ ¿Cuál de los cronogramas es el que corresponde al circuito de la figura, si los cambios en el JK tienen lugar en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2011-SEP_05
+ ¿Cuáles son las funciones de excitación del autómata finito de 4 estados (controlados por la entrada x) y cuya matriz funcional es la que aparece en la figura adjunta? Considere Q1 el bit más significativo.
+ S0
+ S1
+ S2
+ S3
+ S0
+ S1
+ S2
+ S3
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-SEP_06
+ ¿Cuáles son las expresiones lógicas de las salidas de un sumador completo de palabras de 2 bits?
+ , 
+ , 
+ , 
+ , 
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2011-SEP_07
+ ¿Cuál de los 4 Diagramas de Transición de Estados es el del biestable J-K? El código usado para las transiciones es JK/Q.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2011-SEP_08
+ De las 4 expresiones dadas ¿Cuál es la que corresponde a la representación con sólo puertas NAND de la función  ?
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2011-SEP_09
+ En la celda de memoria RAM estática en tecnología CMOS de la figura adjunta hay almacenado un "1" (Q1 está en conducción). ¿Qué valores de tensión debemos poner en la línea de selección de bit, , para leer el dato almacenado y qué valor leemos en las líneas de bit, y ? ¿En qué estado están el resto de los transistores?
+ [FIGURA]
+ . En BL leemos un "1" y en un "0"
+ Q5, Q6, Q1 y Q4 conducen. Q2 y Q3 no conducen.
+ . En BL leemos un "0" y en un "1".
+ Q5, Q1 y Q3 conducen. Q6, Q2 y Q4 no conducen.
+ . En BL leemos un "1" y en un "0"
+ Q5, Q6, Q1 y Q2 conducen. Q3, y Q4 no conducen.
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2011-SEP_10
+ ¿Qué función lógica realiza el circuito de la figura?
+ [FIGURA]
+ Ninguna de las tres
+ La solución correcta es la 'a'.
+
+########## FSD-2012-ENE_v2.html (5 preguntas)
+Enero 2012
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2012-ENE_01
+ Dado el circuito de la figura adjunta. ¿Qué función lógica realiza expresada con sólo puertas NAND? Marque la solución correcta.
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2012-ENE_02
+ ¿Cuál es el resultado de sumar aritméticamente las dos palabras de 5 bits A (A4, …, A0) = 11011 y B (B4, …, B0) = 01111, siendo A4 y B4 los bits más significativos? Marque la solución correcta.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2012-ENE_03
+ ¿Qué función realiza cada uno de los circuitos que se muestran en la siguiente figura?
+ [FIGURA]
+ [FIGURA]
+ (1) Detecta si el número de unos en la palabra de entrada es Par
+ (2) Detecta si el número de unos en la palabra de entrada es Impar
+ (1) Detecta si el número de unos en la palabra de entrada es Impar
+ (2) Detecta si el número de unos en la palabra de entrada es Par
+ (1) Detecta si el número de unos en la palabra de entrada es Par
+ (2) Detecta si el número de unos en la palabra de entrada es Par
+ (1) Detecta si el número de unos en la palabra de entrada es Impar
+ (2) Detecta si el número de unos en la palabra de entrada es Impar
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2012-ENE_04
+ ¿Cuál de las 4 tablas adjuntas corresponde a la tabla de síntesis de circuitos secuenciales con biestables J-K?
+ Tabla 1
+ Qn
+ Qn+1
+ J
+ K
+ 0
+ 0
+ 0
+ x
+ 0
+ 1
+ 1
+ x
+ 1
+ 0
+ x
+ 1
+ 1
+ 1
+ x
+ 0
+ Tabla 2
+ Qn
+ Qn+1
+ J
+ K
+ 0
+ 0
+ x
+ 0
+ 0
+ 1
+ 1
+ x
+ 1
+ 0
+ 0
+ x
+ 1
+ 1
+ x
+ 1
+ Tabla 3
+ Qn
+ Qn+1
+ J
+ K
+ 0
+ 0
+ 1
+ x
+ 0
+ 1
+ 0
+ x
+ 1
+ 0
+ x
+ 1
+ 1
+ 1
+ x
+ 0
+ Tabla 4
+ Qn
+ Qn+1
+ J
+ K
+ 0
+ 0
+ 0
+ x
+ 0
+ 1
+ 1
+ x
+ 1
+ 0
+ x
+ 0
+ 1
+ 1
+ x
+ 1
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Tabla 4
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2012-ENE_05
+ ¿A qué diagrama de transición de estados corresponde la matriz funcional adjunta?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'b'.
+
+########## FSD-2012-FEB_v2.html (5 preguntas)
+Febrero 2012
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2012-FEB_01
+ De los 4 pares de expresiones dados a continuación ¿Cuál es el que corresponde a las expresiones duales del Teorema de Adyacencia?
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2012-FEB_02
+ De los 4 grupos de palabras binarias de 6 bits cuál es el que corresponde a la representación del número decimal 31, en Binario puro, C-2 y BCD.
+ Binario: 100000, C-2: 011110, BCD (8421): 010011
+ Binario: 011111, C-2: 011111, BCD (8421): 110001
+ Binario: 011111, C-2: 100001, BCD (8421): 011111
+ Binario: 011111, C-2: 100001, BCD (8421): 110001
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2012-FEB_03
+ ¿Cuáles son las expresiones generales de la suma y del acarreo de un semi-sumador realizado sólo con puertas NAND?
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2012-FEB_04
+ De los 4 cronogramas dados ¿cuál es el que representa el funcionamiento del circuito implementado con biestables J-K disparados a las bajadas (flancos negativos o de bajada) de los pulsos del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2012-FEB_05
+ La figura adjunta muestra el Diagrama de Transición de Estados de un autómata finito. ¿Cuál es su Matriz Funcional?
+ [FIGURA]
+ Tabla 1
+ 0
+ 0
+ 0
+ 0
+ 1
+ 0
+ 0
+ 0
+ 0
+ 0
+ Tabla 2
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ Tabla 3
+ 0
+ 0
+ 0
+ 0
+ 1
+ 0
+ 0
+ 0
+ 0
+ 0
+ Tabla 4
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ 0
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Tabla 4
+ La solución correcta es la 'a'.
+
+########## FSD-2012-SEP_v2.html (5 preguntas)
+Septiembre 2012
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2012-SEP_01
+ El circuito de la figura adjunta corresponde a la función universal realizada con términos mínimos. ¿Qué funciones realiza cuando las palabras de programación son: A= (a0 a1 a2 a3) = 0111 y 0110?
+ [FIGURA]
+ Ninguna de las tres
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2012-SEP_02
+ Dadas dos palabras de 5 bits representadas en C-2. ¿Cuál es el valor equivalente en decimal de sumarlas aritméticamente cuando toman los valores siguientes?:
+ A (a4, ..., a0) = 01101, A' (a'4, …, a'0) = 10111
+ B (b4, …, b0) = 11000, B' (b'4, …, b'0) = 00100
+ Siendo a4, b4, y a'4, b'4 los bits más representativos de dichas palabras.
+ S = A + B = 27, S' = A' + B' = 5
+ S = A + B = 5, S' = A'+ B' = -5
+ S = A + B = 37, S' = A' + B' = -11
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2012-SEP_03
+ ¿Cuáles son las expresiones lógicas de salida de un comparador de dos palabras de dos bits en las que A1 y B1 son los bits más significativos?
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2012-SEP_04
+ La figura adjunta corresponde al diagrama de transiciones de estados de un autómata finito de dos estados controlado por la señal de entrada X. ¿Cuál es el circuito correspondiente implementado con biestables D y puertas?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2012-SEP_05
+ En la figura se presenta un circuito construido con biestables D y su diagrama de tiempos. ¿A qué circuito corresponde?
+ [FIGURA]
+ [FIGURA]
+ A un Contador hacia abajo.
+ A un Contador de dos en dos.
+ A un Registro de Desplazamiento.
+ A ninguno de las anteriores.
+ La solución correcta es la 'c'.
+
+########## FSD-2013-ENE_v2.html (5 preguntas)
+Enero 2013
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2013-ENE_01
+ ¿A qué expresión lógica mínima, representada con distintos tipos de operadores, corresponde la función lógica, expresada con sólo operadores NOR?
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2013-ENE_02
+ ¿Cuál de los circuitos realiza la función de un sumador completo?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2013-ENE_03
+ El circuito de la figura es un generador de formas de ondas formado por un astable y un monostable. ¿Cuál es su cronograma? Considere que el monoestable se dispara con las bajadas del reloj.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2013-ENE_04
+ La figura adjunta muestra un circuito secuencial y su cronograma. ¿A qué circuito corresponde si consideramos sólo la salida Q3?
+ [FIGURA]
+ [FIGURA]
+ Contador síncrono
+ Divisor por 5 síncrono.
+ Divisor por 5 asíncrono.
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2013-ENE_05
+ El circuito de la figura corresponde a una simplificación de la celda de memoria de tres transistores NMOS y queremos escribir un "1". ¿Qué valores tenemos que poner en la línea entrada de datos Din, línea de lectura RS y línea de escritura WS? y ¿En qué estado quedan los transistores y el condensador tras la escritura de dicho "1"? Consideramos que el "1" equivale a la tensión de alimentación, VDD, y el "0" equivale a poner 0V.
+ [FIGURA]
+ Tenemos que poner en Din un "1", en RS un "0" y en WS un "1"
+ Q3 conduce, Q4 no conduce, Q5 conduce y C se queda cargado.
+ Tenemos que poner en Din un "1", en RS un "0" y en WS un "0"
+ Q3 no conduce, Q4 no conduce, Q5 conduce y C se queda descargado.
+ Tenemos que poner en Din un "0", en RS un "0" y en WS un "1"
+ Q3 conduce, Q4 no conduce, Q5 no conduce y C se queda descargado.
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+
+########## FSD-2013-FEB_v2.html (5 preguntas)
+Febrero 2013
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2013-FEB_01
+ Según los postulados del Álgebra de Boole las operaciones de suma y producto lógico son distributivas entre sí. ¿Cuál de las soluciones dadas corresponde a sus expresiones lógicas?
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2013-FEB_02
+ ¿Qué función realiza el circuito de la figura?
+ [FIGURA]
+ Demultiplexo de 1 a 4
+ Multiplexo de 2 a 4
+ Multiplexo de 1 a 4
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2013-FEB_03
+ ¿Qué funciones lógicas realiza la PROM de la figura?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2013-FEB_04
+ ¿Cuál es el cronograma que corresponde al biestable D Master-Slave de la figura? Tenga en cuenta que los biestables SN7473 se disparan a las bajadas del reloj, es decir, en los flancos negativos.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2013-FEB_05
+ El circuito de la figura corresponde a una celda de memoria construida con un biestable J-K. ¿Cuál es su tabla de verdad?
+ [FIGURA]
+ Tabla 1
+ D
+ W
+ Dato
+ J
+ K
+ Q
+ Función
+ Salida
+ 0
+ 0
+ 0
+ 0
+ Q
+ No direccionada
+ Alta Z
+ 0
+ 1
+ 0
+ 0
+ Q
+ No direccionada
+ Alta Z
+ 1
+ 0
+ 0
+ 0
+ 0
+ Escribe
+ 0
+ 1
+ 1
+ Lee
+ Tabla 2
+ D
+ W
+ Dato
+ J
+ K
+ Q
+ Función
+ Salida
+ 0
+ 0
+ 0
+ 0
+ Q
+ No direccionada
+ Alta Z
+ 0
+ 1
+ 0
+ 0
+ Q
+ Escribe
+ 0
+ 1
+ 0
+ 0
+ 0
+ Q
+ Lee
+ 0
+ 1
+ 1
+ Almacena
+ Tabla 3
+ D
+ W
+ Dato
+ J
+ K
+ Q
+ Función
+ Salida
+ 0
+ 0
+ 0
+ 0
+ Q
+ No direccionada
+ Alta Z
+ 0
+ 1
+ 0
+ 0
+ Q
+ No direccionada
+ Alta Z
+ 1
+ 0
+ 0
+ 0
+ Q
+ Lee
+ 1
+ 1
+ Escribe
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Tabla 4
+ La solución correcta es la 'c'.
+
+########## FSD-2013-SEP_v2.html (5 preguntas)
+Septiembre 2013
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2013-SEP_01
+ ¿Cuál de las expresiones dadas corresponde a la representación con sólo operadores NOR de la función ?
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2013-SEP_02
+ ¿Cuáles son las expresiones lógicas de las salidas del circuito de la figura?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2013-SEP_03
+ ¿Qué función realiza el circuito de la figura?
+ [FIGURA]
+ Detecta que la palabra XY es igual que la palabra ZU
+ Detecta que la palabra XYZU tiene un número de unos Impar
+ Detecta que la palabra XYZU tiene un número de unos Par
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2013-SEP_04
+ Los cronogramas adjuntos muestran las respuestas producidas por tres biestables R-S distintos ante las mismas señales de entrada R y S, de forma que:
+ "QBasico" es la respuesta de un biestable R-S básico construido con sólo dos puertas NOR.
+ "QNiveles" corresponde a la respuesta de un biestable R-S disparado a niveles mediante el reloj Ck
+ "QBajaCk" es la de un R-S disparado por flancos negativos (bajadas del reloj).
+ ¿Cuál de los cronogramas es el correcto?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2013-SEP_05
+ El circuito de la figura adjunta corresponde a un autómata finito implementado con biestables D. ¿Cuál es su diagrama de transición de estados? Considere que la variable x corresponde al bit más significativo de la palabra de entrada, xy.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'a'.
+
+########## FSD-2014-ENE_v2.html (5 preguntas)
+Enero 2014
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2014-ENE_01
+ Dado el circuito de la figura ¿cuál es la función lógica de su salida expresada con sólo puertas NAND?
+ [FIGURA]
+ Ninguna de las anteriores.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2014-ENE_02
+ Tenemos un codificador con prioridad para 3 líneas de entrada, P2, P1 y P0, en el que la línea P0 tiene la máxima prioridad, la siguiente línea en prioridad es P2 y la mínima prioridad es para P1. Sus dos salidas, y1 e y0, se han asociado de la siguiente forma: la palabra de salida y1 y0 = 11 a la máxima prioridad, y1 y0 = 10 a la prioridad intermedia, y1 y0 = 01 a la mínima prioridad y, finalmente, y1 y0 = 00 a las tres líneas de entrada nulas. ¿Cuáles son las expresiones correspondientes a las señales de salida de este codificador con prioridad?
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2014-ENE_03
+ El circuito de la figura corresponde a la implementación de una función lógica mediante MUX de 4 a 1 ¿Por cuál de los siguientes circuitos se puede sustituir sin que cambie la función, F, que realiza?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2014-ENE_04
+ ¿A qué circuito corresponde el cronograma de la figura si los biestables se disparan en los flancos negativos del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ A ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2014-ENE_05
+ La matriz que se muestra a continuación es la matriz funcional de un autómata finito ¿cuáles son las expresiones correspondientes a las funciones de excitación de los biestables D?
+ S0
+ S1
+ S2
+ S3
+ S0 
+ 0
+ 0
+ S1 
+ 0
+ 0
+ S2 
+ 0
+ 0
+ S3 
+ 1
+ 0
+ 0
+ 0
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+
+########## FSD-2014-FEB_v2.html (5 preguntas)
+Febrero 2014
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2014-FEB_01
+ Dada la función ¿cuál de las expresiones siguientes es la que corresponde a su negada, ?
+ Ninguna de las anteriores.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2014-FEB_02
+ Dadas dos palabras de 5 bits:
+ A [a4(MSB) a3 a2 a1 a0(LSB)] = 11001,
+ B [b4(MSB) b3 b2 b1 b0(LSB)] = 00011
+ ¿Cuál es el resultado de sumarlas y restarlas aritméticamente si consideramos que las palabras dadas corresponden a números representados en C-1 y en C-2?
+ Suma (C-1) = A+B = 11101, Resta (C-1) = A-B =10011
+ Suma (C-2) = A+B = 11100, Resta (C-2) = A-B =10010
+ Suma (C-1) = A+B = 11100, Resta (C-1) = A-B =10110
+ Suma (C-2) = A+B = 11100, Resta (C-2) = A-B =10110
+ Suma (C-1) = A+B = 11100, Resta (C-1) = A-B =10110
+ Suma (C-2) = A+B = 11101, Resta (C-2) = A-B =10111
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2014-FEB_03
+ El circuito de la figura corresponde a la implementación de una función lógica mediante una PAL ¿Por cuál de los siguientes circuitos se puede sustituir?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2014-FEB_04
+ ¿Cuál de los cronograma es el que genera el circuito de la figura si el Monoestable se dispara con los flancos negativos del Astable 2?.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2014-FEB_05
+ ¿Cuál de los siguientes circuitos corresponde a un contador síncrono de 4 bits si los biestables se disparan con los flancos negativos del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'a'.
+
+########## FSD-2014-SEP_v2.html (5 preguntas)
+Septiembre 2014
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2014-SEP_01
+ El circuito de la figura (1) corresponde a la implementación de la función universal realizada con términos mínimos. De los circuitos dados ¿cuál o cuáles implementan la misma función, si la función universal se programa con la palabra: a (a3 a2 a1 a0) = 1001?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ El circuito número (2) es el que implementa la misma función que el (1)
+ El circuito número (3) es el que implementa la misma función que el (1)
+ Ninguno, porque cada uno implementa una función distinta
+ Todos los circuitos implementan la misma función.
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2014-SEP_02
+ Si el circuito de la figura es un codificador con prioridad ¿Cuál es el orden de los niveles de prioridad que detecta?
+ [FIGURA]
+ P2 > P1 > P0
+ P0 > P1 > P2
+ P1 > P0 > P2
+ No es un codificador con prioridad
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2014-SEP_03
+ Con un biestable D que se dispara en las subidas del reloj se puede construir un biestable J-K que se dispare en las bajadas. ¿Cuál de los siguientes circuitos es el que realiza la función de dicho biestable J-K?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2014-SEP_04
+ ¿Cuál de los cronogramas es el que genera el circuito de la figura, si los biestables J-K se disparan en los flancos negativos del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2014-SEP_05
+ El circuito de la figura corresponde a una celda de memoria RAM estática en tecnología NMOS en la que suponemos que tenemos almacenado un "0" (Q1 no conduce) y queremos leerlo. ¿Qué valores de tensión debemos poner en la línea de selección de bit, , y qué valores leemos en las líneas de bit, y ?. ¿En qué estado está cada uno de los transistores?
+ [FIGURA]
+ . En BL se detecta un "1" y en un "0".
+ Q5, Q6, Q2 y Q3 conducen. Q1 y Q4 no conducen.
+ . En BL se detecta un "0" y en un "1".
+ Q5, Q6, Q2 y Q4 conducen. Q1 y Q3 no conducen.
+ . En BL se detecta un "0" y en un "1".
+ Q5, Q6, Q2, Q3 y Q4 conducen. Q1 no conducen.
+ . En BL se detecta un "1" y en un "0".
+ Q5, Q6, Q1 y Q4 conducen. Q2 y Q3 no conducen.
+ La solución correcta es la 'b'.
+
+########## FSD-2015-ENE_v2.html (5 preguntas)
+Enero 2015
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2015-ENE_01
+ ¿Qué función implementa el circuito de la siguiente figura?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2015-ENE_02
+ ¿Cuál de los circuitos es el que implementa la función ?
+ [FIGURA]
+ [FIGURA]
+ La implementa sólo el circuito (1).
+ La implementa sólo el circuito (2).
+ La implementan los dos circuitos.
+ No la implementan ninguno de los dos circuitos.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2015-ENE_03
+ ¿Cuál de los siguientes cronogramas es el del circuito de la figura, si los biestables se disparan en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2015-ENE_04
+ ¿Cuál es el circuito que genera el siguiente cronograma, si los biestables se disparan en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2015-ENE_05
+ ¿Cuál es la tabla de verdad de la Memoria de 2 bits de la siguiente figura?
+ Siendo:
+ Di el terminal de entrada de datos
+ CS el selector de circuito
+ W/E el control de lectura o escritura (W/E=1 escribe, W/E=0 Lee)
+ Do el terminal de salida de datos
+ [FIGURA]
+ Tabla 1
+ Di
+ CS
+ W/E
+ Do
+ Función
+ X
+ 0
+ 0
+ Do1
+ Lee Bit 1
+ X
+ 0
+ 1
+ ↑Z
+ Escribe el bit 1
+ X
+ 1
+ 0
+ Do0
+ Lee Bit 0
+ X
+ 1
+ 1
+ ↑Z
+ Escribe el bit 0
+ Tabla 2
+ Di
+ CS
+ W/E
+ Do
+ Función
+ X
+ 0
+ 0
+ Do1
+ Lee Bit 1
+ X
+ 0
+ 1
+ Do0
+ Lee Bit 0
+ X
+ 1
+ 0
+ ↑Z
+ Escribe el bit 1
+ X
+ 1
+ 1
+ ↑Z
+ Escribe el bit 0
+ Tabla 3
+ Di
+ CS
+ W/E
+ Do
+ Función
+ 0
+ 0
+ 0
+ ↑Z
+ Escribe el bit 0
+ 1
+ 0
+ 1
+ ↑Z
+ Escribe el bit 1
+ 0
+ 1
+ 0
+ Do0
+ Lee Bit 0
+ 1
+ 1
+ 1
+ Do1
+ Lee Bit 1
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+
+########## FSD-2015-FEB_v2.html (5 preguntas)
+Febrero 2015
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2015-FEB_01
+ ¿Cuál de los circuitos es el que implementa la función ?
+ [FIGURA]
+ [FIGURA]
+ La implementa sólo el circuito (1).
+ La implementa sólo el circuito (2).
+ La implementan los dos circuitos.
+ No la implementan ninguno de los dos circuitos.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2015-FEB_02
+ ¿Qué función implementa el circuito de la siguiente figura?
+ [FIGURA]
+ Implementa la función 
+ Implementa la función 
+ Implementa la función 
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2015-FEB_03
+ ¿Cuál de los siguientes circuitos corresponde a un biestable T construido con un biestable D, si el biestable D se dispara en las subidas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los tres
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2015-FEB_04
+ ¿Cuál de los siguientes cronogramas es el del circuito de la figura si los biestables se disparan en las subidas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los cronogramas corresponde al circuito de la figura
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2015-FEB_05
+ El circuito de la figura corresponde a una Memoria FIFO que, como sabéis, el principio de funcionamiento de estas memorias es el de los Registros de Desplazamiento. Los terminales de esta memoria son:
+ Dent = Entrada de datos
+ Dsal = Salida de datos
+ C1 C0 = Señales de control
+ ¿Cuál de las tablas de verdad es la que describe su funcionamiento?
+ [FIGURA]
+ Tabla 1
+ C1
+ C0
+ Función
+ 0
+ 0
+ Escribe los datos de entrada
+ 0
+ 1
+ Lee sin destruir los datos grabados.
+ 1
+ 0
+ Recirculan los datos grabados
+ 1
+ 1
+ Borra los datos grabados
+ Tabla 2
+ C1 C0
+ Función
+ 0 0
+ Escribe los datos de entrada
+ 0 1
+ Recirculan los datos grabados
+ 1 0
+ Lee sin destruir los datos grabados
+ 1 1
+ Lee y destruye los datos grabados
+ Tabla 3
+ C1 C0
+ Función
+ 0 0
+ Escribe los datos de entrada
+ 0 1
+ Recirculan los datos grabados
+ 1 0
+ Lee sin destruir los datos grabados
+ 1 1
+ Borra los datos grabados.
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2015-SEP_v2.html (5 preguntas)
+Septiembre 2015
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2015-SEP_01
+ ¿Qué circuito es el que implementa la siguiente función: 
+ [FIGURA]
+ [FIGURA]
+ La implementa el circuito 1
+ La implementan los dos circuitos
+ La implementa el circuito 2
+ No la implementa ninguno de los dos circuitos
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2015-SEP_02
+ ¿Cuál de los circuitos es el que detecta que A es mayor que B si se considera que las palabras pueden representar tanto números positivos como negativos en C-2?
+ [FIGURA]
+ [FIGURA]
+ El circuito 'A'
+ El circuito 'B'
+ La detectan los dos circuitos.
+ Ninguno de los dos la detecta.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2015-SEP_03
+ Dados los circuitos y los cronogramas siguientes especificar qué cronograma corresponde a cada uno de los circuitos, teniendo en cuenta que cada uno de los biestables J-K usados se dispara en los flancos negativos de su reloj.
+ Circuito 1
+[FIGURA]
+ Circuito 2
+[FIGURA]
+ Cronograma X
+[FIGURA]
+ Cronograma Y
+[FIGURA]
+ El cronograma X) es el del circuito 1) y el Y) del 2).
+ El cronograma Y) es el del circuito 1), pero el X) no es del circuito 2)
+ El cronograma X) es el del circuito 2) y el Y) del 1).
+ Ninguno de los cronogramas pertenece a ninguno de los circuitos dados.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2015-SEP_04
+ El circuito de la figura es el correspondiente a la Función Universal en Forma Normal Conjuntiva que se programa con la palabra A = A3 A2 A1 A0. ¿Con qué palabra binaria, A, hay que programarla para que realice la función ?
+ [FIGURA]
+ A = A3 A2 A1 A0 = 1 0 0 1
+ A = A3 A2 A1 A0 = 0 1 0 1
+ A = A3 A2 A1 A0 = 0 1 1 0
+ Con ninguna de las anteriores.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2015-SEP_05
+ En la celda de memoria RAM estática en tecnología CMOS de la figura adjunta hay almacenado un "0" (Q1 está en corte). ¿Qué valores de tensión debemos poner en la línea de selección de bit, , para leer el dato almacenado y qué valor leemos en las líneas de bit, y ?. ¿En qué estado están el resto de los transistores?
+ [FIGURA]
+ . En BL leemos un "0" y en un "1"
+ Q5, Q6, Q2 y Q3 conducen. Q1 y Q4 no conducen.
+ . En BL leemos un "0" y en un "1".
+ Q6, Q2 y Q3 conducen. Q5, Q1 y Q4 no conducen.
+ . En BL leemos un "0" y en un "1"
+ Q5, Q6, Q2 y Q4 conducen. Q1, y Q3 no conducen.
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+
+########## FSD-2016-ENE_v2.html (5 preguntas)
+Enero 2016
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2016-ENE_01
+ De las dos funciones siguientes:
+ ¿Cuál es la que implementa el circuito de la figura?
+ [FIGURA]
+ Implementa sólo a la función (1)
+ Implementa sólo a la función (2)
+ Implementa a las dos funciones
+ No implementa a ninguna de las dos
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2016-ENE_02
+ Una forma de demostrar los postulados del Álgebra de Boole es verificar que los cronogramas resultantes de la implementación de las dos expresiones de las igualdades coinciden. Los siguientes circuitos demuestran que las operaciones de suma y producto son distributivas ¿Cuál de los dos circuitos demuestra que la suma es distributiva respecto del producto?
+ [FIGURA]
+ [FIGURA]
+ La demuestra el circuito (2)
+ La demuestra el circuito (1)
+ La demuestran los dos circuitos
+ No la demuestra ninguno de los dos
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2016-ENE_03
+ Tenemos una ALU programada para que realice la operación . ¿Cuál es la palabra de salida F (F3 F2 F1 F0) y el acarreo Cn+4 si las palabras de entrada son A (A3 A2 A1 A0) = 1101 y B (B3 B2 B1 B0) = 0110? Considere que los bits con el subíndice 3 son los bits más significativos y que Cn+4 es el acarreo (sin negar) del bit más significativo.
+ F (F3 F2 F1 F0) = 0001, Cn+4 = 1
+ F (F3 F2 F1 F0) = 0011, Cn+4 = 1
+ F (F3 F2 F1 F0) = 1001, Cn+4 = 0
+ Ninguna de los anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2016-ENE_04
+ ¿Cuál es el cronograma del siguiente circuito, si los biestables J-K se disparan en las bajadas de los pulsos de reloj? Tenga en cuenta que los biestables introducen un pequeño retardo (del orden de 20ns).
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ Las soluciones correctas son: 'b' y 'c'.
+ PREGUNTA FSD-2016-ENE_05
+ Dada la siguiente Tabla de Transición de Estados de un Autómata Finito ¿cuáles son sus funciones de excitación si lo implementamos con biestables J-K?
+ A
+ Q1(t)
+ Q0(t)
+ Q1 (t+∆)
+ Q0 (t+∆)
+ 0
+ 0
+ 0
+ 0
+ 1
+ 0
+ 0
+ 1
+ 1
+ 1
+ 0
+ 1
+ 1
+ 1
+ 0
+ 0
+ 1
+ 0
+ 0
+ 0
+ 1
+ 0
+ 0
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ 0
+ 0
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2016-FEB_v2.html (5 preguntas)
+Febrero 2016
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2016-FEB_01
+ ¿Qué función realiza el circuito de la figura?
+ [FIGURA]
+ Es un sumador de dos palabras de dos bits cada una.
+ Detecta que sólo 3 bits de los 4bits de entrada son unos.
+ Detecta que el número de unos de los 4 bits de entrada es impar.
+ Ninguna de las anteriores.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2016-FEB_02
+ ¿Cuál de los siguientes circuitos, implementa la función: ?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La implementa sólo el circuito (1)
+ La implementan los tres circuitos
+ No la implementa ninguno de los tres
+ La implementan el circuito (1) y (2), pero no el (3)
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2016-FEB_03
+ ¿Cuál es el cronograma del siguiente circuito, si el biestable J-K se dispara en las bajadas del reloj? Tenga en cuenta que los biestables introducen un pequeño retardo (del orden de 20ns).
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los tres
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2016-FEB_04
+ ¿Cuál es el Diagrama de Transición de Estados del circuito de la figura?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ No es ninguno de los anteriores
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2016-FEB_05
+ La siguiente figura corresponde al circuito de tiempo 555 en configuración monoestable. ¿Cuál es su funcionamiento cuando el condensador, C, está descargado y en el terminal de disparo se presenta una tensión menor que Vcc/3?
+ [FIGURA]
+ S=0, R=1, Q=0, G=1, Vs=0, el transistor T conduce y el condensador, C, se mantiene descargado.
+ S=0, R=0, Q=0, G=1, Vs=0, el transistor T no conduce y el condensador, C, se va cargando hacia Vcc a través de RA.
+ S=1, R=0, Q=1, G=0, Vs=1, el transistor T no conduce y el condensador, C, se va cargando hacia Vcc a través de RA.
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2017-FEB1_v2.html (5 preguntas)
+Febrero 2017 - Primera semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2017-FEB1_01
+ ¿Qué función lógica implementa el circuito de la figura adjunta?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2017-FEB1_02
+ El circuito de la figura 1 corresponde a la implementación de una función lógica mediante multiplexos de 4 a 1 ¿Cuál de los circuitos dados realiza la misma función?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2017-FEB1_03
+ ¿Qué palabras se obtienen en la salida de una ALU que está programada para realizar las funciones y si las palabras de entrada son: A (A3 A2 A1 A0) = 1101 y B (B3 B2 B1 B0) = 1011? (Considere que los bits más significativos son A3 y B3 y las menos significativos A0 y B0).
+ F (F3 F2 F1 F0) = 1100 y F' (F'3 F'2 F'1 F'0) = 0110
+ F (F3 F2 F1 F0) = 0011 y F' (F'3 F'2 F'1 F'0) = 1001
+ F (F3 F2 F1 F0) = 0011 y F' (F'3 F'2 F'1 F'0) = 0110
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2017-FEB1_04
+ ¿A qué circuito corresponde el cronograma de la figura? Debe tener en cuenta que los biestables se disparan en los flancos negativos del reloj.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ A ninguno de los anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2017-FEB1_05
+ El circuito de la figura adjunta corresponde a un Autómata finito. ¿Cuál es su matriz funcional?
+ [FIGURA]
+ Tabla 1
+ S0
+ S1
+ S2
+ S3
+ S0 
+ 0
+ 0
+ S1 
+ 0
+ 0
+ S2 
+ 0
+ 0
+ S3 
+ 0
+ 0
+ Tabla 2
+ S0
+ S1
+ S2
+ S3
+ S0 
+ 0
+ 0
+ S1 
+ 0
+ 0
+ S2 
+ 0
+ 0
+ S3 
+ 0
+ 0
+ Tabla 3
+ S0
+ S1
+ S2
+ S3
+ S0 
+ 0
+ 0
+ S1 
+ 0
+ 0
+ S2 
+ 0
+ 0
+ S3 
+ 0
+ 0
+ Tabla 1
+ Tabla 2
+ Tabla 3
+ Tabla 4
+ La solución correcta es la 'b'.
+
+########## FSD-2017-FEB2_v2.html (5 preguntas)
+Febrero 2017 - Segunda semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2017-FEB2_01
+ ¿Cuál de los circuitos es el que implementa las mismas funciones que la PROM de la figura adjunta?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2017-FEB2_02
+ ¿Cuál de las soluciones dadas corresponde a las expresiones mínimas de los segmentos de un visualizador de 7-segmentos en el que se visualiza la letra P cuando un número de unos de la palabra de 3 bits, X (X2 X1 X0) es par y no se ilumina ningún segmento cuando el nº de unos es impar?
+ Recuerde que la denominación de los segmentos del visualizador es la de la siguiente figura.
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2017-FEB2_03
+ De los siguientes circuitos ¿cuál es el correspondiente a un restador completo?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los circuitos es un restador completo
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2017-FEB2_04
+ El circuito de la figura corresponde a un Autómata Finito implementado con biestables J-K. ¿Cuál es su Diagrama de Transición de Estados?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los Diagramas corresponde al circuito
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2017-FEB2_05
+ El circuito de la figura corresponde a una celda de memoria RAM estática en tecnología NMOS en la que suponemos que tenemos almacenado un "1" (Q1 conduce) y queremos leerlo. ¿Qué valores de tensión debemos poner en la línea de selección de bit, , y qué valores leemos en las líneas de bit, y ?. ¿En qué estado está cada uno de los transistores?
+ [FIGURA]
+ . En BL se detecta un "1" y en un "0".
+ Q5, Q6, Q1 y Q4 conducen. Q2 y Q3 no conducen.
+ . En BL se detecta un "0" y en un "1".
+ Q5, Q6, Q1, Q3 y Q4 conducen. Q2 no conducen.
+ . En BL se detecta un "1" y en un "0".
+ Q5, Q6, Q1 y Q3 conducen. Q2 y Q4 no conducen.
+ Ninguna de las anteriores.
+ La solución correcta es la 'c'.
+
+########## FSD-2017-SEP_v2.html (5 preguntas)
+Septiembre 2017
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2017-SEP_01
+ ¿Cuál de los siguientes circuitos detecta tanto la imparidad binaria (salida I=1) como la paridad decimal (salida P=1) de la palabra, A (A2 A1 A0), de 3 bits? (Considere A2 como el bit más significativo y A0 el menos).
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2017-SEP_02
+ ¿Qué valor tiene que tomar la palabra A (A3 A2 A1 A0) de programación de la función universal del circuito de la figura para que implemente la función ?
+ [FIGURA]
+ A = A3 A2 A1 A0 = 0010
+ A = A3 A2 A1 A0 = 0110
+ A = A3 A2 A1 A0 = 0100
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2017-SEP_03
+ ¿Cuál de los circuitos dados a continuación es el que implementa a un MUX de 8 a 1 construido mediante el circuito tipo SN74153 que consta de 2 MUX de 4 a 1 y que tienen las mismas señales de control, pero una señal de facilitación independiente para cada uno de los multiplexos ( y )?
+ Circuito 1:
+ [FIGURA]
+ Circuito 2:
+ [FIGURA]
+ Circuito 3:
+ [FIGURA]
+ Lo implementa el circuito 1
+ Lo implementa el circuito 2
+ Lo implementa el circuito 3
+ Ninguno de los tres lo implementa
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2017-SEP_04
+ ¿Cuál es el cronograma del siguiente circuito, si el biestable J-K tipo SN7473 se dispara en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los cronogramas corresponde al circuito de la figura
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2017-SEP_05
+ La siguiente figura representa el Diagrama de Transición de Estados de un Autómata Finito de 2 variables de estados y dos variables de entrada. De las ecuaciones dadas ¿cuáles son las funciones de excitación de dicho Autómata Finito?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2018-FEB1_v2.html (5 preguntas)
+Febrero 2018 - Primera semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2018-FEB1_01
+ El circuito de la siguiente figura corresponde a una función lógica implementada con uno de los multiplexos de 4 a 1 de los dos que posee el circuito integrado SN74153 y en el que es la señal que habilita al circuito, I0A, I1A, I2A e I3A son las entradas correspondientes a , , , respectivamente siendo S1 y S0 las señales de control.
+ [FIGURA]
+ ¿Cuál de los siguientes circuitos implementa la misma función?
+ [FIGURA]
+ [FIGURA]
+ Realiza la misma función sólo el Circuito 1.
+ Realiza la misma función sólo el Circuito 2.
+ Los dos circuitos realizan la misma función
+ Ninguno de los dos realiza la misma función
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2018-FEB1_02
+ El circuito de la figura corresponde a un codificador con prioridad de 3 bits. ¿Cuál de las señales de entrada (P2, P1, P0) es la que posee mayor prioridad y cuál menor, si la máxima prioridad la codificamos con Y1 Y0=1 1, la mínima con Y2 Y1 =01 y cuando ninguna es prioritaria la codificamos con Y1 Y0=0 0?
+ [FIGURA]
+ La que posee más prioridad es P0 y la mínima P2. Es decir: P0 > P1 > P2
+ La que posee más prioridad es P2 y la mínima P0. Es decir: P2 > P1 > P0
+ La que posee más prioridad es P1 y la mínima P0. Es decir: P1 > P2 > P0
+ No es un codificador con prioridad
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2018-FEB1_03
+ ¿A cuál de los tres circuitos corresponde el cronograma siguiente, si los biestables J-K se disparan en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Corresponde al Circuito 1.
+ Corresponde al Circuito 2.
+ Corresponde al Circuito 3.
+ No corresponde a ninguno de los tres.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2018-FEB1_04
+ ¿Cuál es el circuito que implementa al Autómata Finito cuyo Diagrama de Transición de Estados es el que se muestra en la siguiente figura?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Lo implementa el circuito 1
+ Lo implementa el circuito 2
+ Lo implementa el circuito 3
+ No lo implementa ninguno de los tres circuitos
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2018-FEB1_05
+ Dada la Memoria de 2 bits de la figura adjunta ¿cuál es el cronograma correspondiente al almacenamiento primero de un "1" en el "Bit 0" y a continuación de un "0" en el "Bit 1" y después a la lectura de su contenido en el mismo orden en el que se ha almacenado, primero el "Bit 0" y después el "Bit 1?"
+ Siendo:
+ W/E el control de lectura o escritura (W/E=1 escribe, W/E=0 Lee)
+ CS el selector de circuito (CS=1 facilita la celda "Bit 0", CS=0 facilita la celda de "Bit 1")
+ DI el terminal de entrada de datos
+ DO el terminal de salida de datos
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los 3 es la solución correcta.
+ La solución correcta es la 'a'.
+
+########## FSD-2018-FEB2_v2.html (5 preguntas)
+Febrero 2018 - Segunda semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2018-FEB2_01
+ ¿Cuál o cuáles son los circuitos que implementan la función ?
+ Nota: Para la implementación con Multiplexos hemos usado uno de los dos MUX de 4 a 1 del circuito integrado SN74153 en el que, es la señal que habilita al circuito e I0A, I1A, I2A e I3A son las entradas de datos que están controladas, respectivamente, por las configuraciones , , y de las entradas S1 y S0.
+ [FIGURA]
+ [FIGURA]
+ Sólo la implementa el Circuito 1.
+ Sólo la implementa el Circuito 2.
+ Los dos circuitos la implementan
+ No la implementa ninguno de los dos
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2018-FEB2_02
+ De los 4 circuitos siguientes ¿cuáles son los que producen en su salida F un uno cuando la palabra A (A3 A2 A1 A0) tiene un número de unos PAR?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Detectan la paridad el circuito 1 y el 3.
+ Detectan la paridad el circuito 2 y el 4.
+ Detectan la paridad el circuito 3 y el 4.
+ Los cuatro la detectan
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2018-FEB2_03
+ ¿Cuál de los tres cronogramas corresponde al siguiente circuito, si los biestables J-K se disparan en las bajadas del reloj?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Le corresponde el cronograma (1).
+ Le corresponde el cronograma (2).
+ Le corresponde el cronograma (3).
+ No corresponde ninguno de los tres.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2018-FEB2_04
+ Supongamos que en el simulador sólo tenemos biestables D integrados del tipo SN7473 y necesitamos usar un biestable J-K con las mismas señales de control y de reloj. ¿Cuál de los siguientes circuitos es el que debemos usar como biestable J-K?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ El circuito 1
+ El circuito 2
+ El circuito 3
+ Ninguno de los tres
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2018-FEB2_05
+ El circuito de la figura corresponde a una simplificación de la celda de memoria de tres transistores NMOS y queremos escribir un "0". ¿Qué valores tenemos que poner en la línea de entrada de datos Din, línea de lectura RS y línea de escritura WS? y ¿En qué estado quedan los transistores y el condensador tras la escritura de dicho "0"? Consideramos que el "1" equivale a la tensión de alimentación, VDD, y el "0" equivale a poner 0V.
+ [FIGURA]
+ Tenemos que poner en Din un "0" (0V), en RS un "0" (0V) y en WS un "1" (VDD)
+ Q3 conduce, Q4 no conduce, Q5 no conduce y C se queda descargado.
+ Tenemos que poner en Din un "0" (0V), en RS un "0" (0V) y en WS un "1" (VDD)
+ Q3 conduce, Q4 no conduce, Q5 conduce y C se queda cargado.
+ Tenemos que poner en Din un "0" (0V), en RS un "1" (VDD) y en WS un "0" (0V)
+ Q3 no conduce, Q4 no conduce, Q5 conduce y C se queda descargado.
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+
+########## FSD-2018-SEP_v2.html (5 preguntas)
+Septiembre 2018
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2018-SEP_01
+ ¿Qué función es la que implementa el circuito de la siguiente figura?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2018-SEP_02
+ Tenemos un circuito que nos permite realizar la suma de 2 números (A y B) de 3 bits representados en Complemento a 2 (C-2) de forma que en su salida presenta la suma aritmética de A y B (S=A PLUS B) y el Rebose, como se muestra a continuación.
+ [FIGURA]
+ Si A2 y B2 son los bits más significativos, ¿qué valores presenta en las salidas cuando las palabras de entrada en C-2 son las siguientes?
+ Caso 1: Palabra A=A2 A1 A0 = 100, Palabra B=B2 B1 B0 = 110
+ Caso 2: Palabra A=A2 A1 A0 = 001, Palabra B=B2 B1 B0 = 010
+ Caso 1: S=S2 S1 S0= 110, Rebose=0
+ Caso 2: S=S2 S1 S0= 011, Rebose=0
+ Caso 1: S=S2 S1 S0= 010, Rebose=0
+ Caso 2: S=S2 S1 S0= 011, Rebose=1
+ Caso 1: S=S2 S1 S0= 010, Rebose=1
+ Caso 2: S=S2 S1 S0= 011, Rebose=0
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2018-SEP_03
+ Dados los circuitos 1 y 2 que se muestran a continuación ¿qué valor debemos dar a la palabra A (A3 A2 A1 A0) que controla la función de salida del circuito 2 para que implemente la misma función lógica, F(X,Y), que implementa la PROM del circuito 1?
+ [FIGURA]
+ [FIGURA]
+ A (A3 A2 A1 A0) = 0 1 1 0
+ A (A3 A2 A1 A0) = 1 0 1 0
+ A (A3 A2 A1 A0) = 1 0 0 1
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2018-SEP_04
+ ¿A cuáles de los circuitos representa el Diagrama de Transición de Estados que se muestra a continuación?
+ NOTA: Tenga en cuenta que los biestables tipo SN7474 cambian de estado en las bajadas del reloj y los SN 7473 en las subidas.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Representa a los circuitos 1 y 3
+ Representa a los circuitos 2 y 3
+ Representa sólo al circuito 1
+ Representa sólo al circuito 3
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2018-SEP_05
+ El circuito que se muestra en la figura corresponde al circuito de tiempo tipo 555 configurado para funcionar como astable.
+ ¿Cuál de las respuestas es la que corresponde al caso en el que el condensador se está cargando hacia Vcc, pero la tensión entre sus terminales aún es menor que Vcc/3?
+ NOTA: Debe tener en cuenta que el terminal 5 (control) está a la tensión constante de 2Vcc/3, la entrada No Inversora del Comparador 2 a Vcc/3, y el transistor de salida es NMOS, como se muestra en la figura.
+ [FIGURA]
+ La salida del Comparador 1 es R=0 y la del 2 es S=1, lo que hace que Q=1, G=0 y la salida=1. Como la puerta (G) del transistor está a 0, el transistor no conduce y el condensador, C, se sigue cargando hacia Vcc a través de RA y RB
+ La salida del Comparador 1 es R=0 y la del 2 es S=1, lo que hace que Q=1, G=0 y la salida=1. Como la puerta (G) del transistor está a 0 Voltios, el transistor conduce y el condensador, C, pasa a descargase a través del transistor y de RB.
+ La salida del Comparador 1 es R=1 y la del 2 es S=0, lo que hace que Q=0, G=1 y la salida=0. Como la puerta (G) del transistor está a 1, el transistor no conduce y el condensador, C, se sigue cargando hacia Vcc a través de RA y RB.
+ Ninguna de las anteriores.
+ La solución correcta es la 'a'.
+
+########## FSD-2019-FEB1_v2.html (5 preguntas)
+Febrero 2019 - Primera semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2019-FEB1_01
+ De las siguientes expresiones lógicas ¿cuál es la que corresponde al teorema de la adyacencia, cuál al de la absorción y cuál al de De Morgan?
+ La expresión 1 corresponde al teorema de la Absorción, la 2 al de la Adyacencia y la 3 al de De Morgan.
+ La expresión 1 corresponde al teorema de la Adyacencia, la 2 al de la Absorción y la 3 al de De Morgan.
+ La expresión 1 corresponde al teorema de la Adyacencia, la 2 al de la Absorción y la 3 al de De Morgan
+ Ninguna de las anteriores es la correcta
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2019-FEB1_02
+ Dada la función ¿Cuál de los siguientes circuitos la implementa?
+ [FIGURA]
+ [FIGURA]
+ La implementa el sólo el 1
+ La implementan los dos circuitos
+ La implementa el sólo el 2
+ No la implementa ninguna de los dos.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2019-FEB1_03
+ ¿Cuál de los circuitos realiza la función de un restador completo?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2019-FEB1_04
+ ¿Cuál de los cronogramas dados corresponde circuito de la figura? Recuerde que los biestables introducen un pequeño retardo.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2019-FEB1_05
+ ¿Cuál es el Diagrama de Transiciones de Estados del circuito cuyo cronograma mostramos a continuación?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2019-FEB2_v2.html (5 preguntas)
+Febrero 2019 - Segunda semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2019-FEB2_01
+ ¿Cuál de las siguientes expresiones corresponden a la función de 2 variables representada por Minterms y Maxterms?
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2019-FEB2_02
+ Dada la función ¿Cuál de los siguientes circuitos la implementa?
+ [FIGURA]
+ [FIGURA]
+ La implementa sólo el Circuito 1
+ La implementan los dos circuitos
+ La implementa sólo el Circuito 2
+ No la implementan ninguno de los dos.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2019-FEB2_03
+ ¿Cuál de los circuitos detecta que el número de unos de la palabra de entrada es Par?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2019-FEB2_04
+ ¿A qué circuito corresponde el siguiente cronograma? Tenga en cuenta que los biestables generan un pequeño retardo.
+ [FIGURA]
+ Circuito 1
+ [FIGURA]
+ Circuito 2
+ [FIGURA]
+ Circuito 3
+ [FIGURA]
+ Es el cronograma del circuito 1
+ Es el cronograma del circuito 2
+ Es el cronograma del circuito 3
+ No es de ninguno de los tres
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2019-FEB2_05
+ El circuito de la figura implementa a un Registro de Desplazamiento de 2 bits cuya señal de entrada es X. De los Diagramas de Transición de Estados dados ¿cuál le representa?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Le representa el Diagrama 1.
+ Le representa el Diagrama 2.
+ Le representa el Diagrama 3.
+ No le representa ninguno de los tres.
+ La solución correcta es la 'c'.
+
+########## FSD-2019-SEP_v2.html (5 preguntas)
+Septiembre 2019
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2019-SEP_01
+ Dada la función de 3 variables, expresada como productos de maxterms, . ¿Cuál de los siguientes circuitos la implementa?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los tres la implementan
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2019-SEP_02
+ Dadas las palabras A (A1 A0) y B (B1 B0) ¿cuál es el circuito que implementa la función A > B, siendo A1 y B1 los bits más significativos de dichas palabras.
+ Nota: El circuito integrado SN74153 consta de 2 multiplexos. La entrada es la señal de habilitación del multiplexo A en el que I0A, I1A, I2A e I3A son las entradas de datos que están controladas, respectivamente, por las configuraciones , , y de las entradas S1 y S0.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ No la implementan ninguno de los tres.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2019-SEP_03
+ De los cronogramas que se muestran a continuación ¿cuál es el del siguiente circuito?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2019-SEP_04
+ ¿Cuál es el Diagrama de Transición de Estados del circuito secuencial cuyo cronograma es el de la siguiente figura?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2019-SEP_05
+ Tenemos dos celdas de memoria RAM como la de la figura adjunta, las cuales están organizadas como 16 palabras de 1 bit, ¿cómo tenemos que conectarlas para obtener una memoria organizada como 16 palabras de 2 bits?
+ [FIGURA]
+ Siendo:
+ Din: Entrada de datos
+ Dout: Salida de datos
+ CS: Línea de selección de circuito (CS=1 seleccionado)
+ W/E: Habilitación de escritura/lectura (W/E=1 escribe, W/E=0 Lee)
+ A3 A2 A1 A0: Líneas de dirección (4 bits)
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguno de los anteriores
+ La solución correcta es la 'c'.
+
+########## FSD-2020-FEB1_v2.html (5 preguntas)
+Febrero 2020 - Primera semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2020-FEB1_01
+ Dada la función de 2 variables expresada en su forma normal disyuntiva (suma de minterms) ¿cuál es la representación de esta misma función en su forma normal conjuntiva (producto de maxterms)?
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-FEB1_02
+ El circuito de la figura corresponde a la implementación de la función universal realizada con términos máximos. ¿Qué función realiza cuando la palabra de programación es: ?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-FEB1_03
+ ¿Qué función lógica realiza el circuito de la figura?
+[FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-FEB1_04
+ ¿A qué diagrama de transición de estados corresponde la matriz funcional adjunta?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-FEB1_05
+ El siguiente circuito representa un contador asíncrono configurado como divisor de frecuencia. Para resetear la cuenta, se utiliza la entrada de "PRESET" activa en baja.
+ [FIGURA]
+ Este circuito es:
+ NOTA: Se dice que un contador está configurado cómodo "divisor por N" cuando es capaz de contar N estados distintos
+ Un divisor por 5.
+ Un divisor por 6.
+ Un divisor por 7.
+ Ninguna de las anteriores respuestas es correcta.
+ La solución correcta es la 'b'.
+
+########## FSD-2020-FEB2_v2.html (5 preguntas)
+Febrero 2020 - Segunda semana
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2020-FEB2_01
+ La expresión 
+ No puede simplificarse
+ Puede simplificarse a 
+ Puede simplificarse a 
+ Ninguna de las respuestas anteriores es correcta
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-FEB2_02
+ El circuito de la figura adjunta corresponde a la función universal realizada con términos mínimos. ¿Qué funciones realiza cuando la palabra de programación es: ?
+ [FIGURA]
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-FEB2_03
+ ¿Cuál es el resultado de sumar aritméticamente las dos palabras de 5 bits y , siendo A4 y B4 los bits más significativos? Marque la solución correcta.
+ ,
+ ,
+ ,
+ Ninguna de las anteriores
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-FEB2_04
+ El siguiente circuito representa una celda RAM estática con transistores NMOS. Si la celda almacena un "1" cuando Q1 está en conducción y Q2 en corte, y viceversa cuando almacena un "0" ¿Qué ocurre en la celda si ponemos un pulso positivo en WL, y ?
+ [FIGURA]
+ Q1, Q5 y Q6 están en corte, Q2 conduce y la celda pasará a almacenar un "1" cuando WL vuelva a "0".
+ Q1, Q5 y Q6 conducen, Q2 está en corte y la celda pasará a almacenar un "1" cuando WL vuelva a "0".
+ Q1 y Q2 están en corte, Q5 y Q6 conducen y la celda pasará a almacenar un "0" cuando WL vuelva a "0".
+ Ninguna de las respuestas anteriores es correcta.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-FEB2_05
+ El siguiente Diagrama de Transición de Estados corresponde a:
+ [FIGURA]
+ Un registro de desplazamiento de 2 bits con carga paralelo.
+ Un registro de desplazamiento de 4 bits con carga serie.
+ Un contador reversible de 2 bits.
+ Un contador reversible de 4 bits.
+ La solución correcta es la 'c'.
+
+########## FSD-2020-SEP_v2.html (26 preguntas)
+Septiembre 2020
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2020-SEP_01
+ La siguiente tabla de verdad relaciona las entradas A y B con las salidas F1 y F2. ¿Cuál es la expresión correcta de F1 y F2?
+ Tabla de verdad de la pregunta 1
+ A
+ B
+ 0
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 0
+ 1
+ 0
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ ,
+ , 
+ ,
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_02
+ La siguiente tabla de verdad relaciona las entradas A y B con las salidas F1 y F2. ¿Cuál es la expresión correcta de F1 y F2?
+ Tabla de verdad de la pregunta 2
+ A
+ B
+ 0
+ 0
+ 0
+ 0
+ 0
+ 1
+ 1
+ 1
+ 1
+ 0
+ 1
+ 0
+ 1
+ 1
+ 0
+ 0
+ ,
+ ,
+ ,
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_03
+ La siguiente tabla de verdad relaciona las entradas A y B con las salidas F1 y F2. ¿Cuál es la expresión correcta de F1 y F2?
+ Tabla de verdad de la pregunta 3
+ A
+ B
+ 0
+ 0
+ 0
+ 1
+ 0
+ 1
+ 1
+ 0
+ 1
+ 0
+ 1
+ 1
+ 1
+ 1
+ 1
+ 0
+ ,
+ ,
+ ,
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_04
+ Dada la función de 2 variables, expresada en su forma normal disyuntiva (suma de minterms) ¿cuál es la representación de esta misma función en su forma normal conjuntiva (producto de maxterms)?.
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_05
+ Dada la función de 2 variables, expresada en su forma normal disyuntiva (suma de minterms) ¿cuál es la representación de esta misma función en su forma normal conjuntiva (producto de maxterms)?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_06
+ El circuito de la figura corresponde a la implementación de la función universal en forma normal disyuntiva. El valor de los coeficientes es ai. ¿Qué función realiza cuando los coeficientes toman el valor a=a0 a1 a2 a3=1101?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_07
+ El circuito de la figura corresponde a la implementación de la función universal en forma normal disyuntiva. El valor de los coeficientes es ai. ¿Qué función realiza cuando los coeficientes toman el valor a=a0 a1 a2 a3=1011?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_08
+ El circuito de la figura corresponde a la implementación de la función universal en forma normal disyuntiva. El valor de los coeficientes es ai. ¿Qué función realiza cuando los coeficientes toman el valor a=a0 a1 a2 a3=0111?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_09
+ ¿Cuáles son las expresiones lógicas de salida de un comparador A>B de dos palabras de dos bits A (A1A0) y B (B1B0) en las que A1 y B1 son los bits más significativos?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_10
+ ¿Cuáles son las expresiones lógicas de salida de un comparador B>A de dos palabras de dos bits A (A1A0) y B (B1B0) en las que A1 y B1 son los bits más significativos?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_11
+ ¿Cuáles son las expresiones lógicas de salida de un comparador A=B de dos palabras de dos bits A (A1A0) y B (B1B0) en las que A1 y B1 son los bits más significativos?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2020-SEP_12
+ ¿Qué función lógica realiza el circuito de la figura?
+[FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_13
+ ¿Qué función lógica realiza el circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_14
+ ¿Qué función lógica realiza el circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_15
+ El circuito integrado 74LS138 es un demultiplexor de 1 a 8 con entrada de datos G1, entradas de selección A, B y C (A bit menos significativo) y salida de datos Y0….Y7, (Y0 bit menos significativo). El circuito se conecta como indica la figura, en cada pin de salida del circuito se conecta un LED. El resultado de este circuito es:
+ [FIGURA]
+ El LED conectado a Y2 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y4 y el LED conectado a Y3 se iluminan de forma permanente y el resto permanece apagado.
+ El LED conectado a Y6 se ilumina de forma intermitente y el resto permanece apagado.
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_16
+ El circuito integrado 74LS138 es un demultiplexor de 1 a 8 con entrada de datos G1, entradas de selección A, B y C (A bit menos significativo) y salida de datos Y0….Y7, (Y0 bit menos significativo). El circuito se conecta como indica la figura, en cada pin de salida del circuito se conecta un LED. El resultado de este circuito es:
+ [FIGURA]
+ El LED conectado a Y0 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y7 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y1 y el LED conectado a Y3 se iluminan de forma permanente y el resto permanece apagado.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_17
+ El circuito integrado 74LS138 es un demultiplexor de 1 a 8 con entrada de datos G1, entradas de selección A, B y C (A bit menos significativo) y salida de datos Y0….Y7, (Y0 bit menos significativo). El circuito se conecta como indica la figura, en cada pin de salida del circuito se conecta un LED. El resultado de este circuito es:
+ [FIGURA]
+ El LED conectado a Y6 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y1 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y1 y el LED conectado a Y3 se iluminan de forma permanente y el resto permanece apagado.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_18
+ El circuito integrado 74LS138 es un demultiplexor de 1 a 8 con entrada de datos G1, entradas de selección A, B y C (A bit menos significativo) y salida de datos Y0….Y7, (Y0 bit menos significativo). El circuito se conecta como indica la figura, en cada pin de salida del circuito se conecta un LED. El resultado de este circuito es:
+ [FIGURA]
+ El LED conectado a Y6 se ilumina de forma intermitente y el resto permanece apagado.
+ El LED conectado a Y5 y el LED conectado a Y3 se iluminan de forma permanente y el resto permanece apagado.
+ El LED conectado a Y5 se ilumina de forma intermitente y el resto permanece apagado.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_19
+ Se ha diseñado un contador síncrono modular de 2 bits con el biestable J-K 74ALS109. Este biestable tiene la peculiaridad de que las entradas PRESET, CLEAR, K y la salida NOQ son activas en baja, y la entrada J y la salida Q son activas en alta. El biestable se dispara en los flancos de subida.
+ [FIGURA]
+ ¿Qué función realiza el circuito anterior?
+ Es un contador asíncrono de dos bits.
+ Es un contador síncrono que cuenta tres estados.
+ Es un contador síncrono que cuenta cuatro estados.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_20
+ Se ha diseñado un contador síncrono modular de 2 bits con el biestable J-K 74ALS109. Este biestable tiene la peculiaridad de que las entradas PRESET, CLEAR, K y la salida NOQ son activas en baja, y la entrada J y la salida Q son activas en alta. El biestable se dispara en los flancos de subida.
+ [FIGURA]
+ Teniendo en cuenta el circuito anterior, el cronograma correcto es:
+ [FIGURA]
+ El cronograma a).
+ El cronograma b).
+ El cronograma c).
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2020-SEP_21
+ Se ha diseñado un contador síncrono modular de 2 bits con el biestable J-K 74ALS109. Este biestable tiene la peculiaridad de que las entradas PRESET, CLEAR, K y la salida NOQ son activas en baja, y la entrada J y la salida Q son activas en alta. El biestable se dispara en los flancos de subida.
+ [FIGURA]
+ Teniendo en cuenta el circuito anterior:
+ Los biestables J-K están configurados como biestables "D".
+ Es un contador que cuenta cuatro estados.
+ Los biestables J-K están configurados como biestables "T".
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_22
+ Se ha diseñado un contador síncrono modular de 2 bits con el biestable J-K 74ALS109. Este biestable tiene la peculiaridad de que las entradas PRESET, CLEAR, K y la salida NOQ son activas en baja, y la entrada J y la salida Q son activas en alta. El biestable se dispara en los flancos de subida.
+ [FIGURA]
+ Teniendo en cuenta el circuito anterior:
+ El contador recorre la secuencia (00, 01, 10, 00, 01, 10…).
+ El contador recorre la secuencia (00, 01, 11, 00, 01, 11…).
+ El contador recorre la secuencia (00,11,00,11,00,11…).
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_23
+ Disponemos de chips RAM de 32k palabras de 8 bits. ¿Cuántos necesitaremos para obtener una memoria de 256kBytes (ancho de palabra de 1 byte)?
+ 4 chips.
+ 8 chips.
+ 16 chips.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_24
+ Disponemos de chips RAM de 128k palabras de 8 bits. ¿Cuántos necesitaremos para obtener una memoria de 1024kBytes (ancho de palabra de 1 byte)?
+ 4 chips.
+ 8 chips.
+ 16 chips.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2020-SEP_25
+ Disponemos de chips RAM de 16k palabras de 8 bits. ¿Cuántos necesitaremos para obtener una memoria de 256kBytes (ancho de palabra de 1 byte)?
+ 4 chips.
+ 8 chips.
+ 16 chips.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2020-SEP_26
+ Disponemos de chips RAM de 32k palabras de 8 bits. ¿Cuántos necesitaremos para obtener una memoria de 128kBytes (ancho de palabra de 1 byte)?
+ 4 chips.
+ 8 chips.
+ 16 chips.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'a'.
+
+########## FSD-2021-FEB1.html (14 preguntas)
+E:/fsd-to_course/FSD-2021-FEB1.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2021-FEB1_01
+¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-FEB1_02
+¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB1_03
+¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-FEB1_04
+El circuito de la figura corresponde a la implementación de la función universal realizada con términos máximos. Indicar los valores que deben tomar A0 A1 A2 A3 para que la función tome el valor 
+[FIGURA]
+A0 A1 A2 A3 = 0011
+A0 A1 A2 A3 = 0001
+A0 A1 A2 A3 = 0111
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB1_05
+El circuito de la figura corresponde a la implementación de la función universal realizada con términos máximos. Indicar los valores que deben tomar A0 A1 A2 A3 para que la función tome el valor: 
+[FIGURA]
+A0 A1 A2 A3 = 1001
+Ninguna otra opción es verdadera
+A0 A1 A2 A3 = 0011
+A0 A1 A2 A3 = 0111
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-FEB1_06
+El circuito de la figura corresponde a la implementación de la función universal realizada con términos máximos. Indicar los valores que deben tomar A0 A1 A2 A3 para que la función tome el valor: 
+[FIGURA]
+A0 A1 A2 A3 = 0111
+A0 A1 A2 A3 = 1101
+A0 A1 A2 A3 = 0011
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB1_07
+¿Cuál es la expresión de la función F que implementa el siguiente circuito, que contiene un multiplexor y puertas lógicas?
+NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-FEB1_08
+¿Cuál es la expresión de la función F que implementa el siguiente circuito, que contiene un multiplexor y puertas lógicas?
+NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-FEB1_09
+¿Cuál es la expresión de la función F que implementa el siguiente circuito, que contiene un multiplexor y puertas lógicas?
+NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB1_10
+¿Cuál de los cronogramas representa el comportamiento del siguiente circuito?
+NOTA: Considerar que el biestable D de la imagen de la siguiente pregunta se activa en flanco de bajada aunque no aparezca el símbolo correspondiente en la entrada de reloj.
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB1_11
+¿Cuál de los cronogramas representa el comportamiento del siguiente circuito?
+NOTA: Considerar que el biestable D de la imagen de la siguiente pregunta se activa en flanco de bajada aunque no aparezca el símbolo correspondiente en la entrada de reloj.
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB1_12
+¿Cuál de los cronogramas representa el comportamiento del siguiente circuito?
+NOTA: Considerar que el biestable D de la imagen de la siguiente pregunta se activa en flanco de bajada aunque no aparezca el símbolo correspondiente en la entrada de reloj.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB1_13
+Un dispositivo PROM:
+Ninguna otra opción es correcta.
+Tiene una parte AND fija, una parte OR programable y sirve para almacenar funciones combinacionales.
+Tiene una parte OR fija, una parte AND programable y sirve para almacenar funciones combinacionales.
+Tiene una parte AND fija, una parte OR programable y sirve para almacenar datos.
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB1_14
+Una memoria DRAM:
+Es de tipo volátil, de acceso aleatorio y alta densidad, por lo que es más lenta que las SRAM.
+Ninguna otra opción es correcta.
+Es de tipo volátil, de acceso aleatorio y alta densidad, por lo que es más rápida que las SRAM.
+Esde tipo no volátil, de acceso aleatorio y alta densidad, por lo que es más lenta que las SRAM.
+La solución correcta es la 'a'.
+
+########## FSD-2021-FEB2.html (13 preguntas)
+E:/fsd-to_course/FSD-2021-FEB2.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2021-FEB2_01
+ ¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB2_02
+ ¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB2_03
+ ¿Cuál de las siguientes expresiones corresponde a la siguiente función, expresada solo con puertas NOR?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB2_04
+ ¿Qué expresión corresponde al circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB2_05
+ ¿Qué expresión corresponde al circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-FEB2_06
+ ¿Qué expresión corresponde al circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB2_07
+ ¿Qué expresión corresponde al circuito de la figura?
+ NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio. De las entradas de selección, A es la correspondiente al bit menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-FEB2_08
+ ¿Qué expresión corresponde al circuito de la figura?
+ NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio. De las entradas de selección, A es la correspondiente al bit menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB2_09
+ ¿Qué expresión corresponde al circuito de la figura?
+ NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio. De las entradas de selección, A es la correspondiente al bit menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB2_13
+ Una memoria DRAM
+ Es de tipo volátil, de acceso aleatorio y alta densidad, por lo que es más rápida que las SRAM.
+ Esde tipo no volátil, de acceso aleatorio y alta densidad, por lo que es más lenta que las SRAM.
+ Es de tipo volátil, de acceso aleatorio y alta densidad, por lo que es más lenta que las SRAM.
+ Ninguna otra opción es correcta.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-FEB2_14
+ Una memoria SRAM:
+ Es de tipo volátil, de acceso aleatorio y baja densidad, por lo que es más rápida que las DRAM.
+ Ninguna otra opción es correcta.
+ Es de tipo volátil, de acceso aleatorio y baja densidad, por lo que es más lenta que las DRAM.
+ Es de tipo no volátil, de acceso aleatorio y alta densidad, por lo que es más lenta que las DRAM.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-FEB2_15
+ Una memoria CAM:
+ Es de tipo volátil y de acceso aleatorio.
+ Es de tipo volátil y de acceso por contenido.
+ Ninguna otra opción es correcta.
+ Es de tipo no volátil y de acceso secuencial.
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-FEB2_16
+ Al leer una memoria FIFO:
+ Leemos el primer dato que se introdujo en la memoria.
+ Ninguna otra opción es correcta.
+ Leemos el dato siempre en complemento a 2.
+ Leemos el último dato que se introdujo en la memoria.
+ La solución correcta es la 'a'.
+
+########## FSD-2021-SEP.html (20 preguntas)
+E:/fsd-to_course/FSD-2021-SEP.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2021-SEP_01
+Indique cuál de las funciones se corresponde con la siguiente:
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_02
+Indique cuál de las funciones corresponde con la siguiente:
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_03
+¿A cuál de las siguientes expresiones corresponde la función implementada por el siguiente circuito, que contiene un demultiplexor y puertas lógicas?
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-SEP_04
+¿A cuál de las siguientes expresiones corresponde la función implementada por el siguiente circuito, que contiene un demultiplexor y puertas lógicas?
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-SEP_05
+¿Qué función lógica realiza la PROM de la figura? NOTA: Haciendo click sobre la imagen puedes modificar su tamaño.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-SEP_06
+¿Qué función lógica realiza la PROM de la figura? NOTA: Haciendo click sobre la imagen puedes modificar su tamaño.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_07
+Sea un registro de desplazamiento de 8 bits de salida (Qi) con una única entrada en serie D. El registro funciona con los pulsos de subida de un reloj conectado a su entrada Clk. En el estado inicial, el reloj parte del valor 0 y todas las salidas del registro {Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7} se inicializan también en el valor 0. Si la entrada de datos se corresponde con la secuencia: 
+D= {0,1,1,0,1,0,0,0,0,0,0,0,0,….0}, D={D0, D1, …….Di} y el primer dato en entrar es D0: 
+¿Cuál será el valor de las salidas Qi (i=0….7) después de 7 subidas del reloj? (el primer dato carga en Q0) 
+{Q0 =1, Q1=0, Q2=1, Q3=1, Q4=0, Q5=0, Q6=0, Q7=0} 
+Ninguna otra opción es verdadera 
+{Q0 =0, Q1=0, Q2=1, Q3=1, Q4=0, Q5=1, Q6=0, Q7=0} 
+{Q0 =0, Q1=0, Q2=1, Q3=0, Q4=1, Q5=1, Q6=0, Q7=0} 
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-SEP_08
+Sea un registro de desplazamiento de 8 bits de salida (Qi) con una única entrada en serie D. El registro funciona con los pulsos de subida de un reloj conectado a su entrada Clk. En el estado inicial, el reloj parte del valor 0 y todas las salidas del registro {Q0, Q1, Q2, Q3, Q4, Q5, Q6, Q7} se inicializan también en el valor 0. Si la entrada de datos se corresponde con la secuencia: 
+D= {1,1,1,0,1,0,0,0,0,0,0,0,0,….0}, D={D0, D1, …….Di} y el primer dato en entrar es D0: 
+¿Cuál será el valor de las salidas Qi (i=0….7) después de 7 subidas del reloj? (el primer dato carga en Q0) 
+{Q0 =0, Q1=0, Q2=1, Q3=0, Q4=1, Q5=1, Q6=1, Q7=0} 
+{Q0 =1, Q1=0, Q2=1, Q3=1, Q4=0, Q5=0, Q6=0, Q7=0} 
+{Q0 =0, Q1=0, Q2=1, Q3=1, Q4=0, Q5=1, Q6=0, Q7=0} 
+Ninguna otra opción es verdadera 
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_09
+¿Qué cronograma se corresponde con el siguiente circuito?[FIGURA] 
+[FIGURA] 
+[FIGURA] 
+[FIGURA] 
+Ninguna otra opción es verdadera 
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-SEP_10
+¿Qué cronograma se corresponde con el siguiente circuito?[FIGURA] 
+[FIGURA] 
+Ninguna otra opción es verdadera 
+[FIGURA]
+[FIGURA] 
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-SEP_11
+Indique cuál de las funciones expresadas solo con puertas NOR se corresponde con la siguiente:
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-SEP_12
+Indique cuál de las funciones expresadas solo con puertas NOR se corresponde con la siguiente:
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2021-SEP_13
+Tenemos un codificador con prioridad para 3 líneas de entrada, P2, P1 y P0, en el que la línea P1 tiene la máxima prioridad, la siguiente línea en prioridad es P2 y la mínima prioridad es para P0. Sus dos salidas, y1 e y0, se definen de la siguiente manera: la palabra de salida y1y0=11 a la máxima prioridad, y1y0=10 a la prioridad intermedia, y1y0=01 a la mínima prioridad y, finalmente, y1y0=00 a las tres líneas de entrada nulas. ¿Cuáles son las expresiones correspondientes a las señales de salida de este codificador con prioridad?
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-SEP_14
+Tenemos un codificador con prioridad para 3 líneas de entrada, P2, P1 y P0, en el que la línea P1 tiene la máxima prioridad, la siguiente línea en prioridad es P0 y la mínima prioridad es para P2. Sus dos salidas, y1 e y0, se definen de la siguiente manera: la palabra de salida y1y0=11 a la máxima prioridad, y1y0=10 a la prioridad intermedia, y1y0=01 a la mínima prioridad y, finalmente, y1y0=00 a las tres líneas de entrada nulas. ¿Cuáles son las expresiones correspondientes a las señales de salida de este codificador con prioridad?
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2021-SEP_15
+¿A cuál de las siguientes expresiones corresponde la función implementada por el siguiente circuito, que contiene un multiplexor y puertas lógicas?
+NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio. De las entradas de selección, A es la correspondiente al bit menos significativo.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2021-SEP_16
+¿A cuál de las siguientes expresiones corresponde la función implementada por el siguiente circuito, que contiene un multiplexor y puertas lógicas?
+NOTA: el terminal ~G es simplemente para habilitar el circuito y no influye en el valor de F porque siempre vale 0. El terminal ~W se puede ignorar para este ejercicio. De las entradas de selección, A es la correspondiente al bit menos significativo.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_17
+Teniendo en cuenta que todos los biestables se inicializan a 1, el siguiente contador recorre la secuencia: 
+[FIGURA]
+7,6,5,7,6,5,7,6,5…. 
+7,6,5,4,3,2,1,7,6,5…. 
+Ninguna otra opción es verdadera  
+7,0,1,2,3,4,7,0,1,2,3,4….... 
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_18
+Teniendo en cuenta que todos los biestables se inicializan a 0, el siguiente contador recorre la secuencia: 
+[FIGURA]
+0, 1,2,7,0,1,2,7... 
+0,7,6,5,4,0,7,6,5… 
+Ninguna otra opción es verdadera 
+0,1,2,3,0,1,2,3… 
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_19
+El siguiente esquema representa un chip de memoria de 1024 celdas de un bit, donde:  
+ Es el bus de direcciones
+ Es la salida de datos
+ Es la entrada de datos
+ Es la entrada de selección del chip
+ Es la entrada de configuración en lectura/escritura
+¿Cómo obtener una memoria de 1024 palabras de 8 bits? 
+[FIGURA]
+Conectar 8 chips como éste en paralelo, de manera que se unan todas las entradas de selección por un lado y de configuración en lectura/escritura por otro. 
+Conectar 4 chips como éste en paralelo, de manera que se unan todas las entradas de selección por un lado y de configuración en lectura/escritura por otro. 
+Unir las direcciones de cada chip de manera que todas las Ai están unidas para cada i formando un grupo de 8 para cada i y diseñar un contador que recorra secuencialmente todas las direcciones. 
+Ninguna otra opción es verdadera 
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2021-SEP_20
+El siguiente esquema representa un chip de memoria de 2048 celdas de un bit donde:
+ Es el bus de direcciones
+ Es la salida de datos
+ Es la entrada de datos
+ Es la entrada de selección del chip
+ Es la entrada de configuración en lectura/escritura
+¿Cómo obtener una memoria de 2048 palabras de 4 bits? 
+[FIGURA]
+Conectar 4 chips como éste en paralelo, de manera que se unan todas las entradas de selección por un lado y de configuración en lectura/escritura por otro.
+Unir las direcciones de cada chip de manera que todas las Ai están unidas para cada i formando un grupo de 4 para cada i y diseñar un contador que recorra secuencialmente todas las direcciones.
+Conectar 8 chips como éste en paralelo, de manera que se unan todas las entradas de selección por un lado y de configuración en lectura/escritura por otro.
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+
+########## FSD-2022-FEB.html (20 preguntas)
+E:/fsd-to_course/FSD-2022-FEB.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2022-FEB_02
+ Si las entradas son X2, X1, X0, ¿cuál de las siguientes funciones es la que se obtiene en la salida Z?: NOTA: Consideramos aquí que un detector de paridad par detecta si a la entrada existe un número par de "1". Un detector de señal detecta si hay a la entrada alguna señal distinta de 0.
+ [FIGURA]
+ Detector de señal
+ Detector de paridad par
+ Ninguna otra opción es verdadera
+ Detector de paridad impar
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-FEB_03
+ Si las entradas son X2, X1, X0, ¿cuál de las siguientes funciones es la que se obtiene en la salida Z?: NOTA: Consideramos aquí que un detector de paridad par detecta si a la entrada existe un número par de "1". Un detector de señal detecta si hay a la entrada alguna señal distinta de 0.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ Detector de señal
+ Detector de paridad par
+ Detector de paridad impar
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2022-FEB_04
+ A, B y C son las señales de entrada y F es la señal de salida de un circuito. A partir de la información del cronograma, ¿cuál es la expresión de F en función de A, B y C?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-FEB_05
+ A, B y C son las señales de entrada y F es la señal de salida de un circuito. A partir de la información del cronograma, ¿cuál es la expresión de F en función de A, B y C?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2022-FEB_06
+ A, B y C son las señales de entrada y F es la señal de salida de un circuito. A partir de la información del cronograma, ¿cuál es la expresión de F en función de A, B y C?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_07
+ ¿A cuál de los circuitos corresponde la siguiente expresión?
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_08
+ ¿A cuál de los circuitos corresponde la siguiente expresión?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_09
+ ¿A cuál de los circuitos corresponde la siguiente expresión?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2022-FEB_10
+ ¿Qué segmentos de este decodificador BCD a 7 segmentos se activarán desde el ciclo t1 al t5?
+ A
+ B
+ C
+ D
+ t1
+ 0
+ 0
+ 1
+ 0
+ t2
+ 0
+ 1
+ 0
+ 0
+ t3
+ 0
+ 0
+ 0
+ 1
+ t4
+ 1
+ 0
+ 1
+ 0
+ t5
+ 1
+ 1
+ 0
+ 0
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ t1: b, c; t2: a, f, b, e, c, d; t3: a, f, b, g, e, c, d;
+ t4: a, b, c; t5: a, b, g, e, d
+ t1: f, b, g, c; t2: a, b, g, e, d; t3: a, f, b, g, e, c, d; 
+ t4: a, f, g, c, d; t5: a, b, g, c, d
+ t1: a, f, b, g, c; t2: a, b, g, c; t3: a, f, b, e, c, d;
+ t4: f, g, e, c, d; t5: a, b, g, c, d
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2022-FEB_11
+ ¿Qué segmentos de este decodificador BCD a 7 segmentos se activarán desde el ciclo t1 al t5?
+ A
+ B
+ C
+ D
+ t1
+ 1
+ 0
+ 0
+ 0
+ t2
+ 0
+ 0
+ 0
+ 0
+ t3
+ 0
+ 0
+ 0
+ 1
+ t4
+ 1
+ 1
+ 1
+ 0
+ t5
+ 0
+ 1
+ 0
+ 0
+ [FIGURA]
+ t1: a, f, b, g, c; t2: a, b, g, c; t3: a, f, b, e, c, d;
+ t4: f, g, e, c, d; t5: a, b, g, c, d
+ t1: f, b, g, c; t2: a, b, g, e, d; t3: a, f, b, g, e, c, d;
+ t4: a, f, g, c, d; t5: a, b, g, c, d
+ t1: b, c; t2: a, f, b, e, c, d; t3: a, f, b, g, e, c, d;
+ t4: a, b, c; t5: a, b, g, e, d
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2022-FEB_12
+ ¿Qué segmentos de este decodificador BCD a 7 segmentos se activarán desde el ciclo t1 al t5?
+ A
+ B
+ C
+ D
+ t1
+ 1
+ 0
+ 0
+ 1
+ t2
+ 1
+ 1
+ 1
+ 0
+ t3
+ 0
+ 0
+ 0
+ 0
+ t4
+ 0
+ 1
+ 1
+ 0
+ t5
+ 1
+ 1
+ 0
+ 0
+ [FIGURA]
+ t1: f, b, g, c; t2: a, b, g, e, d; t3: a, f, b, g, e, c, d;
+ t4: a, f, g, c, d; t5: a, b, g, c, d
+ t1: a, f, b, g, c; t2: a, b, c; t3: a, f, b, e, c, d;
+ t4: a, f, g, e, c, d; t5: a, b, g, c, d
+ Ninguna otra opción es verdadera
+ t1: b, c; t2: a, f, b, e, c, d; t3: a, f, b, g, e, c, d;
+ t4: a, b, c; t5: a, b, g, e, d
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2022-FEB_13
+ ¿Qué cronograma corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_14
+ ¿Qué cronograma corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_15
+ ¿Qué cronograma corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-FEB_16
+ ¿Qué diagrama de estados corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-FEB_17
+ ¿Qué diagrama de estados corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-FEB_18
+ ¿Qué diagrama de estados corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2022-FEB_19
+ ¿Qué diagrama de estados es compatible con el siguiente cronograma?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2022-FEB_20 
+ ¿Qué diagrama de estados es compatible con el siguiente cronograma?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-FEB_21
+ ¿Qué diagrama de estados es compatible con el siguiente cronograma?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+
+########## FSD-2022-SEP.html (9 preguntas)
+FSD-2022-SEP
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2022-SEPT_01
+ Una función de tres variables F(A, B, C) solo toma el valor 1 cuando la variable B toma el valor 0 y la variable A no toma el valor 1. ¿A cuál de las siguientes expresiones corresponde?
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-SEPT_02
+ Analizar el circuito y obtener la función mínima a la que equivale:
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-SEPT_03
+ Un comparador de dos palabras A y B de 4 bits cada una, sin signo, tiene dos grupos de entradas, uno para el número A(A3..A0) y otro para el B(B3..B0). Las salidas que indican los resultados de la comparación son, respectivamente: OA<B (salida A<B), OA>B, OA=B. Además, varios de estos comparadores pueden usarse en cascada para así poder comparar números de más bits. Para ello, cada comparador dispone de entradas de expansión en cascada de la comparación anterior, respectivamente: IA<B (entrada A<B), IA>B, IA=B. La comparación se realiza de acuerdo con la siguiente tabla:
+ COMPARACIÓN DE ENTRADAS
+ ENTRADAS EN CASCADA
+ SALIDAS
+ A3, B3
+ A2, B2
+ A1, B1
+ A0, B0
+ IA>B
+ IA<B
+ IA=B
+ OA>B
+ OA<B
+ OA=B
+ A3>B3
+ X
+ X
+ X
+ X
+ X
+ X
+ H
+ L
+ L
+ A3<B3
+ X
+ X
+ X
+ X
+ X
+ X
+ L
+ H
+ L
+ A3=B3
+ A2>B2
+ X
+ X
+ X
+ X
+ X
+ H
+ L
+ L
+ A3=B3
+ A2<B2
+ X
+ X
+ X
+ X
+ X
+ L
+ H
+ L
+ A3=B3
+ A2=B2
+ A1>B1
+ X
+ X
+ X
+ X
+ H
+ L
+ L
+ A3=B3
+ A2=B2
+ A1<B1
+ X
+ X
+ X
+ X
+ L
+ H
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0>B0
+ X
+ X
+ X
+ H
+ L
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0<B0
+ X
+ X
+ X
+ L
+ H
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0=B0
+ H
+ L
+ L
+ H
+ L
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0=B0
+ L
+ H
+ L
+ L
+ H
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0=B0
+ X
+ X
+ H
+ L
+ L
+ H
+ A3=B3
+ A2=B2
+ A1=B1
+ A0=B0
+ H
+ H
+ L
+ L
+ L
+ L
+ A3=B3
+ A2=B2
+ A1=B1
+ A0=B0
+ L
+ L
+ L
+ H
+ H
+ L
+ ¿Cómo utilizarías dos comparadores de este tipo para comparar dos números de 8 bits sin signo, X(X7, X6..X1,X0) e Y(Y7, Y6..Y1,Y0)?
+ Conectar los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los grupos de entrada A y B del primer comparador, respectivamente. Conectar los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los grupos de entrada A y B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del primer comparador, respectivamente a las entradas IA<B, IA>B, IA=B del segundo comparador. Las salidas OA<B, OA>B, OA=B del segundo comparador ofrecerán la información que buscamos.
+ Ninguna otra opción es verdadera
+ Conectar los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los grupos de entrada A y B del primer comparador, respectivamente. Conectar los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los grupos de entrada A y B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del primer comparador a las entradas IA<B, IA>B, IA=B del segundo comparador. Las salidas OA<B, OA>B, OA=B del segundo comparador ofrecerán la información que buscamos.
+ Conectar los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los grupos de entrada A y B del primer comparador, respectivamente. Conectar los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los grupos de entrada A y B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del segundo comparador a las entradas IA<B, IA>B, IA=B del primer comparador. Las salidas OA<B, OA>B, OA=B del primer comparador ofrecerán la información que buscamos.
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-SEPT_04
+ ¿Cuáles de las siguientes son las expresiones de las salidas F(A>B) y F(B>A) de un comparador binario de dos números de dos bits A(A1 A0) y B(B1 B0)? NOTA: A1 y B1 son los bits más significativos.
+ Ninguna otra opción es verdadera
+ ; 
+ ; 
+ ; 
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-SEPT_05
+ ¿A qué función F(X2, X1, X0) equivale el siguiente circuito? NOTAS: En los terminales de selección A y B, A es el bit menos significativo. El terminal ~G habilita el circuito. En los terminales de datos, D0 es el menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-SEPT_06
+ ¿A qué función F(X2, X1, X0) equivale el siguiente circuito con demultiplexor? NOTAS: En los terminales de selección S0 es el bit menos significativo. El terminal EN habilita el circuito. En las salidas, Y0 es el bit menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2022-SEPT_07
+ El circuito corresponde a un autómata finito implementado con biestable D. ¿Cuál es su diagrama de transición de estados? Considere que la variable X2 corresponde al bit más significativo de la palabra de entrada, X2 X1.
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA
+ FSD-2022-SEPT_08
+ ¿A cuál de los autómatas finitos, implementados con biestable JK, corresponde el siguiente diagrama de estados? Considere que la variable X2 corresponde al bit más significativo de la palabra de entrada, X2 X1.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2022-SEPT_09
+ ¿Qué cronograma de los siguientes corresponde al siguiente circuito? Los biestables cambian en los flancos de subida del reloj.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2022-SEPT_10
+ ¿A cuál de los circuitos corresponde el siguiente cronograma? Los biestables cambian en los flancos de subida del reloj.
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'd'.
+
+########## FSD-2023-FEB.html (10 preguntas)
+FSD-2023-FEB
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2023-FEB_01
+ ¿Cuál de los siguientes circuitos equivale a la expresión ?
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2023-FEB_02
+ ¿Cuál es la representación del número decimal negativo -5 en Signo-Magnitud, C-1 y C-2?
+ S-M: 1101, C-1: 1011, C-2: 1100
+ S-M: 1101, C-1: 1110, C-2: 1010
+ Ninguna otra opción es verdadera
+ S-M: 1101, C-1: 1010, C-2: 1011
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2023-FEB_03
+ Un codificador con prioridad tiene 3 líneas de entrada: P2, P1 y P0. La línea P1 tiene la máxima prioridad, la siguiente línea en prioridad es P2 y la mínima prioridad es para P0. Las dos salidas del codificador, y1 e y0, se han asociado de la siguiente forma: la palabra de salida y1y0=11 a la máxima prioridad, y1y0=10 a la prioridad intermedia, y1y0= 01 a la mínima prioridad y, finalmente, y1y0 =00 a las tres líneas de entrada nulas. ¿Cuál es el circuito correspondiente a este codificador con prioridad?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2023-FEB_04
+ Un semisumador es la versión más simple de los circuitos que implementan la suma, ya que no considera como entrada el posible acarreo de otras operaciones previas. Las funciones de salida de un semisumador de dos palabras de un bit (A y B) son S y C, es decir, suma y acarreo. ¿Qué opción de las siguientes lo implementa? NOTA: El bit A es el menos significativo de las entradas de control.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2023-FEB_05
+ ¿Cuál de los siguientes circuitos implementa las funciones de comparación A<B y A=B, siendo A y B dos palabras de un bit cada una? NOTA: El bit A es el menos significativo de las entradas de control.
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2023-FEB_06
+ ¿Qué función de las siguientes implementa el circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2023-FEB_07
+ Teniendo en cuenta que todos los biestables se inicializan a 0, ¿cuál es la secuencia que recorre el siguiente contador, si consideramos la palabra X2 X1 X0, siendo el bit X0 el menos significativo?
+ [FIGURA]
+ 7, 0, 1, 2, 3, 4, 5, 6, 7, 0, 1…
+ Ninguna otra opción es verdadera
+ 7, 5, 3, 1, 6, 4, 2, 0, 7, 5, 3…
+ 7, 6, 5, 4, 3, 2, 1, 0, 7, 6, 5…
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2023-FEB_08
+ ¿Qué diagrama de estados corresponde al siguiente circuito?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2023-FEB_09
+ ¿Qué cronograma corresponde al siguiente circuito? Los biestables se inicializan a 0.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2023-FEB_10
+ ¿A qué circuito corresponde el siguiente diagrama de estados? Los biestables se inicializan a 0.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+
+########## FSD-2023-SEP.html (10 preguntas)
+FSD-2023-SEP
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2023-SEP_01
+Elige la opción expresada solo con puertas NOR que equivale a la siguiente función.
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2023-SEP_02
+¿A cuál de las siguientes expresiones corresponde la función implementada por el siguiente circuito, que contiene puertas lógicas y un decodificador 3 a 8? NOTA: A es el bit más significativo de la palabra de entrada ABC; X es el bit más significativo de la palabra de salida XYZ; EN es la entrada de habilitación.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2023-SEP_03
+Analizar el circuito y obtener la función mínima a la que equivale:
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2023-SEP_04
+¿Qué cronograma corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2023-SEP_05
+El circuito corresponde a un autómata finito implementado con biestable D. ¿Cuál es su diagrama de transición de estados? Considere que la variable X2 corresponde al bit más significativo de la palabra de entrada, X2 X1.
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2023-SEP_06
+¿A cuál de las siguientes funciones F corresponde el siguiente circuito? X0 es el bit menos significativo de la palabra X3 X2 X1 X0. D0 es el bit menos significativo de la palabra D3 D2 D1 D0. A es el bit menos significativo de la palabra B A.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2023-SEP_07
+¿Cuál es el resultado de sumar aritméticamente las dos palabras de 5 bits A (A4 A3 A2 A1 A0)= 11101 y B (B4 B3 B2 B1 B0)= 01111 , siendo A4 y B4 los bits más significativos? Marque la solución correcta. NOTA: C5 es el acarreo.
+Si (S4 S3 S2 S1 S0) = APLUSB=01110 , C5=1
+Si (S4 S3 S2 S1 S0) = APLUSB=01101 , C5=1
+Si (S4 S3 S2 S1 S0) = APLUSB=01100 , C5=1
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2023-SEP_08
+¿Qué función lógica realiza la PROM de la figura?
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2023-SEP_09
+¿Qué diagrama de estados corresponde al siguiente circuito? Los biestables se activan en flanco de subida. Los biestables se resetean al comienzo del período de tiempo analizado.
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2023-SEP_10
+¿A cuál de los circuitos corresponde el siguiente cronograma? Los biestables cambian en los flancos de subida del reloj.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+La solución correcta es la 'b'.
+
+########## FSD-2024-FEB.html (10 preguntas)
+FSD-2024-FEB
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el
+ siguiente botón para cambiar la forma de su representación
+ Ver las
+ soluciones de las preguntas de test
+ PREGUNTA FSD-2024-FEB_01
+ ¿Qué expresión corresponde al circuito de la figura?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-FEB_02
+ ¿A cuál de los siguientes circuitos corresponde la siguiente
+ función?
+ NOTA: En los circuitos, X0 es el bit menos significativo de la
+ palabra X3 X2 X1 X0. D0 es el bit menos significativo de la palabra D3
+ D2 D1 D0. A es el bit menos significativo de la palabra B A.
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-FEB_03
+ El objetivo es conseguir una memoria de 16384 palabras de 1 bit a
+ partir de chips de memoria de 2048 celdas de un bit. El chip se
+ representa en el siguiente esquema, donde:
+ Es el bus de direcciones
+ Es la salida de datos
+ Es la entrada de datos
+ Es la entrada de selección del chip
+ Es la entrada de configuración en lectura/escritura
+ Para ello, es necesario:
+ [FIGURA]
+ Disponer de 8 chips, unir las líneas
+ , y añadir tres líneas de direccionamiento que se usarán para activar la
+ entrada
+ del chip que corresponda, compartir las entradas
+ compartir
+ las líneas de entrada
+ ,
+ separar las líneas
+ de configuración en lectura/escritura.
+ Disponer de 8 chips, unir las líneas
+ ,
+ compartir las entradas
+ ,
+ separar las 8 entradas
+ de configuración en lectura/escritura.
+ Disponer de 8 chips, unir las líneas
+ y añadir tres líneas de direccionamiento que se usarán para activar la
+ entrada
+ del chip que corresponda, compartir las líneas de entrada
+ ,
+ compartir la línea
+ de configuración en lectura/escritura.
+ Ninguna otra opción es verdadera.
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2024-FEB_04
+ El siguiente esquema representa un chip de memoria de 2048 celdas de
+ un bit donde:
+ Es el bus de direcciones
+ Es la salida de datos
+ Es la entrada de datos
+ Es la entrada de selección del chip
+ Es la entrada de configuración en lectura/escritura
+ ¿Cómo obtener una memoria de 2048 palabras de 8 bits? 
+ [FIGURA]
+ Unir las direcciones de cada chip de manera que todas las
+ Ai están unidas para cada i formando un grupo de 4 para cada
+ i y diseñar un contador que recorra secuencialmente todas las
+ direcciones.
+ Ninguna otra opción es verdadera
+ Conectar 8 chips como éste en paralelo, separando las entradas de
+ selección entre sí, por un lado, y las de configuración en
+ lectura/escritura por otro.
+ Conectar 8 chips como éste, conectando en paralelo su bus de
+ direcciones
+ ,
+ uniendo todas las entradas de selección por un lado, y de configuración
+ en lectura/escritura por otro.
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2024-FEB_05
+ Si el circuito de la figura es un codificador con prioridad ¿Cuál es
+ el orden de los niveles de prioridad que detecta? De las salidas, Y0 es
+ el bit menos significativo.
+ [FIGURA]
+ B>A>C
+ C>A>B
+ Ninguna otra opción es verdadera
+ A>B>C
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-FEB_06
+ El circuito de la figura corresponde a la implementación de una
+ función lógica mediante una PAL ¿Por cuál de los siguientes circuitos se
+ puede sustituir?
+ NOTA: considere que en el multiplexor los bits menos significativos
+ de las entradas y de las señales de control son D0 y A,
+ respectivamente.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ La solución correcta es la 'c'.
+ PREGUNTA FSD-2024-FEB_07
+ ¿Cuáles son las funciones de excitación del autómata finito de 4
+ estados, implementado con biestables D (controlados por la entrada x), y
+ cuya matriz funcional es la siguiente? Considere Q1 el bit más
+ significativo.
+ S0(t+∆t)
+ S1(t+∆t)
+ S2(t+∆t)
+ S3(t+∆t)
+ S0(t)
+ x
+ S1(t)
+ x
+ S2(t)
+ x
+ S3(t)
+ x
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'b'.
+ PREGUNTA FSD-2024-FEB_08
+ La siguiente figura muestra el Diagrama de Transición de Estados de
+ un autómata finito. ¿Cuál es su Matriz Funcional?
+ S0(t+∆t)
+ S1(t+∆t)
+ S2(t+∆t)
+ S3(t+∆t)
+ S0(t)
+ S1(t)
+ x
+ S2(t)
+ x
+ S3(t)
+ x
+ S0(t+∆t)
+ S1(t+∆t)
+ S2(t+∆t)
+ S3(t+∆t)
+ S0(t)
+ x
+ S1(t)
+ x
+ S2(t)
+ x
+ S3(t)
+ x
+ S0(t+∆t)
+ S1(t+∆t)
+ S2(t+∆t)
+ S3(t+∆t)
+ S0(t)
+ x
+ S1(t)
+ x
+ S2(t)
+ x
+ S3(t)
+ x
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-FEB_09
+ ¿A qué circuito corresponde el siguiente cronograma? Los biestables
+ se activan en flanco de subida. Los biestables se resetean al comienzo
+ del período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ [FIGURA]
+ La solución correcta es la 'd'.
+ PREGUNTA FSD-2024-FEB_10
+ Se muestra a continuación el esquema de un circuito, construido con
+ biestables D, y su cronograma. ¿Qué función implementa? Los biestables
+ se activan en flanco de subida.
+ [FIGURA]
+ Un registro de desplazamiento.
+ Ninguna otra opción es verdadera
+ Un contador hacia abajo.
+ Un divisor por 2.
+ La solución correcta es la 'a'.
+
+########## FSD-2024-SEP.html (10 preguntas)
+C:/Users/jorge/Downloads/FSD-2024-SEP.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2024-SEP_01
+A, B y C son las señales de entrada y F es la señal de salida de un
+circuito. A partir de la información del cronograma, ¿cuál es la
+expresión de F en función de A, B y C? 
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-SEP_02
+¿A cuál de las siguientes expresiones corresponde la función
+implementada por el siguiente circuito, que contiene puertas lógicas y
+un decodificador 3 a 8? NOTA: A es el bit más significativo de la
+palabra de entrada ABC; X es el bit más significativo de la palabra de
+salida XYZ; EN es la entrada de habilitación.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2024-SEP_03
+¿Cuál de los siguientes circuitos equivale a la expresión
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2024-SEP_04
+El circuito corresponde a un autómata finito implementado con
+biestable D. ¿Cuál es su diagrama de transición de estados? Considere
+que la variable X2 corresponde al bit más significativo de la palabra de
+entrada, X2 X1.
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+[FIGURA]
+[FIGURA]
+La solución correcta es la 'b'.
+ PREGUNTA FSD-2024-SEP_05
+¿A cuál de los circuitos corresponde el siguiente cronograma? Los
+biestables cambian en los flancos de subida del reloj. NOTA: los
+símbolos [FIGURA] indican los puntos de
+medición de las señales que se representan en el cronograma.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+La solución correcta es la 'a'.
+ PREGUNTA FSD-2024-SEP_06
+Indique cuál de las funciones expresadas solo con puertas NOR se
+corresponde con la siguiente:
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2024-SEP_07
+Tenemos un codificador con prioridad para 3 líneas de entrada, P2, P1
+y P0, en el que la línea P0 tiene la máxima prioridad, la siguiente
+línea en prioridad es P1 y la mínima prioridad es para P2. Sus dos
+salidas, y1 e y0, se definen de la siguiente manera: la palabra de
+salida y1y0=11 corresponde a la máxima prioridad, y1y0=10 a la prioridad
+intermedia, y1y0=01 a la mínima prioridad y, finalmente, y1y0=00 cuando
+las tres líneas de entrada están a cero. ¿Cuáles son las expresiones
+correspondientes a las señales de salida de este codificador con
+prioridad?
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2024-SEP_08
+¿A qué función F(X2, X1, X0) equivale el siguiente circuito? 
+NOTAS:
+En los terminales de selección A y B, A es el bit menos significativo.
+El terminal ~G habilita el circuito. En los terminales de datos, D0 es
+el menos significativo.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA FSD-2024-SEP_09
+¿Qué cronograma corresponde al siguiente circuito? Los biestables se
+inicializan a 0 y se activan en el flanco de subida. NOTA: los símbolos
+[FIGURA]
+indican los puntos de medición de las señales que se representan en el
+cronograma.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA FSD-2024-SEP_10
+El siguiente dibujo representa un chip de memoria de 1024 celdas de
+un bit
+[FIGURA]
+[FIGURA]
+Donde:
+Es el bus de direcciones
+Es la salida de datos
+Es la entrada de datos
+Es la entrada de selección del chip
+Es la entrada de configuración en lectura/escritura
+Si queremos obtener una memoria de 2048 palabras de 8 bits
+debemos:
+Unir las direcciones de cada chip de manera que todas las
+Ai están unidas para cada i formando un grupo de 16 para cada
+i y diseñar un contador que recorra secuencialmente todas las
+direcciones.
+Conectar 16 chips como éste en paralelo, de manera que se unan
+todas las entradas de selección por un lado y de configuración en
+lectura/escritura por otro.
+Conectar 8 chips como éste en paralelo, de manera que se unan
+todas las entradas de selección por un lado y de configuración en
+lectura/escritura por otro.
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+
+########## FSD-2025-FEB.html (9 preguntas)
+FSD-2025-FEB
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2025-FEB_01
+ A, B y C son las señales de entrada y F es la señal de salida de un
+ circuito. A partir de la información del cronograma, ¿cuál es la
+ expresión de F en función de A, B y C? 
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_02
+ ¿A cuál de las siguientes expresiones corresponde la función
+ implementada por el siguiente circuito, que contiene puertas lógicas y
+ un decodificador 3 a 8? NOTA: A es el bit más significativo de la
+ palabra de entrada ABC; X es el bit más significativo de la palabra de
+ salida XYZ; EN es la entrada de habilitación.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_03
+ ¿Cuál es el resultado de sumar aritméticamente las dos palabras de 5
+ bits A (A4 A3 A2 A1 A0)= 11010 y B (B4 B3 B2 B1 B0)= 11110 , siendo A4 y
+ B4 los bits más significativos? Marque la solución correcta. NOTA: C5 es
+ el acarreo.
+ Si (S4 S3 S2 S1 S0) = APLUSB=11000 , C5=1
+ Si (S4 S3 S2 S1 S0) = APLUSB=11100 , C5=1
+ Si (S4 S3 S2 S1 S0) = APLUSB=01110 , C5=1
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_04
+ ¿Qué cronograma corresponde al siguiente circuito? Los biestables se
+ activan en flanco de subida. Los biestables se resetean al comienzo del
+ período de tiempo analizado.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_05
+ El circuito corresponde a un autómata finito implementado con
+ biestable D. ¿Cuál es su diagrama de transición de estados? Considere
+ que la variable X2 corresponde al bit más significativo de la palabra de
+ entrada, X2 X1.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_06
+ ¿Cuál de los siguientes circuitos implementa las funciones de
+ comparación A<B y A=B, siendo A y B dos palabras de un bit cada una?
+ NOTA: El bit A es el menos significativo de las entradas de control. El
+ bit D0 es el menos significativo de las entradas de datos.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_07
+ Analizar el circuito y obtener la función mínima a la que
+ equivale:
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_08
+ Indique cuál de las funciones expresadas solo con puertas NAND se
+ corresponde con la siguiente:
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-FEB_09
+ ¿Qué cronograma de los siguientes corresponde al siguiente circuito?
+ Los biestables cambian en los flancos de subida del reloj.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+
+########## FSD-2025-SEP.html (10 preguntas)
+FSD-2025-SEP
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA FSD-2025-SEP_01
+ ¿A cuál de las siguientes expresiones corresponde la función
+ implementada por el siguiente circuito, que contiene un demultiplexor y
+ puertas lógicas? NOTA: En la palabra ABC el bit A es el más
+ significativo. En la palabra XYZ, el bit X es el más significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_02
+ A, B y C son las señales de entrada y F es la señal de salida de un
+ circuito. A partir de la información del cronograma, ¿cuál es la
+ expresión de F en función de A, B y C?
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_03
+ Si las entradas son X2, X1, X0, ¿cuál de las siguientes funciones es
+ la que se obtiene en la salida F?: NOTA: X2, B y D3 son los bits de
+ mayor peso de sus correspondientes palabras.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_04
+ La siguiente figura muestra el Diagrama de Transición de Estados de
+ un autómata finito. ¿Cuál es su Matriz de Transición de Estados?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_05
+ ¿Qué diagrama de estados corresponde al siguiente circuito? Los
+ biestables se activan en flanco de subida. Los biestables se resetean al
+ comienzo del período de tiempo analizado. NOTA: La correspondencia entre
+ el estado y la palabra Q1 Q0 es la siguiente: S0
+ (,
+ S1
+ (,
+ S2
+ (,
+ S3
+ (.[FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_06
+ ¿A qué función F(X2, X1, X0) equivale el siguiente circuito con
+ demultiplexor? NOTAS: En los terminales de selección S0 es el bit menos
+ significativo. El terminal EN habilita el circuito. En las salidas, Y0
+ es el bit menos significativo.
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_07
+ El circuito de la figura es un codificador con prioridad. ¿Cuál es el
+ orden de los niveles de prioridad que detecta? De la salida Y1Y0, Y0 es
+ el bit menos significativo.
+ [FIGURA]
+ A>B>C
+ B>C>A
+ C>A>B
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_08
+ ¿A cuál de los circuitos corresponde la siguiente expresión?
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_09
+ El circuito corresponde a un autómata finito implementado con
+ biestable D. ¿Cuál es su diagrama de transición de estados? Considere
+ que la variable X2 corresponde al bit más significativo de la palabra de
+ entrada, X2 X1.
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+ PREGUNTA FSD-2025-SEP_10
+ ¿A cuál de los circuitos corresponde el siguiente cronograma? Los
+ biestables cambian en los flancos de subida del reloj
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ [FIGURA]
+ Ninguna otra opción es verdadera
+ La solución correcta es la 'a'.
+
+########## Test-FSD-2026-FEB.html (10 preguntas)
+out_newFSD-2026-FEB/Test-newFSD-2026-FEB.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA Ejercicio 1
+¿A cuál de las siguientes expresiones corresponde la función
+implementada por el siguiente circuito, que contiene puertas lógicas y
+un decodificador 3 a 8? NOTA: A es el bit más significativo de la
+palabra de entrada ABC; X es el bit más significativo de la palabra de
+salida XYZ; EN es la entrada de habilitación.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA Ejercicio 2
+A, B y C son las señales de entrada y F es la señal de salida de un
+circuito. A partir de la información del cronograma, ¿cuál es la
+expresión de F en función de A, B y C? 
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA Ejercicio 3
+¿Qué función lógica realiza la PROM de la figura?
+[FIGURA]
+)
+Ninguna otra opción es verdadera
+La solución correcta es la 'c'.
+ PREGUNTA Ejercicio 4
+El circuito corresponde a un autómata finito implementado con
+biestable D. ¿Cuál es su diagrama de transición de estados? Considere
+que la variable X2 corresponde al bit más significativo de la palabra de
+entrada, X2 X1.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 5
+¿A cuál de los circuitos corresponde el siguiente cronograma? Los
+biestables cambian en los flancos de subida del reloj.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 6
+Si el circuito de la figura es un codificador con prioridad ¿Cuál es
+el orden de los niveles de prioridad que detecta? De las salidas, Y0 es
+el bit menos significativo.
+[FIGURA]
+Ninguna otra opción es verdadera
+C>A>B
+A>B>C
+B>C>A
+La solución correcta es la 'b'.
+ PREGUNTA Ejercicio 7
+Si las entradas son X2, X1, X0, ¿cuál de las siguientes funciones es
+la que se obtiene en la salida Z?: NOTA: X2, S1 e I3 son los bits de
+mayor peso de sus respectivas palabras. 
+[FIGURA]
+Detecta si a la entrada hay un número par de señales a 1
+Ninguna otra opción es verdadera
+Detecta si a la entrada hay un número impar de señales a
+1
+Detecta si a la entrada no hay ninguna señal
+La solución correcta es la 'c'.
+ PREGUNTA Ejercicio 8
+¿Qué segmentos de este decodificador BCD a 7 segmentos se activarán
+desde el ciclo t1 al t5? NOTA1: El bit A es el más significativo de la
+palabra ABCD.
+NOTA2: Considerar la codificación en 7 segmentos estándar, que se
+adjunta.
+A
+B
+C
+D
+t1
+1
+0
+0
+1
+t2
+0
+0
+0
+1
+t3
+1
+0
+0
+0
+t4
+0
+0
+1
+0
+t5
+0
+1
+1
+1
+[FIGURA]
+t1: f, a, b, g, c, d; t2: b, c;
+t3: f, a, b, g, c, d, e;
+t4: a, b, g, e, d; t5: a, b,
+c;
+t1: b, c; t2: a, f, b, e, c, d;
+t3: a, f, b, g, e, c, d;
+t4: a, b, c; t5: a, b, g, e,
+d;
+Ninguna otra opción es verdadera
+t1: a, b, c; t2: a, b, g, c;
+t3: a, f, b, e, c, d;
+t4: f, g, e, c, d; t5: a, b, g, c,
+d;
+La solución correcta es la 'a'.
+ PREGUNTA Ejercicio 9
+¿Qué cronograma corresponde al siguiente circuito? Los biestables se
+activan en flanco de subida. Los biestables se resetean al comienzo del
+período de tiempo analizado.
+[FIGURA]
+[FIGURA]
+[FIGURA]
+Ninguna otra opción es verdadera
+[FIGURA]
+La solución correcta es la 'a'.
+ PREGUNTA Ejercicio 10
+Teniendo en cuenta que todos los biestables se inicializan a 1, ¿cuál
+es la secuencia que recorre el siguiente circuito secuencial, si
+consideramos la palabra X2 X1 X0, siendo el bit X0 el menos
+significativo?
+[FIGURA]
+7, 5, 3, 1, 6, 4, 2, 0, 7, 5, …
+7, 2, 5, 4, 7, 2, 5, 4, 7, 2, …
+Ninguna otra opción es verdadera
+7, 6, 5, 4, 3, 2, 1, 0, 7, 6, …
+La solución correcta es la 'b'.
+
+########## Test-FSD-2026-SEP.html (10 preguntas)
+outNuevos_FSD-2026-SEP/Test-FSD-2026-SEP.html
+ Las soluciones a las preguntas de test se encuentran desactivadas inicialmente, por favor, utilice el siguiente botón para cambiar la forma de su representación
+ Ver las soluciones de las preguntas de test
+ PREGUNTA Ejercicio 1 
+A, B y C son las señales de entrada y F es la señal de salida de un
+circuito. A partir de la información del cronograma, ¿cuál es la
+expresión de F en función de A, B y C? 
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA Ejercicio 2 
+¿Cuál de las siguientes expresiones corresponde a la siguiente
+función, expresada solo con puertas NOR?
+NOTA: se recomienda comenzar usando las leyes de De Morgan y
+finalizar usando mapas de Karnaugh.
+Ninguna otra opción es verdadera
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 3
+¿A qué función F(X2, X1, X0) equivale el siguiente circuito con
+demultiplexor? NOTAS: En los terminales de selección S0 es el bit menos
+significativo. El terminal EN habilita el circuito. En las salidas, Y0
+es el bit menos significativo.
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'a'.
+ PREGUNTA Ejercicio 4 
+El objetivo es conseguir una memoria de 32768 palabras de 1 bit a
+partir de chips de memoria de 4096 celdas de un bit. El chip se
+representa en el siguiente esquema, donde:
+Es el bus de direcciones
+Es la salida de datos
+Es la entrada de datos
+Es la entrada de selección del chip
+Es la entrada de configuración en lectura/escritura
+[FIGURA]
+Para ello, es necesario:
+Disponer de 8 chips, unir las líneas
+,y añadir ocho líneas de direccionamiento para la entrada
+del chip que corresponda, compartir las entradas
+compartir
+las líneas de entrada
+,
+separar las líneas
+de configuración en lectura/escritura.
+Ninguna otra opción es verdadera.
+Disponer de 8 chips, unir las líneas
+,
+compartir las entradas
+,
+separar las 8 entradas
+de configuración en lectura/escritura.
+Disponer de 8 chips, unir las líneas
+y añadir tres líneas de direccionamiento que, junto con un decodificador
+de 3 a 8, se usarán para activar la entrada
+del chip que corresponda, compartir las líneas de entrada
+y las líneas de salida
+,
+compartir la línea
+de configuración en lectura/escritura.
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 5
+¿Qué secuencia de estados (Q1 Q0), siendo Q1 el bit más
+significativo, corresponde al circuito de la figura implementado con
+biestables D? Los biestables se inicializan a 0 y se activan con los
+flancos de subida.
+[FIGURA]
+00, 11, 01, 10, 00, 11, ….
+00, 01, 10, 11, 00, 01, ….
+Ninguna otra opción es verdadera
+00, 01, 10, 00, 01, 10, ….
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 6 
+¿Cuál es el resultado de sumar aritméticamente las dos palabras de 5
+bits A (A4 A3 A2 A1 A0)= 11011 y B (B4 B3 B2 B1 B0)= 11110 , siendo A4 y
+B4 los bits más significativos? Marque la solución correcta. NOTA: C5 es
+el acarreo.
+(S4 S3 S2 S1 S0) = APLUSB=01111 , C5=1
+Ninguna otra opción es verdadera
+(S4 S3 S2 S1 S0) = APLUSB=11001 , C5=1
+(S4 S3 S2 S1 S0) = APLUSB=11101 , C5=1
+La solución correcta es la 'c'.
+ PREGUNTA Ejercicio 7
+Un comparador de dos palabras A y B de 4 bits cada una, sin signo,
+tiene dos grupos de entradas, uno para el número A(A3..A0) y otro para
+el B(B3..B0). Las salidas que indican los resultados de la comparación
+son, respectivamente: OA<B (salida A<B), OA>B, OA=B. Además,
+varios de estos comparadores pueden usarse en cascada para así poder
+comparar números de más bits. Para ello, cada comparador dispone de
+entradas de expansión en cascada de la comparación anterior,
+respectivamente: IA<B (entrada A<B), IA>B, IA=B. La comparación
+se realiza de acuerdo con la siguiente tabla:
+[FIGURA]
+¿Cómo utilizarías dos comparadores de este tipo para comparar dos
+números de 8 bits sin signo, X(X7, X6..X1,X0) e Y(Y7, Y6..Y1,Y0)?
+Conectar los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los
+grupos de entrada A y B del primer comparador, respectivamente. Conectar
+los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los grupos de entrada A y
+B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del
+segundo comparador a las entradas IA<B, IA>B, IA=B del primer
+comparador. Las salidas OA<B, OA>B, OA=B del primer comparador
+ofrecerán la información que buscamos.
+Ninguna otra opción es verdadera
+Conectar los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los
+grupos de entrada A y B del primer comparador, respectivamente. Conectar
+los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los grupos de entrada A y
+B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del
+primer comparador, respectivamente a las entradas IA<B, IA>B, IA=B
+del segundo comparador. Las salidas OA<B, OA>B, OA=B del segundo
+comparador ofrecerán la información que buscamos.
+Conectar los bits (X7, X6, X5, X4) e (Y7, Y6, Y5, Y4) a los
+grupos de entrada A y B del primer comparador, respectivamente. Conectar
+los bits (X3, X2, X1, X0) e (Y3, Y2, Y1, Y0) a los grupos de entrada A y
+B del segundo comparador. Llevar las salidas OA<B, OA>B, OA=B del
+primer comparador a las entradas IA<B, IA>B, IA=B del segundo
+comparador. Las salidas OA<B, OA>B, OA=B del segundo comparador
+ofrecerán la información que buscamos.
+La solución correcta es la 'c'.
+ PREGUNTA Ejercicio 8 
+¿Qué función de las siguientes implementa el circuito de la
+figura?
+[FIGURA]
+Ninguna otra opción es verdadera
+La solución correcta es la 'b'.
+ PREGUNTA Ejercicio 9
+El siguiente esquema representa un chip de memoria de 1024 celdas de
+un bit, donde:  
+Es el bus de direcciones
+Es la salida de datos
+Es la entrada de datos
+Es la entrada de selección del chip
+Es la entrada de configuración en lectura/escritura
+¿Cómo obtener una memoria de 1024 palabras de 8 bits? 
+[FIGURA]
+Conectar 4 chips como éste en paralelo, de manera que se unan
+todas las entradas de selección por un lado y de configuración en
+lectura/escritura por otro. 
+Unir las direcciones de cada chip de manera que todas las Ai
+están unidas para cada i formando un grupo de 8 para cada i y diseñar un
+contador que recorra secuencialmente todas las direcciones. 
+Ninguna otra opción es verdadera 
+Conectar 8 chips como éste en paralelo, de manera que se unan
+todas las entradas de selección por un lado y de configuración en
+lectura/escritura por otro. 
+La solución correcta es la 'd'.
+ PREGUNTA Ejercicio 10
+Teniendo en cuenta que todos los biestables se inicializan a 1, se
+activan con los flancos de bajada y que Q1 es el bit más significativo,
+el siguiente contador recorre la secuencia: 
+[FIGURA]
+3, 2, 1, 0, 3, 2, 1, …. 
+Ninguna otra opción es verdadera  
+3, 0, 1, 2, 3, 0, 1, …. 
+1, 2, 3, 0, 1, 2, 3, .... 
+La solución correcta es la 'c'.
