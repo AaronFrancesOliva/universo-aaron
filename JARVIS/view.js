@@ -2705,7 +2705,12 @@ const modGalaxia = (parent) => {
       const lineas = (await ad.read(".git/copia.log")).replace(/^\uFEFF/, "").split(/\r?\n/).filter((l) => /^\d{4}-\d\d-\d\d \d\d:\d\d /.test(l));
       const fecha = (l) => new Date(l.slice(0, 10) + "T" + l.slice(11, 16)).getTime();
       const copias = lineas.filter((l) => /copia hecha|sin cambios/.test(l)), subidas = lineas.filter((l) => /subida a GitHub/.test(l));
-      const ult = copias.length ? fecha(copias[copias.length - 1]) : null;
+      let ult = copias.length ? fecha(copias[copias.length - 1]) : null;
+      // la última copia es también el último commit (por si se hizo a mano): hora de la última línea de .git/logs/HEAD
+      if (await ad.exists(".git/logs/HEAD")) {
+        const lh = (await ad.read(".git/logs/HEAD")).trim().split(/\r?\n/).pop() || "", m = lh.match(/> (\d{9,}) [+-]\d{4}/);
+        if (m) ult = Math.max(ult || 0, +m[1] * 1000);
+      }
       const sub = subidas.length ? subidas[subidas.length - 1] : null;
       // ¿está subida? compara la rama local con la de GitHub (refs que git actualiza en cada push)
       const leerRef = async (r) => {
