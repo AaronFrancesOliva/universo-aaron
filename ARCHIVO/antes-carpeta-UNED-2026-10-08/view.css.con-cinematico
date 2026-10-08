@@ -414,3 +414,10 @@ body.jv-mode .terminal-host::before {
 .jv-al-ok { border-color: #4dffb5; color: #4dffb5; opacity: .75; cursor: default; }
 .jv-al-mas { color: #8aa4b8; }
 @keyframes jv-latir { 0%, 100% { box-shadow: 0 0 4px rgba(255, 77, 106, .25); } 50% { box-shadow: 0 0 16px rgba(255, 77, 106, .7); } }
+
+/* Modo cinemático: rótulo grande abajo y el resto del HUD atenuado */
+.jv-cine { position: absolute; left: 0; right: 0; bottom: 14%; text-align: center; pointer-events: none; opacity: 0; transition: opacity 1.4s; z-index: 2; }
+.jv-cine-on { opacity: 1; }
+.jv-cine-t { font-family: Orbitron, sans-serif; font-size: 28px; letter-spacing: .35em; color: #e8fbff; text-shadow: 0 0 18px #3ee8ff, 0 0 4px #3ee8ff; }
+.jv-cine-s { font-family: "Share Tech Mono", Consolas, monospace; font-size: 13px; letter-spacing: .15em; color: #3ee8ff; margin-top: 8px; }
+.jv-cine-activo .jv-nav, .jv-cine-activo .jv-alertas, .jv-cine-activo .jv-zoom, .jv-cine-activo .jv-graph-info { opacity: .12; transition: opacity 1.2s; }

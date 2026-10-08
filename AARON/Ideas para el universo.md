@@ -27,7 +27,8 @@ Propuestas de Jarvis que Aaron ha dejado para más adelante ("por si me apetece"
 - [x] ~~**Portales a webs**~~: hecho el 2026-10-08.
 - [ ] **Minimapa / radar** en una esquina, con las galaxias, la estación, los cometas y hacia dónde mira la cámara.
 - [ ] **Sonido ambiental** (con botón de silencio): zumbido de nave, ping de la baliza, clics.
-- [x] ~~Centro de alertas~~ y ~~modo cinemático~~: hechos el 2026-10-08.
+- [x] ~~Centro de alertas~~: hecho el 2026-10-08.
+- Modo cinemático: se hizo y se quitó el 2026-10-08 (consumía muchos recursos). No volver a proponerlo.
 
 ## Galaxias que no gustaron (para no volver a proponerlas)
 VIDA, CARRERA, IDEAS, CONOCIMIENTO, PERSONAS, TIEMPO, la del código del universo y DRIVE.
