@@ -3,7 +3,7 @@ asignatura: Gestión de Empresas Informáticas
 tema: 1
 estado: resumido
 ultimo_repaso: 2026-10-05
-proximo_repaso: 2026-10-06
+proximo_repaso: 2026-10-10
 ---
 
 # Gestión de Empresas Informáticas — Tema 1: La Empresa y el Empresario

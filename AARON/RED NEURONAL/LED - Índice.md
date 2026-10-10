@@ -1,6 +1,6 @@
 ---
 tags: [red-neuronal, led]
-actualizado: 2026-10-07
+actualizado: 2026-10-10
 ---
 
 # LED — Índice de conocimiento
@@ -31,6 +31,7 @@ Lógica y Estructuras Discretas (71901037). Ficha de Aaron: [[Lógica y Estructu
 - En septiembre se guarda la nota de la PEC y de las prácticas (la PEC se reabre de mediados de junio a finales de agosto); no se guarda la del examen de febrero. De un curso a otro no se guarda nada.
 - Ficha de Aaron: [[Lógica y Estructuras Discretas]]; datos generales en [[UNED - General]].
 - Las dudas en el foro se titulan `[PEC-X-Y] tema`, donde X es el test e Y la pregunta.
+- **Exámenes anteriores**: no están en Ágora; se sacan del **depósito de exámenes de la UNED de Calatayud** (`http://www.calatayud.uned.es/Examenes/auth/getdocs.asp`, pide iniciar sesión con la cuenta de la UNED; al pasar por ese inicio de sesión, la pestaña de Claude in Chrome se cerró el 2026-10-10). A Aaron le dijeron (WhatsApp, 7 oct 2026) que el examen que más importa es el de **febrero de 2014, modelo B** (curso 2013/14). Todavía no lo tenemos en el vault.
 
 ## Trucos y avisos
 - Las fórmulas X₁, X₂… se repiten en todas las preguntas de una misma PEC: con una tabla o un tableau se responden varias (foro, 6 oct 2026).

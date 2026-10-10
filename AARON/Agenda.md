@@ -1,14 +1,10 @@
 ---
 tipo: agenda
 fuente: Google Calendar (aaron.oficial7601@gmail.com)
-actualizado: 2026-10-08T12:35
-desde: 2026-10-08
+actualizado: 2026-10-10T10:55
+desde: 2026-10-10
 hasta: 2026-10-31
 eventos:
-  - {inicio: "2026-10-08T08:00", fin: "2026-10-08T16:30", titulo: "🖥️WORK", color: "10"}
-  - {inicio: "2026-10-08T18:00", fin: "2026-10-08T20:00", titulo: "🏋🏻GYM", color: "7"}
-  - {inicio: "2026-10-09T07:00", fin: "2026-10-09T13:00", titulo: "🖥️WORK", color: "10"}
-  - {inicio: "2026-10-09T18:00", fin: "2026-10-09T20:00", titulo: "🏋🏻GYM", color: "7"}
   - {inicio: "2026-10-10T10:00", fin: "2026-10-10T12:00", titulo: "🏋🏻GYM", color: "7"}
   - {inicio: "2026-10-12T07:00", fin: "2026-10-12T15:30", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-10-12T16:00", fin: "2026-10-12T17:00", titulo: "📚 Tutoría GEI (AVIP)", color: "9"}
@@ -58,10 +54,6 @@ Copia de los próximos eventos del Google Calendar de Aaron, en **hora canaria**
 
 | Día | Hora | Evento |
 |---|---|---|
-| 2026-10-08 | 08:00-16:30 | 🖥️WORK |
-| 2026-10-08 | 18:00-20:00 | 🏋🏻GYM |
-| 2026-10-09 | 07:00-13:00 | 🖥️WORK |
-| 2026-10-09 | 18:00-20:00 | 🏋🏻GYM |
 | 2026-10-10 | 10:00-12:00 | 🏋🏻GYM |
 | 2026-10-12 | 07:00-15:30 | 🖥️WORK |
 | 2026-10-12 | 16:00-17:00 | 📚 Tutoría GEI (AVIP) |
