@@ -1,6 +1,6 @@
 ---
 tags: [red-neuronal, gei]
-actualizado: 2026-10-07
+actualizado: 2026-10-10
 ---
 
 # GEI — Índice de conocimiento
@@ -13,19 +13,19 @@ Material oficial: resumen y glosario de cada tema (1-14) en `UNED/AÑO 1/CUATRIM
 | Tema | Nodo | Estudiado por Claude | Nota de Aaron |
 |---|---|---|---|
 | 1 Empresa y empresario | — | sí (2026-10-05) | [[Tema 1 - Empresa y empresario]] |
-| 2 Proceso de dirección | [[GEI T02 - Proceso de dirección]] | sí | — |
-| 3 Dirección de RRHH | [[GEI T03 - Dirección de RRHH]] | sí | — |
-| 4 Análisis de problemas y decisiones | [[GEI T04 - Análisis de problemas y toma de decisiones]] | sí | — |
-| 5 Planificación, programación y control | [[GEI T05 - Técnicas instrumentales de planificación, programación y control]] | sí | — |
-| 6 Elementos financieros | [[GEI T06 - Elementos financieros]] | sí | — |
-| 7 Inversiones | [[GEI T07 - Inversiones y su selección. Rentabilidad]] | sí | — |
-| 8 Financiación y coste del capital | [[GEI T08 - Fuentes de financiación y coste del capital]] | sí | — |
-| 9 Producción y factor humano | [[GEI T09 - Elementos productivos. Proceso de producción y factor humano]] | sí | — |
-| 10 Capacidad de producción | [[GEI T10 - La capacidad de producción]] | sí | — |
-| 11 Logística | [[GEI T11 - La logística]] | sí | — |
-| 12 Elementos de marketing | [[GEI T12 - Elementos de marketing. Mercado, demanda y presupuesto mercadotécnico]] | sí | — |
-| 13 Investigación de mercados | [[GEI T13 - Investigación de mercados, segmentación y experimentación comercial]] | sí | — |
-| 14 Variables del marketing | [[GEI T14 - Las variables del marketing]] | sí | — |
+| 2 Proceso de dirección | [[GEI T02 - Proceso de dirección]] | sí | [[Tema 2 - El proceso de dirección]] (Jarvis, 2026-10-10, #revisar) |
+| 3 Dirección de RRHH | [[GEI T03 - Dirección de RRHH]] | sí | [[Tema 3 - La dirección de recursos humanos]] (Jarvis, 2026-10-10, #revisar) |
+| 4 Análisis de problemas y decisiones | [[GEI T04 - Análisis de problemas y toma de decisiones]] | sí | [[Tema 4 - Análisis de problemas y toma de decisiones]] (Jarvis, 2026-10-10, #revisar) |
+| 5 Planificación, programación y control | [[GEI T05 - Técnicas instrumentales de planificación, programación y control]] | sí | [[Tema 5 - Técnicas de planificación, programación y control]] (Jarvis, 2026-10-10, #revisar) |
+| 6 Elementos financieros | [[GEI T06 - Elementos financieros]] | sí | [[Tema 6 - Elementos financieros]] (Jarvis, 2026-10-10, #revisar) |
+| 7 Inversiones | [[GEI T07 - Inversiones y su selección. Rentabilidad]] | sí | [[Tema 7 - Las inversiones y su selección]] (Jarvis, 2026-10-10, #revisar) |
+| 8 Financiación y coste del capital | [[GEI T08 - Fuentes de financiación y coste del capital]] | sí | [[Tema 8 - Las fuentes de financiación y el coste del capital]] (Jarvis, 2026-10-10, #revisar) |
+| 9 Producción y factor humano | [[GEI T09 - Elementos productivos. Proceso de producción y factor humano]] | sí | [[Tema 9 - Elementos productivos, proceso de producción y factor humano]] (Jarvis, 2026-10-10, #revisar) |
+| 10 Capacidad de producción | [[GEI T10 - La capacidad de producción]] | sí | [[Tema 10 - La capacidad de producción]] (Jarvis, 2026-10-10, #revisar) |
+| 11 Logística | [[GEI T11 - La logística]] | sí | [[Tema 11 - La logística]] (Jarvis, 2026-10-10, #revisar) |
+| 12 Elementos de marketing | [[GEI T12 - Elementos de marketing. Mercado, demanda y presupuesto mercadotécnico]] | sí | [[Tema 12 - Elementos de marketing, mercado, demanda y presupuesto]] (Jarvis, 2026-10-10, #revisar) |
+| 13 Investigación de mercados | [[GEI T13 - Investigación de mercados, segmentación y experimentación comercial]] | sí | [[Tema 13 - Investigación de mercados, segmentación y experimentación comercial]] (Jarvis, 2026-10-10, #revisar) |
+| 14 Variables del marketing | [[GEI T14 - Las variables del marketing]] | sí | [[Tema 14 - Las variables del marketing]] (Jarvis, 2026-10-10, #revisar) |
 
 Transversales: [[GEI - Fórmulas]] · [[GEI - Pruebas globales y trampas]] · [[GEI - Exámenes anteriores y erratas]] (24 exámenes 2015-2024, qué cae y fe de erratas oficial)
 
@@ -41,4 +41,5 @@ En Ágora también hay 14 autoevaluaciones (cuestionarios, una por tema; cuenta 
 - **Punto muerto** en T6 (finanzas), T9 (producir o comprar, misma fórmula CF/(p − cv)) y T14 (nuevos productos).
 
 ## Cómo hacer resúmenes con Aaron
+- **2026-10-10**: Aaron pidió que Jarvis hiciera de una vez los resúmenes de los temas 2-14 (libro + resumen del profesor + glosario). Hechos en `TEMA N/` con el formato del tema 1: síntesis con páginas del manual, glosario oficial completo y test del libro con clave (la oficial de la fe de erratas cuando corrige la impresa). Quedan con `estado: pendiente` y `#revisar` hasta que Aaron los lea.
 Seguir el formato de [[Tema 1 - Empresa y empresario]]: nota en `UNED/AÑO 1/CUATRIMESTRE 1/GESTION DE EMPRESAS/TEMA N/`, propiedades de seguimiento, verificada contra manual, resumen y glosario, con test. Partir del nodo del tema y comprobar en el PDF lo que haga falta citar con página.

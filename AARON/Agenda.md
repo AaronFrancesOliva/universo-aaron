@@ -8,6 +8,7 @@ eventos:
   - {inicio: "2026-10-10T10:00", fin: "2026-10-10T12:00", titulo: "🏋🏻GYM", color: "7"}
   - {inicio: "2026-10-12T07:00", fin: "2026-10-12T15:30", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-10-12T16:00", fin: "2026-10-12T17:00", titulo: "📚 Tutoría GEI (AVIP)", color: "9"}
+  - {inicio: "2026-10-12T20:00", fin: "2026-10-12T21:00", titulo: "📖 FSD · lectura Tema 1", color: "9"}
   - {inicio: "2026-10-13T08:00", fin: "2026-10-13T16:30", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-10-14T07:00", fin: "2026-10-14T15:30", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-10-14T18:00", fin: "2026-10-14T19:00", titulo: "📚 Tutoría LED (presencial)", color: "9"}
@@ -57,6 +58,7 @@ Copia de los próximos eventos del Google Calendar de Aaron, en **hora canaria**
 | 2026-10-10 | 10:00-12:00 | 🏋🏻GYM |
 | 2026-10-12 | 07:00-15:30 | 🖥️WORK |
 | 2026-10-12 | 16:00-17:00 | 📚 Tutoría GEI (AVIP) |
+| 2026-10-12 | 20:00-21:00 | 📖 FSD · lectura Tema 1 |
 | 2026-10-13 | 08:00-16:30 | 🖥️WORK |
 | 2026-10-14 | 07:00-15:30 | 🖥️WORK |
 | 2026-10-14 | 18:00-19:00 | 📚 Tutoría LED (presencial) |
