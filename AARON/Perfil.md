@@ -12,6 +12,7 @@ actualizado: 2026-10-06
 ## Datos
 - Estudia en la **UNED**. Este cuatrimestre (1.º de 2026-27) cursa GEI, LED y FSD, además del curso *Tu primer crédito*. Ver [[Calendario]].
 - Vive en **Canarias**: todas las horas, en hora canaria (una menos que la península).
+- En su trabajo usa **Spring Boot** a diario y quiere especializarse en el stack **Java + Angular** (lo dijo el 2026-10-16).
 - Estudia en el PC (Obsidian + Claude Code en la terminal) y en el **iPad** (sincronizado con Remotely Save y OneDrive).
 
 ## Preferencias

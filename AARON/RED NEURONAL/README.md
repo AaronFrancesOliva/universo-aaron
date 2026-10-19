@@ -31,3 +31,4 @@ Esta carpeta es **mi memoria de conocimiento**: todo lo que he aprendido estudia
 - 2026-10-07 (tarde): FSD temas 2-9 estudiados del libro (nodos `FSD T2` … `FSD T9`).
 - 2026-10-08: nuevo nodo [[GitHub - Proyectos de Aaron]] (galaxia GITHUB AARON).
 - 2026-10-08 (tarde): análisis a fondo de los 10 proyectos de GitHub: 6 nodos en `GITHUB/` y mapa de conexiones.
+- 2026-10-16: idea de proyecto [[Twinpos]] (TPV modular para pymes con plano 3D tipo gemelo digital), en `GITHUB/PERSONAL/`.

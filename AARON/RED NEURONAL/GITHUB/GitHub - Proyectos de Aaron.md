@@ -51,6 +51,7 @@ Lo que sé de los repositorios de Aaron (`C:\Users\PC\Documents\GitHubLocal`), a
 
 ## Perfil técnico
 - Stack habitual: **Laravel** (11 y 12) en backend, **React + Vite + Tailwind + shadcn/ui** en frontend, **Electron** para escritorio, PostgreSQL (Supabase) y MySQL; en móvil, **Kotlin + Jetpack Compose** y **Expo/React Native**.
+- **En el trabajo usa Spring Boot a diario** y quiere especializarse en **Java + Angular** (lo dijo el 2026-10-16). En proyectos nuevos, proponer ese stack: ver [[Twinpos - Arquitectura]].
 - Usa IA para generar código (Lovable en el portafolio) y Conventional Commits en los proyectos de equipo; en los personales, mensajes "aa".
 - Usuario de GitHub: `AaronFrancesOliva`.
 

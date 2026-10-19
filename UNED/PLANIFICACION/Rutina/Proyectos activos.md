@@ -1,7 +1,7 @@
 ---
 tipo: proyectos
 tags: [jarvis, proyectos]
-actualizado: 2026-10-10
+actualizado: 2026-10-16
 ---
 
 # 📂 Proyectos activos
@@ -10,9 +10,9 @@ Cada proyecto tiene **una siguiente acción concreta de menos de 1 hora**. Jarvi
 
 | Proyecto | Siguiente acción | Próxima fecha clave | Último movimiento |
 |---|---|---|---|
-| [[Calendario#Asignaturas del 1.er cuatrimestre\|GEI]] | Repaso del día 1 del [[Tema 1 - Empresa y empresario\|Tema 1]] (preguntas, no releer) → **sáb 10 oct, 16:00** | PEC 1: 3-7 dic | 2026-10-06 |
-| [[Fundamentos de Sistemas Digitales\|FSD]] | Primera lectura del [[Tema 1 - Álgebra de Boole y funciones lógicas\|Tema 1]] (empieza en la p. 11 del libro; el tema llega hasta la 78) → **lun 12, 20:00** | Enunciado PEC 1: 23 oct, 06:00 | 2026-10-06 |
-| [[Lógica y Estructuras Discretas\|LED]] | Ejercicios 1-5 del examen de feb 2014 modelo B (depósito de Calatayud) → **sáb 10** | Preguntar al equipo docente: 14 oct | 2026-10-05 |
+| [[Calendario#Asignaturas del 1.er cuatrimestre\|GEI]] | Primera lectura del [[Tema 2 - El proceso de dirección\|Tema 2]] (resumen de Jarvis, #revisar). Repaso del Tema 1 → **vie 23** | PEC 1: 3-7 dic | 2026-10-16 |
+| [[Fundamentos de Sistemas Digitales\|FSD]] | Repaso del [[Tema 1 - Álgebra de Boole y funciones lógicas\|Tema 1]] con las preguntas de examen con soluciones → **lun 19** (ese día, directo a las 17:00) | Enunciado PEC 1: 23 oct, 06:00 | 2026-10-16 |
+| [[Lógica y Estructuras Discretas\|LED]] | Ejercicios 6-9 del examen de feb 2014 modelo B (lógica de predicados) | Prácticas aplicadas: sin fecha (aprox. finales de nov) | 2026-10-16 |
 | Plan de estudio | Confirmar la semana tipo propuesta en [[2026-10-08]] (sale de Google Calendar) | Elegir semana de examen: 31 oct | 2026-10-06 |
 
 #revisar

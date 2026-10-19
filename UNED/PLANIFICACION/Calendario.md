@@ -84,8 +84,8 @@ Convocatoria **ordinaria** (según el cronograma de FSD): **1.ª semana del 25 a
 
 - [x] Revisar las guías de LED y FSD (guardadas en cada carpeta) [fecha:: 2026-10-05]
 - [x] Mirar en Ágora las fechas exactas de las PEC de FSD, de los test de LED y de las prácticas de LED [fecha:: 2026-10-05]
-- [ ] LED: estar atento al aviso con las fechas de las prácticas aplicadas (plazo estricto) [fecha:: 2026-10-14]
-- [ ] FSD: instalar el simulador del curso virtual y ver el vídeo de uso [fecha:: 2026-10-17]
+- [x] LED: estar atento al aviso con las fechas de las prácticas aplicadas (plazo estricto; revisado el 2026-10-16 en el correo y los foros: aún sin publicar) [fecha:: 2026-10-14]
+- [x] FSD: instalar el simulador del curso virtual y ver el vídeo de uso [fecha:: 2026-10-17] (instalado; avisó Aaron el 2026-10-16)
 - [ ] FSD: se publica el enunciado de la PEC 1 (06:00 de Canarias) [fecha:: 2026-10-23]
 - [ ] Confirmar semana y centro de examen (1.ª semana 25-29 ene, 2.ª semana 8-13 feb) [fecha:: 2026-10-31]
 - [ ] FSD: entregar la PEC 1 (antes del 28 nov; hora no publicada) [fecha:: 2026-11-27]

@@ -1,9 +1,9 @@
 ---
 asignatura: Fundamentos de Sistemas Digitales
 tema: 1
-estado: pendiente
-ultimo_repaso:
-proximo_repaso:
+estado: leido
+ultimo_repaso: 2026-10-12
+proximo_repaso: 2026-10-19
 ---
 
 # Fundamentos de Sistemas Digitales — Tema 1: Álgebra de Boole y funciones lógicas
