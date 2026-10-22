@@ -1,0 +1,122 @@
+10:04:41.221 ---- onload: empieza
+10:04:41.222 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+10:04:41.223 onLayoutReady
+10:04:41.223 nota del núcleo repintada
+10:04:41.232 datos leídos
+10:04:47.259 MODO UNED pulsado: activo=false submodo=null
+10:04:47.410 abrirModo UNED
+10:04:47.411 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:04:47.418 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:04:47.419 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:04:47.420 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:04:49.105 MODO UNED pulsado: activo=true submodo=UNED
+10:04:50.379 MODO UNED pulsado: activo=true submodo=null
+10:04:50.379 abrirModo UNED
+10:04:50.379 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:04:50.380 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:04:50.383 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:04:50.384 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:05:00.387 MODO UNED pulsado: activo=true submodo=UNED
+10:05:01.538 MODO UNED pulsado: activo=true submodo=null
+10:05:01.538 abrirModo UNED
+10:05:01.538 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:05:01.539 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:05:01.542 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:05:01.542 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:05:08.726 ---- onload: empieza
+10:05:08.728 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+10:05:09.320 onLayoutReady
+10:05:09.320 nota del núcleo repintada
+10:05:09.627 datos leídos
+10:05:11.896 MODO UNED pulsado: activo=true submodo=UNED
+10:05:13.188 MODO UNED pulsado: activo=true submodo=null
+10:05:13.188 abrirModo UNED
+10:05:13.189 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:05:13.190 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:05:13.192 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:05:13.193 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:05:37.020 MODO UNED pulsado: activo=false submodo=null
+10:05:37.161 abrirModo UNED
+10:05:37.162 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:05:37.169 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:05:37.170 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:05:37.171 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:07:04.910 MODO UNED pulsado: activo=false submodo=null
+10:07:05.056 abrirModo UNED
+10:07:05.056 cargar jarvis-hud-uned-izquierda: antes vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:07:05.056 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:07:05.056 cargar jarvis-hud-uned-derecha: antes vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:07:05.056 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:07:06.441 MODO UNED pulsado: activo=true submodo=UNED
+10:07:12.913 MODO UNED pulsado: activo=true submodo=null
+10:07:12.913 abrirModo UNED
+10:07:12.913 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:07:12.915 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:07:12.917 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:07:12.918 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:08:05.139 MODO UNED pulsado: activo=true submodo=UNED
+10:08:07.157 MODO UNED pulsado: activo=true submodo=null
+10:08:07.157 abrirModo UNED
+10:08:07.158 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:08:07.159 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:08:07.161 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:08:07.162 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:08:09.647 MODO UNED pulsado: activo=true submodo=UNED
+10:11:15.070 MODO UNED pulsado: activo=true submodo=null
+10:11:15.070 abrirModo UNED
+10:11:15.071 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:11:15.074 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=false
+10:11:15.078 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:11:15.080 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=false
+10:11:16.714 MODO UNED pulsado: activo=true submodo=UNED
+10:11:27.871 ---- onload: empieza
+10:11:27.875 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+10:11:28.336 onLayoutReady
+10:11:28.336 nota del núcleo repintada
+10:11:28.595 datos leídos
+10:11:29.755 MODO UNED pulsado: activo=true submodo=null
+10:11:29.755 abrirModo UNED
+10:11:29.756 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:11:29.769 onOpen jarvis-hud-uned-izquierda: montada
+10:11:29.774 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=true
+10:11:29.785 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:11:29.790 onOpen jarvis-hud-uned-derecha: montada
+10:11:29.791 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=true
+10:11:45.575 MODO UNED pulsado: activo=true submodo=UNED
+10:11:46.831 MODO UNED pulsado: activo=true submodo=null
+10:11:46.831 abrirModo UNED
+10:11:46.831 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:11:46.839 onOpen jarvis-hud-uned-izquierda: montada
+10:11:46.839 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=true
+10:11:46.845 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:11:46.847 onOpen jarvis-hud-uned-derecha: montada
+10:11:46.848 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=true
+10:12:04.699 abrirModo UNED
+10:12:04.699 cargar jarvis-hud-uned-izquierda: antes vista=jarvis-hud-uned-izquierda clase=t nuestra=true
+10:12:04.699 cargar jarvis-hud-uned-izquierda: ya estaba viva
+10:12:04.699 cargar jarvis-hud-uned-derecha: antes vista=jarvis-hud-uned-derecha clase=t nuestra=true
+10:12:04.699 cargar jarvis-hud-uned-derecha: ya estaba viva
+10:20:17.330 ---- onload: empieza
+10:20:17.334 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+10:20:17.404 onOpen jarvis-hud-uned-izquierda: montada
+10:20:17.406 onOpen jarvis-hud-uned-derecha: montada
+10:20:17.799 onLayoutReady
+10:20:17.799 nota del núcleo repintada
+10:20:18.080 datos leídos
+10:20:37.889 MODO UNED pulsado: activo=true submodo=UNED
+10:20:41.299 MODO UNED pulsado: activo=true submodo=null
+10:20:41.300 abrirModo UNED
+10:20:41.300 cargar jarvis-hud-uned-izquierda: antes vista=empty clase=t nuestra=false
+10:20:41.308 onOpen jarvis-hud-uned-izquierda: montada
+10:20:41.309 cargar jarvis-hud-uned-izquierda: después vista=jarvis-hud-uned-izquierda clase=t nuestra=true
+10:20:41.316 cargar jarvis-hud-uned-derecha: antes vista=empty clase=t nuestra=false
+10:20:41.318 onOpen jarvis-hud-uned-derecha: montada
+10:20:41.318 cargar jarvis-hud-uned-derecha: después vista=jarvis-hud-uned-derecha clase=t nuestra=true
+11:50:50.801 ---- onload: empieza
+11:50:50.805 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+11:50:50.884 onOpen jarvis-hud-uned-izquierda: montada
+11:50:50.886 onOpen jarvis-hud-uned-derecha: montada
+11:50:51.281 onLayoutReady
+11:50:51.281 nota del núcleo repintada
+11:50:51.592 datos leídos
+11:51:43.180 MODO UNED pulsado: activo=true submodo=UNED

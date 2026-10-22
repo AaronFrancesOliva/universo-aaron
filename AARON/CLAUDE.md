@@ -24,7 +24,7 @@ Este vault de Obsidian es el "cerebro" de los estudios de Aaron en la UNED. Cuan
 
 ## Arquitectura: UNIVERSO AARON
 - **AARON** (`AARON/`): el humano que decide. Guarda las decisiones, la memoria del agente, el perfil y la red neuronal. Lo que Claude deba recordar va aquí. Se sincroniza con el iPad (desde el 2026-10-14), junto con `JARVIS/` y `ARCHIVO/`.
-- **JARVIS** (`JARVIS/`): el agente. Junto con AARON forma el centro del universo. Su carpeta solo tiene el núcleo (`JARVIS Núcleo.md`) y el código del HUD (`view.js` + `view.css`). El **modo JARVIS** es solo núcleo + terminal.
+- **JARVIS** (`JARVIS/`): el agente. Junto con AARON forma el centro del universo. Su carpeta tiene el núcleo (`JARVIS Núcleo.md`) y el código del HUD v1 (`view.js` + `view.css`, de respaldo). Desde el 2026-10-21 el HUD es **JARVIS v2**, el plugin `jarvis-hud` (código en `C:/Users/PC/Documents/GitHubLocal/jarvis-hud`, plan en [[Plan JARVIS v2]]); su configuración (`src/config.ts`) duplica `CFG` de `view.js` mientras convivan. El **modo JARVIS** es solo núcleo + terminal.
 - **GALAXIA UNED** (`UNED/`): todo lo de la universidad. `UNED/AÑO n/CUATRIMESTRE m/<asignatura>`, `UNED/PLANIFICACION/` (calendario, plan, sistema de estudio, semanas, nebulosas, plantillas y `Rutina/`, la rutina diaria), `UNED/LIBROS/` y `UNED/MODO UNED/` (las barras laterales del modo UNED). En el núcleo, la galaxia orbita a AARON + JARVIS y su centro (el remolino) es la propia carpeta `UNED/`. Es lo que se sincroniza con la tablet.
 - **Modos**: las barras laterales del modo JARVIS son modos que se encienden aparte (`CFG.modos` de `JARVIS/view.js`). De momento solo existe el **modo UNED**; en el futuro habrá más.
 - Las relaciones entre asignaturas se definen en `CFG.relaciones` de `JARVIS/view.js`.

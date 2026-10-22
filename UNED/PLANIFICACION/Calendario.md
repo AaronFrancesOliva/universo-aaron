@@ -35,7 +35,7 @@ actualizado: 2026-10-07
 
 ## Sesiones en directo del equipo docente
 
-- **FSD, canal de YouTube** ([enlace](https://www.youtube.com/c/FundamentosdeSistemasDigitalesUNED)): **17:00 de Canarias** (18:00 peninsular). Fechas: oct 5 (bienvenida, grabada), mar 13, lun 19, lun 26 · nov mar 3, lun 9, 16, 23, 30 · dic mié 9, mié 16 · ene lun 11, lun 18. Antes de cada sesión se publica el ejercicio en el *Foro de consultas generales* (el del 13 oct es de funciones booleanas de 4 variables: canónicas, Karnaugh y solo NAND/NOR). Quedan grabadas.
+- **FSD, canal de YouTube** ([enlace](https://www.youtube.com/c/FundamentosdeSistemasDigitalesUNED)): **17:00 de Canarias** (18:00 peninsular). Fechas: oct 5 (bienvenida, grabada), mar 13, lun 19, **jue 29** (pasada del lun 26; aviso del equipo docente del 19 oct) · nov mar 3 (el lun 2 es festivo), lun 9, 16, 23, 30 · dic mié 9, mié 16 · ene lun 11, lun 18. Antes de cada sesión se publica el ejercicio en el *Foro de consultas generales* (el del 13 oct es de funciones booleanas de 4 variables: canónicas, Karnaugh y solo NAND/NOR). Quedan grabadas.
 - **LED**: sesión de bienvenida en Teams el 6 oct (grabada, en la pestaña *Presentación*).
 - **GEI**: 12 grabaciones AVIP en la sección *Grabaciones* del curso.
 
