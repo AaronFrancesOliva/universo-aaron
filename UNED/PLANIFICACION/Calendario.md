@@ -25,6 +25,9 @@ actualizado: 2026-10-07
 | Día | Hora (Canarias) | Hora (península) | Asignatura | Modalidad | Tutor (grupo de Ágora) |
 |---|---|---|---|---|---|
 | Lunes | 16:00-17:00 | 17:00-18:00 | GEI | Solo AVIP (online) | Jesús Manuel Cuevas Rincón (Melilla) · jcuevas@melilla.uned.es |
+
+> [!note] Días sin tutoría
+> - **Lun 2 nov 2026**: no hay tutoría de GEI (festivo; confirmado por Aaron el 2026-10-22).
 | Miércoles | 18:00-19:00 | 19:00-20:00 | LED | Presencial + AVIP | Pedro Ramón Almeida Benítez (Las Palmas) · palmeida@las-palmas.uned.es |
 | Miércoles | 20:00-21:00 | 21:00-22:00 | FSD | Presencial + AVIP | José Francisco Delgado García (Las Palmas) · josdelgado@las-palmas.uned.es |
 
