@@ -1,7 +1,7 @@
 ---
 tipo: proyectos
 tags: [jarvis, proyectos]
-actualizado: 2026-10-21
+actualizado: 2026-10-23
 ---
 
 # 📂 Proyectos activos
@@ -10,8 +10,8 @@ Cada proyecto tiene **una siguiente acción concreta de menos de 1 hora**. Jarvi
 
 | Proyecto | Siguiente acción | Próxima fecha clave | Último movimiento |
 |---|---|---|---|
-| [[Calendario#Asignaturas del 1.er cuatrimestre\|GEI]] | Primera lectura del [[Tema 2 - El proceso de dirección\|Tema 2]] (resumen de Jarvis, #revisar). Repaso del Tema 1 → **vie 23** | PEC 1: 3-7 dic | 2026-10-16 |
-| [[Fundamentos de Sistemas Digitales\|FSD]] | Repaso del [[Tema 1 - Álgebra de Boole y funciones lógicas\|Tema 1]] con las preguntas de examen con soluciones: hecho el 19 → siguiente, **lun 9 nov**. Ahora: ejercicio del directo del 19 (F = A̅B + B̅C, dos circuitos) y ver la grabación | Enunciado PEC 1: 23 oct, 06:00 · directo jue 29, 17:00 | 2026-10-16 |
+| [[Calendario#Asignaturas del 1.er cuatrimestre\|GEI]] | Primera lectura del [[Tema 2 - El proceso de dirección\|Tema 2]] (resumen de Jarvis, #revisar). Repaso del Tema 1 de 7 días hecho el 23 → siguiente, **vie 13 nov** | PEC 1: 3-7 dic | 2026-10-23 |
+| [[Fundamentos de Sistemas Digitales\|FSD]] | **PEC 1** ([[PEC 1 - Trabajo]]): diseño hecho (opción B). Ahora: montar en el simulador **solo el bloque 1** (codificador, 3 DigClock) y comprobar Y1 Y0. Repaso del T1 → lun 9 nov | Entrega PEC 1: antes del 28 nov · tutoría mié 28, 20:00 · directo jue 29, 17:00 | 2026-10-23 |
 | [[Lógica y Estructuras Discretas\|LED]] | Leer [[Febrero 2014 B - Ejercicios 6-9]] (predicados y tableau; preparada por Jarvis) e intentar el tableau sin mirar | Prácticas aplicadas: sin fecha (aprox. finales de nov) | 2026-10-16 |
 | Plan de estudio | Confirmar la semana tipo propuesta en [[2026-10-08]] (sale de Google Calendar) | Elegir semana de examen: 31 oct | 2026-10-06 |
 

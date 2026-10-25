@@ -24,3 +24,5 @@ El HUD: núcleo (universo) arriba y terminal abajo; los modos (MODO UNED) ponen 
 ## Conexiones
 - ⇄ [[JARVIS HUD v2]]: el núcleo y el modo JARVIS son del plugin jarvis-hud
 - ⇄ [[Lean Terminal]]: la terminal va debajo del núcleo
+
+- 2026-10-23: atajo **Ctrl+Shift+J** para salir del modo JARVIS v2 (comando `jarvis-hud:salir-jarvis`), puesto por Claude en `.obsidian/hotkeys.json` a petición de Aaron.

@@ -58,3 +58,19 @@ Fuentes: páginas de Ágora, *Preguntas Más Frecuentes* (P+F) de los temas 1 y 
 - p. 334, fig. 6.21: a la AND que produce E1 le falta una entrada (debe tener 3). p. 399, ej. 1.2.a: f4 = (X+Y+Z)·(X+Y+Z) + …
 - p. 418: "tablas de producción de **salidas** (g)". p. 431: el orden de las configuraciones es 00, 11, 01, 10. **p. 442, línea 19: "AND" donde pone "NAND"**. p. 541: "salida de la puerta NOR, (3) entrada al inversor".
 **Libro de problemas** (2.ª ed., 1999): p. 170, "puertas" (no "puertas NOR"); figs. 5.6.13-5.6.14 (valores de F); fig. 6.1.2 (entradas de las AND cambiadas); p. 208 ("ocho por cada bit, treinta y dos en total"); **p. 224, E.7.7 C: A = d8+d9, B = d4+d5+d6+d7, C = d2+d3+d6+d7, D = d1+d3+d5+d7+d9** (la fig. 7.7.3 está bien); E.8.4 se puede hacer con JK o con D; p. 269, matriz funcional; p. 292-293 (J_B = Q_A; la OR va a J_B, no al preset); p. 298, fig. 9.6.10 (OR, no NOR); p. 346, fig. 10.7.2 (los relojes deben llevar circulito porque cambian en las bajadas); p. 349 ("bajadas").
+
+## PEC 1: rúbrica y recomendaciones (leído en Ágora el 2026-10-23)
+Enunciado de Aaron: **PEC1-079** (codificador con prioridad P1 > P2 > P0 que controla la ALU SN74181), en `FUNDAMENTOS DE SISTEMAS DEGITALES/PEC/`.
+
+| Bloque | Máx. | Qué se mira |
+|---|---|---|
+| Diseño: tipo | 1 | Planteamiento, tipo de diseño elegido y su **justificación**; si es **mínimo** |
+| Diseño: realización | 3 | Tablas de verdad y minimización. **Si el diseño está mal → 0 y no se corrige lo demás** |
+| Simulación: esquema | 1 | Correcto (si no, 0 y no se mira el orden); ordenado, señales de entrada, control y salida **etiquetadas** |
+| Simulación: señales | 0,5 | Dar los **parámetros** de cada generador y que den un cronograma claro y ordenado |
+| Simulación: cronograma | 1 | Que funcione (si no, 0); señales ordenadas para comprobar fácil |
+| Verificación: forma | 1 | **Exhaustiva**, no aleatoria ni superficial |
+| Verificación: justificación | 2 | Explicación razonada que demuestre que entiende el circuito |
+| Documento | 0,5 | Claro, terminología de electrónica digital, bien presentado |
+
+Recomendaciones del equipo docente: hacer antes los problemas y autoevaluaciones de los temas 1-3; probar **cada bloque por separado** y luego unir; que salgan señales no significa que funcione; **no usar puertas open collector**; para verificar la ALU, fijar A3 A2 B3 B2 a 0 y poner DigClock en A1 A0 B1 B0 (16 filas); mostrar F0-F3 en el cronograma (hay arrastres); periodos de los DigClock que se doblan del bit menos significativo al siguiente. Componentes: puertas SN7408, 7432, 7404, 7402, 7400, 7486 (más entradas en la librería TIL de *Misc Digital*), ALU SN74181 (tabla de verdad en la p. 292 del libro), DigClock para las entradas e *Interactive digital constant* (*Sources | Digital sources*) para valores fijos.

@@ -1,6 +1,6 @@
 ---
 tags: [planificacion, calendario]
-actualizado: 2026-10-07
+actualizado: 2026-10-23
 ---
 
 # Calendario académico 2026-27
@@ -89,8 +89,9 @@ Convocatoria **ordinaria** (según el cronograma de FSD): **1.ª semana del 25 a
 - [x] Mirar en Ágora las fechas exactas de las PEC de FSD, de los test de LED y de las prácticas de LED [fecha:: 2026-10-05]
 - [x] LED: estar atento al aviso con las fechas de las prácticas aplicadas (plazo estricto; revisado el 2026-10-16 en el correo y los foros: aún sin publicar) [fecha:: 2026-10-14]
 - [x] FSD: instalar el simulador del curso virtual y ver el vídeo de uso [fecha:: 2026-10-17] (instalado; avisó Aaron el 2026-10-16)
-- [ ] FSD: se publica el enunciado de la PEC 1 (06:00 de Canarias) [fecha:: 2026-10-23]
-- [ ] Confirmar semana y centro de examen (1.ª semana 25-29 ene, 2.ª semana 8-13 feb) [fecha:: 2026-10-31]
+- [x] FSD: se publica el enunciado de la PEC 1 (06:00 de Canarias) [fecha:: 2026-10-23] (comprobado en Ágora el 23 oct: carpeta *Enunciados de la PEC1*, uno por estudiante según los **3 últimos dígitos del DNI/NIE**, `PEC1-XXX.docx`/`.pdf`; si no corresponde al DNI, no se corrige)
+- [x] ~~Confirmar semana y centro de examen antes del 31 oct~~: **no hay trámite ni plazo** (comprobado el 2026-10-23 en la web de la UNED, *Cómo examinarte de un grado*). La semana se elige presentándose ese día (cada asignatura en una sola semana). El centro es el asociado (Las Palmas), que fija la sede; para examinarse en otro centro, escribir a su director al menos 15 días antes. La fecha del 31 oct no tenía fuente. [fecha:: 2026-10-23]
+- [ ] Decidir en qué semana se examina cada asignatura y mirar la sede que publique el centro de Las Palmas [fecha:: 2027-01-10]
 - [ ] FSD: entregar la PEC 1 (antes del 28 nov; hora no publicada) [fecha:: 2026-11-27]
 - [ ] GEI: tener estudiados los temas 1-8 [fecha:: 2026-12-03]
 - [ ] GEI: hacer la PEC 1 (un intento de 2 h; cierra a las 22:59 de Canarias) [fecha:: 2026-12-07]

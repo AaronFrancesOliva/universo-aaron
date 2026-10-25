@@ -1,12 +1,10 @@
 ---
 tipo: agenda
 fuente: Google Calendar (aaron.oficial7601@gmail.com)
-actualizado: 2026-10-22T17:53
-desde: 2026-10-22
-hasta: 2026-11-05
+actualizado: 2026-10-23T17:55
+desde: 2026-10-23
+hasta: 2026-11-06
 eventos:
-  - {inicio: "2026-10-22T08:00", fin: "2026-10-22T16:30", titulo: "🖥️WORK", color: "10"}
-  - {inicio: "2026-10-22T18:00", fin: "2026-10-22T20:00", titulo: "🏋🏻GYM", color: "7"}
   - {inicio: "2026-10-23T06:00", fin: "2026-10-23T06:30", titulo: "📝 FSD PEC 1 · se publica el enunciado", color: "11"}
   - {inicio: "2026-10-23T08:00", fin: "2026-10-23T14:00", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-10-23T18:00", fin: "2026-10-23T20:00", titulo: "🏋🏻GYM", color: "7"}
@@ -31,6 +29,8 @@ eventos:
   - {inicio: "2026-11-04T20:00", fin: "2026-11-04T21:00", titulo: "📚 Tutoría FSD (presencial)", color: "9"}
   - {inicio: "2026-11-05T08:00", fin: "2026-11-05T16:30", titulo: "🖥️WORK", color: "10"}
   - {inicio: "2026-11-05T18:00", fin: "2026-11-05T20:00", titulo: "🏋🏻GYM", color: "7"}
+  - {inicio: "2026-11-06T08:00", fin: "2026-11-06T14:00", titulo: "🖥️WORK", color: "10"}
+  - {inicio: "2026-11-06T18:00", fin: "2026-11-06T20:00", titulo: "🏋🏻GYM", color: "7"}
 ---
 # Agenda (desde Google Calendar)
 
@@ -41,8 +41,6 @@ Copia de los próximos eventos del Google Calendar de Aaron, en **hora canaria**
 
 | Día | Hora | Evento |
 |---|---|---|
-| 2026-10-22 | 08:00-16:30 | 🖥️WORK |
-| 2026-10-22 | 18:00-20:00 | 🏋🏻GYM |
 | 2026-10-23 | 06:00-06:30 | 📝 FSD PEC 1 · se publica el enunciado |
 | 2026-10-23 | 08:00-14:00 | 🖥️WORK |
 | 2026-10-23 | 18:00-20:00 | 🏋🏻GYM |
@@ -67,3 +65,5 @@ Copia de los próximos eventos del Google Calendar de Aaron, en **hora canaria**
 | 2026-11-04 | 20:00-21:00 | 📚 Tutoría FSD (presencial) |
 | 2026-11-05 | 08:00-16:30 | 🖥️WORK |
 | 2026-11-05 | 18:00-20:00 | 🏋🏻GYM |
+| 2026-11-06 | 08:00-14:00 | 🖥️WORK |
+| 2026-11-06 | 18:00-20:00 | 🏋🏻GYM |

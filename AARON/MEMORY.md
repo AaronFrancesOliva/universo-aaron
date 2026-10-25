@@ -94,7 +94,7 @@ Esta nota es la memoria del proyecto UNED. Claude la lee y la actualiza; todos l
 
 ## Pendiente
 - GEI: hacer con Aaron los resúmenes de los temas 2-14 partiendo de `AARON/RED NEURONAL/GEI/`.
-- Elegir semana y centro de examen (1.ª semana 25-29 ene, 2.ª semana 8-13 feb 2027) → [[Calendario]].
+- ~~Elegir semana y centro de examen~~: no hay trámite (2026-10-23); se elige la semana yendo al examen y el centro es Las Palmas → [[Calendario]].
 - LED: ~~confirmar cierre de los test~~ (resuelto el 2026-10-07: cierran el 24 ene 2027, 22:59 de Canarias). Queda pendiente la fecha de las **prácticas aplicadas** (la guía dice aprox. finales de nov y principios de ene).
 - ~~FSD: estudiar el libro de teoría de los temas 2-9~~ (hecho el 2026-10-07: un nodo por tema en `AARON/RED NEURONAL/FSD/`).
 - Saber la disponibilidad semanal de Aaron (horas por día) para hacer el plan semanal.

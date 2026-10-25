@@ -39,6 +39,7 @@ Capítulo 5 del libro (pp. impresas ≈ 257-306; **página del PDF = página imp
 - XOR en cascada: Z = (A⊕B)⊕(C⊕D) vale 1 si el número de unos es **impar**. Con el bit P' de otro módulo: P = Z ⊕ P'. En transmisión, el generador añade el bit de paridad y el receptor lo comprueba (detecta un error de un solo bit). SN74ALS280: paridad de 9 líneas (terminal 5 "par" en alta con 0, 2, 4, 6 u 8 unos; el 6 "impar"); el 286 permite conectar varios en cascada.
 
 ## ALU SN74181
+- La tabla de funciones es la **fig. 5.23** (p. impresa 292, visor 286; página escaneada, sin texto; lo dijo Aaron el 2026-10-23). El ejercicio de simulación es la fig. 5.24.
 - Dos palabras de 4 bits, acarreo Cₙ, selección **S3 S2 S1 S0** y modo **M**: **M = H → 16 funciones lógicas** (sin acarreo); **M = L → aritméticas**, con C̄ₙ = H (sin acarreo) o C̄ₙ = L (con acarreo, "PLUS 1"). Salidas: F3-F0, Cₙ₊₄, A=B (colector abierto, para comparar), P y G (para el SN74182).
 - En la tabla, **"+" es OR y "PLUS" es suma aritmética**; ⊕ es XOR. Ejemplos de la tabla (lógica positiva): S = LHHL con M = H da A⊕B; con M = L y C̄ₙ = H da A MINUS B MINUS 1; con C̄ₙ = L da **A MINUS B**. S = HLLH con M = L da A PLUS B. S = HHLL con M = H da F = 1. S = LLLL con M = H da Ā.
 - La resta se hace por suma en C-1 (resultado A − B − 1), así que hace falta el acarreo forzado para obtener A − B. Para comparar se pone en modo resta (S = 0110, Cₙ = 1) y se mira A=B.

@@ -1,0 +1,8 @@
+{
+  "jarvis-hud:salir-jarvis": [
+    {
+      "modifiers": ["Mod", "Shift"],
+      "key": "J"
+    }
+  ]
+}

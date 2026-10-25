@@ -52,3 +52,5 @@ print('ok')
 ## Plugin jarvis-hud (Obsidian)
 - Si una hoja del plugin sale como «complemento no disponible» sin error en `registro.log`, es que **falló el constructor de la vista** (Obsidian lo captura y solo lo pone en la consola). Ojo: `View` llama a `getViewType()` **dentro de su constructor**, así que `getViewType`/`getIcon` no pueden depender de campos de la subclase (con ES2022 se asignan después de `super`).
 - Para depurar sin consola: leer `.obsidian/plugins/jarvis-hud/registro.log`; el código de Obsidian se puede inspeccionar con `grep -a` en `%APPDATA%/obsidian/obsidian-<versión>.asar`.
+
+- **Abrir notas a Aaron** (2026-10-23): siempre en **ventana aparte**, con `obsidian://open?vault=UNIVERSO%20AARON&file=<ruta codificada>&paneType=window`. Sin `paneType=window` la nota sustituye a la pestaña activa y le cierra el universo (el HUD de JARVIS).
