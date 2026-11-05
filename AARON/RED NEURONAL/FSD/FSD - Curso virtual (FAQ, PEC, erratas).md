@@ -74,3 +74,11 @@ Enunciado de Aaron: **PEC1-079** (codificador con prioridad P1 > P2 > P0 que con
 | Documento | 0,5 | Claro, terminología de electrónica digital, bien presentado |
 
 Recomendaciones del equipo docente: hacer antes los problemas y autoevaluaciones de los temas 1-3; probar **cada bloque por separado** y luego unir; que salgan señales no significa que funcione; **no usar puertas open collector**; para verificar la ALU, fijar A3 A2 B3 B2 a 0 y poner DigClock en A1 A0 B1 B0 (16 filas); mostrar F0-F3 en el cronograma (hay arrastres); periodos de los DigClock que se doblan del bit menos significativo al siguiente. Componentes: puertas SN7408, 7432, 7404, 7402, 7400, 7486 (más entradas en la librería TIL de *Misc Digital*), ALU SN74181 (tabla de verdad en la p. 292 del libro), DigClock para las entradas e *Interactive digital constant* (*Sources | Digital sources*) para valores fijos.
+
+## PEC 1: aclaraciones del foro (resúmenes de correo del 23 oct al 2 nov de 2026)
+- **«La ALU debe ponerse a 1»** = F3 F2 F1 F0 = **1111** (equipo docente, 31 oct, *Foro Actividad Evaluable 1*).
+- **Nombre del archivo**: `PEC1-XXX.rar` es correcto (un compañero en el foro, 26 oct); el equipo docente añade que incluir también los **apellidos** da más información al tutor.
+- **Glitches en el cronograma** (equipo docente, 31 oct): primero mirar si duran poco frente al periodo y si cambian la salida esperada; el zoom los exagera. Si no afectan, no merece la pena quitarlos. Si afectan, se pueden desfasar relojes o meter buffers para igualar los niveles de puertas. Un alumno los provocaba al poner NOT o retrasos en los relojes para que empezasen en 0, y le sugirieron quitarlos. Según ese alumno, los DigClock empiezan a 1 (sin comprobar).
+- **Multisim, código de 6 dígitos que no llega**: lo sufren varios alumnos con cuentas de `alumno.uned.es`. El equipo docente lo está viendo con el soporte de NI (31 oct), sin solución publicada aún. A Aaron no le afecta: lo tiene instalado desde el 16 oct.
+- **Sesiones de YouTube**: son a las 18:00 peninsulares (17:00 en Canarias), confirmado con los avisos del 26 y el 29 oct.
+- **Pasaporte en lugar de DNI/NIE**: se usan sus tres últimos dígitos y se indica el número junto al nombre al entregar. Sirve para responder dudas; Aaron ya tiene su enunciado.
