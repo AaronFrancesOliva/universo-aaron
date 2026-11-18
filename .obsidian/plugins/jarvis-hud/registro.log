@@ -158,3 +158,8 @@
 11:57:27.963 onLayoutReady
 11:57:27.963 nota del núcleo repintada
 11:57:28.321 datos leídos
+10:21:19.498 ---- onload: empieza
+10:21:19.501 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+10:21:20.230 onLayoutReady
+10:21:20.230 nota del núcleo repintada
+10:21:20.682 datos leídos

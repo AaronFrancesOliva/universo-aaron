@@ -82,3 +82,6 @@ Recomendaciones del equipo docente: hacer antes los problemas y autoevaluaciones
 - **Multisim, código de 6 dígitos que no llega**: lo sufren varios alumnos con cuentas de `alumno.uned.es`. El equipo docente lo está viendo con el soporte de NI (31 oct), sin solución publicada aún. A Aaron no le afecta: lo tiene instalado desde el 16 oct.
 - **Sesiones de YouTube**: son a las 18:00 peninsulares (17:00 en Canarias), confirmado con los avisos del 26 y el 29 oct.
 - **Pasaporte en lugar de DNI/NIE**: se usan sus tres últimos dígitos y se indica el número junto al nombre al entregar. Sirve para responder dudas; Aaron ya tiene su enunciado.
+
+- **PEC 1, entrega** (foro, 12 y 16 nov 2026): el comprimido puede ser .zip o .rar. El equipo docente recomienda texto digital (editor de ecuaciones de Word), pero el formato lo decide el tutor, que es quien corrige.
+- **Vídeos de Multisim útiles para la PEC** (buscados el 2026-11-18; sin ver, solo por el título): «Uso de multisim para simulación de sistemas digitales» (https://www.youtube.com/watch?v=TQzENcmL13o) y simulación de la 74LS181 en Multisim (https://www.youtube.com/watch?v=bZkqHBrYTCg). Cada estudiante tiene un enunciado distinto (PEC1-XXX).

@@ -336,3 +336,32 @@ Script: para las 8 combinaciones de P2 P1 P0, el bloque 1 da el código correcto
 - [ ] Simular cada bloque por separado
 - [ ] Circuito completo y verificación con P = 011, 111, 100, 101
 - [ ] Pasar todo al Word y entregar [fecha:: 2026-11-27]
+
+## Esquema para Multisim (Jarvis, 2026-11-18) #revisar
+Diagrama de los 3 bloques con las puertas, los DigClock (P2 250 Hz, P1 500 Hz, P0 1 kHz) y las tablas de lo que debe salir: https://claude.ai/artifact/4U3wwm7MrfHoQSbKe5Atec
+
+## Simulación del bloque 1 (2026-11-18) #revisar
+- Montado y simulado por Aaron en Multisim. DigClock: **P2 250 Hz, P1 500 Hz, P0 1 kHz**, duty 50 %. Analizador lógico con reloj interno de 10 kHz y Clocks/Div = 10.
+- Los DigClock empiezan en 1, así que la cuenta va **hacia abajo** (111 → 000). Hay que explicarlo en el documento.
+- Comprobadas con Jarvis las **8 combinaciones** en el cronograma (de 90 a 100 ms): Y1 Y0 coinciden con la tabla del paso 4. Sin glitches visibles.
+
+## Montaje del bloque 2, paso a paso (Jarvis, 2026-11-18) #revisar
+Sobre una **copia** del archivo del bloque 1 (p. ej. `PEC1-079_bloques1y2`); el del bloque 1 no se toca.
+0. Mover el XLA1 a la derecha. Sacar **Y1** e **Y0** como dos barras verticales, con ramas desde la salida de cada OR (punto negro).
+1. **S3 = Ȳ1**: inversor libre del 7404 que ya está (sección B), con la entrada en Y1.
+2. **S2 = Y1 + Ȳ0**: otro inversor del 7404 (C) en Y0, y una OR libre del 7432 (C) con entradas Y1 y Ȳ0.
+3. **S1 = Y1·Y0**: AND libre del 7408 (B).
+4. **S0 = Y1 ⊕ Y0**: 7486N nuevo (XOR).
+5. **M = S̄0**: inversor del 7404 (D) con la entrada en una rama de S0.
+6. **C̄n = Y0**: rama de Y0 llamada Cn, sin puertas.
+7. XLA1, entradas 6-11: S3, S2, S1, S0, M, Cn.
+8. Simular (Clocks/Div = 10) y comparar:
+
+| Y1 Y0 | S3 S2 S1 S0 | M | C̄n |
+|---|---|---|---|
+| 11 | 0 1 1 0 | 1 | 1 |
+| 10 | 0 1 0 1 | 0 | 0 |
+| 01 | 1 0 0 1 | 0 | 1 |
+| 00 | 1 1 0 0 | 1 | 0 |
+
+Comprobación rápida: **M siempre es lo contrario de S0**. Chips: 7404 4/6, 7432 3/4, 7408 2/4, 7486 1/4.
