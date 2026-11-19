@@ -163,3 +163,15 @@
 10:21:20.230 onLayoutReady
 10:21:20.230 nota del núcleo repintada
 10:21:20.682 datos leídos
+17:31:07.401 ---- onload: empieza
+17:31:07.404 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+17:31:08.987 onLayoutReady
+17:31:08.987 nota del núcleo repintada
+17:31:09.571 datos leídos
+18:06:58.118 ---- onunload
+18:06:59.413 ---- onload: empieza
+18:06:59.414 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+18:06:59.414 onLayoutReady
+18:06:59.414 nota del núcleo repintada
+18:06:59.874 datos leídos
+18:07:05.805 APP TRAYECTO pulsada

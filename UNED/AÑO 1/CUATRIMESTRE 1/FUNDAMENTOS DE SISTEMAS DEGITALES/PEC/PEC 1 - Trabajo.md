@@ -333,7 +333,9 @@ Script: para las 8 combinaciones de P2 P1 P0, el bloque 1 da el código correcto
 - [x] Paso 3: Karnaugh y expresiones mínimas
 - [x] Decidir diseño A o B → **B** (Aaron, 2026-10-23)
 - [ ] Opcional: confirmar con el tutor de FSD que la opción B está bien planteada [fecha:: 2026-10-28]
-- [ ] Simular cada bloque por separado
+- [x] Simular el bloque 1 (2026-11-18)
+- [ ] Montar y simular los bloques 2 y 3 en Multisim [fecha:: 2026-11-21]
+- [ ] Empezar la memoria siguiendo la rúbrica (diseño, simulación, verificación, documento) [fecha:: 2026-11-22]
 - [ ] Circuito completo y verificación con P = 011, 111, 100, 101
 - [ ] Pasar todo al Word y entregar [fecha:: 2026-11-27]
 
@@ -365,3 +367,6 @@ Sobre una **copia** del archivo del bloque 1 (p. ej. `PEC1-079_bloques1y2`); el 
 | 00 | 1 1 0 0 | 1 | 0 |
 
 Comprobación rápida: **M siempre es lo contrario de S0**. Chips: 7404 4/6, 7432 3/4, 7408 2/4, 7486 1/4.
+
+## Mapas de Karnaugh para la memoria (Jarvis, 2026-11-18) #revisar
+Los 8 mapas de la opción B (Y1, Y0, S3, S2, S1, S0, M, C̄n) con los grupos dibujados: https://claude.ai/artifact/XNNbwQxfYBCAoUdgLD9Rph. Para la memoria: captura con Win + Shift + S y en tema claro.

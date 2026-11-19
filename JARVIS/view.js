@@ -101,7 +101,7 @@ const CFG = {
     UNED: { nombre: "MODO UNED", color: "#ff6fae", izquierda: "UNED/MODO UNED/Modo UNED - Izquierda.md", derecha: "UNED/MODO UNED/Modo UNED - Derecha.md" },
   },
   // Carpetas que no salen como notas en el universo (el propio panel y la rutina diaria)
-  fueraDelGrafo: ["JARVIS/JARVIS Núcleo.md", "UNED/MODO UNED/", "UNED/PLANIFICACION/Rutina/", "ARCHIVO/"],
+  fueraDelGrafo: ["JARVIS/JARVIS Núcleo.md", "UNED/MODO UNED/", "UNED/PLANIFICACION/Rutina/", "UNED/TRAYECTO/", "ARCHIVO/"],
   // Hora canaria (la del ordenador). dia: 1 = lunes … 7 = domingo
   tutorias: [
     { dia: 1, ini: "16:00", fin: "17:00", asig: "GEI", modo: "Solo AVIP" },

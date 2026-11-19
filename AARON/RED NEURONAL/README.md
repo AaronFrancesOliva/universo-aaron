@@ -21,6 +21,7 @@ Esta carpeta es **mi memoria de conocimiento**: todo lo que he aprendido estudia
 | [[FSD - Índice]] | Fundamentos de Sistemas Digitales: **temas 1-9 del libro estudiados** (un nodo por tema), análisis de 326 preguntas de examen, P+F, PEC y erratas |
 | [[LED - Índice]] | Lógica y Estructuras Discretas: **libro web estudiado entero** (4 bloques), evaluación y trucos de la PEC |
 | [[UNED - General]] | Funcionamiento de la UNED y de las asignaturas de Aaron: evaluación, PEC, exámenes, horarios |
+| [[UNED - Plan oficial del grado]] | Curso oficial (1.º-4.º) de cada asignatura, optativas ofertadas y créditos que faltan en el plan de Aaron |
 | [[Planificación - Conocimiento]] | Lo que sé de Aaron y de cómo planificar con él |
 | [[GitHub - Proyectos de Aaron]] | Repositorios de Aaron en GitHubLocal: un nodo por proyecto (Aularis, CanvaDIOP, portafolio, CHILDREN'S, prueba de Edata, PGL de DAM), mapa de conexiones con la UNED y trayectoria DAW → DAM → UNED |
 | [[Método - Cómo trabajo]] | Herramientas y trucos técnicos (leer PDFs escaneados, correspondencias de páginas, permisos) |
@@ -32,3 +33,4 @@ Esta carpeta es **mi memoria de conocimiento**: todo lo que he aprendido estudia
 - 2026-10-08: nuevo nodo [[GitHub - Proyectos de Aaron]] (galaxia GITHUB AARON).
 - 2026-10-08 (tarde): análisis a fondo de los 10 proyectos de GitHub: 6 nodos en `GITHUB/` y mapa de conexiones.
 - 2026-10-16: idea de proyecto [[Twinpos]] (TPV modular para pymes con plano 3D tipo gemelo digital), en `GITHUB/PERSONAL/`.
+- 2026-11-19: nuevo nodo [[UNED - Plan oficial del grado]] (para la app TRAYECTO): a Aaron le faltan 2 optativas (12 ECTS) en su plan.
