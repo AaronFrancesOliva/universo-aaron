@@ -368,5 +368,11 @@ Sobre una **copia** del archivo del bloque 1 (p. ej. `PEC1-079_bloques1y2`); el 
 
 Comprobación rápida: **M siempre es lo contrario de S0**. Chips: 7404 4/6, 7432 3/4, 7408 2/4, 7486 1/4.
 
+## Simulación del bloque 2 (2026-11-23) #revisar
+- Montado por Aaron en Multisim sobre la copia del bloque 1 (Y1 Y0 salen del bloque 1). Puertas: U5B (S3), U6C + U7C (S2), U8B (S1), U9A 7486 (S0), U10D (M); Cn = cable desde Y0.
+- XLA1: P2, P1, P0, Y1, Y0, S3, S2, S1, S0, M, Cn. Comprobadas con Jarvis las 8 franjas de 90 a 94 ms: todo coincide con la tabla del bloque 2. M = S̄0 y Cn = Y0. Sin glitches.
+- Net name `M` puesto y etiquetas Y1/Y0 corregidas. Cn no puede tener nombre propio (es la misma red que Y0): en el esquema lleva un texto «Cn» y en el analizador sale como **Term 11**. En la memoria: «Term 11 = C̄n; como C̄n = Y0, es el mismo cable y la onda es idéntica».
+- **Capturas del esquema y del cronograma hechas** (2026-11-23). Siguiente: bloque 3 (ALU 74181).
+
 ## Mapas de Karnaugh para la memoria (Jarvis, 2026-11-18) #revisar
 Los 8 mapas de la opción B (Y1, Y0, S3, S2, S1, S0, M, C̄n) con los grupos dibujados: https://claude.ai/artifact/XNNbwQxfYBCAoUdgLD9Rph. Para la memoria: captura con Win + Shift + S y en tema claro.

@@ -199,3 +199,8 @@
 18:46:16.340 nota del núcleo repintada
 18:46:16.655 datos leídos
 19:21:35.585 APP TRAYECTO pulsada
+17:09:02.079 ---- onload: empieza
+17:09:02.083 onload: vistas registradas ["jarvis-hud-diagnostico","jarvis-hud-nucleo","jarvis-hud-uned-izquierda","jarvis-hud-uned-derecha"]
+17:09:02.675 onLayoutReady
+17:09:02.675 nota del núcleo repintada
+17:09:03.081 datos leídos
