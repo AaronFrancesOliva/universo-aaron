@@ -3,7 +3,7 @@ tipo: pec
 asignatura: FSD
 enunciado: PEC1-079
 entrega: 2026-11-27
-estado: en curso
+estado: entregada
 tags: [fsd, pec]
 ---
 
@@ -338,7 +338,8 @@ Script: para las 8 combinaciones de P2 P1 P0, el bloque 1 da el código correcto
 - [ ] Empezar la memoria siguiendo la rúbrica (diseño, simulación, verificación, documento) [fecha:: 2026-11-22]
 - [x] Circuito completo y verificación con P = 011, 111, 100, 101 (2026-11-26)
 - [x] Pasar todo al Word (2026-11-26): `PEC1-079 - memoria (borrador).docx` #revisar
-- [ ] Rellenar datos, pegar capturas y entregar [fecha:: 2026-11-27]
+- [x] Rellenar datos y pegar capturas (PDF final del 2026-11-27)
+- [x] Subida a Ágora `ENTREGA PEC1/PEC1-079 - Aaron Frances Oliva.zip` (PDF + bloque1, bloque2 y completo .ms14). **Entregada el 2026-11-27** (confirmado por Aaron). Notas: 11 dic
 
 ## Esquema para Multisim (Jarvis, 2026-11-18) #revisar
 Diagrama de los 3 bloques con las puertas, los DigClock (P2 250 Hz, P1 500 Hz, P0 1 kHz) y las tablas de lo que debe salir: https://claude.ai/artifact/4U3wwm7MrfHoQSbKe5Atec

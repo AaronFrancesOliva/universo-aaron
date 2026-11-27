@@ -27,7 +27,7 @@ Esta nota es la memoria del proyecto UNED. Claude la lee y la actualiza; todos l
 - **Gestión de Empresas Informáticas**: Tema 1 (La empresa y el empresario) resumido y verificado contra el libro, el resumen y el glosario (2026-10-05).
 - **Fundamentos de Sistemas Digitales**: Tema 1 organizado y con nota (2026-10-06), `estado: pendiente` hasta que Aaron haga la primera lectura.
 - **Lógica y Estructuras Discretas** (71901037): sin libro base, el material está en Ágora. Examen 80 % + PEC de test 30 % + prácticas 10 % (hace falta un 3,5 en el examen). Ficha: [[Lógica y Estructuras Discretas]].
-- **FSD** (71901014): libro *Electrónica Digital*; tema del programa = tema del libro − 3 (desde el 2.º); el tema 10 no entra. Test del examen eliminatorio (mínimo 4). PEC 1: enunciado el 23 oct 06:00, entrega antes del 28 nov; PEC 2: entrega el 10 ene 2027 22:55 (hora canaria); 20 %. Ficha: [[Fundamentos de Sistemas Digitales]].
+- **FSD** (71901014): libro *Electrónica Digital*; tema del programa = tema del libro − 3 (desde el 2.º); el tema 10 no entra. Test del examen eliminatorio (mínimo 4). PEC 1: **entregada el 2026-11-27** (enunciado PEC1-079; notas el 11 dic); PEC 2: entrega el 10 ene 2027 22:55 (hora canaria); 20 %. Ficha: [[Fundamentos de Sistemas Digitales]].
 - Las tres son del 1.er cuatrimestre 2026-27. Tutorías (hora canaria): lunes 16-17 GEI (solo AVIP), miércoles 18-19 LED y 20-21 FSD (presencial + AVIP; corregido el 2026-10-08).
 - GEI: PEC 1 (temas 1-8, 20 preguntas tipo test, 5 %) del 3 dic 23:00 al 7 dic 22:59 (hora canaria); PEC 2 (temas 9-14, 5 %) del 7 ene 23:00 al 11 ene 2027 22:59.
 
