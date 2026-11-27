@@ -334,10 +334,11 @@ Script: para las 8 combinaciones de P2 P1 P0, el bloque 1 da el código correcto
 - [x] Decidir diseño A o B → **B** (Aaron, 2026-10-23)
 - [ ] Opcional: confirmar con el tutor de FSD que la opción B está bien planteada [fecha:: 2026-10-28]
 - [x] Simular el bloque 1 (2026-11-18)
-- [ ] Montar y simular los bloques 2 y 3 en Multisim [fecha:: 2026-11-21]
+- [x] Montar y simular los bloques 2 y 3 en Multisim (2026-11-26)
 - [ ] Empezar la memoria siguiendo la rúbrica (diseño, simulación, verificación, documento) [fecha:: 2026-11-22]
-- [ ] Circuito completo y verificación con P = 011, 111, 100, 101
-- [ ] Pasar todo al Word y entregar [fecha:: 2026-11-27]
+- [x] Circuito completo y verificación con P = 011, 111, 100, 101 (2026-11-26)
+- [x] Pasar todo al Word (2026-11-26): `PEC1-079 - memoria (borrador).docx` #revisar
+- [ ] Rellenar datos, pegar capturas y entregar [fecha:: 2026-11-27]
 
 ## Esquema para Multisim (Jarvis, 2026-11-18) #revisar
 Diagrama de los 3 bloques con las puertas, los DigClock (P2 250 Hz, P1 500 Hz, P0 1 kHz) y las tablas de lo que debe salir: https://claude.ai/artifact/4U3wwm7MrfHoQSbKe5Atec
@@ -376,3 +377,39 @@ Comprobación rápida: **M siempre es lo contrario de S0**. Chips: 7404 4/6, 743
 
 ## Mapas de Karnaugh para la memoria (Jarvis, 2026-11-18) #revisar
 Los 8 mapas de la opción B (Y1, Y0, S3, S2, S1, S0, M, C̄n) con los grupos dibujados: https://claude.ai/artifact/XNNbwQxfYBCAoUdgLD9Rph. Para la memoria: captura con Win + Shift + S y en tema claro.
+
+## Montaje del bloque 3 (ALU 74181) y circuito completo, paso a paso (Jarvis, 2026-11-26) #revisar
+Sobre una **copia** de `PEC1-079_bloques1y2` (p. ej. `PEC1-079_completo`); la de los bloques 1 y 2 no se toca.
+1. **Colocar la ALU**: Place → Component → Group *TTL*, Family *74STD*, **74181N**. Alimentación oculta (no se cablea VCC/GND del chip).
+2. **Palabras fijas** (A = 0001, B = 1110): un **VCC** (5 V) y un **DGND** (Place → Sources → POWER_SOURCES).
+   - A0 → VCC · A1, A2, A3 → DGND
+   - B0 → DGND · B1, B2, B3 → VCC
+3. **Control desde el bloque 2**: S3→S3, S2→S2, S1→S1, S0→S0, M→M y la patilla **CN** de la ALU → rama de Y0 (la red «Cn»).
+4. **Salidas**: F0-F3 y **CN+4** al analizador. **A=B, P y G sin conectar** (A=B es colector abierto: no se usa).
+5. **Analizador**: quedan 5 entradas libres (12-16) → F3, F2, F1, F0, CN+4. Así caben las 16 señales.
+6. Simular (Clocks/Div = 10) y mirar las 8 franjas de 0,5 ms (p. ej. de 90 a 94 ms; la cuenta va hacia abajo):
+
+| P2 P1 P0 | Gana | F3 F2 F1 F0 | CN+4 |
+|---|---|---|---|
+| 111 | P1 (A ⊕ B) | 1111 | no importa (modo lógico) |
+| 110 | P1 | 1111 | no importa |
+| 101 | P2 | **0001** | **0** (hay acarreo; la patilla sale negada) |
+| 100 | P2 | **0001** | **0** |
+| 011 | P1 | 1111 | no importa |
+| 010 | P1 | 1111 | no importa |
+| 001 | P0 (A PLUS B) | 1111 | **1** (sin acarreo) |
+| 000 | ninguna (F = 1) | 1111 | no importa |
+
+Las 4 de la verificación del enunciado: **011, 111, 100, 101**. Lo único que no es 1111 es P2 (0001 con acarreo): si eso sale, la ALU está bien controlada.
+7. Capturas: esquema completo + cronograma (con cursores en las franjas 011, 111, 100 y 101) para los apartados 6, 8 y verificación.
+
+## Simulación del bloque 3 y circuito completo (2026-11-26) #revisar
+- Primer intento mal: **CN y M estaban cruzados** en la ALU (la ALU recibía Y0 como modo) y las salidas cambiaban en cada franja. Corregido por Aaron.
+- Tras corregirlo: F3, F2 y F1 a 1 salvo en las franjas de P2 (93-94 y 97-98 ms), que bajan a 0; F0 siempre a 1 → **F = 1111 en todo, 0001 con P2**, como se esperaba.
+- Redes con nombre (F3, F2, F1, F0, CN4) y cronograma final comprobado con Jarvis (90-100 ms): F3 F2 F1 bajan solo en 93-94 y 97-98 ms (P2), F0 siempre 1, **CN4 = 0 solo con P2** (acarreo, patilla negada) y 1 en el resto. Verificación 011/111 → 1111, 100/101 → 0001 con acarreo. **Circuito completo correcto.** Captura del cronograma: escritorio, `Captura de pantalla 2026-11-26 111833.png`.
+
+## Borrador de la memoria (Jarvis, 2026-11-26) #revisar
+Documento con los apartados 1-9 completos (diseño, simulación, parámetros, verificación razonada y dificultades), listo para pasar al Word: https://claude.ai/artifact/KjRyvuTtjX48hZQ5Spj6MP. Faltan los datos personales, las capturas y, opcional, la prueba de la ALU por separado (apartado 6.3).
+
+## Revisión de la memoria (Jarvis, 2026-11-26) #revisar
+Revisada con `revision-documental` contra el enunciado, la rúbrica y esta nota. Todos los cálculos están rehechos y son correctos. Se corrigieron 3 frases que daban por hecha la prueba de la ALU sola. **Falta**: simular la ALU por separado (apartado 6.3; el enunciado pide esquema, cronograma y verificación de *cada* bloque), datos personales y capturas. A comprobar: cómo salen las fórmulas al pasar a Word y si el comprimido debe llevar los archivos de Multisim.

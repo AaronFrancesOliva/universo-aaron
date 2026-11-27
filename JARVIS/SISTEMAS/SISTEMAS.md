@@ -21,6 +21,7 @@ La sala de máquinas de Jarvis: todo lo que funciona solo o está conectado al u
 | **OBSIDIAN** | Plugins del vault |
 | **CONECTORES** | Servicios externos: OneDrive, Ágora, GitHub, GitLab, Google |
 | **CLAUDE CODE** | El agente: instrucciones, memoria, red neuronal, tareas programadas, hooks |
+| **SKILLS** | [[SKILLS PLANET]]: las skills del agente, en 12 departamentos (documentos, escritura, investigación, memoria, datos, diseño, automatización, calidad…) |
 
 > [!info] Salud en vivo
 > Algunos sistemas tienen un `chequeo` que la galaxia hace cada vez que se abre, y que corrige el `estado` anotado:

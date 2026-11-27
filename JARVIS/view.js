@@ -85,6 +85,7 @@ const CFG = {
       sistemas: [
         { id: "RUTINAS", color: "#ffd36e" }, { id: "OBSIDIAN", color: "#a88bfa" },
         { id: "CONECTORES", color: "#3ee8ff" }, { id: "CLAUDE CODE", color: "#ff9a6b" },
+        { id: "SKILLS", color: "#ff6bd6" },
       ],
       remolino: {
         paleta: ["#f2fdff", "#c9f6ff", "#8ff0ff", "#3ee8ff", "#1fb5d6", "#167f9e", "#0d4f66"], bordes: ["#e8fbff", "#3ee8ff"],
